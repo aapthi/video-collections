@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="../../../ckeditor.js"></script>
+	<link href="../../../samples/sample.css" rel="stylesheet">
+</head>
+<body>
+	<form id="templeteid" method="post">
+	<center>
+		<h4>Description:</h4>
+		<div id="currentToolbar">
+			<textarea cols="80" id="editorCurrent" name="editorCurrent" rows="10"></textarea>
+			<span id="erroreditor" name="erroreditor" style="color:red;" ></span>
+		</div>
+	   
+		<p><h4>Template Footer:</h4><input type="text" name="changeFooter" id="changeFooter"  style="height:100px; width:620px;" value= "<? if(isset($changefooter)){ echo $changefooter;}?>"></p>
+		 
+		<p><h4>Create file name:</h4><input type="text" name="filename" id="filename">
+		 <span id="fileerror" name="fileerror" style="color:red;"></span></p>
+		 
+		<p><input type="button" value="Print" onclick="return createTemplete()" ></p>
+	</center>
+	<form>
+
+	
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+(function(){
+	'use strict';
+
+	var buttonsNames;
+
+	CKEDITOR.config.extraPlugins = 'toolbar';
+
+	CKEDITOR.on( 'instanceReady', function( evt ) {
+		var editor = evt.editor,
+			editorCurrent = editor.name == 'editorCurrent',
+			defaultToolbar = !( editor.config.toolbar || editor.config.toolbarGroups || editor.config.removeButtons ),
+			pre = CKEDITOR.document.getById( editor.name + 'Cfg' ),
+			output = '';
+
+		if ( editorCurrent ) {
+			// If default toolbar configuration has been modified, show "current toolbar" section.
+			if ( !defaultToolbar )
+				CKEDITOR.document.getById( 'currentToolbar' ).show();
+			else
+				return;
+		}
+
+		if ( !buttonsNames )
+			buttonsNames = createButtonsNamesHash( editor.ui.items );
+
+		// Toolbar isn't set explicitly, so it was created automatically from toolbarGroups.
+		if ( !editor.config.toolbar ) {
+			output +=
+				'// Toolbar configuration generated automatically by the editor based on config.toolbarGroups.\n' +
+				dumpToolbarConfiguration( editor ) +
+				'\n\n' +
+				'// Toolbar groups configuration.\n' +
+				dumpToolbarConfiguration( editor, true )
+		}
+		// Toolbar groups doesn't count in this case - print only toolbar.
+		else {
+			output += '// Toolbar configuration.\n' +
+				dumpToolbarConfiguration( editor );
+		}
+
+		// Recreate to avoid old IE from loosing whitespaces on filling <pre> content.
+		var preOutput = pre.getOuterHtml().replace( /(?=<\/)/, output );
+		CKEDITOR.dom.element.createFromHtml( preOutput ).replace( pre );
+	} );
+
+	CKEDITOR.replace( 'editorCurrent', { height: 100 } );
+	CKEDITOR.replace( 'editorFull', {
+		// Reset toolbar settings, so full toolbar will be generated automatically.
+		toolbar: null,
+		toolbarGroups: null,
+		removeButtons: null,
+		height: 100
+	} );
+
+	function dumpToolbarConfiguration( editor, printGroups ) {
+		var output = [],
+			toolbar = editor.toolbar;
+
+		for ( var i = 0; i < toolbar.length; ++i ) {
+			var group = dumpToolbarGroup( toolbar[ i ], printGroups );
+			if ( group )
+				output.push( group );
+		}
+
+		return 'config.toolbar' + ( printGroups ? 'Groups' : '' ) + ' = [\n\t' + output.join( ',\n\t' ) + '\n];';
+	}
+
+	function dumpToolbarGroup( group, printGroups ) {
+		var output = [];
+
+		if ( typeof group == 'string' )
+			return '\'' + group + '\'';
+		if ( CKEDITOR.tools.isArray( group ) )
+			return dumpToolbarItems( group );
+		// Skip group when printing entire toolbar configuration and there are no items in this group.
+		if ( !printGroups && !group.items )
+			return;
+
+		if ( group.name )
+			output.push( 'name: \'' + group.name + '\'' );
+
+		if ( group.groups )
+			output.push( 'groups: ' + dumpToolbarItems( group.groups ) );
+
+		if ( !printGroups )
+			output.push( 'items: ' + dumpToolbarItems( group.items ) );
+
+		return '{ ' + output.join( ', ' ) + ' }';
+	}
+
+	function dumpToolbarItems( items ) {
+		if ( typeof items == 'string' )
+			return '\'' + items + '\'';
+
+		var names = [],
+			i, item;
+
+		for ( var i = 0; i < items.length; ++i ) {
+			item = items[ i ];
+			if ( typeof item == 'string' )
+				names.push( item );
+			else {
+				if ( item.type == CKEDITOR.UI_SEPARATOR )
+					names.push( '-' );
+				else
+					names.push( buttonsNames[ item.name ] );
+			}
+		}
+
+		return '[ \'' + names.join( '\', \'' ) + '\' ]';
+	}
+
+	// Creates { 'lowercased': 'LowerCased' } buttons names hash.
+	function createButtonsNamesHash( items ) {
+		var hash = {},
+			name;
+
+		for ( name in items ) {
+			hash[ items[ name ].name ] = name;
+		}
+
+		return hash;
+	}
+
+})();
+   function createTemplete(){
+		  var flag=true;
+		  var ckeditor= CKEDITOR.instances['editorCurrent'].getData().replace(/<[^>]*>/gi, '').length;
+		  var FooterChange=$("#changeFooter").val();
+		  var createfilename=$("#filename").val();
+          if( !ckeditor ){
+            $("#erroreditor").html("Please enter the description");
+			 flag=false;
+          }else{
+		     $("#erroreditor").html(""); 
+		  }
+		  if(FooterChange == ""){
+		     $("#errorchangeFooter").html("Please enter the text"); 
+			 flag=false;
+		  }else{
+		    $("#errorchangeFooter").html(""); 
+		  }
+		  if(createfilename == ""){
+		     $("#fileerror").html("Please enter the file name"); 
+			 flag=false;
+		  }else{
+		    $("#fileerror").html(""); 
+		  }
+		  if(flag==false){
+		     return false;
+		  }else{
+		     $("#templeteid").submit();
+		  }
+		  
+		}
+	</script>
+</body>
+</html>
