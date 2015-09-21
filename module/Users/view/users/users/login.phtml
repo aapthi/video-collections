@@ -45,11 +45,12 @@
               <input type="password" class="form-control" id="password" name="password" placeholder="Password">
 			  <span id="passwordError" style="color:red"></span>
             </div>
-			<span id="errorMsg" style="color:red"></span>
             <div class="form-group">
               <button type="button" class="btn btn-primary btn-block" onclick="loginValidations();">Sign In</button>
 			  <center><span id="reload"></span></center>
             </div>
+						<span id="errorMsg" style="color:red"></span>
+
 			<div class="form-group">
 				<span>Don't have an account <a href="<?php echo $baseUrl;?>/users/register" class="undeline">Register here</a></span>
 				<span class="pull-right"><a href="<?php echo $baseUrl;?>/users/forgot-password" class="undeline">Forgot Password?</a></span>

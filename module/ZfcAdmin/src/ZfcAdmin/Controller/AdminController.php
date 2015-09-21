@@ -14,83 +14,73 @@ use ScnSocialAuth\Mapper\UserProviderInterface;
 class AdminController extends AbstractActionController
 {
 	protected  $userTable;
-	protected  $issuesTable;
 	protected  $categoriesTable;
 	public function indexAction()
 	{
 		
 	}
-	public function dashBoardAction()
-	{
-		
-	}
-	public function addIssueAction()
-	{
-		$getCategories=$this->getCategoryTable()->getCategories();
-		$baseUrls 	= $this->getServiceLocator()->get('config');
+	public function logoutAction(){	
+		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
-		$baseUrl 	= $baseUrlArr['baseUrl'];
-		$basePath 	= $baseUrlArr['basePath'];
-		if($_POST){
-			if($_POST['hidbutton_value']==0){
-				$addIssue = $this->getIssuesTable()->addIssue($_POST);
-				return $this->redirect()->toUrl($basePath .'/admin/issues');
+		$baseUrl = $baseUrlArr['baseUrl'];
+		unset($_SESSION['admin']);
+		return $this->redirect()->toUrl($baseUrl.'/admin');
+	}
+	public function headerAction($params)
+    {
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		return $this->layout()->setVariable(
+			"headerarray",array(
+				'baseUrl' => $baseUrl,
+			)
+		);
+	}
+	public function getUserTable()
+    {
+        if (!$this->userTable) {				
+            $sm = $this->getServiceLocator();
+            $this->userTable = $sm->get('Users\Model\UserTableFactory');			
+        }
+        return $this->userTable;
+    }
+	public function loginAction()
+	{
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_POST['inputEmail']) && $_POST['inputEmail']!=""){
+			$usersTable=$this->getUserTable();
+			$userDetailss = $usersTable->checkEmailExists($_POST);
+			if($userDetailss!=''){
+				$user_id=$userDetailss->user_id;
+				$userDetails = $usersTable->checkUserStatus($user_id);
+				if($userDetails!=''){
+					$user_session = new Container('admin');
+					$user_session->username=$userDetails->user_name;
+					$user_session->email=$userDetails->email_id;
+					$user_session->user_id=$user_id;
+					$result = new JsonModel(array(					
+						'output' => 'success',
+						'user_id' => json_decode($user_id),
+						'user_type' => 'admin',
+					));
+				}else{
+					 $result = new JsonModel(array(					
+						'output' => 'not success',
+					));
+				}
 			}else{
-				$updateIssue = $this->getIssuesTable()->updateIssue($_POST);
-				return $this->redirect()->toUrl($basePath .'/admin/issues');
+				 $result = new JsonModel(array(					
+					'output' => 'not success',
+				));
 			}
-		}else if(isset($_GET['ediid'])!=""){
-			$getCategories=$this->getCategoryTable()->getCategories();
-			$editIssue = $this->getIssuesTable()->editIssue($_GET['ediid']);
-			return  $result = new ViewModel(array(					
-				'basepath' 		=> $basePath ,
-				'edit_issue'	=> $editIssue->toArray(),
-				'categories'	=> $getCategories->toArray(),
-			));
-		}else{
-			return  $result = new ViewModel(array(					
-				'basepath' 		=> $basePath ,
-				'categories'	=> $getCategories->toArray(),
-			));
-		}
+			return $result;
+		}	
 	}
-	public function issuesAction()
-	{
-		$baseUrls = $this->getServiceLocator()->get('config');
-		$baseUrlArr = $baseUrls['urls'];
-		$baseUrl = $baseUrlArr['baseUrl'];
-		$basePath = $baseUrlArr['basePath'];
-		if(isset($_GET['delid'])){
-			$deleteissue=$this->getIssuesTable()->deleteIssue($_GET['delid']);
-			return $this->redirect()->toUrl($basePath .'/admin/issues');
-		}else{
-			return  $result = new ViewModel(array(					
-				'basepath' 		=> $basePath ,
-			));
-		}
-	}
-	public function issuesAjaxAction()
-	{
-		$baseUrls = $this->getServiceLocator()->get('config');
-		$baseUrlArr = $baseUrls['urls'];
-		$baseUrl = $baseUrlArr['baseUrl'];
-		$basePath = $baseUrlArr['basePath'];
-		$getIssues = $this->getIssuesTable()->getIssues();
-		$data = array();$i=0;
-		if(isset($getIssues) && $getIssues->count()!=0){
-			foreach($getIssues as $issues){
-                $id=$issues->issue_id;
-				$data[$i]['sno']=$i+1;
-				$data[$i]['issue_title']= $issues->issue_title;
-				$data[$i]['issue_decription']= $issues->issue_decription;
-				$data[$i]['action'] ='<a href="javascript:void(0)" onclick="editIssue('.$id.')" >Edit</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteIssue('.$id.')">Delete</a>';
-				$i++;
-			}
-			$data['aaData'] = $data;
-			echo json_encode($data['aaData']); exit;
-		}else{
-			echo '1'; exit;
-		}
+	public function dashboardAction(){
 	}
 	public function addCategoryAction()
 	{
@@ -116,9 +106,16 @@ class AdminController extends AbstractActionController
 		}
 			
 	}
+	public function getCategoryTable()
+    {
+        if (!$this->categoriesTable) {				
+            $sm = $this->getServiceLocator();
+            $this->categoriesTable = $sm->get('Application\Model\CategoryFactory');			
+        }
+        return $this->categoriesTable;
+    }
 	public function categoriesListAction()
-	{
-		
+	{		
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
@@ -157,58 +154,27 @@ class AdminController extends AbstractActionController
 	}
 	public function editCategoryAction()
 	{
-	  $editcatid=$_GET['id'];
-	  //echo $id; exit;
-	  $baseUrls = $this->getServiceLocator()->get('config');
+		$editcatid=$_GET['id'];
+		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
-			$editcatid = $this->getCategoryTable()->editCategories($editcatid);
-			$view= new ViewModel(array(
-					'editcatdata'=>$editcatid->toArray(),
-					// 'url' => $this->redirect()->toRoute('fetch-all'),
-				));
-			return $view;
-		}	
-		public function deleteCategoryAction()
-		{
-		  //$deletecatid=$_GET['id'];
-		  //echo $id; exit;
-		  $baseUrls = $this->getServiceLocator()->get('config');
-		  $baseUrlArr = $baseUrls['urls'];
-		  $baseUrl = $baseUrlArr['baseUrl'];
-		  $basePath = $baseUrlArr['basePath'];
-		  if(isset($_GET['id']))
-		  {
-            $deleteissue=$this->getCategoryTable()->deleteCategory($_GET['id']);
-            return $this->redirect()->toUrl($basePath .'/admin/categories-list');
-          }
-		}
-		
-	  
-	public function getUserTable()
-    {
-        if (!$this->userTable) {				
-            $sm = $this->getServiceLocator();
-            $this->userTable = $sm->get('Users\Model\UserTableFactory');			
-        }
-        return $this->userTable;
-    }
-	public function getIssuesTable()
-    {
-       if (!$this->issuesTable) {                                
-           $sm = $this->getServiceLocator();
-           $this->issuesTable = $sm->get('ZfcAdmin\Model\IssuesFactory');                        
-       }
-       return $this->issuesTable;
-   }
-   
-   public function getCategoryTable()
-    {
-        if (!$this->categoriesTable) {				
-            $sm = $this->getServiceLocator();
-            $this->categoriesTable = $sm->get('Application\Model\CategoryFactory');			
-        }
-        return $this->categoriesTable;
-    }
+		$editcatid = $this->getCategoryTable()->editCategories($editcatid);
+		$view= new ViewModel(array(
+				'editcatdata'=>$editcatid->toArray(),
+			));
+		return $view;
+	}	
+	public function deleteCategoryAction()
+	{		  
+	  $baseUrls = $this->getServiceLocator()->get('config');
+	  $baseUrlArr = $baseUrls['urls'];
+	  $baseUrl = $baseUrlArr['baseUrl'];
+	  $basePath = $baseUrlArr['basePath'];
+	  if(isset($_GET['id']))
+	  {
+		$deleteissue=$this->getCategoryTable()->deleteCategory($_GET['id']);
+		return $this->redirect()->toUrl($basePath .'/admin/categories-list');
+	  }
+	}		
 }

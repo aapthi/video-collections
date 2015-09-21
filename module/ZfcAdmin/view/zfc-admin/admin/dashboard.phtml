@@ -1,4 +1,8 @@
- <?php if(isset($_SESSION['user']['email'])){?>
+ <?php if(isset($_SESSION['admin']['user_id'])){
+	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+	$baseUrl = $header->headerarray['baseUrl'];
+	$basePath = $header->headerarray['basePath']; 
+ ?>
 <div class="container mar_t min_height">
 	<div id="loginModal" class="show"  role="dialog" aria-hidden="true">
   <div class="modal-dialog">
@@ -10,7 +14,7 @@
 	   <div class="modal-body">
 		  <div>
 			  <center>
-				<p><a class="btn btn-primary  btn-block" href="javascript:void(0)" onclick="CategoryFunction(0)" >Category</a></p>
+				<p><a class="btn btn-primary  btn-block" href="<?php echo $baseUrl; ?>/admin/categories-list">Category</a></p>
 				<p><a class="btn btn-primary  btn-block" href="javascript:void(0)" onclick="CategoryFunction(1)" >Issues</a></p>
 			  </center>
 		  </div>
@@ -22,5 +26,5 @@
 
     </div> <!-- /container -->
 <?php }else{?>
-  <script>window.location=BASE_URL+"/users/login";</script>
+  <script>window.location=BASE_URL+"/admin";</script>
 <?}?>

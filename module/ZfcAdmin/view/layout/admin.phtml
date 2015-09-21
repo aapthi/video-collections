@@ -1,15 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <?php $header=$this->action('ZfcAdmin\Controller\AdminController', 'headerAction');
 	  $baseUrl = $header->headerarray['baseUrl'];
-	  //echo $adminUrl;exit;
-?>
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<title>Admin Panel Poorapo</title> 
-	<body>
-		<!-- Header start -->	
-		<?php include 'adminheader.phtml';?>
-		<?php echo $this->content; ?>
-		<?php include 'adminfooter.phtml';?>
-		<!-- Header end -->
-	</body>
-</html>
+?>	
+<!-- Header start -->	
+	<?php include 'adminheader.phtml';?>
+	<?php echo $this->content; ?>
+	<?php include 'adminfooter.phtml';?>
+<!-- Header end -->

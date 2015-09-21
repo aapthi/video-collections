@@ -1,4 +1,4 @@
- <?php if(isset($_SESSION['user']['email'])){?>
+ <?php if(isset($_SESSION['admin']['user_id'])){?>
  <div class="container min_height">
   <div id="loginModal" class="show"  role="dialog" aria-hidden="true">
   <div class="modal-dialog">
@@ -72,5 +72,5 @@
 	}
 	</script>
 <?php }else{?>
-  <script>window.location=BASE_URL+"/users/login";</script>
+  <script>window.location=BASE_URL+"/admin";</script>
 <?}?>
