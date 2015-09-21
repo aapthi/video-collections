@@ -165,6 +165,50 @@ function loginValidations(){
 			});
 	}
 }
+function adloginValidations(){
+	var flag=true;
+	$('#errorMsg').html('');
+	var userEmail=$('#user_email').val();
+	var userPassword=$('#user_password').val();
+	if(userEmail==''){
+		$('#emailError').html('Required');
+		flag=false;
+	}else if(checkEmail(userEmail)==false){
+		$('#emailError').html('Enter valid email address without spaces');
+		flag=false;
+	}else{
+		$('#emailError').html('');
+	}
+	if(userPassword==''){
+		$('#passwordError').html('Required');
+		flag=false;
+	}else{
+		$('#passwordError').html('');
+	}
+	if(flag==false){
+		return false;
+	}else{
+			var image=BASE_PATH+'/images/ajax-loader.gif';
+			$('#reload').html('<img src='+image+' />'); 
+			var url=BASE_URL+'/admin/login';
+			$.ajax({
+				type:'POST',
+				datatype:'json',
+				url:  url,
+				data:{inputEmail:userEmail,password:userPassword},
+				success: function(response){
+					$('#reload').html('');
+					if(response.output=='success'){
+						if(response.user_type=='admin'){
+							window.location=BASE_URL+"/admin/dashboard";							
+						}
+					}else{
+						$('#errorMsg').html('Entered wrong username and/or password');
+					}
+				}
+			});
+	}
+}
 function changePassword(regAuth){	
 	$('#errorMsg').html('');
 	$('#sucessMsg').html('');
