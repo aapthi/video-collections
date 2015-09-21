@@ -1,0 +1,76 @@
+ <?php if(isset($_SESSION['user']['email'])){?>
+ <div class="container min_height">
+  <div id="loginModal" class="show"  role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+          <h1 class="text-center">Add Category</h1>
+      </div>
+      <div class="modal-body">
+          <form id="categoryForm" class="form col-md-12 center-block" method="POST">
+            <div class="form-group">
+              <input type="text" class="form-control" id="catname" name="catname"  value="<? if(isset($this->editcatdata[0]['category_name'])){ echo $this->editcatdata[0]['category_name'] ;}?>" placeholder="Category Name">
+			  <span id="catnameError" style="color:red"></span>
+            </div>
+			<div class="form-group">
+				<select class="form-control" id="cattype" name="cattypes" placeholder="please select category types">
+				<option  value="" >Select Category type</option>
+				<?if($this->editcatdata[0]['category_type_id']==1){?>
+					<option value="<?php echo $this->editcatdata[0]['category_type_id'];?>" selected >Cmspage</option>
+					<option value="2">Headerpage</option>
+				<?}else if($this->editcatdata[0]['category_type_id']==2){?>
+					<option value="1">CmsPage</option>
+					<option value="<?php echo $this->editcatdata[0]['category_type_id'];?>" selected >Headerpage</option>
+				<?}else{?>
+					 <option value="1">CmsPage</option>
+					<option value="2">Headerpage</option>
+				<?}?>
+             </select><span id="cattypeError" style="color:red"></span>
+            </div>
+            
+            <div class="form-group text-center">
+             <? if(isset($this->editcatdata[0]['category_id'])!=""){?>
+				<button type="button" class="btn btn-primary  btn-bloconclick" onclick="addcategoryFunction(1);">Update</button>&nbsp;<button type="button" class="btn btn-primary  btn-bloconclick" onclick="backFunction(2);">Back</button>
+			<?}else{ ?>
+			<button type="button" class="btn btn-primary  btn-bloconclick" onclick="backFunction(2);">Back</button>&nbsp;&nbsp;<button type="button" class="btn btn-primary  btn-bloconclick" onclick="addcategoryFunction(0);">Add</button>
+			<?}?>
+			<input type="hidden" value="<?php echo $this->editcatdata[0]['category_id'];?>" id="cat_id" name="cat_id" ></p>
+			<input type="hidden" value="" id="hid_cat_butt" name="hidbutton_value" >
+            </div>
+			<span id="errorMsg" style="color:red"></span>
+          </form>
+      </div><div class="clearfix"></div>
+  </div>
+  </div>
+</div>
+
+    </div> <!-- /container -->
+	
+	<script>
+	function addcategoryFunction(type){
+	flag=true;
+	var catname=$('#catname').val();
+	var cattype=$('#cattype').val();
+	var catbuttontype=$('#hid_cat_butt').val(type);
+	if(catname==""){
+		 $("#catnameError").html("Required");
+		 flag=false;
+	}else{
+	  $("#catnameError").html("");
+	}
+	if(cattype==""){
+		 $("#cattypeError").html("Required");
+		 flag=false;
+	}else{
+	  $("#cattypeError").html("");
+	}
+	if(flag==true){
+		$('#categoryForm').submit();
+	}
+	//window.location=BASE_URl+'/admin/add-category';
+	}
+	</script>
+<?php }else{?>
+  <script>window.location=BASE_URL+"/users/login";</script>
+<?}?>

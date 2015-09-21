@@ -1,0 +1,24 @@
+<div class="container min_height">	
+  <div id="loginModal" class="show"  role="dialog" aria-hidden="true">
+		<div class="modal-dialog">	
+			<div class="modal-content">
+			<center>
+			  <div class="modal-header">
+				  <h1 class="text-center" style="color:#1995dc;">Success Payment</h1>
+			  </div>			  
+				  <div class="modal-body">
+					  <? if(isset($this->output) && $this->output == 'success'){?>
+							<h3>Thank You, <?php echo $this->firstname; ?>.Your order status is <?php echo $this->status; ?>.</h3></br>
+							<h4>Your Transaction ID for this transaction is <?php echo $this->txnid; ?>.</h4></br>
+							<h4>We have received a payment of Rs. <?php echo $this->amount; ?>. Your order will soon be payment.</h4></br></br>	
+							<h4><p><a href="<?php echo $this->baseUrl; ?>"> Back</a></p></h4></br></br>		  
+					  <?}else {?>
+							<h3>Invalid Transaction. Please try again.</h3>
+					  <? } ?>
+				  </div>
+				 </center>
+				 <div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>

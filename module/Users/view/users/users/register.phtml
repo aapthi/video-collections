@@ -1,0 +1,63 @@
+<div class="container reg_w_12 min_height">
+	<div class="panel panel panel-default mar_t">
+		<div class="panel-heading reg_bg">
+		<? if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){?>
+			<h3 class="panel-title">Edit Profile</h3>
+		<?} else {?>
+			<h3 class="panel-title">Register</h3>
+		<? } ?>
+		</div>  
+		<? $details=''; if(count($this->userDetails)){ foreach($this->userDetails as $detailss){ $details=$detailss;}}
+			$dobex=''; if(isset($details->date_of_birth) && $details->date_of_birth!='') {
+				$dob = $details->date_of_birth;
+				$dobex = explode("/",$dob);
+			}		
+		?>
+<form  id="frm_meth" name="frm_meth" method="post" action="">	
+	<div class="panel-default">		
+		<div class="panel-body" id="tab_1_hide">
+			<div class="form-horizontal">
+				<div class="form-group">
+					<label for="inputfname" class="col-sm-3 control-label">User Name</label>
+					<div class="col-sm-8">
+					<span class="error_msg_disp" id="user_firstname_req"></span>
+						<input type="text" class="form-control" id="user_first_name" placeholder="User Name" name="user_first_name" value="<? if(isset($details->user_name) && $details->user_name!='') {echo ucfirst($details->user_name);}else{}?>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+					<div class="col-sm-8">
+						<span class="error_msg_disp" id="user_email_req"></span>
+						<input type="email" class="form-control" id="user_email" placeholder="Email" name="user_email" value="<? if(isset($details->email_id) && $details->email_id!='') {echo $details->email_id;}else{}?>" <? if(isset($details->email_id) && $details->email_id!='') {?> readonly="readonly" <?}else{?> onmouseout="return checkEmailVaild();"<? } ?>>
+					</div>
+				</div>
+				<input type="hidden" id="hidCheckValue" name="hidCheckValue" value='0'>
+				<? if($details==""){?>
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-3 control-label">Password</label>
+					<div class="col-sm-8">
+						<span class="error_msg_disp" id="user_pwd_req"></span>
+						<input type="password" class="form-control" id="user_password" name="user_password" value="" placeholder="Password">
+					</div>
+				</div>
+				<? } ?>
+				<div class="form-group">
+					<label for="inputpname" class="col-sm-3 control-label">Contact Number</label>
+					<div class="col-sm-8">
+						<span class="error_msg_disp" id="user_mobile_req"></span>
+						<input type="text" class="form-control" id="user_mobile" name="user_mobile" value="<? if(isset($details->contact_number) && $details->contact_number!='') {echo $details->contact_number;}else{}?>" placeholder="Your Mobile Number">
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8 col-lg-offset-3">
+						<button type="button" class="btn btn-primary" style="width:30%;" onCLick="validateReg();">Save</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="hidden" id="hid_user_id" name="hid_user_id" value="<? if(isset($details->user_id) && $details->user_id!=''){ echo $details->user_id;}else{}?>">
+		</form>			
+		</div>
+		</div>	
+	</div>
+</div>

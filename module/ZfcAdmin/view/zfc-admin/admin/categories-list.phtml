@@ -1,0 +1,58 @@
+<?php if(isset($_SESSION['user']['email'])){?>
+<div class="container mar_t mar_b min_height" style="position:relative">
+<head>
+  <link rel="stylesheet" type="text/css" href="">
+  <link href="<?php echo $basePath; ?>/css/jquery.datatable.css" rel="stylesheet">
+  <script src="<?php echo $basePath;?>/js/jquery.datatable.min.js"></script>
+</head>
+  <table id="example" class="table table-bordered table-hover">
+	<div style="position:absolute;top:62px;left:200px;z-index:300">
+	<button type="button" class="btn btn-primary  btn-bloconclick btn-sm" id="back" name="back"  onclick="backFunction(0);">Back</button>&nbsp;&nbsp;
+ <button type="button" class="btn btn-primary btn-bloconclick btn-sm" id="add" name="add"  onclick="addCategory();">Add Category</button>
+ </div>
+    <thead>
+      <tr><th>#</th>
+     <th>Category Name</th>
+	 <th>Category Type ID</th>
+     <th>Action</th>
+     </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  </div>
+  <center><span id="reload"></span></center>
+  <script>
+  $(function(){
+  $('#reload').html('<img src=<?php echo $basePath; ?>/images/ajax-loader.gif />');
+  $.ajax({
+        type:    'GET',
+        dataType:'json',
+        url: BASE_PATH+'/admin/categoryAjax',
+        success: function(data){
+		$('#reload').html('');
+            eval(data);
+            var oTable = $('#example').dataTable( {
+                aoColumnDefs: [{bSortable: false,
+                                aTargets: [ 0 ]
+                                }],
+                "bStateSave": true,
+                "bAutoWidth": true,
+                "sRowSelect": "multi",
+                "sPaginationType": "full_numbers",
+                "bProcessing": true,
+                "aaData": data,
+                "aoColumns": [
+                    { "mData": "category_id" },
+                    { "mData": "category_name" },
+                    { "mData": "category_type_id", "sWidth": "300px"},
+                    { "mData": "action" }                        
+                ] 
+            });    
+        }
+    });
+});
+  </script>
+<?php }else{?>
+  <script>window.location=BASE_URL+"/users/login";</script>
+<?}?>

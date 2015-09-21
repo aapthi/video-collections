@@ -1,0 +1,57 @@
+	<div class="container reg_w_12 min_height"> <br/>
+	<?php if(isset($_GET['suc']) && $_GET['suc']=='udt'){?>
+			<div class="alert alert-dismissible alert-success">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<strong>Updated Successfully.</strong>
+			</div>
+		<?}else if(isset($_GET['suc']) && $_GET['suc']=='reg'){?>
+			<div class="alert alert-dismissible alert-success">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<strong>Registration Successfully.</strong>
+			</div>
+		<? } ?>
+	<div class="panel panel panel-default mar_t">		
+		<? $base_user_id =''; if(isset($_SESSION['user'])){
+				$base_user_id = base64_encode($_SESSION['user']['user_id']);
+			}?>
+		<div class="panel-heading reg_bg">
+			<h3 class="panel-title">View Profile</h3>
+			<div class="view_profile_r"><a href="<?php echo $baseUrl; ?>/users/register?uid=<? echo $base_user_id;?>">Edit Profile</a></div>
+		</div> 
+		<? $details=''; if(count($this->userDetails)!=0){ foreach($this->userDetails as $detailss){ $details = $detailss;}}?>
+		<div class="panel-body">
+			<div class="panel-default">				
+				<div class="panel-body" id="tab_1_hide">
+				<form class="form-horizontal">			
+				<div class="form-group">
+				<label for="inputfname" class="col-sm-3 control-label">User Name</label>
+				<div class="col-sm-8">
+					<p class="form-control-static"><? if(isset($details->user_name) && $details->user_name!='') {echo ucfirst($details->user_name);}else{}?></p>
+				</div>
+				</div>
+				<div class="form-group">
+				<label for="inputEmail3" class="col-sm-3 control-label">Email :</label>
+				<div class="col-sm-8">
+				<p class="form-control-static"><? if(isset($details->email_id) && $details->email_id!='') {echo $details->email_id;}else{}?></p>
+				</div>
+				</div>
+				
+				</div>
+				</form>
+				</div>			
+		</div> 	
+		</div>
+		<input type="hidden" id="opentabId" value="1">
+	</div>
+</div>
+
+<script> 
+function regTab1(tabid){
+var closeTadId=$('#opentabId').val();
+$("#tab_"+closeTadId+"_hide").slideUp("slow");
+$("#icon"+closeTadId).removeClass("glyphicon-triangle-top").addClass("glyphicon-triangle-bottom");
+$("#tab_"+tabid+"_hide").slideDown("slow");
+$("#icon"+tabid).removeClass("glyphicon-triangle-bottom").addClass("glyphicon-triangle-top");
+$('#opentabId').val(tabid);
+}
+</script>

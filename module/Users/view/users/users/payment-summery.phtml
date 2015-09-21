@@ -1,0 +1,53 @@
+<div class="container min_height">	
+  <div id="loginModal" class="show"  role="dialog" aria-hidden="true">
+		<div class="modal-dialog">	
+			<div class="modal-content">
+			<center>
+			  <div class="modal-header">
+				  <h1 class="text-center">Payment Form</h1>
+			  </div>			  
+				  <div class="modal-body">
+						Hello, <?php echo $this->firstname; ?> </br>
+						You are paying Rs.<?php echo $this->amount; ?> </br>
+						Your order ID is <?php echo $this->txnid; ?> </br>
+						Click the button below to make the payment. </br></br>
+						<form id="subFrm" name="subFrm" method="post" action="https://secure.payu.in/_payment">
+							<input type="hidden" name="surl" value="<?php echo $this->baseUrl; ?>/success-payment">
+							<input type="hidden" name="furl" value="<?php echo $this->baseUrl; ?>/failure-payment">
+							<input type="hidden" name="hash" id="hash" value="<?php echo $this->hash; ?>">
+							<input type="hidden" name="email" id="email" value="<?php echo $this->email; ?>">
+							<input type="hidden" name="phone" id="phone" value="<?php echo $phone; ?>">
+							<input type="hidden" name="firstname" id="firstname" value="<?php echo $this->firstname; ?>">
+							<input type="hidden" name="productinfo" value="Product Information">
+							<input type="hidden" name="amount" id="amount" value="<?php echo $this->amount; ?>">
+							<input type="hidden" name="txnid" id="txnid" value="<?php echo $this->txnid; ?>">
+							<input type="hidden" name="key" value="<?php echo $this->key; ?>"> 
+							<input type="hidden" name="service_provider" value="payu_paisa">
+							<input type="button" value="Pay via PayUMoney" onClick="return addPayment();"/>
+						</form>
+				 </div>
+				 </center>
+				 <div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	function addPayment(){
+		var firstname = $("#firstname").val();
+		var phone = $("#phone").val();
+		var email = $("#email").val();
+		var amount = $("#amount").val();
+		var txnid = $("#txnid").val();
+		$.ajax({
+			type:'POST',
+			url:  BASE_URL+'/users/add-user-payment',
+			data:{firstname:firstname,phone:phone,email:email,amount:amount,txnid:txnid},
+			success: function(data){
+				if(data.output=='success'){
+					$("#subFrm").submit();
+				}
+			}
+		});
+	}
+</script>
