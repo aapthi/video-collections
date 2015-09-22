@@ -35,6 +35,11 @@
           <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
           <h1 class="text-center">Get In</h1>
       </div>
+	  <?php
+		foreach ($this->options->getEnabledProviders() as $provider) {
+		echo  $this->socialSignInButton($provider, $this->redirect,$basePath);
+		}
+		?>
       <div class="modal-body">
           <form id="loginForm" class="form col-md-12 center-block" method="POST">
             <div class="form-group">

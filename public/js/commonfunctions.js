@@ -398,3 +398,12 @@ function resetPassword(regAuth){
 		}
 	}		
 }
+function openPopup(url)
+	{
+		var left = Number((screen.width/2)-(500/2));
+		var top = Number((screen.height/2)-(500/2));
+		var windowFeatures = 'channelmode=0,directories=0,fullscreen=0,location=0,menubar=0,resizable=0,scrollbars=0,status=0,width=500,height=450,top=' + top + ',left=' + left;
+		$('#userMessage').hide();
+		$('#userMessage').html( "" );
+		window.location=url;
+	}

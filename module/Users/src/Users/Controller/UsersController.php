@@ -10,13 +10,46 @@ use Zend\View\Model\ViewModel;
 use Zend\Session\Container;
 use Zend\View\Model\JsonModel;
 use Zend\Cache\StorageFactory;
+use ScnSocialAuth\Mapper\Exception as MapperException;
 use ScnSocialAuth\Mapper\UserProviderInterface;
+use ScnSocialAuth\Options\ModuleOptions;
 class UsersController extends AbstractActionController
 {
 	protected  $userTable;
 	protected  $userDetailsTable;
 	protected  $forgotPasswordTable;
 	protected  $paymentsTable;
+	
+	/**
+     * @var UserProviderInterface
+     */
+    protected $mapper;
+
+    /**
+     * @var ModuleOptions
+     */
+    protected $options;
+
+    /*
+     * @todo Make this dynamic / translation-friendly
+     * @var string
+     */  
+
+	public function setOptions(ModuleOptions $options)
+    {
+        $this->options = $options;
+
+        return $this;
+    }
+	
+	public function getOptions()
+    {
+        if (!$this->options instanceof ModuleOptions) {
+            $this->setOptions($this->getServiceLocator()->get('ScnSocialAuth-ModuleOptions'));
+        }
+        return $this->options;
+    }
+	
 	public function indexAction()
 	{
 	}
@@ -331,6 +364,12 @@ class UsersController extends AbstractActionController
 				));
 			}
 			return $result;
+		}else{
+			return new ViewModel(array(				
+				'baseUrl' 			=> $baseUrl,
+				'basePath' 			=> $basePath,
+				'options'			=>	$this->getOptions()
+			));				
 		}	
 	}
 	public function logoutAction(){	
