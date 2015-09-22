@@ -11,37 +11,14 @@ use Zend\Mvc\Router\RouteMatch;
 use Zend\ModuleManager\ModuleManager;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
-
-use Users\Model\UserType;
-use Users\Model\UserTypeTable;
 use Users\Model\User;
 use Users\Model\UserTable;
 use Users\Model\UserDetails;
 use Users\Model\UserDetailsTable;
-use Users\Model\UserPersonalInfo;
-use Users\Model\UserPersonalInfoTable;
 use Users\Model\ForgotPassword;
 use Users\Model\ForgotPasswordTable;
-use Users\Model\Countries;
-use Users\Model\CountriesTable;
-use Users\Model\States;
-use Users\Model\StatesTable;
-use Users\Model\Districts;
-use Users\Model\DistrictsTable;
-use Users\Model\EntranceExam;
-use Users\Model\EntranceExamTable;
-use Users\Model\Specialization;
-use Users\Model\SpecializationTable;
-use Users\Model\Universities;
-use Users\Model\UniversitiesTable;
-use Users\Model\Colleges;
-use Users\Model\CollegesTable;
-use Users\Model\Payment;
-use Users\Model\PaymentTable;
-use Users\Model\UnivColleges;
-use Users\Model\UnivCollegesTable;
-use Users\Model\Branches;
-use Users\Model\BranchesTable;
+use Users\Model\Category;
+use Users\Model\CategoryTable;
 
 
 class Module implements 
@@ -71,7 +48,8 @@ class Module implements
         return array(
             'factories' => array( 
             	'Users\Model\UserTableFactory'=>'Users\Factory\Model\UserTableFactory',			
-            	'Users\Model\UserDetailsFactory'=>'Users\Factory\Model\UserDetailsTableFactory'            	   	
+            	'Users\Model\UserDetailsFactory'=>'Users\Factory\Model\UserDetailsTableFactory',
+				'Users\Model\CategoryFactory'=>'Users\Factory\Model\CategoryTableFactory'
 			),			
         );
     }

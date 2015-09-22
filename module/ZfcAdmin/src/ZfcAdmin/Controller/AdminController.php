@@ -81,6 +81,14 @@ class AdminController extends AbstractActionController
 		}	
 	}
 	public function dashboardAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$view= new ViewModel(array(
+			'basePath'=>$basePath,
+		));
+		return $view;
 	}
 	public function addCategoryAction()
 	{
@@ -110,7 +118,7 @@ class AdminController extends AbstractActionController
     {
         if (!$this->categoriesTable) {				
             $sm = $this->getServiceLocator();
-            $this->categoriesTable = $sm->get('Application\Model\CategoryFactory');			
+            $this->categoriesTable = $sm->get('Users\Model\CategoryFactory');			
         }
         return $this->categoriesTable;
     }

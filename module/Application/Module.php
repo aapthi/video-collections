@@ -12,8 +12,7 @@ namespace Application;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
-use Application\Model\Category;
-use Application\Model\CategoryTable;
+
 class Module implements AutoloaderProviderInterface
 {
 	protected $whitelist = array('/dashboard','/databox/view-ascending','/databox/category-choice','/montage','/accounts','/databox/highlights-both','/databox/edit-highlight','/databox/userdefined-both','/databox/predefined-both','/databox/userdefined-bookmarks','/progress','/databox/post-vertical','/databox/post-horizontal');
@@ -34,7 +33,9 @@ class Module implements AutoloaderProviderInterface
 		$request = $sm->get('request');
 		$list = $this->whitelist;
 		$current_url= str_replace($request->getBaseUrl(),'',$request->getrequestUri());
-	
+		global $cropUrl;
+		$cropUrl=$current_url;
+		//echo $this->searchArray($current_url,$list); exit;
 		if($this->searchArray($current_url,$list))
 		{
 			$matchedRoute = $router->match($request);
@@ -82,7 +83,7 @@ class Module implements AutoloaderProviderInterface
 	 public function getServiceConfig() {
         return array(
             'factories' => array(
-				'Application\Model\CategoryTypesFactory'=>'Application\Factory\Model\CategoryTypesTableFactory',
+        
             )
         );
     }	
