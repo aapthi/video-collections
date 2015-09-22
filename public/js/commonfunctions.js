@@ -82,6 +82,12 @@ function validateReg()
 	}else{
 		$("#user_firstname_req").html('');
 	}
+	if($("#user_last_name").val()==''){
+		$("#user_lastname_req").html(Required);
+		flag = false;
+	}else{
+		$("#user_lastname_req").html('');
+	}
 	if($("#hid_user_id").val()==""){
 		if(userEmail==""){
 			$("#user_email_req").html(Required);

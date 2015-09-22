@@ -18,12 +18,19 @@
 		<div class="panel-body" id="tab_1_hide">
 			<div class="form-horizontal">
 				<div class="form-group">
-					<label for="inputfname" class="col-sm-3 control-label">User Name</label>
+					<label for="inputfname" class="col-sm-3 control-label">First Name</label>
 					<div class="col-sm-8">
 					<span class="error_msg_disp" id="user_firstname_req"></span>
 						<input type="text" class="form-control" id="user_first_name" placeholder="User Name" name="user_first_name" value="<? if(isset($details->user_name) && $details->user_name!='') {echo ucfirst($details->user_name);}else{}?>">
 					</div>
 				</div>
+				<div class="form-group">
+					<label for="inputfname" class="col-sm-3 control-label">Last Name</label>
+					<div class="col-sm-8">
+					<span class="error_msg_disp" id="user_lastname_req"></span>
+						<input type="text" class="form-control" id="user_last_name" placeholder="User Name" name="user_last_name" value="<? if(isset($details->last_name) && $details->last_name!='') {echo ucfirst($details->last_name);}else{}?>">
+					</div>
+				</div>				
 				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-3 control-label">Email</label>
 					<div class="col-sm-8">
