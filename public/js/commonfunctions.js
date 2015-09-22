@@ -206,7 +206,7 @@ function adloginValidations(){
 					$('#reload').html('');
 					if(response.output=='success'){
 						if(response.user_type=='admin'){
-							window.location=BASE_URL+"/admin/dashboard";							
+							window.location=BASE_URL+"/admin/dashboard-menu";							
 						}
 					}else{
 						$('#errorMsg').html('Entered wrong username and/or password');
