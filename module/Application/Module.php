@@ -15,7 +15,7 @@ use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 
 class Module implements AutoloaderProviderInterface
 {
-	protected $whitelist = array('/dashboard','/databox/view-ascending','/databox/category-choice','/montage','/accounts','/databox/highlights-both','/databox/edit-highlight','/databox/userdefined-both','/databox/predefined-both','/databox/userdefined-bookmarks','/progress','/databox/post-vertical','/databox/post-horizontal');
+	protected $whitelist = array('/my-profile','/confirm','/response','/payment','/my-groups','/my-subscriptions','/my-mentor','/admin/packages-list','/admin/testimonial-list','/container-progress','/progress');
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
@@ -23,7 +23,24 @@ class Module implements AutoloaderProviderInterface
 		$serviceManager      = $e->getApplication()->getServiceManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
-    }
+    }/*
+	public function onBootstrap(MvcEvent $e) {
+        $translator = $e->getApplication()->getServiceManager()->get('translator');
+            $lang = $e->getRequest()->getQuery('lang'); // new language
+            $session = new Container('base');
+            if($lang == null && $lang == ''){
+                if ($session->offsetExists('lang')) {
+                    $lang = $session->offsetGet('lang'); // current language
+                }else{
+                    $lang = Settings::DEFAULT_LANGUAGE; // default language
+                }
+            }
+            $session->offsetSet('lang', $lang);
+            $loc = Settings::$locations[$lang];
+            $translator
+            ->setLocale($loc)
+            ->setFallbackLocale(Settings::DEFAULT_LANGUAGE .'_' . Settings::DEFAULT_LOCATION);
+    }*/
 	 public function loadConfiguration(MvcEvent $e)
     {
         $application   = $e->getApplication();
@@ -32,10 +49,9 @@ class Module implements AutoloaderProviderInterface
         $router = $sm->get('router');
 		$request = $sm->get('request');
 		$list = $this->whitelist;
+		
 		$current_url= str_replace($request->getBaseUrl(),'',$request->getrequestUri());
-		global $cropUrl;
-		$cropUrl=$current_url;
-		//echo $this->searchArray($current_url,$list); exit;
+		
 		if($this->searchArray($current_url,$list))
 		{
 			$matchedRoute = $router->match($request);
@@ -56,7 +72,7 @@ class Module implements AutoloaderProviderInterface
 		{
 			if (stristr($search,$value))
 			{
-				return $key+1;
+				return $key;
 			}
 		}
 		return false;
@@ -82,8 +98,8 @@ class Module implements AutoloaderProviderInterface
     }
 	 public function getServiceConfig() {
         return array(
-            'factories' => array(
-        
+            'factories' => array(				
+				
             )
         );
     }	

@@ -38,7 +38,7 @@ class IndexController extends AbstractActionController
     {
         if (!$this->categoriesTable) {				
             $sm = $this->getServiceLocator();
-            $this->categoriesTable = $sm->get('Application\Model\CategoryFactory');			
+            $this->categoriesTable = $sm->get('Users\Model\CategoryFactory');			
         }
         return $this->categoriesTable;
     }

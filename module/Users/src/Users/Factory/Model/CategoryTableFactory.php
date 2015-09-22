@@ -1,5 +1,5 @@
 <?php 
-namespace Application\Factory\Model;
+namespace Users\Factory\Model;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -8,8 +8,8 @@ use Zend\Stdlib\Hydrator\ObjectProperty;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\TableGateway\Feature;
 
-use Application\Model\Category;
-use Application\Model\CategoryTable;
+use Users\Model\Category;
+use Users\Model\CategoryTable;
 
 class CategoryTableFactory implements FactoryInterface
 {

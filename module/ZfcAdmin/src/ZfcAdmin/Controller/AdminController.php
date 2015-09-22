@@ -80,7 +80,7 @@ class AdminController extends AbstractActionController
 			return $result;
 		}	
 	}
-	public function dashboardAction(){
+	public function dashboardMenuAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
