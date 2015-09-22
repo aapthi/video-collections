@@ -1,3 +1,4 @@
+
 function checkEmail(emailStr) {
 	if (emailStr.length == 0) {
 		return true;
