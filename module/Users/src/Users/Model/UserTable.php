@@ -57,6 +57,14 @@ class UserTable
 		$updateuserid=$this->tableGateway->update($data, array('user_id' => $data['user_id']));
 		return 	$updateuserid;			
 	}
+	public function listUsers(){
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('vc_user_details', 'vc_user_details.u_id=vc_users.user_id',array('*'),'left');	
+		$select->where('vc_users.user_name!="Administration"');
+		$select->where('vc_users.status="1"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 	public function getUserDetails($user_id){
 		$select = $this->tableGateway->getSql()->select();		
 		$select	->join('vc_user_details', 'vc_users.user_id=vc_user_details.u_id',array('*'),'left');		

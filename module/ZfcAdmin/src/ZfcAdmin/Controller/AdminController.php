@@ -125,7 +125,45 @@ class AdminController extends AbstractActionController
 				));
 			return $view;
 	}
-	
+	public function usersListAction()
+	{		
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$view= new ViewModel(array(
+					'basePath'=>$basePath,
+				));
+			return $view;
+	}
+	public function userinfoAjaxAction(){
+		$usersTable=$this->getUserTable();
+		$userDetailss = $usersTable->listUsers();
+		$data = array();
+		$i=0;
+		if(isset($userDetailss) && $userDetailss->count()!=0){
+		 $catTypeName="";
+			foreach($userDetailss as $user){
+				$id=$user->user_id;
+				$data[$i]['user_id']=$i+1;
+				$data[$i]['user_name']= $user->user_name;
+				$data[$i]['email_id']= $user->email_id;
+				$data[$i]['contact_number']= $user->contact_number;
+				if($user->status==1){
+					$status = 'Active';
+				}else{
+					$status = 'Deactivate';
+				}
+				$data[$i]['status']= $status;
+				$data[$i]['action'] ='<a href="javascript:void(0)" onclick="editCategory('.$id.')" >Edit</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteCategory('.$id.')">Delete</a>';
+				$i++;
+			}
+			$data['aaData'] = $data;
+			echo json_encode($data['aaData']); exit;
+		}else{
+			echo '1'; exit;
+		}
+	}
 	public function categoryAjaxAction()
 	{
 		$getCategoryList = $this->getCategoryTable()->getCategoryList();
