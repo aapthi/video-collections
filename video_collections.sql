@@ -31,7 +31,7 @@ CREATE TABLE `session` (
 
 /*Data for the table `session` */
 
-insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('5698b0pbnnd1kenmm9ioi5dn31','PHPSESSID',1442835798,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1442835797.959729;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}user|C:23:\"Zend\\Stdlib\\ArrayObject\":208:{a:4:{s:7:\"storage\";a:3:{s:8:\"username\";s:6:\"Dileep\";s:5:\"email\";s:26:\"dileepkumarkonda@gmail.com\";s:7:\"user_id\";s:1:\"7\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}');
+insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('5698b0pbnnd1kenmm9ioi5dn31','PHPSESSID',1442838611,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1442838611.896677;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('ivnjk0vl1cbetiv34csvb83e06','PHPSESSID',1442844974,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1442844974.6006031;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}admin|C:23:\"Zend\\Stdlib\\ArrayObject\":206:{a:4:{s:7:\"storage\";a:3:{s:8:\"username\";s:14:\"Administration\";s:5:\"email\";s:15:\"admin@gmail.com\";s:7:\"user_id\";s:1:\"9\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('cg8gn9sebc4sfh6vuvf85d1nu3','PHPSESSID',1442900867,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1442900866.8036771;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}');
 
 /*Table structure for table `vc_categories` */
 
@@ -44,7 +44,7 @@ CREATE TABLE `vc_categories` (
   `created_at` datetime DEFAULT NULL,
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `vc_categories` */
 
@@ -60,7 +60,7 @@ CREATE TABLE `vc_forget_tokens` (
   `status` smallint(5) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`forget_pwd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `vc_forget_tokens` */
 
@@ -79,7 +79,7 @@ CREATE TABLE `vc_payments` (
   `status` varchar(50) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`payment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `vc_payments` */
 
@@ -136,11 +136,11 @@ CREATE TABLE `vc_users` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 /*Data for the table `vc_users` */
 
-insert  into `vc_users`(`user_id`,`user_name`,`email_id`,`password`,`contact_number`,`status`,`created_at`,`updated_at`) values (7,'Dileep','dileepkumarkonda@gmail.com','b59c67bf196a4758191e42f76670ceba','9701059345',1,'2015-09-21 13:13:32',NULL);
+insert  into `vc_users`(`user_id`,`user_name`,`email_id`,`password`,`contact_number`,`status`,`created_at`,`updated_at`) values (9,'Administration','admin@gmail.com','928685e214fa387530cc8e14d09a1858','9999999999',1,'2015-09-21 18:33:04','2015-09-21 18:33:06');
 
 /*Table structure for table `vc_videos` */
 
