@@ -321,6 +321,7 @@ class HybridAuth extends AbstractAdapter implements ServiceManagerAwareInterface
 
     protected function facebookToLocalUser($userProfile)
     {
+		echo "<pre>";print_r($userProfile);exit;
         if (!isset($userProfile->emailVerified)) {
             throw new Exception\RuntimeException(
                 'Please verify your email with Facebook before attempting login',

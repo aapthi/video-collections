@@ -19,7 +19,7 @@ class UserTableFactory implements FactoryInterface
         $resultSetPrototype = new HydratingResultSet();
         $resultSetPrototype->setHydrator(new ObjectProperty());
         $resultSetPrototype->setObjectPrototype(new User());
-        $tableGateway       = new TableGateway('vc_users', $db,array(),$resultSetPrototype);
+        $tableGateway       = new TableGateway('user', $db,array(),$resultSetPrototype);
         $table              = new UserTable($tableGateway);
         return $table;
     }

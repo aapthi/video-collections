@@ -52,32 +52,50 @@ class UserTable
 	public function updateUserRegAuth($userid){
 		$data = array(
 				'user_id' 	=>$userid,
-				'status'  	=>'1',
+				'state'  	=>'1',
 				);
 		$updateuserid=$this->tableGateway->update($data, array('user_id' => $data['user_id']));
 		return 	$updateuserid;			
 	}
 	public function listUsers(){
 		$select = $this->tableGateway->getSql()->select();
-		$select->join('vc_user_details', 'vc_user_details.u_id=vc_users.user_id',array('*'),'left');	
-		$select->where('vc_users.user_name!="Administration"');
-		$select->where('vc_users.status="1"');
+		$select->join('vc_user_details', 'vc_user_details.u_id=user.user_id',array('*'),'left');	
+		$select->where('user.user_name!="Administration"');
+		$select->where('user.state="1"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
 	public function getUserDetails($user_id){
 		$select = $this->tableGateway->getSql()->select();		
-		$select	->join('vc_user_details', 'vc_users.user_id=vc_user_details.u_id',array('*'),'left');		
-		$select->where('vc_users.user_id="'.$user_id.'"');	
+		$select	->join('vc_user_details', 'user.user_id=vc_user_details.u_id',array('*'),'left');		
+		$select->where('user.user_id="'.$user_id.'"');	
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;		
+	}
+	public function changeAccountStatus( $user, $type)
+    {
+		if( $type=='update' ){
+			$data = array(
+				'updated_at'   	=> date('Y-m-d H:i:s'),				
+				'state' 	    => $user['status']
+			);	
+		}else{
+			$data = array(
+				'created_at' 	=> date('Y-m-d H:i:s'),   			
+				'state' 	    => $user['status']
+			);		
+		}
+		$row=$this->tableGateway->update($data, array('user_id' => $user['userId']));
+		return $row;
 	}
 	public function addUser($users,$user_id)
     {
 		if($user_id!=""){
 			$data = array(
 				'contact_number'  	=> $users['user_mobile'],
-				'user_name'         => $users['user_first_name'],	
+				'username'         => $users['user_first_name'],
+				'display_name'  => $users['user_first_name'],	
+				'updated_at'  => date('Y-m-d H:i:s')	
 			);
 			$updateresult=$this->tableGateway->update($data, array('user_id' => $user_id));
 			return $updateresult;
@@ -89,31 +107,41 @@ class UserTable
 			}
 			$password=md5($users['user_password']);
 			$data = array(
-				'user_name' 	=> $fisrt_name, 	
-				'email_id' 		=> $users['user_email'],  		
+				'username' 	     => $fisrt_name, 	
+				'email' 		=> $users['user_email'],  		
 				'password' 		=> $password, 	
 				'contact_number'  => $users['user_mobile'],  	
+				'display_name'  => $fisrt_name,  	
 				'created_at' 	=> date('Y-m-d H:i:s'),   
-				'status' 		=> 0,  		
+				'state' 		=> 0,  		
 			);
 			$insertresult=$this->tableGateway->insert($data);
 			return $this->tableGateway->lastInsertValue;
 		}					
-    }		
+    }
+	public function checkDetailsRecorded($user_id)
+    {
+		$select = $this->tableGateway->getSql()->select();
+		$select->columns(array('countUser' => new \Zend\Db\Sql\Expression('COUNT(*)')));
+		$select->where('user_id="'.$user_id.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet->current();
+		return $row;
+	}	
 	public function checkUserStatus($userid){
 		$select = $this->tableGateway->getSql()->select();
-		$select->join('vc_user_details', 'vc_user_details.u_id=vc_users.user_id',array('*'),'left');	
-		$select->where('vc_users.user_id="'.$userid.'"');
-		$select->where('vc_users.status="1"');
+		$select->join('vc_user_details', 'vc_user_details.u_id=user.user_id',array('*'),'left');	
+		$select->where('user.user_id="'.$userid.'"');
+		$select->where('user.state="1"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet->current();
 	}
 	public function checkEmailExists( $userInfo )
     {
 		$select = $this->tableGateway->getSql()->select();		
-		$select->where('vc_users.email_id="'.$userInfo['inputEmail'].'"');
-		$select->where('vc_users.password="'.md5($userInfo['password']).'"');
-		$select->where('vc_users.status=1');
+		$select->where('user.email="'.$userInfo['inputEmail'].'"');
+		$select->where('user.password="'.md5($userInfo['password']).'"');
+		$select->where('user.state=1');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->current();
 		return $row;
@@ -121,7 +149,7 @@ class UserTable
 	public function checkAdminEmailExists( $userInfo )
     {
 		$select = $this->tableGateway->getSql()->select();
-		$select->where('email_id="'.$userInfo['inputEmail'].'"');
+		$select->where('email="'.$userInfo['inputEmail'].'"');
 		$select->where('password="'.$userInfo['password'].'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
@@ -147,15 +175,15 @@ class UserTable
 	public function checkEmail($email)
     {	
 		$select = $this->tableGateway->getSql()->select();			
-		$select->where('email_id = "'.$email.'"');
+		$select->where('email = "'.$email.'"');
 		$resultSet = $this->tableGateway->selectWith($select);				
         return $resultSet;
 	}
 	public function getUser( $userId )
     {
 		$select = $this->tableGateway->getSql()->select();
-		$select->join('vc_user_details', 'vc_user_details.u_id=vc_users.user_id',array('*'),'left');	
-		$select->where('vc_users.user_id="'.$userId.'"');
+		$select->join('vc_user_details', 'vc_user_details.u_id=user.user_id',array('*'),'left');	
+		$select->where('user.user_id="'.$userId.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->current();
 		return $row;
@@ -163,7 +191,7 @@ class UserTable
 	public function fpcheckEmail($email)
     {	
 		$select = $this->tableGateway->getSql()->select();			
-		$select->where('email_id="'.$email.'"');
+		$select->where('email="'.$email.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->count();
 		return $row;

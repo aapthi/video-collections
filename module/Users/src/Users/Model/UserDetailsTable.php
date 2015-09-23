@@ -38,4 +38,21 @@ class UserDetailsTable
 		}	
 		
 	}
+	public function addUserDetails( $user_id, $type )
+    {
+		if( $type=='update' ){
+			$data = array(
+				'updated_at' 	   => date('Y-m-d H:i:s'),
+				'u_id' 	     => $user_id, 
+			);	
+		}else{
+			$data = array(
+				'u_id' 	     => $user_id, 
+				'created_at'       => date('Y-m-d H:i:s')
+			);	
+		}
+		
+		$this->tableGateway->insert($data);		
+		return $this->tableGateway->lastInsertValue;
+    }
 }

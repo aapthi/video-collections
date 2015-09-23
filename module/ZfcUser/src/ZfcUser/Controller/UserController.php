@@ -82,7 +82,6 @@ class UserController extends AbstractActionController
 	}
 	public function indexAction()
     {
-		// echo "indexAction";exit;
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
@@ -119,7 +118,6 @@ class UserController extends AbstractActionController
     {
 		if( isset($_POST) )
 		{
-			// echo "<pre>";print_r($_POST);exit;
 			$this->getiptelUserTable()->updateIptelUser( $_POST['areaprefix'],$_POST['phone_number'],$_POST['status'],$_POST['email'] );
 		}
 	}
@@ -498,54 +496,5 @@ class UserController extends AbstractActionController
         $this->changeEmailForm = $changeEmailForm;
         return $this;
     }
-	public function getCountryTable()
-    {
-        if (!$this->countryTable) {
-            $sm = $this->getServiceLocator();
-            $this->countryTable = $sm->get('Application\Model\CountryTable');			
-        }
-        return $this->countryTable;
-    }
-	public function getIpaddressTable()
-    {
-        if (!$this->ipaddressTable) {
-            $sm = $this->getServiceLocator();
-            $this->ipaddressTable = $sm->get('Application\Model\IpaddressTable');
-        }
-        return $this->ipaddressTable;
-    }
-	public function getStateTable()
-    {
-        if (!$this->stateTable) {
-            $sm = $this->getServiceLocator();
-            $this->stateTable = $sm->get('Application\Model\StateTable');			
-        }
-        return $this->stateTable;
-    }
-	public function getLogsTable()
-    {
-        if (!$this->logsTable) {
-            $sm = $this->getServiceLocator();
-            $this->logsTable = $sm->get('Users\Model\LogsTable');			
-        }
-        return $this->logsTable;
-    }
-	public function getiptelUserTable()
-    {
-        if (!$this->iptelUserTable) {
-            $sm = $this->getServiceLocator();
-            $this->iptelUserTable = $sm->get('Users\Model\IpltelUserTable');	
-			// echo $this->iptelUserTable;exit;		
-        }
-        return $this->iptelUserTable;
-    }
 
-	public function getFirstSocLoginsTable()
-    {
-        if (!$this->firstSocLogins) {
-            $sm = $this->getServiceLocator();
-            $this->firstSocLogins = $sm->get('Users\Model\FirstSocLoginsTable');			
-        }
-        return $this->firstSocLogins;
-    }
 }

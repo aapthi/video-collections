@@ -26,13 +26,13 @@
 				<div class="form-group">
 				<label for="inputfname" class="col-sm-3 control-label">User Name</label>
 				<div class="col-sm-8">
-					<p class="form-control-static"><? if(isset($details->user_name) && $details->user_name!='') {echo ucfirst($details->user_name);}else{}?></p>
+					<p class="form-control-static"><? if(isset($details->display_name) && $details->display_name!='') {echo ucfirst($details->display_name);}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputEmail3" class="col-sm-3 control-label">Email :</label>
 				<div class="col-sm-8">
-				<p class="form-control-static"><? if(isset($details->email_id) && $details->email_id!='') {echo $details->email_id;}else{}?></p>
+				<p class="form-control-static"><? if(isset($details->email) && $details->email!='') {echo $details->email;}else{}?></p>
 				</div>
 				</div>
 				

@@ -246,8 +246,8 @@ class UsersController extends AbstractActionController
 					$suc = 'reg';
 					global $regSubject;				
 					global $regMessage;
-					$username = $userDetails->user_name;
-					$to=$userDetails->email_id;
+					$username = $userDetails->username;
+					$to=$userDetails->email;
 					$regMessage = str_replace("<FULLNAME>","$username", $regMessage);
 					if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
 						$regMessage = str_replace("<ACTIVATIONLINK>","http://" . $_SERVER['HTTP_HOST']."/users/reg-authentication?uid=".$base_user_id, $regMessage);
@@ -291,13 +291,12 @@ class UsersController extends AbstractActionController
 		$userAuth=$this->getUserTable()->updateUserRegAuth($userid);		
 		$userDetails=$this->getUserTable()->checkUserStatus($userid);		
 		if($userDetails!=''){
-			$to=$userDetails->email_id;
-			$userName=ucfirst($userDetails->user_name);
+			$to=$userDetails->email;
+			$userName=ucfirst($userDetails->username);
 			$user_session = new Container('user');
-			$user_session->username=$userDetails->user_name;
-			$user_session->email=$userDetails->email_id;
+			$user_session->username=$userDetails->username;
+			$user_session->email=$userDetails->email;
 			$user_session->user_id=$userDetails->user_id;
-			$user_session->user_type=$userDetails->user_type_id;
 			include('public/PHPMailer_5.2.4/sendmail.php');	
 			global $completeRegisterSubject;				
 			global $completeRegisterMessage;
@@ -346,8 +345,9 @@ class UsersController extends AbstractActionController
 				$userDetails = $usersTable->checkUserStatus($user_id);
 				if($userDetails!=''){
 					$user_session = new Container('user');
-					$user_session->username=$userDetails->user_name;
-					$user_session->email=$userDetails->email_id;
+					$user_session->username=$userDetails->username;
+					$user_session->display_name=$userDetails->display_name;
+					$user_session->email=$userDetails->email;
 					$user_session->user_id=$user_id;
 					$result = new JsonModel(array(					
 						'output' => 'success',
@@ -561,6 +561,46 @@ class UsersController extends AbstractActionController
 		}else{
 			echo "Thanks"; exit;
 		}
+	}
+	 public function userRedirectAction()
+    {
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+
+		$row = $this->getUserTable()->checkDetailsRecorded($_SESSION['Zend_Auth']->storage);
+		if( $row->countUser == 0 )
+		{
+			$user_details_id = $this->getUserDetailsTable()->addUserDetails( $_SESSION['Zend_Auth']->storage, 'update');
+			$userInfo['status']=1;
+			$userInfo['userId']=$_SESSION['Zend_Auth']->storage;
+			$userRoww = $this->getUserTable()->changeAccountStatus( $userInfo, 'update');
+			$userRow = $this->getUserTable()->getUser( $_SESSION['Zend_Auth']->storage );
+			$user_session = new Container('user');
+			$user_session->user_id=$userRow->user_id;
+			$user_session->email=$userRow->email;
+			$user_session->displayName=$userRow->display_name;
+		}
+		else
+		{
+			$userInfo['status']=1;
+			$userInfo['userId']=$_SESSION['Zend_Auth']->storage;
+			$user_details_id = $this->getUserDetailsTable()->addUserDetails( $_SESSION['Zend_Auth']->storage, 'insert' );
+			$userRoww = $this->getUserTable()->changeAccountStatus( $userInfo, 'insert');
+			$userRow = $this->getUserTable()->getUser( $_SESSION['Zend_Auth']->storage );
+			$user_session = new Container('user');
+			$user_session->user_id=$userRow->user_id;
+			$user_session->email=$userRow->email;
+			$user_session->displayName=$userRow->display_name;	
+		}
+
+		$view = new ViewModel(
+			array(
+				'baseUrl' 	=> $baseUrl,
+				'basePath' 	=> $basePath,
+			));
+		return $this->redirect()->toUrl($baseUrl);
 	}
 	public function getUserTable()
     {
