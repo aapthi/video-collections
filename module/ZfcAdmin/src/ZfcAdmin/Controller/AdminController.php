@@ -59,8 +59,9 @@ class AdminController extends AbstractActionController
 				$userDetails = $usersTable->checkUserStatus($user_id);
 				if($userDetails!=''){
 					$user_session = new Container('admin');
-					$user_session->username=$userDetails->user_name;
-					$user_session->email=$userDetails->email_id;
+					$user_session->username=$userDetails->username;
+					$user_session->displayname=$userDetails->display_name;
+					$user_session->email=$userDetails->email;
 					$user_session->user_id=$user_id;
 					$result = new JsonModel(array(					
 						'output' => 'success',
