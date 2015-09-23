@@ -110,11 +110,19 @@ class AdminController extends AbstractActionController
 				}
 				return $this->redirect()->toUrl('categories-list');
 			}
-		}else if(isset($_GET['editid']) && $_GET['editid']!=""){
-			$editcatid = $this->getCategoryTable()->editCategories($_GET['editid']);
+		}else if(isset($_GET['cid']) && $_GET['cid']!=""){
+			$catDetails = $this->getCategoryTable()->editCategories($_GET['cid']);
+			$catData = array();
+			$subcatData = array();
+			foreach($catDetails as $key=>$catInfo){
+				$catData['category_id']=$catInfo->category_id;
+				$catData['category_name']=$catInfo->category_name;
+				$subcatData[$catInfo->subcategory_id] =$catInfo->subcategory;
+			}			
 			return new ViewModel(array(
-				'editcatdata'	=>  $editcatid->toArray(),
-				'basePath'		=>  $basePath,	
+				'catData'	  =>  $catData,
+				'subcatData'  =>  $subcatData,
+				'basePath'	  =>  $basePath,	
 			));
 		}
 			
@@ -179,6 +187,10 @@ class AdminController extends AbstractActionController
 	}
 	public function categoryAjaxAction()
 	{
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
 		$getCategoryList = $this->getCategoryTable()->getCategoryList();
 		$data = array();
 		$i=0;
@@ -188,7 +200,7 @@ class AdminController extends AbstractActionController
                 $id=$categories->category_id;
 				$data[$i]['category_id']=$i+1;
 				$data[$i]['category_name']= $categories->category_name;
-				$data[$i]['action'] ='<a href="javascript:void(0)" onclick="editCategory('.$id.')" >Edit</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteCategory('.$id.')">Delete</a>';
+				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/add-category?cid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteCategory('.$id.')">Delete</a>';
 				$i++;
 			}
 			$data['aaData'] = $data;

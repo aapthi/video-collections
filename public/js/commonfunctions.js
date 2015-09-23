@@ -21,16 +21,14 @@ function addSubCat(){
 }		
 function removeSubCat(cid){
 	var cnum = $('#countbuttons').val();
-	if(cid!=1){
-		$('#addCompany'+cid).remove();
-		$('#companyText'+cid).remove();	
-		$('#countbuttons').val((parseInt(cnum)-1));
-	}
-	cnum = parseInt($('#countbuttons').val())-1;	
-	if(cnum ==0 ){
-		 $('#chk_id').prop("checked", false);
-		 $("#hidSpan").hide();
-		 $("#hidCheck").show();
+	$('#addCompany'+cid).remove();
+	$('#companyText'+cid).remove();	
+	$('#countbuttons').val((parseInt(cnum)-1));	
+	cnum = parseInt($('#countbuttons').val())-1;
+	if(cid == 1){
+		$('#chk_id').prop("checked", false);
+		$("#hidSpan").hide();
+		$("#hidCheck").show();
 	}
 }
 function addCatCall(){

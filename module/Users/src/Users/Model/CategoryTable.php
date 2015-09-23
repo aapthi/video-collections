@@ -60,9 +60,11 @@ class CategoryTable
 	}
 	public function editCategories($editid)
     {
-		$selecteditid = $this->tableGateway->getSql()->select();
-		$selecteditid->where('category_id="'.$editid.'"');
-		$resultSet = $this->tableGateway->selectWith($selecteditid);
+		$select = $this->tableGateway->getSql()->select();
+		$select->join(array('subCat' => 'vc_categories'),'subCat.parent_cat_id=vc_categories.category_id',array('subcategory_id' =>new Expression('subCat.category_id'),'subcategory' =>new Expression('subCat.category_name')),'left');
+		$select->where('vc_categories.category_id="'.$editid.'"');
+		$select->where('vc_categories.status="1"');		
+		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
 	
