@@ -20,21 +20,7 @@ class CategoryTable
     {
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
-    }
-
-	public function addUserDetails($user_id)
-    {	
-		$data = array(
-			'user_id' 	     => $user_id, 
-			'details_set' 	 => "1", 
-			'status' 	     => "1",
-			'montage_image'	 => $_SESSION['Zend_Auth']->photoURL
-		);	
-		
-		$this->tableGateway->insert($data);		
-		return $this->tableGateway->lastInsertValue;
-    }
-
+    }	
 	public function getAllMenuCategories()
     {
 		$select = $this->tableGateway->getSql()->select();
@@ -47,17 +33,28 @@ class CategoryTable
 		$data = array(
 			'category_name'  		=> $addcatid['catname'],
 			'status'          		=> "1",
-			'created_at'      		=> date('Y-m-d H:i:s'),
-			'category_type_id'  	=> $addcatid['cattypes'],
-			'modified_at'  			=> date('Y-m-d H:i:s'),
+			'created_at'          	=> date('Y-m-d H:i:s'), 
+			'modified_at'          	=> date('Y-m-d H:i:s')
 		);
-		$catinserid=$this->tableGateway->insert($data);
-		return $catinserid;
+		$insertresult=$this->tableGateway->insert($data);
+		return $this->tableGateway->lastInsertValue;
+	}
+	public function addSubCategory($addsubcat,$pcatid){
+		$data = array(
+			'category_name'  		=> $addsubcat,
+			'parent_cat_id'       	=> $pcatid,
+			'status'          		=> "1",
+			'created_at'          	=> date('Y-m-d H:i:s'), 
+			'modified_at'          	=> date('Y-m-d H:i:s'), 
+		);
+		$insertresult=$this->tableGateway->insert($data);
+		return $this->tableGateway->lastInsertValue;
 	}
 	public function getCategoryList()
     {
 		$select = $this->tableGateway->getSql()->select();
-		$select->where('status="1"');
+		$select->where('vc_categories.parent_cat_id IS NULL');
+		$select->where('vc_categories.status="1"');		
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}

@@ -1,3 +1,54 @@
+function wantChked() {
+	if(document.getElementById('chk_id').checked) {
+		$("#hidSpan").show();
+	}else{
+		$("#hidSpan").hide();
+	}
+}
+function addSubCat(){
+	$("#hidCheck").hide();
+	var num=$('#countbuttons').val();
+	pnum=parseInt(num)+1;
+	if($("#cat_name"+num).val()==''){
+		alert("Please enter subcategory name"); return false;
+	}
+	$("#add-companys").append('<div class="form-group" id="companyText'+pnum+'">'+
+	'<label for="company-name'+pnum+'" class="control-label col-md-3 col-sm-3 col-xs-12">Subcategory</label>'+'<div class="col-md-5 col-sm-6 col-xs-12 pos_r">'+
+					  '<input type="text" class="form-control col-md-7 col-xs-12" name="cat_name[]" id="cat_name'+pnum+'" placeholder="Subcategory Name">'+
+					'</div>'+'<button type="button" class="btn btn-success reset_btn" onClick="removeSubCat('+pnum+')">Remove Subcategory</button>'+'</div>');
+	$('#countbuttons').val(pnum);
+	var cnum=$('#countbuttons').val();			
+}		
+function removeSubCat(cid){
+	var cnum = $('#countbuttons').val();
+	if(cid!=1){
+		$('#addCompany'+cid).remove();
+		$('#companyText'+cid).remove();	
+		$('#countbuttons').val((parseInt(cnum)-1));
+	}
+	cnum = parseInt($('#countbuttons').val())-1;	
+	if(cnum ==0 ){
+		 $('#chk_id').prop("checked", false);
+		 $("#hidSpan").hide();
+		 $("#hidCheck").show();
+	}
+}
+function addCatCall(){
+	if($('#catname').val()==''){
+		alert("Please enter catgory name"); return false;
+	}
+	if(document.getElementById('chk_id').checked) {
+		var i = 0;
+		for(i=0;i<=1000;i++){
+			if($("#cat_name"+i).val()==''){
+				alert("Please enter subcategory name"); return false;
+			}
+		}
+		$("#categoryForm").submit();
+	}else{
+		$("#categoryForm").submit();
+	}	
+}
 function checkEmail(emailStr) {
 	if (emailStr.length == 0) {
 		return true;

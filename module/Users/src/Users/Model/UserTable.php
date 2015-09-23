@@ -60,7 +60,7 @@ class UserTable
 	public function listUsers(){
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('vc_user_details', 'vc_user_details.u_id=user.user_id',array('*'),'left');	
-		$select->where('user.user_name!="Administration"');
+		$select->where('user.username!="Administration"');
 		$select->where('user.state="1"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;

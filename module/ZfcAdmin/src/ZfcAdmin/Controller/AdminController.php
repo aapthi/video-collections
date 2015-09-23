@@ -96,17 +96,21 @@ class AdminController extends AbstractActionController
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
-		$basePath = $baseUrlArr['basePath'];
-		if ($_POST){
-			if($_POST['hidbutton_value']==1){
-				$updatecatid = $this->getCategoryTable()->updatecatid($_POST);
-				return $this->redirect()->toUrl('categories-list');
-			}else{
-				$addcatid = $this->getCategoryTable()->addCategories($_POST);
+		$basePath = $baseUrlArr['basePath'];		
+		if(isset($_POST['hidbutton_value']) && $_POST['hidbutton_value']!=''){
+			$updatecatid = $this->getCategoryTable()->updatecatid($_POST);
+			return $this->redirect()->toUrl('categories-list');
+		}else if(isset($_POST['catname']) && $_POST['catname']!='' && $_POST['hidbutton_value']==''){
+			$addcatid = $this->getCategoryTable()->addCategories($_POST);
+			if($addcatid!=""){
+				if(isset($_POST['cat_name']) && $_POST['cat_name']!=''){
+					foreach($_POST['cat_name'] as $subcatname){
+						$addSubCategory = $this->getCategoryTable()->addSubCategory($subcatname,$addcatid);	
+					}
+				}
 				return $this->redirect()->toUrl('categories-list');
 			}
-		}
-		if(isset($_GET['editid']) && $_GET['editid']!=""){
+		}else if(isset($_GET['editid']) && $_GET['editid']!=""){
 			$editcatid = $this->getCategoryTable()->editCategories($_GET['editid']);
 			return new ViewModel(array(
 				'editcatdata'	=>  $editcatid->toArray(),
@@ -155,10 +159,10 @@ class AdminController extends AbstractActionController
 			foreach($userDetailss as $user){
 				$id=$user->user_id;
 				$data[$i]['user_id']=$i+1;
-				$data[$i]['user_name']= $user->user_name;
-				$data[$i]['email_id']= $user->email_id;
+				$data[$i]['user_name']= $user->username;
+				$data[$i]['email_id']= $user->email;
 				$data[$i]['contact_number']= $user->contact_number;
-				if($user->status==1){
+				if($user->state==1){
 					$status = 'Active';
 				}else{
 					$status = 'Deactivate';
@@ -180,16 +184,10 @@ class AdminController extends AbstractActionController
 		$i=0;
 		if(isset($getCategoryList) && $getCategoryList->count()!=0){
 		 $catTypeName="";
-			foreach($getCategoryList as $categories){
-				if($categories->category_type_id==1){
-					$catTypeName='Cmspage';
-				}else{
-					$catTypeName='Headerpage';
-				}
+			foreach($getCategoryList as $categories){				
                 $id=$categories->category_id;
 				$data[$i]['category_id']=$i+1;
 				$data[$i]['category_name']= $categories->category_name;
-				$data[$i]['category_type_id']= $catTypeName;
 				$data[$i]['action'] ='<a href="javascript:void(0)" onclick="editCategory('.$id.')" >Edit</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteCategory('.$id.')">Delete</a>';
 				$i++;
 			}
