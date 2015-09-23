@@ -47,32 +47,47 @@ return array(
 					),
 				),
 			),
-			'header-categories' => array(
+			'play-video' => array(
 				'type'    => 'segment',
 				'options' => array(
-					'route' => '/header-categories[/:id]',
+					'route' => '/play-video[/:id]',
 					'constraints' => array(
 					   'id' => '[%&;a-zA-Z0-9][%&;a-zA-Z0-9_~-]*',
 					),
 					'defaults' => array(
 						'controller' => 'Application\Controller\Index',
-						'action'     => 'supplyHeaderCategories',
+						'action'     => 'playVideo',
 					),
 				),
 			),
-			'cms' => array(
+			'left-side-bar' => array(
 				'type'    => 'segment',
 				'options' => array(
-					'route' => '/cms[/:id]',
+					'route' => '/left-side-bar[/:id]',
 					'constraints' => array(
 					   'id' => '[%&;a-zA-Z0-9][%&+;a-zA-Z0-9_~-]*',
 					),
 					'defaults' => array(
 						'controller' => 'Application\Controller\Index',
-						'action'     => 'cms',
+						'action'     => 'leftSideBar',
 					),
 				),
 			),
+			
+			'right-side-bar' => array(
+				'type'    => 'segment',
+				'options' => array(
+					'route' => '/right-side-bar[/:id]',
+					'constraints' => array(
+					   'id' => '[%&;a-zA-Z0-9][%&+;a-zA-Z0-9_~-]*',
+					),
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'rightSideBar',
+					),
+				),
+			),
+			
 			'like-unlike' => array(
 				'type' => 'literal',
 				'options' => array(

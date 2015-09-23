@@ -44,16 +44,16 @@ textarea{
 	text-decoration: underline;
 }
 .copy_right {
-    background: #424242 none repeat scroll 0 0;
+    background: #333 none repeat scroll 0 0;
     border-top: 1px solid #121212;
-    padding: 5px;
+    padding: 15px;
 }
 .copy_right p{
 	 color: #7a7d7e;
 	 font-size:14px;
 	 margin:0;
 	 padding:0;
-	 text-align:center;
+	 text-align:left;
 }
 /*.navbar-default-custom-c{
 	background:#fff !important;
@@ -235,6 +235,124 @@ position:absolute;
 	margin-top:20px
  }
  .tab_w{width:500px; margin:0 auto;overflow:auto;}
+ /*videoblogger css strat */
+ .ad_pos_ab{
+	position:absolute;
+	top:0;
+	right:0;
+ }
+ .footer_linksa a{
+	padding-right:10px;
+	color:#fff;
+ }
+ .copy_right_t{
+	text-align:right !important;
+	color:#fff !important;
+ }
+ .size18{
+	font-size:18px !important;
+ }
+ .cal_next span{
+	font-size:10px;
+	color:#777;
+ }
+ .pad_bottom_0{
+	padding-bottom:0 !important;
+ }
+ .latest_news{
+	background:#f8f8f8;
+	padding:8px;
+	border-bottom:1px solid #ccc;
+	margin-bottom:20px;
+ }
+ .latest_news ul{
+	margin:0;
+ }
+ .latest_news a{
+	font-size:17px;
+	color:#2fa4e7;
+ }
+ .latest_news span{
+	font-size:13px;
+	color:#777;
+ }
+ .top_bar{
+	background:#2fa4e7;
+	padding:5px;
+ }
+ .top_bar {
+	color:#fff;
+ }
+ .topmenu_links{
+	text-align:right;
+ }
+ .topmenu_links a{
+	color:#fff;
+ }
+ .topmenu_links ul{
+	margin:0;
+ }
+ .topmenu_links .list-inline > li{
+	padding-left:2px;
+	padding-right:2px;
+ }
+ .list_grou_itemspad .list-group-item{
+	padding:5px 15px;
+	border-left:1px solid #dddddd;
+	border-right:1px solid #dddddd;
+ }
+ .list_grou_itemspad .list-group-item:last-child{
+	border-bottom:1px solid #dddddd;
+ }
+ .featured_video_thumb{
+	text-align:center;
+ }
+ .featured_video_thumb .list-inline li{
+	margin-bottom:10px;
+	width:130px;
+	position:relative;
+ }
+ .featured_video_thumb img{
+	width:120px;
+	border-radius:4px;
+ }
+ .thumb_play_ico{
+	position:absolute;
+	right:45%;
+	top:40%;
+	background-color:rgba(0, 0, 0, 0.7);
+	padding:2px 5px;
+	border-radius:5px;
+ }
+ .thumb_play_ico span{
+	color:#fff;
+ }
+ .latest_videos{
+	text-align:center;
+ }
+.latest_videos ul{
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+.latest_videos li{
+	margin-bottom:10px;
+}
+.latestvideos img{
+	width:150px;
+	height:150px;
+	border-radius:5px;
+}
+.video_play{
+	background:#fff;
+	border:1px solid #ddd;
+	border-radius:3px;
+	margin-bottom:20px;
+}
+.video_play h2{
+	margin: 5px 0 10px;
+    padding: 0 10px;
+}
 @media (max-width: 1024px) {
  .reg_w_12{
 	width:85%;

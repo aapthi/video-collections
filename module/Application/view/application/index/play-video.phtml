@@ -1,0 +1,22 @@
+<?php
+	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+	$baseUrl = $header->headerarray['baseUrl'];
+	$basePath = $header->headerarray['basePath'];
+?>
+<div class="container min_height">
+	<div class="row">
+		<div class="col-md-3">
+		<?php include('left-side-bar.phtml');?>
+		</div>
+		<div class="col-md-9">
+			<div class="video_play">
+				<iframe width="100%" height="315" src="https://www.youtube.com/embed/zd_eRjhXPGE" frameborder="0" allowfullscreen></iframe>
+				<h2>Explain land acquisition in Andhra, ministers asks </h2>
+			</div>
+			<?php include('right-side-bar.phtml');?>
+			<div class="video_play" align="center">
+				<img src="<?php echo $basePath; ?>/img/ad.jpg" alt="ads"/>
+			</div>
+		</div>
+	</div>
+</div>

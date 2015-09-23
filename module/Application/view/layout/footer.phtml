@@ -1,9 +1,36 @@
 <footer class="footer">
    	<div class="copy_right"> 
 	<div class="container"> 
-	<p>Copyright &copy; 2015  All right reserved</p>
+	<div class="row">
+		<div class="col-md-8 footer_linksa">
+			<p>
+				<a href="#"> Home </a>
+				<a href="#"> About </a>
+				<a href="#"> Privacy Policy</a>
+				<a href="#"> Terms of Service </a>
+				<a href="#"> Contact Us</a>
+			</p>
+		</div> 
+		<div class="col-md-4">
+		<p class="copy_right_t">Copyright &copy; 2015  All right reserved</p>
+	</div>
+	</div> 
 	</div> 
 	</div>	
     </footer> 
   </body>
 </html>
+<script type="text/javascript">
+    $(function () {
+        $(".latestvideos").bootstrapNews({
+            newsPerPage: 3,
+            autoplay: true,
+			pauseOnHover:true,
+            direction: 'up',
+            newsTickerInterval: 4000,
+            onToDo: function () {
+                //console.log(this);
+            }
+        });
+	});
+</script>

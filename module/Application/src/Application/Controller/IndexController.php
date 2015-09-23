@@ -20,7 +20,19 @@ class IndexController extends AbstractActionController
 				'basePath' 					=> $basePath
 		));
 		return $viewModel;
-    }	
+    }
+	public function playVideoAction(){
+		
+		
+	}
+	public function leftSideBarAction(){
+		
+		
+	}
+	public function rightSideBarAction(){
+		
+		
+	}
 	public function headerAction($params)
     {
 		$baseUrls = $this->getServiceLocator()->get('config');
