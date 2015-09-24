@@ -64,6 +64,20 @@ class VideoTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
+	public function videoForentedList(){
+		$select = $this->tableGateway->getSql()->select();				
+		$select->order('vc_videos.v_id DESC');		
+		$select->where('v_state="1"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
+	public function videoFeaturedList(){
+		$select = $this->tableGateway->getSql()->select();				
+		$select->order('vc_videos.v_id DESC');		
+		$select->where('v_state="1"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 	public function changeAccountStatus( $user)
     {
 	

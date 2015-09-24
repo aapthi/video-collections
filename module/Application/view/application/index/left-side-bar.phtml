@@ -2,12 +2,9 @@
 			<div class="panel-heading">Categories</div>
 			<div class="">
 				<ul class="nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">Menu 2</a></li>
-				<li><a href="#">Menu 3</a></li>
-				<li><a href="#">Menu 4</a></li>
-				<li><a href="#">Menu 5</a></li>
-				<li><a href="#">Menu 6</a></li>
+				<? if(isset($catData) && $catData!=''){ foreach($catData as $catinfo){?>
+				<li><a href="#"><? echo $catinfo->category_name;?></a></li>
+				<?php } }?>
 			  </ul>
 			</div>
 			</div>
@@ -17,27 +14,11 @@
 					<div class="row">
 						<div class="col-xs-12 latest_videos">
 							<ul class="latestvideos">
-								<li class="news-item">
-									<img  src="<?php echo $basePath; ?>/img/thumb2.jpg" alt="ads"></td>
-								</li>
-								<li class="news-item">
-									<img  src="<?php echo $basePath; ?>/img/thumb3.jpg" alt="ads"></td>
-								</li>
-								<li class="news-item">
-									<img  src="<?php echo $basePath; ?>/img/thumb4.jpg" alt="ads"/></td>
-								</li>
-								<li class="news-item">
-									<img  src="<?php echo $basePath; ?>/img/thumb2.jpg" alt="ads"/></td>
-								</li>
-								<li class="news-item">
-									<img  src="<?php echo $basePath; ?>/img/thumb3.jpg" alt="ads"/></td>
-								</li>
-								<li class="news-item">
-									<img  src="<?php echo $basePath; ?>/img/thumb2.jpg" alt="ads"/></td>
-								</li>
-								<li class="news-item">
-									<img  src="<?php echo $basePath; ?>/img/thumb4.jpg" alt="ads"/></td>
-								</li>
+								<?php foreach($vatData as $videoInfo){?>
+									<li class="news-item">
+										<img  src="<?php echo $basePath; ?>/uploads/<? echo $videoInfo->v_id;?>/videoimages/<?php echo $videoInfo->v_thumb_image;?>" alt="ads"></td>
+									</li>									
+								<?php } ?>								
 							</ul>
 						</div>
 					</div>

@@ -79,6 +79,6 @@
 		  <button type="button" class="btn btn-primary" onClick="validateVideo();">Save</button>
 		</div>
 	  </div>
-	  <input type="hidden" name="hid_vid" id="hid_vid" value="<? echo $this->videoInfo->v_id; ?>"/>
+	  <input type="hidden" name="hid_vid" id="hid_vid" value="<? if(isset($this->videoInfo->v_id) && $this->videoInfo->v_id!="") { echo $this->videoInfo->v_id; }else{ } ?>"/>
 	</form>
 </div>

@@ -1,68 +1,16 @@
 <div class="panel panel-default">
-			<div class="panel-heading">Featured Videos</div>
-			<div class="panel-body pad_bottom_0">
-				<div class="featured_video_thumb">
-				<ul class="list-inline">
-					<li>
-						<img  src="<?php echo $basePath; ?>/img/thumb1.jpg" alt="ads">
-						<div class="thumb_play_ico">
-						<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
-						</div>
-					</li>
-					<li>
-					<img  src="<?php echo $basePath; ?>/img/thumb1.jpg" alt="ads">
+	<div class="panel-heading">Featured Videos</div>
+	<div class="panel-body pad_bottom_0">
+		<div class="featured_video_thumb">
+		<ul class="list-inline">
+			<? foreach($this->vatFData as $videoInfo){?>
+				<li>				
+					<img  src="<?php echo $basePath; ?>/uploads/<? echo $videoInfo->v_id;?>/videoimages/<? echo $videoInfo->v_thumb_image;?>" alt="ads">
 					<div class="thumb_play_ico">
-						<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
-						</div>
-					</li>
-					<li>
-						<img  src="<?php echo $basePath; ?>/img/thumb1.jpg" alt="ads">
-						<div class="thumb_play_ico">
-							<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
-						</div>
-					</li>
-					<li>
-						<img  src="<?php echo $basePath; ?>/img/thumb1.jpg" alt="ads">
-						<div class="thumb_play_ico">
-							<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
-						</div>
-					</li>
-					<li>
-						<img  src="<?php echo $basePath; ?>/img/thumb1.jpg" alt="ads">
-						<div class="thumb_play_ico">
-							<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
-						</div>
-					</li>
-					<li>
-						<img  src="<?php echo $basePath; ?>/img/thumb1.jpg" alt="ads">
-						<div class="thumb_play_ico">
-							<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
-						</div>
-					</li>
-					<li>
-						<img  src="<?php echo $basePath; ?>/img/thumb1.jpg" alt="ads">
-						<div class="thumb_play_ico">
-							<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
-						</div>
-					</li>
-					<li>
-						<img  src="<?php echo $basePath; ?>/img/thumb1.jpg" alt="ads">
-						<div class="thumb_play_ico">
-							<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
-						</div>
-					</li>
-					<li>
-						<img  src="<?php echo $basePath; ?>/img/thumb1.jpg" alt="ads">
-						<div class="thumb_play_ico">
-							<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
-						</div>
-					</li>
-					<li>
-						<img  src="<?php echo $basePath; ?>/img/thumb1.jpg" alt="ads">
-						<div class="thumb_play_ico">
-							<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
-						</div>
-					</li>
-				</div>
-			</div>
-			</div>
+					<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
+					</div>			
+				</li>
+					<? } ?>
+		</div>
+	</div>
+</div>
