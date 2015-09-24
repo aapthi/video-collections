@@ -46,6 +46,26 @@ class AdminController extends AbstractActionController
         }
         return $this->userTable;
     }
+	public function changePasswordAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_POST['cnfpwrd'])){
+			$usersTable=$this->getUserTable();
+			$changepwd = $usersTable->changepwd($_POST['cnfpwrd'],$_POST['userId']);	
+			if($changepwd>0){			
+				$result = new JsonModel(array(					
+					'output' => 'success',
+				));			
+			}else{
+				$result = new JsonModel(array(					
+					'output' => 'not success',
+				));
+			}
+			return $result;	
+		}
+	}
 	public function loginAction()
 	{
 		$baseUrls = $this->getServiceLocator()->get('config');

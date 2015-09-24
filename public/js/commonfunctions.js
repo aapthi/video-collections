@@ -299,11 +299,15 @@ function changePassword(regAuth){
 	}else{
 		$('#errorMsg').html('');
 		$('#sucessMsg').html('');
-		var image=BASE_PATH+'/images/ajax-loader.gif';
+		if(regAuth=='admin'){
+			var image=BASE_PATH+'/images/ajax-loader.gif';
+		} else if(regAuth=='user'){
+			var image=BASE_PATH+'/images/ajax-loader.gif';
+		}
 			$('#reload').html('<img src='+image+' />'); 
 		if(passwrd==cnfpwrd){
 			if(regAuth=='admin'){
-				var  url =   ADMIN_BASE_URL+'/admin/check-password';
+				var  url =   BASE_URL+'/users/check-password';
 			} else if(regAuth=='user'){
 				var  url =  BASE_URL+'/users/check-password';
 			}
@@ -315,7 +319,7 @@ function changePassword(regAuth){
 					if(data.output=='success'){
 						$('#reload').html('');
 						if(regAuth=='admin'){
-								var  url2 =   ADMIN_BASE_URL+'/admin/change-password';
+								var  url2 =   BASE_URL+'/users/change-password';
 						} else if(regAuth=='user'){
 								var  url2 =  BASE_URL+'/users/change-password';
 						}
