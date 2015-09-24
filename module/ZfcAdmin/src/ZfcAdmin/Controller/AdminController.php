@@ -15,6 +15,7 @@ class AdminController extends AbstractActionController
 {
 	protected  $userTable;
 	protected  $categoriesTable;
+	protected  $userDetailsTable;
 	public function indexAction()
 	{
 		
@@ -169,6 +170,10 @@ class AdminController extends AbstractActionController
 			return $view;
 	}
 	public function userinfoAjaxAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
 		$usersTable=$this->getUserTable();
 		$userDetailss = $usersTable->listUsers();
 		$data = array();
@@ -187,13 +192,43 @@ class AdminController extends AbstractActionController
 					$status = 'Deactivate';
 				}
 				$data[$i]['status']= $status;
-				$data[$i]['action'] ='<a href="javascript:void(0)" onclick="editCategory('.$id.')" >Edit</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteCategory('.$id.')">Delete</a>';
+				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/edit-user-profile?uid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteCategory('.$id.')">Delete</a>';
 				$i++;
 			}
 			$data['aaData'] = $data;
 			echo json_encode($data['aaData']); exit;
 		}else{
 			echo '1'; exit;
+		}
+	}
+	public function editUserProfileAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_POST['hid_user_id']) && $_POST['hid_user_id']!=''){	
+			$base_user_id = $_POST['hid_user_id'];
+			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']);
+			$suc = 'udt';
+			if($user_id>=0){
+				$user_idd=$this->getUserDetailsTable()->addDetails($_POST,$_POST['hid_user_id'],$_POST['hid_ud_id']);
+				return $this->redirect()->toUrl($baseUrl.'/admin/users-list');
+			}
+		}else if(isset($_GET['uid']) && $_GET['uid']!=""){
+			$base_user_id = $_GET['uid'];
+			$getUserDetails = $this->getUserTable()->getUserDetails($base_user_id);			
+			if($getUserDetails!=''){
+				return new ViewModel(array(				
+					'userDetails' 		=> $getUserDetails,	
+					'baseUrl' 			=> $baseUrl,
+					'basePath' 			=> $basePath,
+				));		
+			}
+		}else{			
+			return new ViewModel(array(				
+				'baseUrl' 			=> $baseUrl,
+				'basePath' 			=> $basePath,
+			));	
 		}
 	}
 	public function categoryAjaxAction()
@@ -244,5 +279,13 @@ class AdminController extends AbstractActionController
 		$deleteissue=$this->getCategoryTable()->deleteCategory($_GET['id']);
 		return $this->redirect()->toUrl($basePath .'/admin/categories-list');
 	  }
-	}		
+	}
+	public function getUserDetailsTable()
+    {
+        if (!$this->userDetailsTable) {				
+            $sm = $this->getServiceLocator();
+            $this->userDetailsTable = $sm->get('Users\Model\UserDetailsFactory');			
+        }
+        return $this->userDetailsTable;
+    }	
 }

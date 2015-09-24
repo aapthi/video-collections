@@ -21,7 +21,7 @@ class UserDetailsTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
-	public function addDetails($usersinfo,$user_id){
+	public function addDetails($usersinfo,$user_id,$udid){
 		$data = array(
 			'u_id' 		       => $user_id,  		
 			'first_name'       => $usersinfo['user_first_name'], 	
@@ -29,7 +29,7 @@ class UserDetailsTable
 			'created_at'       => date('Y-m-d H:i:s'), 
 			'updated_at' 	   => date('Y-m-d H:i:s')
 		);
-		if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){
+		if(isset($udid) && $udid!=""){
 			$updateresult=$this->tableGateway->update($data, array('u_id' => $user_id));
 			return $updateresult;
 		}else{

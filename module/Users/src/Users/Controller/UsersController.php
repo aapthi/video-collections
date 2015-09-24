@@ -225,19 +225,19 @@ class UsersController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];		
-		if(isset($_POST['hid_user_id']) && $_POST['hid_user_id']!=''){	
+		if(isset($_POST['hid_user_id']) && $_POST['hid_user_id']!=''){
 			$base_user_id =  base64_encode($_POST['hid_user_id']);
 			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']);
 			$_SESSION['user']['username']=$_POST['user_first_name'];
 			$suc = 'udt';
 			if($user_id>=0){
-				$user_idd=$this->getUserDetailsTable()->addDetails($_POST,$_POST['hid_user_id']);
+				$user_idd=$this->getUserDetailsTable()->addDetails($_POST,$_POST['hid_user_id'],$_POST['hid_ud_id']);
 				return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id.'&suc='.$suc);
 			}
 		}else if(isset($_POST['user_first_name']) && $_POST['user_first_name']!='' && isset($_POST['hid_user_id']) && $_POST['hid_user_id']==''){
 			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']='');
 			if($user_id!=0){
-				$user_idd=$this->getUserDetailsTable()->addDetails($_POST,$user_id);
+				$user_idd=$this->getUserDetailsTable()->addDetails($_POST,$user_id,$_POST['hid_ud_id']);
 				$usersTable=$this->getUserTable();
 				$userDetails = $usersTable->getUser($user_id);
 				if($userDetails!=''){						
