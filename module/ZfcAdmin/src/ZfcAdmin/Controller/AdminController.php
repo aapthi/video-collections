@@ -208,17 +208,37 @@ class AdminController extends AbstractActionController
 				$data[$i]['contact_number']= $user->contact_number;
 				if($user->state==1){
 					$status = 'Active';
+					$st = 'd';
 				}else{
 					$status = 'Deactivate';
+					$st = 'a';
 				}
 				$data[$i]['status']= $status;
-				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/edit-user-profile?uid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteCategory('.$id.')">Delete</a>';
+				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/edit-user-profile?uid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-user?uid='.$id.'&st='.$st.'">'.$status.'</a>';
 				$i++;
 			}
 			$data['aaData'] = $data;
 			echo json_encode($data['aaData']); exit;
 		}else{
 			echo '1'; exit;
+		}
+	}
+	public function deleteUserAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_GET['uid']) && $_GET['uid']!=""){
+			if( $_GET['st'] == 'd'){
+				$userInfo['status']=0;
+			}else{
+				$userInfo['status']=1;
+			}
+			$userInfo['userId'] = $_GET['uid'];
+			$chgStatus = $this->getUserTable()->changeAccountStatus($userInfo,'del');
+			if($chgStatus>0){
+				return $this->redirect()->toUrl($baseUrl.'/admin/users-list');
+			}
 		}
 	}
 	public function editUserProfileAction(){

@@ -61,7 +61,7 @@ class UserTable
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('vc_user_details', 'vc_user_details.u_id=user.user_id',array('*'),'left');	
 		$select->where('user.username!="Administration"');
-		$select->where('user.state="1"');
+		// $select->where('user.state="1"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
@@ -79,6 +79,11 @@ class UserTable
 				'updated_at'   	=> date('Y-m-d H:i:s'),				
 				'state' 	    => $user['status']
 			);	
+		}else if($type=='del'){
+			$data = array(
+				'updated_at' 	=> date('Y-m-d H:i:s'),   			
+				'state' 	    => $user['status']
+			);		
 		}else{
 			$data = array(
 				'created_at' 	=> date('Y-m-d H:i:s'),   			
