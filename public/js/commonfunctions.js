@@ -23,9 +23,8 @@ function removeSubCat(cid){
 	var cnum = $('#countbuttons').val();
 	$('#addCompany'+cid).remove();
 	$('#companyText'+cid).remove();	
-	$('#countbuttons').val((parseInt(cnum)-1));	
-	cnum = parseInt($('#countbuttons').val())-1;
-	if(cid == 1){
+	$('#countbuttons').val((parseInt(cnum)-1));
+	if($('#countbuttons').val() == 0){
 		$('#chk_id').prop("checked", false);
 		$("#hidSpan").hide();
 		$("#hidCheck").show();

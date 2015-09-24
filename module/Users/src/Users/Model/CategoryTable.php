@@ -20,24 +20,25 @@ class CategoryTable
     {
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
-    }	
-	public function getAllMenuCategories()
-    {
-		$select = $this->tableGateway->getSql()->select();
-		$select->where('tbl_categories.category_type_id=2');
-		$resultSet = $this->tableGateway->selectWith($select);
-		return $resultSet;
-	}
-	public function addCategories($addcatid)
+    }		
+	public function addCategories($addcat,$caid)
 	{
-		$data = array(
-			'category_name'  		=> $addcatid['catname'],
-			'status'          		=> "1",
-			'created_at'          	=> date('Y-m-d H:i:s'), 
-			'modified_at'          	=> date('Y-m-d H:i:s')
-		);
-		$insertresult=$this->tableGateway->insert($data);
-		return $this->tableGateway->lastInsertValue;
+		if($caid!=''){
+			$data = array(
+				'category_name'  		=> $addcat['catname'],
+				'modified_at'          	=> date('Y-m-d H:i:s')
+			);
+			$updateresult=$this->tableGateway->update($data, array('category_id' => $caid));
+			return $updateresult;
+		}else{
+			$data = array(
+				'category_name'  		=> $addcat['catname'],
+				'status'          		=> "1",
+				'created_at'          	=> date('Y-m-d H:i:s')
+			);
+			$insertresult=$this->tableGateway->insert($data);
+			return $this->tableGateway->lastInsertValue;
+		}		
 	}
 	public function addSubCategory($addsubcat,$pcatid){
 		$data = array(
@@ -67,30 +68,14 @@ class CategoryTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
-	
-	public function updatecatid($cat_detailes)
-    {	
-		$data = array(
-			'category_name'  		=> $cat_detailes['catname'],
-			'status'          		=> "1",
-			'category_type_id'  	=> $cat_detailes['cattypes'],
-			'modified_at'  			=> date('Y-m-d H:i:s'),
-		);	
-		$updaterow=$this->tableGateway->update($data, array('category_id' => $cat_detailes['cat_id']));
-		return $updaterow;
-	}
-	
-	public function deleteCategory($deletecatid)
-	{
-		$result=$this->tableGateway->delete(array('category_id' => $deletecatid));
-		 return  $result;
-	
-	}
-	public function getCategories()
-    {
+	public function cntSubCat($catid){
 		$select = $this->tableGateway->getSql()->select();
-		$select->where('status=1');
+		$select->where('parent_cat_id ="'.$catid.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
-		return $resultSet;
+		return $resultSet->count();
+	}
+	public function delSubCategories($catid){
+		$this->tableGateway->delete(array('(parent_cat_id IN ('.$catid.'))'));			
+		return $this->tableGateway->lastInsertValue;	
 	}
 }

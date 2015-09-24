@@ -96,12 +96,23 @@ class AdminController extends AbstractActionController
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
-		$basePath = $baseUrlArr['basePath'];		
-		if(isset($_POST['hidbutton_value']) && $_POST['hidbutton_value']!=''){
-			$updatecatid = $this->getCategoryTable()->updatecatid($_POST);
-			return $this->redirect()->toUrl('categories-list');
-		}else if(isset($_POST['catname']) && $_POST['catname']!='' && $_POST['hidbutton_value']==''){
-			$addcatid = $this->getCategoryTable()->addCategories($_POST);
+		$basePath = $baseUrlArr['basePath'];	
+		if(isset($_POST['cat_id']) && $_POST['cat_id']!=''){
+			$updatecatid = $this->getCategoryTable()->addCategories($_POST,$_POST['cat_id']);
+			if($updatecatid>=0){
+				$cntSubCat = $this->getCategoryTable()->cntSubCat($_POST['cat_id']);
+				if($cntSubCat!=0){
+					$delSuccess = $this->getCategoryTable()->delSubCategories($_POST['cat_id']);
+				}
+				if(isset($_POST['cat_name']) && $_POST['cat_name']!=''){
+					foreach($_POST['cat_name'] as $subcatname){
+						$addSubCategory = $this->getCategoryTable()->addSubCategory($subcatname,$_POST['cat_id']);	
+					}
+				}
+				return $this->redirect()->toUrl('categories-list');
+			}			
+		}else if(isset($_POST['catname']) && $_POST['catname']!='' && $_POST['cat_id']==''){
+			$addcatid = $this->getCategoryTable()->addCategories($_POST,$_POST['cat_id']);
 			if($addcatid!=""){
 				if(isset($_POST['cat_name']) && $_POST['cat_name']!=''){
 					foreach($_POST['cat_name'] as $subcatname){

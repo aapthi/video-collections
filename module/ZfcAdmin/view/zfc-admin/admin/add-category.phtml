@@ -29,7 +29,7 @@
 			</span>
 			<input type="hidden" name="countbuttons" id="countbuttons" value="<? if(isset($subcatData) && $subcatData!=""){ echo count($subcatData);}else{?> 1 <?php } ?>" />
 			<span id="hidSpan" style="display:none;">
-				<?php if(count($subcatData)==0){?>
+				<?php if(count($this->subcatData)==0){?>
 					<div class="form-group" id="companyText1">
 						<label for="company-name1" class="control-label col-md-3 col-sm-3 col-xs-12">Subcategory</label>
 							<div class="col-md-5 col-sm-6 col-xs-12 pos_r">
@@ -37,7 +37,7 @@
 							</div>
 							<button type="button" class="btn btn-success reset_btn" onClick="removeSubCat(1)">Remove Subcateogry</button>
 					</div>
-				<?php } else{ $k=1; foreach($subcatData as $key=>$subCat){ ?>
+				<?php } else{ $k=1; foreach($this->subcatData as $key=>$subCat){ ?>
 					<div class="form-group" id="companyText<?php echo $k;?>">
 						<label for="company-name<?php echo $k;?>" class="control-label col-md-3 col-sm-3 col-xs-12">Subcategory</label>
 							<div class="col-md-5 col-sm-6 col-xs-12 pos_r">
@@ -60,8 +60,9 @@
 			<?}else{ ?>
 			<button type="button" class="btn btn-primary  btn-bloconclick" onclick="backFunction(2);">Back</button>&nbsp;&nbsp;<button type="button" class="btn btn-primary  btn-bloconclick" onclick="addCatCall();">Add</button>
 			<?}?>
-			<input type="hidden" value="<?php echo $catData['category_id'];?>" id="cat_id" name="cat_id" ></p>
+			<input type="hidden" value="<?php if(isset($catData['category_id']) && $catData['category_id']!=''){ echo $catData['category_id'];}else{}?>" id="cat_id" name="cat_id" ></p>
 			<input type="hidden" value="" id="hid_cat_butt" name="hidbutton_value" >
+			<input type="hidden" value="1" id="hid_cnt" name="hid_cnt">
             </div>
 			<span id="errorMsg" style="color:red"></span>
           </form>
