@@ -63,8 +63,7 @@ class AdminController extends AbstractActionController
 			if($updatData>=0){
 				$path = "./public/uploads/".$_POST['hid_vid'];
 				$path2 = $path.'/videoimages';
-				$path3 = $path.'/videoimages/';
-				unlink($path2 . "/" . $_POST['hid_imag']);
+				$path3 = $path.'/videoimages/';				
 				move_uploaded_file($_FILES['video_img']['tmp_name'],$path3.$image_v);
 				return $this->redirect()->toUrl('videos-list');
 			}
@@ -85,6 +84,13 @@ class AdminController extends AbstractActionController
 			return new ViewModel(array(
 				'catData'	  =>  $catList,
 				'videoInfo'	  =>  $videoInfo,
+				'basePath'	  =>  $basePath,	
+				'baseUrl'	  =>  $baseUrl	
+			));
+		}else{
+			$catList = $this->getCategoryTable()->getCategoryListD();
+			return new ViewModel(array(
+				'catData'	  =>  $catList,
 				'basePath'	  =>  $basePath,	
 				'baseUrl'	  =>  $baseUrl	
 			));
