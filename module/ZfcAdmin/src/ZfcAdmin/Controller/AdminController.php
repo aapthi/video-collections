@@ -46,6 +46,13 @@ class AdminController extends AbstractActionController
         }
         return $this->userTable;
     }
+	public function addVideoAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+	
+	}
 	public function changePasswordAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];

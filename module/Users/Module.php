@@ -19,6 +19,10 @@ use Users\Model\ForgotPassword;
 use Users\Model\ForgotPasswordTable;
 use Users\Model\Category;
 use Users\Model\CategoryTable;
+use Users\Model\TypeOfVideo;
+use Users\Model\TypeOfVideoTable;
+use Users\Model\Video;
+use Users\Model\VideoTable;
 
 
 class Module implements 
@@ -49,7 +53,9 @@ class Module implements
             'factories' => array( 
             	'Users\Model\UserTableFactory'=>'Users\Factory\Model\UserTableFactory',			
             	'Users\Model\UserDetailsFactory'=>'Users\Factory\Model\UserDetailsTableFactory',
-				'Users\Model\CategoryFactory'=>'Users\Factory\Model\CategoryTableFactory'
+				'Users\Model\CategoryFactory'=>'Users\Factory\Model\CategoryTableFactory',
+				'Users\Model\TypeOfVideoFactory'=>'Users\Factory\Model\TypeOfVideoTableFactory',
+				'Users\Model\VideoFactory'=>'Users\Factory\Model\VideoTableFactory'
 			),			
         );
     }

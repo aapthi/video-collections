@@ -8,19 +8,19 @@ use Zend\Stdlib\Hydrator\ObjectProperty;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\TableGateway\Feature;
 
-use Users\Model\Branches;
-use Users\Model\BranchesTable;
+use Users\Model\Video;
+use Users\Model\VideoTable;
 
-class  BranchesTableFactory implements FactoryInterface
+class  VideoTableFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $db = $serviceLocator->get('Zend\Db\Adapter\Adapter');
         $resultSetPrototype = new HydratingResultSet();
         $resultSetPrototype->setHydrator(new ObjectProperty());
-        $resultSetPrototype->setObjectPrototype(new Branches());
-        $tableGateway       = new TableGateway('tbl_branches', $db,array(),$resultSetPrototype);
-        $table              = new BranchesTable($tableGateway);
+        $resultSetPrototype->setObjectPrototype(new Video());
+        $tableGateway       = new TableGateway('vc_video', $db,array(),$resultSetPrototype);
+        $table              = new VideoTable($tableGateway);
         return $table;
     }
 }
