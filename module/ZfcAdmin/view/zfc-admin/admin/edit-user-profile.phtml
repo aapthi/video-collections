@@ -1,0 +1,50 @@
+<div class="container  min_height">
+	<div class="lrcontainer">
+		<? $details=''; if(count($this->userDetails)){ foreach($this->userDetails as $detailss){ $details=$detailss;}}
+		$dobex=''; if(isset($details->date_of_birth) && $details->date_of_birth!='') {
+		$dob = $details->date_of_birth;
+		$dobex = explode("/",$dob);
+		}		
+		?>			
+		<div class="panel-default">		
+			<form  id="frm_meth" name="frm_meth" method="post" action="">
+				<div class="panel-body" id="tab_1_hide">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<div class="">
+								<span class="error_msg_disp" id="user_firstname_req"></span>
+								<input type="text" class="form-control" id="user_first_name" placeholder="First Name" name="user_first_name" value="<? if(isset($details->display_name) && $details->display_name!='') {echo ucfirst($details->display_name);}else{}?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="">
+								<span class="error_msg_disp" id="user_lastname_req"></span>
+								<input type="text" class="form-control" id="user_last_name" placeholder="Last Name" name="user_last_name" value="<? if(isset($details->last_name) && $details->last_name!='') {echo ucfirst($details->last_name);}else{}?>">
+							</div>
+						</div>				
+						<div class="form-group">
+							<div class="">
+								<span class="error_msg_disp" id="user_email_req"></span>
+								<input type="email" class="form-control" id="user_email" placeholder="Email" name="user_email" value="<? if(isset($details->email) && $details->email!='') {echo $details->email;}else{}?>" <? if(isset($details->email) && $details->email!='') {?> readonly="readonly" <?}else{?> onmouseout="return checkEmailVaild();"<? } ?>>
+							</div>
+						</div>
+						<input type="hidden" id="hidCheckValue" name="hidCheckValue" value='0'>						
+						<div class="form-group">
+							<div class="">
+								<span class="error_msg_disp" id="user_mobile_req"></span>
+								<input type="text" class="form-control" id="user_mobile" name="user_mobile" value="<? if(isset($details->contact_number) && $details->contact_number!='') {echo $details->contact_number;}else{}?>" placeholder="Your Mobile Number">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="">
+								<button type="button" class="btn btn-primary btn-block"  onCLick="validateReg();">Update</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<input type="hidden" id="hid_user_id" name="hid_user_id" value="<? if(isset($details->user_id) && $details->user_id!=''){ echo $details->user_id;}else{}?>">
+				<input type="hidden" id="hid_ud_id" name="hid_ud_id" value="<? if(isset($details->ud_id) && $details->ud_id!=''){ echo $details->ud_id;}else{}?>">
+			</form>			
+		</div>
+	</div>
+</div>
