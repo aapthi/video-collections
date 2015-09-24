@@ -1,57 +1,84 @@
 <div class="container  min_height">
-	<form class="form-horizontal">
+	<form class="form-horizontal" method="POST" id="videoForm" name="videoForm" enctype="multipart/form-data">
 	  <div class="form-group">
 		<label for="inputEmail3" class="col-sm-2 control-label">Video Title</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" id="video_title" name="video_title" placeholder="Video Title">
+			<input type="text" class="form-control" id="video_title" name="video_title" placeholder="Video Title" value="<? if(isset($this->videoInfo->v_title) && $this->videoInfo->v_title!=""){ echo $this->videoInfo->v_title;}else{}?>">
 		</div>
 	  </div>
 	  <div class="form-group">
 		<label for="inputPassword3" class="col-sm-2 control-label">Video Link</label>
 		<div class="col-sm-10">
-		  <textarea class="form-control" rows="3" id="video_link" name="video_link"></textarea>
+		  <textarea class="form-control" rows="3" id="video_link" name="video_link"><? if(isset($this->videoInfo->v_link) && $this->videoInfo->v_link!=""){ echo $this->videoInfo->v_link;}else{}?></textarea>
 		</div>
 	  </div>
 	  <div class="form-group">
 		<label for="inputPassword3" class="col-sm-2 control-label">Video Description</label>
 		<div class="col-sm-10">
-		  <textarea class="form-control" rows="3" id="video_desc" name="video_desc"></textarea>
+		  <textarea class="form-control" rows="3" id="video_desc" name="video_desc"><? if(isset($this->videoInfo->v_desc) && $this->videoInfo->v_desc!=""){ echo $this->videoInfo->v_desc;}else{}?></textarea>
 		</div>
 	  </div>
 	  <div class="form-group">
 		<label for="inputPassword3" class="col-sm-2 control-label">Category</label>
 		<div class="col-sm-10">
 		  <select class="form-control" id="video_cat" name="video_cat">
-			  <option >1</option>
-			  <option>2</option>
-			  <option>3</option>
-			  <option>4</option>
-			  <option>5</option>
+			  <option value="">Select a Category</option>
+			  <?php if(isset($catData)){ foreach($catData as $cat) {
+				if($this->videoInfo->v_cat_id==$cat->category_id){ ?>
+				 <option value="<?php echo $cat->category_id;?>" selected="selected"><?php echo $cat->category_name;?></option>
+				<? } else {?>					
+				 <option value="<?php echo $cat->category_id;?>"><?php echo $cat->category_name;?></option>
+			  <?php } } }?>
+			  
 		 </select>
 		</div>
 	  </div>
+	  <input type="hidden" name="uplodImageError" id="uplodImageError" value="0"/>
 	 <div class="form-group">
 		<label for="inputPassword3" class="col-sm-2 control-label">Video Image</label>
 		 <div class="col-sm-10">
+		 <input type="hidden" id="hid_imag" name="hid_imag" value="<?php if(isset($this->videoInfo->v_thumb_image) && $this->videoInfo->v_thumb_image!=""){ echo $this->videoInfo->v_thumb_image;}else{}?>">
+			<?php if(isset($this->videoInfo->v_thumb_image) && $this->videoInfo->v_thumb_image!=""){?>
+				<img src="<?php echo $this->basePath;?>/uploads/<?php echo $this->videoInfo->v_id; ?>/videoimages/<?php echo $this->videoInfo->v_thumb_image; ?>" width="10%" height="10%" alt="..." class="img-rounded">
+			<?php }else{?>
+				<img src="<?php echo $this->basePath;?>/images/480px-No_Image_Available.png" width="10%" height="10%" alt="..." class="img-rounded">
+			<?php }?>
 			<input type="file" name="video_img" id="video_img" class="file">
-		 </div>
+		 </div>		 
 	 </div>
 	  <div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 		  <div class="radio">
+			<?php if(isset($this->videoInfo->type_of_video) && $this->videoInfo->type_of_video=='normal') {?>
 			<label>
-			  <input type="radio" id="video_type" name="video_type" > Normal video
+			  <input type="radio" id="video_type" name="video_type" value="normal" checked> Normal video
 			</label>
 			<label>
-			  <input type="radio" id="video_type" name="video_type" > Featured video
+			  <input type="radio" id="video_type" name="video_type" value="featured"> Featured video
 			</label>
+			<?php } else if(isset($this->videoInfo->type_of_video) && $this->videoInfo->type_of_video=='featured') {?>
+			<label>
+			  <input type="radio" id="video_type" name="video_type" value="normal" > Normal video
+			</label>
+			<label>
+			  <input type="radio" id="video_type" name="video_type" value="featured" checked> Featured video
+			</label>
+			<?php } else{?>
+			<label>
+			  <input type="radio" id="video_type" name="video_type" value="normal" checked> Normal video
+			</label>
+			<label>
+			  <input type="radio" id="video_type" name="video_type" value="featured" > Featured video
+			</label>
+			<?php } ?>
 		  </div>
 		</div>
 	  </div>
 	  <div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-		  <button type="submit" class="btn btn-default">Sign in</button>
+		  <button type="button" class="btn btn-primary" onClick="validateVideo();">Save</button>
 		</div>
 	  </div>
+	  <input type="hidden" name="hid_vid" id="hid_vid" value="<? echo $this->videoInfo->v_id; ?>"/>
 	</form>
 </div>

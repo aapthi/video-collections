@@ -16,6 +16,7 @@ class AdminController extends AbstractActionController
 	protected  $userTable;
 	protected  $categoriesTable;
 	protected  $userDetailsTable;
+	protected  $videoTable;
 	public function indexAction()
 	{
 		
@@ -51,7 +52,101 @@ class AdminController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
-	
+		$userid = $_SESSION['admin']['user_id'];	
+		if(isset($_POST['hid_vid']) && $_POST['hid_vid']!=""){	
+			if(isset($_FILES['video_img']['name']) && $_FILES['video_img']['name']=="" && $_POST['hid_imag']!=""){
+				$image_v = $_POST['hid_imag'];
+			}else if(isset($_POST['hid_imag']) && $_POST['hid_imag']!='' && $_FILES['video_img']['name']!=""){
+				$image_v = $_FILES['video_img']['name'];
+			}
+			$updatData = $this->getVideoTable()->addVideo($_POST,$userid,$image_v,$_POST['hid_vid']);
+			if($updatData>=0){
+				$path = "./public/uploads/".$_POST['hid_vid'];
+				$path2 = $path.'/videoimages';
+				$path3 = $path.'/videoimages/';
+				unlink($path2 . "/" . $_POST['hid_imag']);
+				move_uploaded_file($_FILES['video_img']['tmp_name'],$path3.$image_v);
+				return $this->redirect()->toUrl('videos-list');
+			}
+		}else if(isset($_POST['video_title']) && $_POST['video_title']!="" && $_POST['hid_vid']==""){
+			$videoTable=$this->getVideoTable();			
+			$insertVid = $videoTable->addVideo($_POST,$userid,$_FILES['video_img']['name'],$_POST['hid_vid']);
+			if($insertVid>0){
+				$path = "./public/uploads/".$insertVid;
+				mkdir($path);
+				$path2 = $path.'/videoimages/';
+				mkdir($path2);	
+				move_uploaded_file($_FILES['video_img']['tmp_name'],$path2.$_FILES['video_img']['name']);
+				return $this->redirect()->toUrl('videos-list');
+			}
+		}else if(isset($_GET['vid']) && $_GET['vid']!=""){
+			$catList = $this->getCategoryTable()->getCategoryListD();
+			$videoInfo=$this->getVideoTable()->getVideoInfo($_GET['vid']);
+			return new ViewModel(array(
+				'catData'	  =>  $catList,
+				'videoInfo'	  =>  $videoInfo,
+				'basePath'	  =>  $basePath,	
+				'baseUrl'	  =>  $baseUrl	
+			));
+		}
+	}
+	public function videosListAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];		
+	}
+	public function deleteVideoAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_GET['vid']) && $_GET['vid']!=""){
+			if( $_GET['st'] == 'd'){
+				$userInfo['status']=0;
+			}else{
+				$userInfo['status']=1;
+			}
+			$userInfo['vid'] = $_GET['vid'];
+			$chgStatus = $this->getVideoTable()->changeAccountStatus($userInfo);
+			if($chgStatus>0){
+				return $this->redirect()->toUrl($baseUrl.'/admin/videos-list');
+			}
+		}
+	}
+	public function videoAjaxAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$data = array();
+		$i=0;
+		$videoTable=$this->getVideoTable();
+		$videoData = $videoTable->videoList();		
+		if(isset($videoData) && $videoData->count()!=0){
+		 $catTypeName="";
+			foreach($videoData as $video){
+				$id=$video->v_id;
+				$data[$i]['v_id']=$i+1;
+				$data[$i]['user_name']= $video->username;
+				$data[$i]['cat_name']= $video->category_name;
+				$data[$i]['videolink']= $video->v_link;
+				if($video->v_state==1){
+					$status = 'Active';
+					$st = 'd';
+				}else{
+					$status = 'Deactivate';
+					$st = 'a';
+				}
+				$data[$i]['status']= $status;
+				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/add-video?vid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-video?vid='.$id.'&st='.$st.'">'.$status.'</a>';
+				$i++;
+			}
+			$data['aaData'] = $data;
+			echo json_encode($data['aaData']); exit;
+		}else{
+			echo '1'; exit;
+		}
 	}
 	public function changePasswordAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
@@ -334,5 +429,13 @@ class AdminController extends AbstractActionController
             $this->userDetailsTable = $sm->get('Users\Model\UserDetailsFactory');			
         }
         return $this->userDetailsTable;
+    }
+	public function getVideoTable()
+    {
+        if (!$this->videoTable) {				
+            $sm = $this->getServiceLocator();
+            $this->videoTable = $sm->get('Users\Model\VideoFactory');			
+        }
+        return $this->videoTable;
     }	
 }

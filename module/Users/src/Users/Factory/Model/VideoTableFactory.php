@@ -19,7 +19,7 @@ class  VideoTableFactory implements FactoryInterface
         $resultSetPrototype = new HydratingResultSet();
         $resultSetPrototype->setHydrator(new ObjectProperty());
         $resultSetPrototype->setObjectPrototype(new Video());
-        $tableGateway       = new TableGateway('vc_video', $db,array(),$resultSetPrototype);
+        $tableGateway       = new TableGateway('vc_videos', $db,array(),$resultSetPrototype);
         $table              = new VideoTable($tableGateway);
         return $table;
     }

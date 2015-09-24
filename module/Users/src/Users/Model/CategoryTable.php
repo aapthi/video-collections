@@ -59,6 +59,13 @@ class CategoryTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
+	public function getCategoryListD()
+    {
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('vc_categories.status="1"');		
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 	public function editCategories($editid)
     {
 		$select = $this->tableGateway->getSql()->select();
