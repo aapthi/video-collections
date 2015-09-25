@@ -70,6 +70,11 @@ class AdminController extends AbstractActionController
 			}
 //  Insert
 		}else if(isset($_POST['video_title']) && $_POST['video_title']!="" && $_POST['hid_vid']==""){
+			$s=$_POST['video_link'];
+			$link=explode("/", $s);
+			$urlName=$link['2'];
+			$image=explode("=", $link['3']);
+			$imageUrlCode=$image['1'];
 			$videoTable=$this->getVideoTable();			
 			$insertVid = $videoTable->addVideo($_POST,$userid,$_FILES['video_img']['name'],$_POST['hid_vid']);
 			if($insertVid>0){
