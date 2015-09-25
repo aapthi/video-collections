@@ -14,9 +14,11 @@
 		<div class="row">
 			<div class="col-xs-12 latest_videos">
 				<ul class="latestvideos">
-					<?php foreach($vatData as $videoInfo){?>
+					<?php foreach($vatData as $videoInfo){
+						$video_id = base64_encode($videoInfo->v_id);
+					?>
 						<li class="news-item">
-							<img  src="<?php echo $videoInfo->v_thumb_image;?>" alt="<?php echo $videoInfo->v_link;?>"></td>
+							<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><img  src="<? echo $videoInfo->v_thumb_image;?>" alt="<? echo $videoInfo->v_title;?>"></a>
 						</li>									
 					<?php } ?>								
 				</ul>
