@@ -21,7 +21,9 @@
 				?>
 				<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>" class="list-group-item"><span class="glyphicon glyphicon-triangle-right cal_next" aria-hidden="true"></span><?php echo $links->v_title; ?>
 				</a>
-				<?php } } ?>
+				<?php } } else { ?>
+					<br/>&nbsp;There are no links.
+				<? }?>
 			</div>
 			</div>
 			<div align="center">
