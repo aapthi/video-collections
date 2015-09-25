@@ -21,17 +21,19 @@ class VideoTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
-	public function addVideo($videoData,$uid,$vimage,$vid){		
+	public function addVideo($videoData,$browsed_video,$imageUrl,$browsed_imagecode,$uid,$vimage,$vid){		
 		if($vid!=''){
 			$data = array(
 				'v_cat_id'  	  => $videoData['video_cat'],
 				'v_title'  		  => $videoData['video_title'],
 				'v_link'  		  => $videoData['video_link'],
-				'v_thumb_image'   => $vimage,
+				'v_thumb_image'   => $imageUrl,
 				'v_desc'          => $videoData['video_desc'],
 				'type_of_video'   => $videoData['video_type'],
 				'v_state'           => "1",
-				'updated_at'      => date('Y-m-d H:i:s')
+				'updated_at'      => date('Y-m-d H:i:s'),
+				'browsed_video'   => $browsed_video,
+				'browsed_imagecode'   => $browsed_imagecode
 			);
 			$updateresult=$this->tableGateway->update($data, array('v_id' => $vid));
 			return $updateresult;
@@ -41,11 +43,13 @@ class VideoTable
 				'v_cat_id'  	  => $videoData['video_cat'],
 				'v_title'  		  => $videoData['video_title'],
 				'v_link'  		  => $videoData['video_link'],
-				'v_thumb_image'   => $vimage,
+				'v_thumb_image'   => $imageUrl,
 				'v_desc'          => $videoData['video_desc'],
 				'type_of_video'   => $videoData['video_type'],
 				'v_state'           => "1",
-				'created_at'      => date('Y-m-d H:i:s')
+				'created_at'      => date('Y-m-d H:i:s'),
+				'browsed_video'   => $browsed_video,
+				'browsed_imagecode'   => $browsed_imagecode
 			);
 			$insertresult=$this->tableGateway->insert($data);
 			return $this->tableGateway->lastInsertValue;

@@ -60,7 +60,15 @@ class AdminController extends AbstractActionController
 			}else if(isset($_POST['hid_imag']) && $_POST['hid_imag']!='' && $_FILES['video_img']['name']!=""){
 				$image_v = $_FILES['video_img']['name'];
 			}
-			$updatData = $this->getVideoTable()->addVideo($_POST,$userid,$image_v,$_POST['hid_vid']);
+			$s=$_POST['video_link'];
+			$link=explode("/", $s);
+			$url=$link['2'];
+			$urlName=explode(".", $url);
+			$video_url=$urlName['1'];
+			$image=explode("=", $link['3']);
+			$imageCode=$image['1'];
+			$imageUrl="i.ytimg.com/vi/".$imageCode."/default.jpg";
+			$updatData = $this->getVideoTable()->addVideo($_POST,$video_url,$imageUrl,$imageCode,$userid,$image_v,$_POST['hid_vid']);
 			if($updatData>=0){
 				$path = "./public/uploads/".$_POST['hid_vid'];
 				$path2 = $path.'/videoimages';
@@ -72,11 +80,14 @@ class AdminController extends AbstractActionController
 		}else if(isset($_POST['video_title']) && $_POST['video_title']!="" && $_POST['hid_vid']==""){
 			$s=$_POST['video_link'];
 			$link=explode("/", $s);
-			$urlName=$link['2'];
+			$url=$link['2'];
+			$urlName=explode(".", $url);
+			$video_url=$urlName['1'];
 			$image=explode("=", $link['3']);
-			$imageUrlCode=$image['1'];
+			$imageCode=$image['1'];
+			$imageUrl="i.ytimg.com/vi/".$imageCode."/default.jpg";
 			$videoTable=$this->getVideoTable();			
-			$insertVid = $videoTable->addVideo($_POST,$userid,$_FILES['video_img']['name'],$_POST['hid_vid']);
+			$insertVid = $videoTable->addVideo($_POST,$video_url,$imageUrl,$imageCode,$userid,$_FILES['video_img']['name'],$_POST['hid_vid']);
 			if($insertVid>0){
 				$path = "./public/uploads/".$insertVid;
 				mkdir($path);
