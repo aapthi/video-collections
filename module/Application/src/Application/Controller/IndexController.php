@@ -42,17 +42,12 @@ class IndexController extends AbstractActionController
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
-		$basePath = $baseUrlArr['basePath'];
-		if($this->params()->fromRoute('id', 0)!="")
-			{
-				$params=$this->params()->fromRoute('id', 0);
-				echo "<pre>";print_r($params);exit;	
-			}
-		
+		$basePath = $baseUrlArr['basePath'];	
+		$vid = base64_decode($_GET['watch']);
 		$catList = $this->getCategoryTable()->getCategoryListD();		
 		$videoList = $this->getVideoTable()->videoForentedList();		
 		$videoFList = $this->getVideoTable()->videoFeaturedList();		
-		$getVideo = $this->getVideoTable()->videoPlay(15);		
+		$getVideo = $this->getVideoTable()->videoPlay($vid);		
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
