@@ -17,8 +17,13 @@ class IndexController extends AbstractActionController
 		$basePath = $baseUrlArr['basePath'];
 		$catList = $this->getCategoryTable()->getCategoryListD();		
 		$videoList = $this->getVideoTable()->videoForentedList();		
-		$videoFList = $this->getVideoTable()->videoFeaturedList();		
-		$paginator = $this->getVideoTable()->videoTitleList();
+		$videoFList = $this->getVideoTable()->videoFeaturedList();
+		$routes=$this->params()->fromRoute();
+		$vid='';
+		if(isset($routes['id']) && $routes['id']!=""){
+			$vid = $routes['id'];
+		}
+		$paginator = $this->getVideoTable()->videoTitleList(true,$vid);
 		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page', 1));
 		$paginator->setItemCountPerPage(1);	
 		$viewModel = new ViewModel(

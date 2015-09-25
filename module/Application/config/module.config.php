@@ -13,6 +13,7 @@ return array(
 				'options' 		=> 	array(
 					'route' => '/[:id]',
 					'constraints' => array(
+						'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
 					   'id' => '[%&;a-zA-Z0-9][%&+;a-zA-Z0-9_~-]*',
 					),
 					'defaults' => array(
@@ -44,6 +45,19 @@ return array(
 							'defaults' 			=> array(
 							),
 						),
+					),
+				),
+			),
+			'cat' => array(
+				'type'    => 'segment',
+				'options' => array(
+					'route' => '/cat/[:id]',
+					'constraints' => array(
+					   'id' => '[%&;a-zA-Z0-9][%&+;a-zA-Z0-9_~-]*',
+					),
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'index',
 					),
 				),
 			),

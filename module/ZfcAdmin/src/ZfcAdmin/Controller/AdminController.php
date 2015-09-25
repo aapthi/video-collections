@@ -52,7 +52,8 @@ class AdminController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
-		$userid = $_SESSION['admin']['user_id'];	
+		$userid = $_SESSION['admin']['user_id'];
+//	Update	
 		if(isset($_POST['hid_vid']) && $_POST['hid_vid']!=""){	
 			if(isset($_FILES['video_img']['name']) && $_FILES['video_img']['name']=="" && $_POST['hid_imag']!=""){
 				$image_v = $_POST['hid_imag'];
@@ -67,6 +68,7 @@ class AdminController extends AbstractActionController
 				move_uploaded_file($_FILES['video_img']['tmp_name'],$path3.$image_v);
 				return $this->redirect()->toUrl('videos-list');
 			}
+//  Insert
 		}else if(isset($_POST['video_title']) && $_POST['video_title']!="" && $_POST['hid_vid']==""){
 			$videoTable=$this->getVideoTable();			
 			$insertVid = $videoTable->addVideo($_POST,$userid,$_FILES['video_img']['name'],$_POST['hid_vid']);
@@ -78,6 +80,7 @@ class AdminController extends AbstractActionController
 				move_uploaded_file($_FILES['video_img']['tmp_name'],$path2.$_FILES['video_img']['name']);
 				return $this->redirect()->toUrl('videos-list');
 			}
+//  Get
 		}else if(isset($_GET['vid']) && $_GET['vid']!=""){
 			$catList = $this->getCategoryTable()->getCategoryListD();
 			$videoInfo=$this->getVideoTable()->getVideoInfo($_GET['vid']);
