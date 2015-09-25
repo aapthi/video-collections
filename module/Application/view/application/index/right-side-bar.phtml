@@ -5,7 +5,7 @@
 		<ul class="list-inline">
 			<? foreach($this->vatFData as $videoInfo){?>
 				<li>				
-					<img  src="<?php echo $basePath; ?>/uploads/<? echo $videoInfo->v_id;?>/videoimages/<? echo $videoInfo->v_thumb_image;?>" alt="ads">
+					<img  src="<? echo $videoInfo->v_thumb_image;?>" alt="<? echo $videoInfo->v_link;?>">
 					<div class="thumb_play_ico">
 					<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
 					</div>			

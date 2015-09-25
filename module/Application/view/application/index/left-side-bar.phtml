@@ -16,7 +16,7 @@
 				<ul class="latestvideos">
 					<?php foreach($vatData as $videoInfo){?>
 						<li class="news-item">
-							<img  src="<?php echo $basePath; ?>/uploads/<? echo $videoInfo->v_id;?>/videoimages/<?php echo $videoInfo->v_thumb_image;?>" alt="ads"></td>
+							<img  src="<?php echo $videoInfo->v_thumb_image;?>" alt="<?php echo $videoInfo->v_link;?>"></td>
 						</li>									
 					<?php } ?>								
 				</ul>

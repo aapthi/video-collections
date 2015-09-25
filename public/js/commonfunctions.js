@@ -1,19 +1,19 @@
 function reloadPageH(){
 	window.location=BASE_URL;
 }
-$(document).ready(function() {
-	$('#video_img').bind('change', function() {
-		if(this.files[0].size > 1000141){
-			$("#uplodImageError").val(1);
-			alert("Image size should be below 1 mb");
-			return false;
-		}
-		else
-		{
-			$("#uplodImageError").val(0);
-		}
-	});
-});
+// $(document).ready(function() {
+	// $('#video_img').bind('change', function() {
+		// if(this.files[0].size > 1000141){
+			// $("#uplodImageError").val(1);
+			// alert("Image size should be below 1 mb");
+			// return false;
+		// }
+		// else
+		// {
+			// $("#uplodImageError").val(0);
+		// }
+	// });
+// });
 function validateVideo(){
 	if($("#video_title").val()==''){
 		alert('Please enter video title.'); 
@@ -35,52 +35,52 @@ function validateVideo(){
 		$( "#video_cat" ).focus();
 		return false;
 	}
-	if($("#hid_imag").val() == ''){
-		if($('#video_img').val()==""){
-			alert('Please image required');
-			$( "#video_img" ).focus();
-			return false;
+	// if($("#hid_imag").val() == ''){
+		// if($('#video_img').val()==""){
+			// alert('Please image required');
+			// $( "#video_img" ).focus();
+			// return false;
 			
-		}else{
-			if($("#uplodImageError").val()==1){
-				alert('Image size should be below 1 mb');
-				return false;
-			}
-			if($("#uplodImageError").val()!=1){
-				if($('#video_img').val()!=""){
-					var val = $('#video_img').val();
-					switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
-						case 'gif': case 'jpg': case 'png': case 'jpeg':
-							break;
-						default:
-							$(this).val('');
-							alert('Please upload valid image formats');
-							break;
-							return false;
-					}
-				}
-			}
-		}
-	}else{
-		if($("#uplodImageError").val()==1){
-			alert('Image size should be below 1 mb');
-			return false;
-		}
-		if($("#uplodImageError").val()!=1){
-			if($('#video_img').val()!=""){
-				var val = $('#video_img').val();
-				switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
-					case 'gif': case 'jpg': case 'png': case 'jpeg':
-						break;
-					default:
-						$(this).val('');
-						alert('Please upload valid image formats');
-						break;
-						return false;
-				}
-			}
-		}
-	}
+		// }else{
+			// if($("#uplodImageError").val()==1){
+				// alert('Image size should be below 1 mb');
+				// return false;
+			// }
+			// if($("#uplodImageError").val()!=1){
+				// if($('#video_img').val()!=""){
+					// var val = $('#video_img').val();
+					// switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+						// case 'gif': case 'jpg': case 'png': case 'jpeg':
+							// break;
+						// default:
+							// $(this).val('');
+							// alert('Please upload valid image formats');
+							// break;
+							// return false;
+					// }
+				// }
+			// }
+		// }
+	// }else{
+		// if($("#uplodImageError").val()==1){
+			// alert('Image size should be below 1 mb');
+			// return false;
+		// }
+		// if($("#uplodImageError").val()!=1){
+			// if($('#video_img').val()!=""){
+				// var val = $('#video_img').val();
+				// switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+					// case 'gif': case 'jpg': case 'png': case 'jpeg':
+						// break;
+					// default:
+						// $(this).val('');
+						// alert('Please upload valid image formats');
+						// break;
+						// return false;
+				// }
+			// }
+		// }
+	// }
 	$('#videoForm').submit();
 }
 function wantChked() {

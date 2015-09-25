@@ -55,11 +55,12 @@ class AdminController extends AbstractActionController
 		$userid = $_SESSION['admin']['user_id'];
 //	Update	
 		if(isset($_POST['hid_vid']) && $_POST['hid_vid']!=""){	
-			if(isset($_FILES['video_img']['name']) && $_FILES['video_img']['name']=="" && $_POST['hid_imag']!=""){
-				$image_v = $_POST['hid_imag'];
-			}else if(isset($_POST['hid_imag']) && $_POST['hid_imag']!='' && $_FILES['video_img']['name']!=""){
-				$image_v = $_FILES['video_img']['name'];
-			}
+			// if(isset($_FILES['video_img']['name']) && $_FILES['video_img']['name']=="" && $_POST['hid_imag']!=""){
+				// $image_v = $_POST['hid_imag'];
+			// }else if(isset($_POST['hid_imag']) && $_POST['hid_imag']!='' && $_FILES['video_img']['name']!=""){
+				// $image_v = $_FILES['video_img']['name'];
+			// }
+			$image_v ='';
 			$s=$_POST['video_link'];
 			$link=explode("/", $s);
 			$url=$link['2'];
@@ -67,13 +68,14 @@ class AdminController extends AbstractActionController
 			$video_url=$urlName['1'];
 			$image=explode("=", $link['3']);
 			$imageCode=$image['1'];
-			$imageUrl="i.ytimg.com/vi/".$imageCode."/default.jpg";
+			$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
+			
 			$updatData = $this->getVideoTable()->addVideo($_POST,$video_url,$imageUrl,$imageCode,$userid,$image_v,$_POST['hid_vid']);
 			if($updatData>=0){
-				$path = "./public/uploads/".$_POST['hid_vid'];
-				$path2 = $path.'/videoimages';
-				$path3 = $path.'/videoimages/';				
-				move_uploaded_file($_FILES['video_img']['tmp_name'],$path3.$image_v);
+				// $path = "./public/uploads/".$_POST['hid_vid'];
+				// $path2 = $path.'/videoimages';
+				// $path3 = $path.'/videoimages/';				
+				// move_uploaded_file($_FILES['video_img']['tmp_name'],$path3.$image_v);
 				return $this->redirect()->toUrl('videos-list');
 			}
 //  Insert
@@ -85,15 +87,15 @@ class AdminController extends AbstractActionController
 			$video_url=$urlName['1'];
 			$image=explode("=", $link['3']);
 			$imageCode=$image['1'];
-			$imageUrl="i.ytimg.com/vi/".$imageCode."/default.jpg";
+			$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
 			$videoTable=$this->getVideoTable();			
-			$insertVid = $videoTable->addVideo($_POST,$video_url,$imageUrl,$imageCode,$userid,$_FILES['video_img']['name'],$_POST['hid_vid']);
+			$insertVid = $videoTable->addVideo($_POST,$video_url,$imageUrl,$imageCode,$userid,$image_v ='',$_POST['hid_vid']);
 			if($insertVid>0){
-				$path = "./public/uploads/".$insertVid;
-				mkdir($path);
-				$path2 = $path.'/videoimages/';
-				mkdir($path2);	
-				move_uploaded_file($_FILES['video_img']['tmp_name'],$path2.$_FILES['video_img']['name']);
+				// $path = "./public/uploads/".$insertVid;
+				// mkdir($path);
+				// $path2 = $path.'/videoimages/';
+				// mkdir($path2);	
+				// move_uploaded_file($_FILES['video_img']['tmp_name'],$path2.$_FILES['video_img']['name']);
 				return $this->redirect()->toUrl('videos-list');
 			}
 //  Get
