@@ -233,7 +233,7 @@ class AdminController extends AbstractActionController
 				if($cntSubCat!=0){
 					$delSuccess = $this->getCategoryTable()->delSubCategories($_POST['cat_id']);
 				}
-				if(isset($_POST['cat_name']) && $_POST['cat_name']!=''){
+				if(isset($_POST['cat_name']) && $_POST['cat_name'][0]!=''){
 					foreach($_POST['cat_name'] as $subcatname){
 						$addSubCategory = $this->getCategoryTable()->addSubCategory($subcatname,$_POST['cat_id']);	
 					}
@@ -242,8 +242,8 @@ class AdminController extends AbstractActionController
 			}			
 		}else if(isset($_POST['catname']) && $_POST['catname']!='' && $_POST['cat_id']==''){
 			$addcatid = $this->getCategoryTable()->addCategories($_POST,$_POST['cat_id']);
-			if($addcatid!=""){
-				if(isset($_POST['cat_name']) && $_POST['cat_name']!=''){
+			if($addcatid!=""){				
+				if(isset($_POST['cat_name']) && $_POST['cat_name'][0]!=''){
 					foreach($_POST['cat_name'] as $subcatname){
 						$addSubCategory = $this->getCategoryTable()->addSubCategory($subcatname,$addcatid);	
 					}

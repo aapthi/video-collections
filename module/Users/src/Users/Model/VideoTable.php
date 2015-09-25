@@ -78,6 +78,21 @@ class VideoTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
+	public function videoTitleList(){
+		$select = $this->tableGateway->getSql()->select();				
+		$select->order('vc_videos.v_id DESC');		
+		$select->where('v_state="1"');
+		$select->group('vc_videos.v_id');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$paginatorAdapter = new DbSelect(
+				$select,
+				$this->tableGateway->getAdapter(),
+				$resultSet
+			);
+			$paginator = new Paginator($paginatorAdapter);
+			return $paginator;
+		return $resultSet;
+	}
 	public function changeAccountStatus( $user)
     {
 	

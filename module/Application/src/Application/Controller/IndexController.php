@@ -18,13 +18,17 @@ class IndexController extends AbstractActionController
 		$catList = $this->getCategoryTable()->getCategoryListD();		
 		$videoList = $this->getVideoTable()->videoForentedList();		
 		$videoFList = $this->getVideoTable()->videoFeaturedList();		
+		$paginator = $this->getVideoTable()->videoTitleList();
+		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page', 1));
+		$paginator->setItemCountPerPage(1);	
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
 				'basePath' 					=> $basePath,
 				'catData' 					=> $catList,
 				'vatData' 					=> $videoList,
-				'vatFData' 					=> $videoFList
+				'vatFData' 					=> $videoFList,
+				'vatTData' 					=> $paginator
 		));
 		return $viewModel;
     }
