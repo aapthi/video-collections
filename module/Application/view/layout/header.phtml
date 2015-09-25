@@ -69,7 +69,7 @@
 						<li>|<li>
 						<li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>
 						<li>|<li>
-						<li><a href="<?php echo $baseUrl; ?>/users/logout">LogOut</a></li>
+						<li><a href="<?php echo $baseUrl; ?>/users/logout">Log Out</a></li>
 					<? } else{?>
 						<li><a href="<?php echo $baseUrl; ?>/users/login">Login</a><li>
 						<li>|<li>
@@ -139,9 +139,9 @@
 			<? if(isset($_SESSION['user']['user_type']) && $_SESSION['user']['user_type']=='5'){?>
 				 <li><a href="<?php echo $baseUrl; ?>/users/provider-users">Dashboard</a></li>
 			<? } ?>
-				<li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $base_user_id;?>">View Profile</a></li>
+				<!-- <li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $base_user_id;?>">View Profile</a></li>
 			    <li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>               
-                <li><a href="<?php echo $baseUrl; ?>/users/logout">Get Out</a></li>
+                <li><a href="<?php echo $baseUrl; ?>/users/logout">Get Out</a></li>-->
              </ul>
 			</li>
 			<?}}else{?>
