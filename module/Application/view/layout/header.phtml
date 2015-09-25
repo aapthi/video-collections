@@ -60,8 +60,14 @@
 	  <div class="container">
 		  <div class="row">
 			  <div class="col-md-6">
-				Today: Wednesday, September 23, 2015 Last Update: 3:54 AM ET
-			  </div>
+			<?php
+			$date_array = getdate();
+
+			foreach ( $date_array as $key => $val )
+			{ }
+			?>
+			Today: <?php echo $date_array['weekday'];?>, <?php echo $date_array['month'];?> <?php echo $date_array['mday'];?>, <?php echo $date_array['year'];?> Last Update: <?php echo $date_array['hours'];?>:<?php echo $date_array['minutes'];?> AM ET
+			</div>
 			  <div class="col-md-6 topmenu_links">
 				<ul class="list-inline">
 					<? if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){ $userid= base64_encode($_SESSION['user']['user_id']);?>
