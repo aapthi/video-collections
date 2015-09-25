@@ -111,4 +111,10 @@ class VideoTable
 		$row=$this->tableGateway->update($data, array('v_id' => $user['vid']));
 		return $row;
 	}
+	public function videoPlay($vid){
+		$select = $this->tableGateway->getSql()->select();	
+		$select->where('vc_videos.v_id="'.$vid.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 }
