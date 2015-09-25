@@ -7,10 +7,10 @@
 				$video_id = base64_encode($videoInfo->v_id);
 			?>
 				<li>				
-					<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><img  src="<? echo $videoInfo->v_thumb_image;?>" alt="<? echo $videoInfo->v_title;?>"></a>
+					<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><img  src="<? echo $videoInfo->v_thumb_image;?>" alt="<? echo $videoInfo->v_title;?>">
 					<div class="thumb_play_ico">
 					<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
-					</div>			
+					</div>	</a>		
 				</li>
 					<? } ?>
 		</div>
