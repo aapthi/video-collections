@@ -119,17 +119,18 @@ function addCatCall(){
 	if($('#catname').val()==''){
 		alert("Please enter catgory name"); return false;
 	}
-	if(document.getElementById('chk_id').checked) {
-		var i = 0;
-		for(i=0;i<=1000;i++){
-			if($("#cat_name"+i).val()==''){
-				alert("Please enter subcategory name"); return false;
-			}
-		}
-		$("#categoryForm").submit();
-	}else{
-		$("#categoryForm").submit();
-	}	
+	// if(document.getElementById('chk_id').checked) {
+		// var i = 0;
+		// for(i=0;i<=1000;i++){
+			// if($("#cat_name"+i).val()==''){
+				// alert("Please enter subcategory name"); return false;
+			// }
+		// }
+		// $("#categoryForm").submit();
+	// }else{
+		// $("#categoryForm").submit();
+	// }
+	$("#categoryForm").submit();
 }
 function checkEmail(emailStr) {
 	if (emailStr.length == 0) {
