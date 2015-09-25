@@ -33,7 +33,8 @@ class IndexController extends AbstractActionController
 				'catData' 					=> $catList,
 				'vatData' 					=> $videoList,
 				'vatFData' 					=> $videoFList,
-				'vatTData' 					=> $paginator
+				'vatTData' 					=> $paginator,
+				'id'                        => $vid
 		));
 		return $viewModel;
     }

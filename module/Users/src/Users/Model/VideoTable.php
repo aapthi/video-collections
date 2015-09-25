@@ -87,7 +87,6 @@ class VideoTable
 		$select->where('vc_videos.v_state="1"');
 		$select->group('vc_videos.v_id');
 		$resultSet = $this->tableGateway->selectWith($select);
-		echo 
 		$paginatorAdapter = new DbSelect(
 				$select,
 				$this->tableGateway->getAdapter(),
