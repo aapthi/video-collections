@@ -64,9 +64,17 @@
 			  </div>
 			  <div class="col-md-6 topmenu_links">
 				<ul class="list-inline">
-					<li><a href="<?php echo $baseUrl; ?>/users/login">Login</a><li>
-					<li>|<li>
-					<li><a href="<?php echo $baseUrl; ?>/users/register">Sign Up</a></li>
+					<? if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){ $userid= base64_encode($_SESSION['user']['user_id']);?>
+						<li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $userid; ?>">My Account</a><li>
+						<li>|<li>
+						<li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>
+						<li>|<li>
+						<li><a href="<?php echo $baseUrl; ?>/users/logout">LogOut</a></li>
+					<? } else{?>
+						<li><a href="<?php echo $baseUrl; ?>/users/login">Login</a><li>
+						<li>|<li>
+						<li><a href="<?php echo $baseUrl; ?>/users/register">Sign Up</a></li>
+					<? } ?>
 				</ul>
 			  </div>
 		  </div>

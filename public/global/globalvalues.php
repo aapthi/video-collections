@@ -9,7 +9,7 @@ $frogotPasswordMessage = '<body>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc">
 			<tr><td bgcolor="#178acc">
 				<a href="javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Poraapo.com</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -21,7 +21,7 @@ $frogotPasswordMessage = '<body>
 						<tr><td>Note: If you did not request for new password, please ignore this email.</td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Poraapo.com Team</td></tr>
+						<tr><td>Video Blogger Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -30,7 +30,7 @@ $frogotPasswordMessage = '<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Poraapo.com 
+Video Blogger 
 </body>';
 /*End Forget Password*/
 
@@ -44,7 +44,7 @@ $activeUsersMessage='<body>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Poraapo.com</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -57,7 +57,7 @@ $activeUsersMessage='<body>
 						<tr><td><PASSWORD></td></tr>						
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Poraapo.com Team</td></tr>
+						<tr><td>Video Blogger Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -66,7 +66,7 @@ $activeUsersMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Poraapo.com
+Video Blogger
 </body>';
 /* end Cron subject*/
 
@@ -82,7 +82,7 @@ $regMessage='<body>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Poraapo.com</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -92,7 +92,7 @@ $regMessage='<body>
 						<tr><td>Please click on this link to verfiy your account.</td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Poraapo.com Team</td></tr>
+						<tr><td>Video Blogger Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -101,29 +101,29 @@ $regMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Poraapo.com
+Video Blogger
 </body>';
 /* end register subject*/
 global $completeRegisterSubject;				
 global $completeRegisterMessage;	
-$completeRegisterSubject="Welcome to Poraapo.com";
+$completeRegisterSubject="Welcome to Video Blogger";
 $completeRegisterMessage='<body>
 		<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Poraapo.com</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
 			</tr>
 			<tr>
 				<td>
 					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
 						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6 ; font:bold 12px arial; text-decoration:none;">Hello&nbsp;<FULLNAME></a></td></tr>
 						<tr><td><a href="<ClickeHere>"><ClickeHere></a></td></tr>
-						<tr><td>Successfully registered with Poraapo.com, Thanks for joining us.</td></tr>
+						<tr><td>Successfully registered with Video Blogger, Thanks for joining us.</td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Poraapo.com Team</td></tr>
+						<tr><td>Video Blogger Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -132,19 +132,19 @@ $completeRegisterMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Poraapo.com
+Video Blogger
 </body>';
 /* register subject */
 global $sentShareMsgSubject;
 global $sentShareMessage;
-$sentShareMsgSubject= "Share mail from Poraapo.com";
+$sentShareMsgSubject= "Share mail from Video Blogger";
 $sentShareMessage='<body>
 		<table width="400" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td><table width="400" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Poraapo.com</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -170,7 +170,7 @@ $contactMessage='<body>
 			<td><table width="400" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">poraapo.com</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
 			</tr>
 			<tr>
 				<td>

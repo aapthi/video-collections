@@ -53,6 +53,7 @@ class UserTable
 		$data = array(
 				'user_id' 	=>$userid,
 				'state'  	=>'1',
+				'updated_at' 	=> date('Y-m-d H:i:s')
 				);
 		$updateuserid=$this->tableGateway->update($data, array('user_id' => $data['user_id']));
 		return 	$updateuserid;			

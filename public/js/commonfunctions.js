@@ -1,3 +1,6 @@
+function reloadPageH(){
+	window.location=BASE_URL;
+}
 $(document).ready(function() {
 	$('#video_img').bind('change', function() {
 		if(this.files[0].size > 1000141){
@@ -466,6 +469,7 @@ function forgetPassword(){
 				$('#reload').html(''); 
 				if(result.output=='success'){
 					$("#sucessdiv").show();
+					$('#forgetMail').val('');
 					$('#sucessMsg').html('Email sent to you');
 				}else if(result.output=='Not Found The Email'){
 					$("#errordiv").show();

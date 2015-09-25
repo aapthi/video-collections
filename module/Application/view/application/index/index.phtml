@@ -1,4 +1,10 @@
 <div class="container min_height">
+		<? if(isset($_GET['suc']) && $_GET['suc']=='reg'){?>
+			<div class="alert alert-dismissible alert-success">
+				<button type="button" class="close" data-dismiss="alert" onClick="reloadPageH()">×</button>
+				<strong> Account verfication link, sent to your email id. Please click on that link and verify your account. </strong>
+			</div>
+		<? } ?>
 	<div class="row">
 		<div class="col-md-3">
 		 <?php include('left-side-bar.phtml');?>

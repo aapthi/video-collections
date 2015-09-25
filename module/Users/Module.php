@@ -53,6 +53,7 @@ class Module implements
             'factories' => array( 
             	'Users\Model\UserTableFactory'=>'Users\Factory\Model\UserTableFactory',			
             	'Users\Model\UserDetailsFactory'=>'Users\Factory\Model\UserDetailsTableFactory',
+            	'Users\Model\ForgotPasswordFactory'=>'Users\Factory\Model\ForgotPasswordTableFactory',
 				'Users\Model\CategoryFactory'=>'Users\Factory\Model\CategoryTableFactory',
 				'Users\Model\TypeOfVideoFactory'=>'Users\Factory\Model\TypeOfVideoTableFactory',
 				'Users\Model\VideoFactory'=>'Users\Factory\Model\VideoTableFactory'

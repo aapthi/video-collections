@@ -249,8 +249,8 @@ class UsersController extends AbstractActionController
 					$username = $userDetails->username;
 					$to=$userDetails->email;
 					$regMessage = str_replace("<FULLNAME>","$username", $regMessage);
-					if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
-						$regMessage = str_replace("<ACTIVATIONLINK>","http://" . $_SERVER['HTTP_HOST']."/users/reg-authentication?uid=".$base_user_id, $regMessage);
+					if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='mathassess.com'){
+						$regMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $regMessage);
 					}else{
 						$regMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $regMessage);
 					}
@@ -302,8 +302,8 @@ class UsersController extends AbstractActionController
 			global $completeRegisterMessage;
 			$base_user_id=base64_encode($userid);
 			$completeRegisterMessage = str_replace("<FULLNAME>",$userName, $completeRegisterMessage);
-			if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
-				$completeRegisterMessage = str_replace("<ClickeHere>","http://" . $_SERVER['HTTP_HOST'], $completeRegisterMessage);	
+			if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='mathassess.com'){
+				$completeRegisterMessage = str_replace("<ClickeHere>",$baseUrl, $completeRegisterMessage);	
 			}else{
 				$completeRegisterMessage = str_replace("<ClickeHere>",$baseUrl, $completeRegisterMessage);	
 			}

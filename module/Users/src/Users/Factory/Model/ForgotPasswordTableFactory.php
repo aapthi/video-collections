@@ -19,7 +19,7 @@ class ForgotPasswordTableFactory implements FactoryInterface
         $resultSetPrototype = new HydratingResultSet();
         $resultSetPrototype->setHydrator(new ObjectProperty());
         $resultSetPrototype->setObjectPrototype(new ForgotPassword());
-        $tableGateway       = new TableGateway('tbl_forget_tokens', $db,array(),$resultSetPrototype);
+        $tableGateway       = new TableGateway('vc_forget_tokens', $db,array(),$resultSetPrototype);
         $table              = new ForgotPasswordTable($tableGateway);
         return $table;
     }
