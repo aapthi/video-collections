@@ -5,19 +5,24 @@
 ?>
 <div class="container min_height">
 	<div class="row">
-		<div class="col-md-3">
-		<?php include('left-side-bar.phtml');?>
-		</div>
-		<div class="col-md-9">
+		<div class="col-md-8">
 			<div class="video_play">
 				<?php foreach($this->getVideo as $getVideo){$videocode=$getVideo->browsed_imagecode;$title=$getVideo->v_title;}?>
 				<iframe width="100%" height="315" src="https://www.youtube.com/embed/<?php echo $videocode;?>" frameborder="0" allowfullscreen></iframe>
 				<h2><?php echo $title; ?></h2>
 			</div>
-			<?php include('right-side-bar.phtml');?>
+			<?php //include('left-side-bar.phtml');?>
 			<div class="video_play" align="center">
 				<img src="<?php echo $basePath; ?>/img/ad.jpg" alt="ads"/>
 			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+			<div class="" align="center">
+				<img  src="<?php echo $basePath; ?>/img/ads.png" alt="ads" width="100%">
+			</div>
+			</div>
+			<?php include('right-side-bar.phtml');?>
 		</div>
 	</div>
 </div>
