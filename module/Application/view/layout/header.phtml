@@ -109,10 +109,24 @@
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<? if(isset($catData) && $catData!=''){ foreach($catData as $catinfo){?>
-						<li><a href="<?php echo $baseUrl; ?>/cat/<? echo $catinfo->category_id;?>"><? echo $catinfo->category_name;?></a></li>
-					<?php } }?>
-				</ul>
+					<? if(isset($catData)){ foreach($catData as $key=>$catinfo){ 
+							foreach($catinfo as $catid=>$catname){
+								if(count( $catinfo )>1){
+									$dropMenu = 'dropdown-submenu';
+								}else{
+									$dropMenu = '';
+								}
+								if($key == $catid){ ?>
+									<li class ="<? echo $dropMenu; ?>" tabindex='-1'><a href="<?php echo $baseUrl; ?>/cat/<? echo $catid;?>"><? echo $catname;?></a>
+										<ul class='dropdown-menu' role = 'menu'>
+											<? foreach($catinfo as $catid=>$catname){ 
+													if($key != $catid){	?>
+														<li><a tabindex='-1' href="<?php echo $baseUrl; ?>/cat/<? echo $catid;?>"><? echo $catname;?></a></li>
+											<? } } ?> 			
+										</ul>										
+									</li>
+					<?php } } } }?>
+				</ul>				
 			</div>
 		</div>
 		<div class="col-md-10 input_search">

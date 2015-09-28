@@ -66,6 +66,14 @@ class CategoryTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
+	public function getCategoryListF()
+    {
+		$select = $this->tableGateway->getSql()->select();
+		$select->join(array('subCat' => 'vc_categories'),'subCat.parent_cat_id=vc_categories.category_id',array('subcategory_id' =>new Expression('subCat.category_id'),'subcategory' =>new Expression('subCat.category_name')),'left');
+		$select->where('vc_categories.status="1"');		
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 	public function editCategories($editid)
     {
 		$select = $this->tableGateway->getSql()->select();

@@ -83,12 +83,20 @@ class IndexController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
-		$catList = $this->getCategoryTable()->getCategoryListD();		
+		$catSubcatlist = array();
+		$catList = $this->getCategoryTable()->getCategoryListF();	
+		foreach($catList as $getCatid){
+			if(!is_null($getCatid->parent_cat_id)){
+				$catSubcatlist[$getCatid->parent_cat_id][$getCatid->category_id] = $getCatid->category_name;					
+			}else{
+				$catSubcatlist[$getCatid->category_id][$getCatid->category_id] = $getCatid->category_name;
+			}
+		}
 		return $this->layout()->setVariable(
 			"headerarray",array(
 				'baseUrl' 		=> 	$baseUrl,
 				'basePath'		=>	$basePath,
-				'catData'		=>	$catList,
+				'catData'		=>	$catSubcatlist,
 			)
 		);
 	}	
