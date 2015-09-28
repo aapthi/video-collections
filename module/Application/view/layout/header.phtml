@@ -87,8 +87,10 @@
 	<div class="close_lnews"><button type="button" class="close" data-dismiss="alert">×</button></div>
 		<marquee behavior="scroll"  direction="left"  scrollamount="4">
 		<ul class="list-inline">
-			<?  foreach($videoData as $key=>$videolinks){ ?>
-				<li><a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $videolinks->v_id;?>"><span class="glyphicon glyphicon-triangle-right 
+			<?  foreach($videoData as $key=>$videolinks){ 
+				$video_id = base64_encode($videolinks->v_id);
+			?>
+				<li><a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><span class="glyphicon glyphicon-triangle-right 
 				" aria-hidden="true"></span> <? echo $videolinks->v_title;?></a></li>	
 			<? } ?>				
 		</ul>
