@@ -71,6 +71,7 @@ class CategoryTable
 		$select = $this->tableGateway->getSql()->select();
 		$select->join(array('subCat' => 'vc_categories'),'subCat.parent_cat_id=vc_categories.category_id',array('subcategory_id' =>new Expression('subCat.category_id'),'subcategory' =>new Expression('subCat.category_name')),'left');
 		$select->where('vc_categories.status="1"');		
+		$select->order('vc_categories.category_id ASC');		
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
