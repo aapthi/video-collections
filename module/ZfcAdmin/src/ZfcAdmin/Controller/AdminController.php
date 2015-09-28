@@ -65,11 +65,26 @@ class AdminController extends AbstractActionController
 			$link=explode("/", $s);
 			$url=$link['2'];
 			$urlName=explode(".", $url);
-			$video_url=$urlName['1'];
-			$image=explode("=", $link['3']);
-			$imageCode=$image['1'];
-			$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
-			
+			if(isset($urlName)){
+				if((isset($urlName['1'])) && ($urlName['1']=='youtube')){
+					$video_url=$urlName['1'];
+					$image=explode("=", $link['3']);
+					$imageCode=$image['1'];
+					$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
+				}else if(isset($urlName['1']) && $urlName['1']=='dailymotion'){
+					$video_url=$urlName['1'];
+					$image=explode("_", $link['4']);
+					$imageCode=$image['0'];
+					$imageUrl="http://www.dailymotion.com/thumbnail/video/".$imageCode;
+				}else if(isset($urlName['0']) && ($urlName['0']=='vimeo')){
+					$video_url= $urlName['0'];
+					$imageCode = $link['5'];
+					$imageUrl="https://i.vimeocdn.com/video/".$imageCode."_150x84.jpg";
+				}else{
+					$video_url= '';
+					$imageUrl= '';
+				}
+			}	
 			$updatData = $this->getVideoTable()->addVideo($_POST,$video_url,$imageUrl,$imageCode,$userid,$image_v,$_POST['hid_vid']);
 			if($updatData>=0){
 				// $path = "./public/uploads/".$_POST['hid_vid'];
@@ -84,10 +99,26 @@ class AdminController extends AbstractActionController
 			$link=explode("/", $s);
 			$url=$link['2'];
 			$urlName=explode(".", $url);
-			$video_url=$urlName['1'];
-			$image=explode("=", $link['3']);
-			$imageCode=$image['1'];
-			$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
+			if(isset($urlName)){
+				if((isset($urlName['1'])) && ($urlName['1']=='youtube')){
+					$video_url=$urlName['1'];
+					$image=explode("=", $link['3']);
+					$imageCode=$image['1'];
+					$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
+				}else if(isset($urlName['1']) && $urlName['1']=='dailymotion'){
+					$video_url=$urlName['1'];
+					$image=explode("_", $link['4']);
+					$imageCode=$image['0'];
+					$imageUrl="http://www.dailymotion.com/thumbnail/video/".$imageCode;
+				}else if(isset($urlName['0']) && ($urlName['0']=='vimeo')){
+					$video_url= $urlName['0'];
+					$imageCode = $link['5'];
+					$imageUrl="https://i.vimeocdn.com/video/".$imageCode."_150x84.jpg";
+				}else{
+					$video_url= '';
+					$imageUrl= '';
+				}
+			}	
 			$videoTable=$this->getVideoTable();			
 			$insertVid = $videoTable->addVideo($_POST,$video_url,$imageUrl,$imageCode,$userid,$image_v ='',$_POST['hid_vid']);
 			if($insertVid>0){

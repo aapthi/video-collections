@@ -95,7 +95,6 @@ class VideoTable
 		$select = $this->tableGateway->getSql()->select();				
 		$select->order('vc_videos.v_id DESC');		
 		$select->where('v_state="1"');
-		$select->limit(25);
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
