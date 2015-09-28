@@ -7,8 +7,15 @@
 	<div class="row">
 		<div class="col-md-8">
 			<div class="video_play">
-				<?php foreach($this->getVideo as $getVideo){$videocode=$getVideo->browsed_imagecode;$title=$getVideo->v_title;}?>
-				<iframe width="100%" height="315" src="https://www.youtube.com/embed/<?php echo $videocode;?>" frameborder="0" allowfullscreen></iframe>
+				<?php foreach($this->getVideo as $getVideo){$videocode=$getVideo->browsed_imagecode;$title=$getVideo->v_title;}
+					if($getVideo->browsed_video == 'dailymotion'){ ?>
+<iframe frameborder="0" width="100%" height="315" src="//www.dailymotion.com/embed/video/<? echo $videocode; ?>?autoPlay=1" allowfullscreen></iframe>
+					<?php } else if($getVideo->browsed_video == 'youtube'){?>
+<iframe width="100%" height="315" src="https://www.youtube.com/embed/<?php echo $videocode;?>" frameborder="0" allowfullscreen></iframe>
+					<?php }else if($getVideo->browsed_video == 'vimeo'){ ?>
+<iframe src="https://player.vimeo.com/video/<? echo $videocode;?>" width="100%" height="315" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					<?php } ?>
+				
 				<h2><?php echo $title; ?></h2>
 				<!-- Go to www.addthis.com/dashboard to customize your tools -->
 				<div class="addthis_native_toolbox" style="padding:0 10px 10px;"></div>
