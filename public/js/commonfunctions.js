@@ -1,3 +1,25 @@
+function searchByLocation(){
+	var searchKey3='';
+	var searchKeyTitle='';
+	var searchKey1=$('#videosSearch').val();
+	var searchKey2=searchKey1.split(' ');
+	for( var i=0;i<searchKey2.length;i++ ){ 
+		if(searchKey2[i]!=''){
+			searchKey3+=searchKey2[i]+'-';
+			searchKeyTitle+=searchKey2[i]+' ';
+		}
+	}
+	var searchKey=searchKey3.slice(0,-1);
+	if(searchKey=='')
+		{
+			alert("Please enter search criteria");
+			return false;
+		}
+		else
+		{
+			window.location=BASE_URL+"/search-result/"+searchKey;			
+		}
+}
 function addcategoryFunction(type){
 	flag=true;
 	var catname=$('#catname').val();

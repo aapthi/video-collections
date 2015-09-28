@@ -132,7 +132,7 @@
 			<div class="input-group">
 			<input id="videosSearch" placeholder="Search for videos" class="form-control" type="textbox">
 			<span class="input-group-btn">
-			<button class="btn btn-default" type="button" id="addressSearch">Search</button>
+			<button class="btn btn-default" onClick="searchByLocation();" type="button" id="addressSearch">Search</button>
 			</span>
 			</div>
 		</div>
@@ -147,34 +147,9 @@ $(window).scroll(function() {
 		$('.search_bar').removeClass('search_bar_fix_top');
 	}
 });
-</script>
-
-<script>
 $('#videosSearch').keypress(function(e){
 	if( e.keyCode == 13 ){
 		searchByLocation();
 	}
 });
-function searchByLocation(){
-	var searchKey3='';
-	var searchKeyTitle='';
-	var searchKey1=$('#videosSearch').val();
-	var searchKey2=searchKey1.split(' ');
-	for( var i=0;i<searchKey2.length;i++ ){ 
-		if(searchKey2[i]!=''){
-			searchKey3+=searchKey2[i]+'-';
-			searchKeyTitle+=searchKey2[i]+' ';
-		}
-	}
-	var searchKey=searchKey3.slice(0,-1);
-	if(searchKey=='')
-		{
-			alert("Please enter search criteria");
-			return false;
-		}
-		else
-		{
-			window.location=BASE_URL+"/search-result/"+searchKey;			
-		}
-}
 </script>
