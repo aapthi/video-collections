@@ -74,6 +74,20 @@ return array(
 					),
 				),
 			),
+			'search-result' => array(
+				'type'    => 'segment',
+				'options' => array(
+					'route' => '/search-result[/:search_name]',
+					'constraints' => array(
+					  'action' => '[a-zA-Z][a-zA-Z0-9_-|]*',
+                      'id'     => '[a-zA-Z0-9][a-zA-Z0-9_-|]*',
+					),
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'searchResult',
+					),
+				),
+			),
 			'left-side-bar' => array(
 				'type'    => 'segment',
 				'options' => array(

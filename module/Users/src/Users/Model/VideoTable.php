@@ -91,6 +91,14 @@ class VideoTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
+	public function videoUpdatesList(){
+		$select = $this->tableGateway->getSql()->select();				
+		$select->order('vc_videos.v_id DESC');		
+		$select->where('v_state="1"');
+		$select->limit(25);
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 	public function videoFeaturedList(){
 		$select = $this->tableGateway->getSql()->select();				
 		$select->order('vc_videos.v_id DESC');		
@@ -132,6 +140,21 @@ class VideoTable
 		$select = $this->tableGateway->getSql()->select();	
 		$select->where('vc_videos.v_id="'.$vid.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
+	public function getSearchResults($searcKey,$paginated=false){
+		$select = $this->tableGateway->getSql()->select();	
+		$select->order('v_id DESC');	
+		$select->where('v_state="1"');		
+		$select->where->like( 'v_title', '%' . $searcKey . '%' );		
+		$resultSet = $this->tableGateway->selectWith($select);
+		$paginatorAdapter = new DbSelect(
+				$select,
+				$this->tableGateway->getAdapter(),
+				$resultSet
+			);
+			$paginator = new Paginator($paginatorAdapter);
+			return $paginator;
 		return $resultSet;
 	}
 }

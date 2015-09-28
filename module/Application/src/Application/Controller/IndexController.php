@@ -38,6 +38,32 @@ class IndexController extends AbstractActionController
 		));
 		return $viewModel;
     }
+	public function searchResultAction()
+    {
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$catList = $this->getCategoryTable()->getCategoryListD();		
+		$videoList = $this->getVideoTable()->videoForentedList();		
+		$videoFList = $this->getVideoTable()->videoFeaturedList();
+		$routes=$this->params()->fromRoute();
+		$searchres =str_replace('-',' ',$routes['search_name']);
+		$paginator = $this->getVideoTable()->getSearchResults($searchres,true);
+		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page', 1));
+		$paginator->setItemCountPerPage(39);
+		$viewModel = new ViewModel(
+			array(
+				'baseUrl'				 	=> $baseUrl,
+				'basePath' 					=> $basePath,
+				'catData' 					=> $catList,
+				'vatData' 					=> $videoList,
+				'vatFData' 					=> $videoFList,
+				'vatTData' 					=> $paginator,
+				'id'                        => ''
+		));
+		return $viewModel;
+    }
 	public function playVideoAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
@@ -83,6 +109,7 @@ class IndexController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
+		$videoList = $this->getVideoTable()->videoUpdatesList();	
 		$catSubcatlist = array();
 		$catList = $this->getCategoryTable()->getCategoryListF();	
 		foreach($catList as $getCatid){
@@ -97,6 +124,7 @@ class IndexController extends AbstractActionController
 				'baseUrl' 		=> 	$baseUrl,
 				'basePath'		=>	$basePath,
 				'catData'		=>	$catSubcatlist,
+				'videoData'		=>	$videoList
 			)
 		);
 	}	
