@@ -19,6 +19,8 @@ class UsersController extends AbstractActionController
 	protected  $userDetailsTable;
 	protected  $forgotPasswordTable;
 	protected  $paymentsTable;
+	protected  $categoriesTable;
+	protected  $videoTable;
 	
 	/**
      * @var UserProviderInterface
@@ -49,9 +51,163 @@ class UsersController extends AbstractActionController
         }
         return $this->options;
     }
-	
 	public function indexAction()
 	{
+	}
+	public function videosListAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];		
+	}
+	public function deleteVideoAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_GET['vid']) && $_GET['vid']!=""){
+			if( $_GET['st'] == 'd'){
+				$userInfo['status']=0;
+			}else{
+				$userInfo['status']=1;
+			}
+			$userInfo['vid'] = $_GET['vid'];
+			$chgStatus = $this->getVideoTable()->changeAccountStatus($userInfo);
+			if($chgStatus>0){
+				return $this->redirect()->toUrl($baseUrl.'/users/videos-list');
+			}
+		}
+	}
+	public function videoAjaxAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$data = array();
+		$i=0;
+		$userid = $_SESSION['user']['user_id'];
+		$videoTable=$this->getVideoTable();
+		$videoData = $videoTable->userVideosList($userid);		
+		if(isset($videoData) && $videoData->count()!=0){
+		 $catTypeName="";
+			foreach($videoData as $video){
+				$id=$video->v_id;
+				$data[$i]['v_id']=$i+1;
+				$data[$i]['user_name']= $video->username;
+				$data[$i]['cat_name']= $video->category_name;
+				$data[$i]['videolink']= $video->v_link;
+				if($video->v_state==1){
+					$status = 'Active';
+					$st = 'd';
+				}else{
+					$status = 'Deactivate';
+					$st = 'a';
+				}
+				$data[$i]['status']= $status;
+				$data[$i]['action'] ='<a href="'.$baseUrl.'/users/video-link?vid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/users/delete-video?vid='.$id.'&st='.$st.'">'.$status.'</a>';
+				$i++;
+			}
+			$data['aaData'] = $data;
+			echo json_encode($data['aaData']); exit;
+		}else{
+			echo '1'; exit;
+		}
+	}
+	public function videoLinkAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$userid = $_SESSION['user']['user_id'];
+//	Update	
+		if(isset($_POST['hid_vid']) && $_POST['hid_vid']!=""){	
+			// if(isset($_FILES['video_img']['name']) && $_FILES['video_img']['name']=="" && $_POST['hid_imag']!=""){
+				// $image_v = $_POST['hid_imag'];
+			// }else if(isset($_POST['hid_imag']) && $_POST['hid_imag']!='' && $_FILES['video_img']['name']!=""){
+				// $image_v = $_FILES['video_img']['name'];
+			// }
+			$image_v ='';
+			$s=$_POST['video_link'];
+			$link=explode("/", $s);
+			$url=$link['2'];
+			$urlName=explode(".", $url);
+			$video_url=$urlName['1'];
+			$image=explode("=", $link['3']);
+			$imageCode=$image['1'];
+			$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
+			
+			$updatData = $this->getVideoTable()->addVideo($_POST,$video_url,$imageUrl,$imageCode,$userid,$image_v,$_POST['hid_vid']);
+			if($updatData>=0){
+				include('public/PHPMailer_5.2.4/sendmail.php');	
+				global $videolinkSubject;				
+				global $videolinkMessage;
+				$userDetails=$this->getUserTable()->checkUserStatus($userid);		
+				$to=$userDetails->email;
+				$userName = ucfirst($userDetails->username);	
+				$messageText = 'Successfully updated your video link. Please wait for approval of this video link.'; 
+				$videolinkMessage = str_replace("<FULLNAME>",$userName, $videolinkMessage);				
+				$videolinkMessage = str_replace("<MESSAGE>",$messageText, $videolinkMessage);				
+				if(sendMail($to,$videolinkSubject,$videolinkMessage)){		
+					return $this->redirect()->toUrl('videos-list');
+				}else{
+					return $this->redirect()->toUrl('videos-list');
+				}
+				// $path = "./public/uploads/".$_POST['hid_vid'];
+				// $path2 = $path.'/videoimages';
+				// $path3 = $path.'/videoimages/';				
+				// move_uploaded_file($_FILES['video_img']['tmp_name'],$path3.$image_v);				
+			}
+//  Insert
+		}else if(isset($_POST['video_title']) && $_POST['video_title']!="" && $_POST['hid_vid']==""){
+			$s=$_POST['video_link'];
+			$link=explode("/", $s);
+			$url=$link['2'];
+			$urlName=explode(".", $url);
+			$video_url=$urlName['1'];
+			$image=explode("=", $link['3']);
+			$imageCode=$image['1'];
+			$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
+			$videoTable=$this->getVideoTable();			
+			$insertVid = $videoTable->addVideo($_POST,$video_url,$imageUrl,$imageCode,$userid,$image_v ='',$_POST['hid_vid']);
+			if($insertVid>0){
+				// $path = "./public/uploads/".$insertVid;
+				// mkdir($path);
+				// $path2 = $path.'/videoimages/';
+				// mkdir($path2);	
+				// move_uploaded_file($_FILES['video_img']['tmp_name'],$path2.$_FILES['video_img']['name']);
+				include('public/PHPMailer_5.2.4/sendmail.php');	
+				global $videolinkSubject;				
+				global $videolinkMessage;
+				$userDetails=$this->getUserTable()->checkUserStatus($userid);		
+				$to=$userDetails->email;
+				$userName = ucfirst($userDetails->username);	
+				$messageText = 'Successfully added your video link. Please wait for approval of this video link.'; 
+				$videolinkMessage = str_replace("<FULLNAME>",$userName, $videolinkMessage);				
+				$videolinkMessage = str_replace("<MESSAGE>",$messageText, $videolinkMessage);				
+				if(sendMail($to,$videolinkSubject,$videolinkMessage)){		
+					return $this->redirect()->toUrl('videos-list');
+				}else{
+					return $this->redirect()->toUrl('videos-list');
+				}
+			}
+//  Get
+		}else if(isset($_GET['vid']) && $_GET['vid']!=""){
+			$catList = $this->getCategoryTable()->getCategoryListD();
+			$videoInfo=$this->getVideoTable()->getVideoInfo($_GET['vid']);
+			return new ViewModel(array(
+				'catData'	  =>  $catList,
+				'videoInfo'	  =>  $videoInfo,
+				'basePath'	  =>  $basePath,	
+				'baseUrl'	  =>  $baseUrl	
+			));
+		}else{
+			$catList = $this->getCategoryTable()->getCategoryListD();
+			return new ViewModel(array(
+				'catData'	  =>  $catList,
+				'basePath'	  =>  $basePath,	
+				'baseUrl'	  =>  $baseUrl	
+			));
+		}
 	}
 	public function onlinePaymentsAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
@@ -625,5 +781,21 @@ class UsersController extends AbstractActionController
             $this->userDetailsTable = $sm->get('Users\Model\UserDetailsFactory');			
         }
         return $this->userDetailsTable;
+    }
+	public function getCategoryTable()
+    {
+        if (!$this->categoriesTable) {				
+            $sm = $this->getServiceLocator();
+            $this->categoriesTable = $sm->get('Users\Model\CategoryFactory');			
+        }
+        return $this->categoriesTable;
+    }
+	public function getVideoTable()
+    {
+        if (!$this->videoTable) {				
+            $sm = $this->getServiceLocator();
+            $this->videoTable = $sm->get('Users\Model\VideoFactory');			
+        }
+        return $this->videoTable;
     }
 }

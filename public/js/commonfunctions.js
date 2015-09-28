@@ -1,3 +1,24 @@
+function addcategoryFunction(type){
+	flag=true;
+	var catname=$('#catname').val();
+	var cattype=$('#cattype').val();
+	var catbuttontype=$('#hid_cat_butt').val(type);
+	if(catname==""){
+		 $("#catnameError").html("Required");
+		 flag=false;
+	}else{
+	  $("#catnameError").html("");
+	}
+	if(cattype==""){
+		 $("#cattypeError").html("Required");
+		 flag=false;
+	}else{
+	  $("#cattypeError").html("");
+	}
+	if(flag==true){
+		$('#categoryForm').submit();
+	}
+}
 function reloadPageH(){
 	window.location=BASE_URL;
 }

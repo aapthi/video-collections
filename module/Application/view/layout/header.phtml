@@ -2,29 +2,7 @@
 	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
 	$baseUrl = $header->headerarray['baseUrl'];
 	$basePath = $header->headerarray['basePath'];
-	$loginActive = ''; $paymentActive = ''; $contactActive=''; $homeActive='';
-	if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
-		if($_SERVER['REQUEST_URI']=='/users/login'){
-			$loginActive='active';		
-		}else if($_SERVER['REQUEST_URI']=='/cms/Refunds-Payments-13'){
-			$paymentActive ='active';
-		}else if($_SERVER['REQUEST_URI']=='/users/contact-us'){
-			$contactActive ='active';
-		}else{
-			$homeActive ='active';
-		}
-	}else{
-		if($_SERVER['REQUEST_URI']=='/poorapo/trunk/users/login'){
-			$loginActive='active';		
-		}else if($_SERVER['REQUEST_URI']=='/poorapo/trunk/cms/Refunds-Payments-13'){
-			$paymentActive ='active';
-		}else if($_SERVER['REQUEST_URI']=='/poorapo/trunk/users/contact-us'){
-			$contactActive ='active';
-		}else{
-			$homeActive ='active';
-		}
-	}
-	
+	$catData = $header->headerarray['catData'];	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -71,6 +49,8 @@
 			  <div class="col-md-6 topmenu_links">
 				<ul class="list-inline">
 					<? if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){ $userid= base64_encode($_SESSION['user']['user_id']);?>
+						<li><a href="<?php echo $baseUrl; ?>/users/videos-list">My Uploads</a><li>
+						<li>|<li>
 						<li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $userid; ?>">My Account</a><li>
 						<li>|<li>
 						<li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>
@@ -99,55 +79,6 @@
           </button>
 		  <a class="navbar-brand" href="<?php echo $baseUrl . '/'; ?>"><img src="<?php echo $basePath; ?>/img/logo.png" alt="Video Blogger" width="80%"/></h1></a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-      <!--<li class="<? echo $homeActive;?>"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories<span class="caret"></span></a>
-			<ul class="dropdown-menu" role="menu"><?php if( isset($categoriesArr) )
-					{
-						foreach( $categoriesArr as $key=>$currentCategoryData )
-						{
-							$urlCatName = "";
-							$currCatName = trim($currentCategoryData["category_name"]);
-							$catNameArr = explode( " ",$currCatName );
-							for( $catArrId = 0; $catArrId < count($catNameArr); $catArrId++ )
-							{
-								if( $catArrId > 0 )
-								{
-									$urlCatName .= "-";
-								}
-								$urlCatName .= trim($catNameArr[$catArrId]);
-							}
-							$catResultsUrl = $baseUrl . "/" . $urlCatName . "-" . $currentCategoryData["category_id"];
-						?><li><a href="<?php echo $catResultsUrl; ?>"><?php echo trim($currentCategoryData["category_name"]); ?></a></li><?php }
-					}?></ul>
-			</li>
-			<li class="<? echo $paymentActive;?>"><a href="<?php echo $baseUrl; ?>/cms/Refunds-Payments-13">Payments</a></li>
-			<li class="<? echo $contactActive;?>"><a href="<?php echo $baseUrl; ?>/users/contact-us">Contact</a></li>-->
-			<?php if(isset($_SESSION['user'])){?>
-			
-			<?php if($_SESSION['user']['user_type'] == 4){  ?>
-				<li><a href="<?php echo $baseUrl; ?>/admin/dashboard">Admin</a></li>
-				<li><a href="<?php echo $baseUrl; ?>/users/logout">Get Out</a></li>
-			<?}else{  ?>
-				<li class="dropdown"><a  href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle"><?php echo $_SESSION['user']['displayName']; ?><span class="caret"></span></a>
-			<ul class="dropdown-menu" role="menu">
-			<? if(isset($_SESSION['user'])){
-				$base_user_id = base64_encode($_SESSION['user']['user_id']);
-			}?>
-			<? if(isset($_SESSION['user']['user_type']) && $_SESSION['user']['user_type']=='5'){?>
-				 <li><a href="<?php echo $baseUrl; ?>/users/provider-users">Dashboard</a></li>
-			<? } ?>
-				<!-- <li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $base_user_id;?>">View Profile</a></li>
-			    <li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>               
-                <li><a href="<?php echo $baseUrl; ?>/users/logout">Get Out</a></li>-->
-             </ul>
-			</li>
-			<?}}else{?>
-            <!--<li class="<? echo $loginActive;?>"><a href="<?php echo $baseUrl; ?>/users/login">Get In</a></li>
-			<li><a href="<?php echo $baseUrl; ?>/users/register" style="padding:0;margin-top:15px;margin-left:20px;"><span class="btn btn-default">Register</span></a></li>-->
-			<?}?>
-		  </ul>
-        </div><!--/.nav-collapse -->
       </div>
     </nav>
 <div class="latest_news alert mar_bnone">
@@ -178,26 +109,9 @@
 					<span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="#">Dropdown link Dropdown link</a></li>
-					<li><a href="#">Dropdown link</a></li>
-					<li class = 'dropdown-submenu'><a tabindex='-1' href='#'>Transaction</a>
-                        <ul class='dropdown-menu' role = 'menu'>
-                            <li><a tabindex='-1' href='#'> Withdrawal / Deposit </a></li>
-                            <li><a tabindex='-1' href='#'> Fixed Deposit </a></li>
-                            <li><a tabindex='-1' href='#'> Fixed Deposit </a></li>
-                            <li><a tabindex='-1' href='#'> Fixed Deposit </a></li>
-                            <li><a tabindex='-1' href='#'> Fixed Deposit </a></li>
-                        </ul>
-                    </li>
-					<li><a href="#">Dropdown link</a></li>
-					<li><a href="#">Dropdown link</a></li>
-					<li><a href="#">Dropdown link</a></li>
-					<li><a href="#">Dropdown link</a></li>
-					<li><a href="#">Dropdown link</a></li>
-					<li><a href="#">Dropdown link</a></li>
-					<li><a href="#">Dropdown link</a></li>
-					<li><a href="#">Dropdown link</a></li>
-					<li><a href="#">Dropdown link</a></li>
+					<? if(isset($catData) && $catData!=''){ foreach($catData as $catinfo){?>
+						<li><a href="<?php echo $baseUrl; ?>/cat/<? echo $catinfo->category_id;?>"><? echo $catinfo->category_name;?></a></li>
+					<?php } }?>
 				</ul>
 			</div>
 		</div>

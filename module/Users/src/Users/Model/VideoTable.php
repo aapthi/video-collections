@@ -22,22 +22,29 @@ class VideoTable
 		$this->select = new Select();
     }
 	public function addVideo($videoData,$browsed_video,$imageUrl,$browsed_imagecode,$uid,$vimage,$vid){		
-		if($vid!=''){
+		if($vid!=''){				
 			$data = array(
 				'v_cat_id'  	  => $videoData['video_cat'],
 				'v_title'  		  => $videoData['video_title'],
 				'v_link'  		  => $videoData['video_link'],
 				'v_thumb_image'   => $imageUrl,
 				'v_desc'          => $videoData['video_desc'],
-				'type_of_video'   => $videoData['video_type'],
-				'v_state'           => "1",
+				'type_of_video'   => $videoData['video_type'],								
 				'updated_at'      => date('Y-m-d H:i:s'),
 				'browsed_video'   => $browsed_video,
-				'browsed_imagecode'   => $browsed_imagecode
+				'browsed_imagecode'   => $browsed_imagecode,
 			);
+			if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){
+				$data['v_state'] = 0;
+			}
 			$updateresult=$this->tableGateway->update($data, array('v_id' => $vid));
 			return $updateresult;
 		}else{
+			if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){
+				$status = 0;
+			}else{
+				$status = 1;
+			}
 			$data = array(
 				'v_user_id'  	  => $uid,
 				'v_cat_id'  	  => $videoData['video_cat'],
@@ -46,7 +53,7 @@ class VideoTable
 				'v_thumb_image'   => $imageUrl,
 				'v_desc'          => $videoData['video_desc'],
 				'type_of_video'   => $videoData['video_type'],
-				'v_state'           => "1",
+				'v_state'         => $status,
 				'created_at'      => date('Y-m-d H:i:s'),
 				'browsed_video'   => $browsed_video,
 				'browsed_imagecode'   => $browsed_imagecode
@@ -54,6 +61,15 @@ class VideoTable
 			$insertresult=$this->tableGateway->insert($data);
 			return $this->tableGateway->lastInsertValue;
 		}	
+	}
+	public function userVideosList($userid){
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('user', 'vc_videos.v_user_id=user.user_id',array('*'),'left');	
+		$select->join('vc_categories', 'vc_videos.v_cat_id=vc_categories.category_id',array('*'),'left');	
+		$select->where('vc_videos.v_user_id="'.$userid.'"');
+		$select->where('vc_videos.v_state="1"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
 	}
 	public function getVideoInfo($vid){
 		$select = $this->tableGateway->getSql()->select();	

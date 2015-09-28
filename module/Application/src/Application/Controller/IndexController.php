@@ -25,7 +25,7 @@ class IndexController extends AbstractActionController
 		}
 		$paginator = $this->getVideoTable()->videoTitleList(true,$vid);
 		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page', 1));
-		$paginator->setItemCountPerPage(1);	
+		$paginator->setItemCountPerPage(39);	
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
@@ -83,10 +83,12 @@ class IndexController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
+		$catList = $this->getCategoryTable()->getCategoryListD();		
 		return $this->layout()->setVariable(
 			"headerarray",array(
 				'baseUrl' 		=> 	$baseUrl,
 				'basePath'		=>	$basePath,
+				'catData'		=>	$catList,
 			)
 		);
 	}	
