@@ -145,7 +145,8 @@ class UsersController extends AbstractActionController
 				}else if(isset($urlName['0']) && ($urlName['0']=='vimeo')){
 					$video_url= $urlName['0'];
 					$imageCode = $link['5'];
-					$imageUrl="https://i.vimeocdn.com/video/".$imageCode."_150x84.jpg";
+					$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imageCode.php"));
+					$imageUrl=$hash[0]['thumbnail_medium'];
 				}else{
 					$video_url= '';
 					$imageUrl= '';
@@ -192,7 +193,8 @@ class UsersController extends AbstractActionController
 				}else if(isset($urlName['0']) && ($urlName['0']=='vimeo')){
 					$video_url= $urlName['0'];
 					$imageCode = $link['5'];
-					$imageUrl="https://i.vimeocdn.com/video/".$imageCode."_150x84.jpg";
+					$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imageCode.php"));
+					$imageUrl=$hash[0]['thumbnail_medium'];
 				}else{
 					$video_url= '';
 					$imageUrl= '';
