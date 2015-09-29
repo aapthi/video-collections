@@ -3,8 +3,8 @@
 	<div class="panel-body pad_bottom_0">
 		<div class="featured_video_thumb">
 		<ul class="list-inline">
-			<? foreach($this->vatFData as $videoInfo){
-				$video_id = base64_encode($videoInfo->v_id);
+			<? if(isset($_SESSION['featuredVideos'])) { $featuredVideos = $_SESSION['featuredVideos'];
+				foreach($featuredVideos as $videoInfo){ $video_id = base64_encode($videoInfo->v_id);
 			?>
 				<li>				
 					<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><img  src="<? echo $videoInfo->v_thumb_image;?>" alt="<? echo $videoInfo->v_title;?>">
@@ -12,7 +12,7 @@
 					<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
 					</div>	</a>		
 				</li>
-					<? } ?>
+					<? } } ?>
 		</ul>
 		</div>
 	</div>

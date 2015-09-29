@@ -154,6 +154,13 @@ class VideoTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
+	public function homePageVideos(){
+		$select = $this->tableGateway->getSql()->select();				
+		$select->where('v_state="1"');
+		$select->order(new \Zend\Db\Sql\Expression('RAND()'))->limit(30);
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 	public function getSearchResults($searcKey,$paginated=false){
 		$select = $this->tableGateway->getSql()->select();	
 		$select->order('v_id DESC');	

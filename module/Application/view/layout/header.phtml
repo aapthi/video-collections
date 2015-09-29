@@ -4,6 +4,30 @@
 	$basePath = $header->headerarray['basePath'];
 	$catData = $header->headerarray['catData'];	
 	$videoData = $header->headerarray['videoData'];
+	$homeVideos = $header->headerarray['homeVideos'];
+	$topVideos=array();
+	$featuredVideos=array();
+	$lastedVideos=array();
+	$_SESSION['featuredVideos'] = '';	
+	$_SESSION['lastedVideos'] = '';	
+	if($homeVideos!="") {
+		$i=0; foreach($homeVideos as $videosH){
+			if( $i<=6 ){
+				$topVideos[] = $videosH; 
+			}	
+			if( $i>=7 && $i<23 ){
+				$featuredVideos[] = $videosH; 
+				$_SESSION['featuredVideos']=$featuredVideos;
+			}
+			if($i>=23){			
+				$lastedVideos[] = $videosH;
+				$_SESSION['lastedVideos']=$lastedVideos;
+			 }
+		$i++; }
+	}
+	// echo count($topVideos).'<br/>';
+	// echo count($_SESSION['featuredVideos']).'<br/>';
+	// echo count($_SESSION['lastedVideos']);exit;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,8 +111,8 @@
 	<div class="close_lnews"><button type="button" class="close" data-dismiss="alert">×</button></div>
 		<marquee behavior="scroll"  direction="left"  scrollamount="4">
 		<ul class="list-inline">
-			<?  foreach($videoData as $key=>$videolinks){
-					if($key == 25){ break; }
+			<?  foreach($topVideos as $key=>$videolinks){
+					// if($key == 25){ break; }
 				$video_id = base64_encode($videolinks->v_id);
 			?>
 				<li><a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><span class="glyphicon glyphicon-triangle-right 

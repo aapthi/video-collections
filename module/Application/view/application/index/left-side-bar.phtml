@@ -14,13 +14,13 @@
 		<div class="row">
 			<div class="col-xs-12 latest_videos">
 				<ul class="latestvideos">
-					<?php foreach($vatData as $videoInfo){
+					<?php if(isset($_SESSION['lastedVideos'])) { $lastedVideos = $_SESSION['lastedVideos']; foreach($lastedVideos as $videoInfo){
 						$video_id = base64_encode($videoInfo->v_id);
 					?>
 						<li class="news-item">
 							<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><img  src="<? echo $videoInfo->v_thumb_image;?>" alt="<? echo $videoInfo->v_title;?>"></a>
 						</li>									
-					<?php } ?>								
+					<?php } } ?>								
 				</ul>
 			</div>
 		</div>

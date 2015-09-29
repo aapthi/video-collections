@@ -116,6 +116,7 @@ class IndexController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
 		$videoList = $this->getVideoTable()->videoUpdatesList();	
+		$homePageVideos = $this->getVideoTable()->homePageVideos();	
 		$catSubcatlist = array();
 		$catList = $this->getCategoryTable()->getCategoryListF();	
 		foreach($catList as $getCatid){
@@ -130,7 +131,8 @@ class IndexController extends AbstractActionController
 				'baseUrl' 		=> 	$baseUrl,
 				'basePath'		=>	$basePath,
 				'catData'		=>	$catSubcatlist,
-				'videoData'		=>	$videoList
+				'videoData'		=>	$videoList,
+				'homeVideos'	=>	$homePageVideos
 			)
 		);
 	}	
