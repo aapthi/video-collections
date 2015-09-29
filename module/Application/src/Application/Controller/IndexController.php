@@ -73,7 +73,12 @@ class IndexController extends AbstractActionController
 		$catList = $this->getCategoryTable()->getCategoryListD();		
 		$videoList = $this->getVideoTable()->videoForentedList();		
 		$videoFList = $this->getVideoTable()->videoFeaturedList();		
-		$getVideo = $this->getVideoTable()->videoPlay($vid);		
+		$getVideo = $this->getVideoTable()->videoPlay($vid);
+		$getCatInfo = $this->getVideoTable()->getCategory($vid);
+		if($getCatInfo!=""){
+			$catId = $getCatInfo->v_cat_id;
+			$videoRList = $this->getVideoTable()->videoRelatedList($catId,$vid);	
+		}
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
@@ -81,7 +86,8 @@ class IndexController extends AbstractActionController
 				'catData' 					=> $catList,
 				'vatData' 					=> $videoList,
 				'vatFData' 					=> $videoFList,
-				'getVideo' 					=> $getVideo
+				'getVideo' 					=> $getVideo,
+				'relatedVideos' 					=> $videoRList
 		));
 		return $viewModel;
 		

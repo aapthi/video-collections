@@ -24,6 +24,27 @@
 			<div class="video_play" align="center">
 				<img src="<?php echo $basePath; ?>/img/ad.jpg" alt="ads" class="img-responsive"/>
 			</div>
+			<? if(count($this->relatedVideos)>0){?>
+			<div class="panel panel-default">
+				<div class="panel-heading">Related Videos</div>
+				<div class="panel-body">
+					<div class="featured_video_thumb">
+						<ul class="list-inline">
+							<? foreach($this->relatedVideos as $videoInfo){
+								$video_id = base64_encode($videoInfo->v_id);
+							?>
+							<li>				
+								<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><img  src="<? echo $videoInfo->v_thumb_image;?>" alt="<? echo $videoInfo->v_title;?>">
+								<div class="thumb_play_ico">
+								<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
+								</div>	</a>		
+							</li>
+							<? } ?>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<? } ?>
 		</div>
 		<div class="col-md-4">
 			<div class="panel panel-default">

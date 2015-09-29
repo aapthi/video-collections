@@ -62,6 +62,19 @@ class VideoTable
 			return $this->tableGateway->lastInsertValue;
 		}	
 	}
+	public function getCategory($vid){
+		$select = $this->tableGateway->getSql()->select();	
+		$select->where('vc_videos.v_id="'.$vid.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet->current();	
+	}
+	public function videoRelatedList($cid,$vid){
+		$select = $this->tableGateway->getSql()->select();	
+		$select->where('vc_videos.v_cat_id="'.$cid.'"');
+		$select->where('vc_videos.v_id!="'.$vid.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;	
+	}
 	public function userVideosList($userid){
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('user', 'vc_videos.v_user_id=user.user_id',array('*'),'left');	
