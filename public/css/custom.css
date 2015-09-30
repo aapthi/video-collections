@@ -36,7 +36,7 @@
 	color: #555555;
 }
 .min_height{
-	min-height:500px;
+	min-height:540px;
 }
 .footer h2{
 	font-size:18px;
@@ -270,14 +270,14 @@ position:absolute;
  }
  .latest_news{
 	background:#f8f8f8;
-	padding:8px;
+	padding:5px;
 	border-bottom:1px solid #ccc;
  }
  .latest_news ul{
 	margin:0;
  }
  .latest_news a{
-	font-size:17px;
+	font-size:14px;
 	color:#2fa4e7;
  }
  .latest_news span{
@@ -484,6 +484,15 @@ position:absolute;
     border-radius: 6px 0 6px 6px;
 }
 /* dropdown end */
+.home_icon{
+vertical-align:middle;
+}
+.my_ac_drop_down .btn{
+	padding:1px 12px;
+}
+.my_ac_drop_down .filter_cate .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default{
+	background:#fff;
+}
 @media (max-width: 1024px) {
  .reg_w_12{
 	width:85%;

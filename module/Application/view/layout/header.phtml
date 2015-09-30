@@ -48,22 +48,27 @@
 			?>
 			Today: <?php echo $date_array['weekday'];?>, <?php echo $date_array['month'];?> <?php echo $date_array['mday'];?>, <?php echo $date_array['year'];?> Last Update: <?php echo $date_array['hours'];?>:<?php echo $date_array['minutes'];?>
 			</div>
-			  <div class="col-md-6 topmenu_links">
-				<ul class="list-inline">
+			  <div class="col-md-6 topmenu_links my_ac_drop_down">
 					<? if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){ $userid= base64_encode($_SESSION['user']['user_id']);?>
-						<li><a href="<?php echo $baseUrl; ?>/users/videos-list">My Uploads</a><li>
-						<li>|<li>
-						<li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $userid; ?>">My Account</a><li>
-						<li>|<li>
-						<li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>
-						<li>|<li>
-						<li><a href="<?php echo $baseUrl; ?>/users/logout">Log Out</a></li>
+					<div class="btn-group " role="group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						My Account &nbsp;&nbsp;&nbsp;
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="<?php echo $baseUrl; ?>/users/videos-list">My Uploads</a><li>
+							<li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $userid; ?>">My Account</a><li>
+							<li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>
+							<li><a href="<?php echo $baseUrl; ?>/users/logout">Log Out</a></li>
+						</ul>
+					</div>
 					<? } else{?>
+					<ul class="list-inline">
 						<li><a href="<?php echo $baseUrl; ?>/users/login">Login</a><li>
 						<li>|<li>
 						<li><a href="<?php echo $baseUrl; ?>/users/register">Sign Up</a></li>
+					</ul>
 					<? } ?>
-				</ul>
 			  </div>
 		  </div>
 	  </div>
@@ -102,7 +107,8 @@
 <div class="search_bar">
 	<div class="container">
 	<div class="row">
-		<div class="col-md-2 filter_cate">
+		<div class="col-md-3 filter_cate">
+			<a href="<?php echo $baseUrl . '/'; ?>"><button type="button" class="home_icon"><span class="glyphicon glyphicon-home" style="color:#2fa4e7"></span></button></a>
 			<div class="btn-group " role="group">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				CATEGORIES &nbsp;&nbsp;&nbsp;
@@ -127,10 +133,10 @@
 										</ul>										
 									</li>
 					<?php } } } }?>
-				</ul>				
+				</ul>
 			</div>
 		</div>
-		<div class="col-md-10 input_search">
+		<div class="col-md-9 input_search">
 			<div class="input-group">
 			<input id="videosSearch" placeholder="Search for videos" class="form-control" type="textbox">
 			<span class="input-group-btn">
