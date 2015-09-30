@@ -161,6 +161,9 @@ class AdminController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
+		include('public/PHPMailer_5.2.4/sendmail.php');	
+		global $videolinkSubject;				
+		global $videolinkMessage;
 		if(isset($_GET['vid']) && $_GET['vid']!=""){
 			if( $_GET['st'] == 'd'){
 				$userInfo['status']=0;
@@ -169,8 +172,30 @@ class AdminController extends AbstractActionController
 			}
 			$userInfo['vid'] = $_GET['vid'];
 			$chgStatus = $this->getVideoTable()->changeAccountStatus($userInfo);
-			if($chgStatus>0){
-				return $this->redirect()->toUrl($baseUrl.'/admin/videos-list');
+			if($chgStatus>0){				
+				$infoVideo = $this->getVideoTable()->getVideoInfo($_GET['vid']);
+				$userid = $infoVideo->v_user_id;
+				$v_title = $infoVideo->v_title;
+				$userDetails=$this->getUserTable()->checkUserStatus($userid);		
+				$to=$userDetails->email;
+				if($userDetails->user_type==1){
+					return $this->redirect()->toUrl($baseUrl.'/admin/videos-list');
+				}else{
+					$userName = ucfirst($userDetails->username);
+					if( $_GET['st'] == 'd'){				
+						$messageText = 'Your video link has been deactivated.'; 
+					}else{
+						$messageText = 'Your video link has been activated.'; 
+					}
+					$videolinkMessage = str_replace("<FULLNAME>",$userName, $videolinkMessage);				
+					$videolinkMessage = str_replace("<LINKTITLE>",$v_title, $videolinkMessage);				
+					$videolinkMessage = str_replace("<MESSAGE>",$messageText, $videolinkMessage);				
+					if(sendMail($to,$videolinkSubject,$videolinkMessage)){		
+						return $this->redirect()->toUrl($baseUrl.'/admin/videos-list');
+					}else{
+						return $this->redirect()->toUrl($baseUrl.'/admin/videos-list');
+					}
+				}
 			}
 		}
 	}
@@ -391,6 +416,9 @@ class AdminController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
 		if(isset($_GET['uid']) && $_GET['uid']!=""){
+			include('public/PHPMailer_5.2.4/sendmail.php');	
+			global $activateDeactivateuserSubject;				
+			global $activateDeactivateuserMessage;
 			if( $_GET['st'] == 'd'){
 				$userInfo['status']=0;
 			}else{
@@ -399,7 +427,21 @@ class AdminController extends AbstractActionController
 			$userInfo['userId'] = $_GET['uid'];
 			$chgStatus = $this->getUserTable()->changeAccountStatus($userInfo,'del');
 			if($chgStatus>0){
-				return $this->redirect()->toUrl($baseUrl.'/admin/users-list');
+				$userDetails=$this->getUserTable()->checkUserStatus($_GET['uid']);		
+				$to=$userDetails->email;
+				$userName = ucfirst($userDetails->username);
+				if( $_GET['st'] == 'd'){				
+					$messageText = 'Your account has been deactivated.'; 
+				}else{
+					$messageText = 'Your account has been activated.'; 
+				}
+				$activateDeactivateuserMessage = str_replace("<FULLNAME>",$userName, $activateDeactivateuserMessage);				
+				$activateDeactivateuserMessage = str_replace("<MESSAGE>",$messageText, $activateDeactivateuserMessage);				
+				if(sendMail($to,$activateDeactivateuserSubject,$activateDeactivateuserMessage)){		
+					return $this->redirect()->toUrl($baseUrl.'/admin/users-list');
+				}else{
+					return $this->redirect()->toUrl($baseUrl.'/admin/users-list');
+				}				
 			}
 		}
 	}

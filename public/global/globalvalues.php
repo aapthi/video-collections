@@ -217,4 +217,67 @@ $videolinkMessage='<body>
 Regards,<br/>
 Video Blogger
 </body>';
+/*  Activate and Deactivate Video Link subject */
+global $videolinkSubject;				
+global $videolinkMessage;
+$videolinkSubject="Welcome to Video Blogger";
+$videolinkMessage='<body>
+		<table width="600" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
+			<tr><td bgcolor="#178acc ">
+				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
+				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
+			</tr>
+			<tr>
+				<td>
+					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
+						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6 ; font:bold 12px arial; text-decoration:none;">Hello&nbsp;<FULLNAME></a></td></tr>
+						<tr><td></td></tr>
+						<tr><td><LINKTITLE></td></tr>
+						<tr><td><MESSAGE></td></tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr><td>Sincerely,</td></tr>
+						<tr><td>Video Blogger Team</td></tr>
+					</table>
+				</td>
+			</tr>  
+			</table></td>
+		</tr> 
+	</table>
+<br/><br/>
+Regards,<br/>
+Video Blogger
+</body>';
+/*  Activate and Deactivate Users By Admin subject */
+global $activateDeactivateuserSubject;				
+global $activateDeactivateuserMessage;
+$activateDeactivateuserSubject="Welcome to Video Blogger";
+$activateDeactivateuserMessage='<body>
+		<table width="600" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
+			<tr><td bgcolor="#178acc ">
+				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
+				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
+			</tr>
+			<tr>
+				<td>
+					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
+						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6 ; font:bold 12px arial; text-decoration:none;">Hello&nbsp;<FULLNAME></a></td></tr>
+						<tr><td></td></tr>
+						<tr><td><MESSAGE></td></tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr><td>Sincerely,</td></tr>
+						<tr><td>Video Blogger Team</td></tr>
+					</table>
+				</td>
+			</tr>  
+			</table></td>
+		</tr> 
+	</table>
+<br/><br/>
+Regards,<br/>
+Video Blogger
+</body>';
 
