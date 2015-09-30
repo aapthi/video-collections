@@ -143,6 +143,13 @@ class UserTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet->current();
 	}
+	public function adStatus($userid){
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('vc_user_details', 'vc_user_details.u_id=user.user_id',array('*'),'left');	
+		$select->where('user.user_id="'.$userid.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet->current();
+	}
 	public function checkAdminEmailExists( $userInfo )
     {
 		$select = $this->tableGateway->getSql()->select();		

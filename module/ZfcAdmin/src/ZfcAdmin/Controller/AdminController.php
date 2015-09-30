@@ -427,7 +427,7 @@ class AdminController extends AbstractActionController
 			$userInfo['userId'] = $_GET['uid'];
 			$chgStatus = $this->getUserTable()->changeAccountStatus($userInfo,'del');
 			if($chgStatus>0){
-				$userDetails=$this->getUserTable()->checkUserStatus($_GET['uid']);		
+				$userDetails=$this->getUserTable()->adStatus($_GET['uid']);		
 				$to=$userDetails->email;
 				$userName = ucfirst($userDetails->username);
 				if( $_GET['st'] == 'd'){				
