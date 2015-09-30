@@ -118,7 +118,7 @@
 					<img  src="<?php echo $basePath; ?>/img/menu.png" alt="ads">
 					<span class="caret"></span>
 				</button>
-				<ul class="dropdown-menu">
+				<ul class="dropdown-menu" style="left:0 !important">
 					<? if(isset($catData)){ foreach($catData as $key=>$catinfo){ 
 							foreach($catinfo as $catid=>$catname){
 								if(count( $catinfo )>1){
