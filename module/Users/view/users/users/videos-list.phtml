@@ -3,14 +3,14 @@
 	$baseUrl = $header->headerarray['baseUrl'];
 	$basePath = $header->headerarray['basePath']; 
 ?>
-<div class="container mar_t mar_b min_height" style="position:relative">
+<div class="container mar_t mar_b min_height panel panel-default" style="position:relative;padding:24px 20px 0px 20px;">
 <head>
   <link rel="stylesheet" type="text/css" href="">
   <link href="<?php echo $basePath; ?>/css/jquery.datatable.css" rel="stylesheet">
   <script src="<?php echo $basePath;?>/js/jquery.datatable.min.js"></script>
 </head>
   <table id="example" class="table table-bordered table-hover">
-	<div style="position:absolute;top:3px;left:200px;z-index:300">
+	<div style="position:absolute;top:28px;left:200px;z-index:300">
  <a href="<? echo $baseUrl.'/users/video-link'?>"><button type="button" class="btn btn-primary btn-bloconclick btn-sm" id="add" name="add" >Add Video</button></a>
  </div>
     <thead>

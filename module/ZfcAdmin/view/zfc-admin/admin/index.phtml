@@ -1,11 +1,8 @@
  <?php if(isset($_SESSION['admin']['user_id']) && $_SESSION['admin']['user_id']!=""){ ?>
 	 <script>window.location=BASE_URL+"/admin/dashboard-menu";</script>
 <?php }else{?>
-	<div class="container reg_w_12 min_height">
-	<div class="panel-default mar_t">
-			<div class="panel-heading reg_bg">
-				<h3 class="panel-title">Welcome To Admin</h3>
-			</div>  		
+	<div class="container min_height" style="background:none;border:none;margin-top:5%;">
+	<div class="lrcontainer panel panel-default mar_t"> 		
 			<form  id="frm_meth" name="frm_meth" method="post" action="">		
 				<div class="panel-body" id="tab_1_hide">
 					<div class="form-horizontal">				

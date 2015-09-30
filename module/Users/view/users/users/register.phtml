@@ -1,5 +1,5 @@
-<div class="container  min_height">
-<div class="lrcontainer">
+<div class="container  min_height ">
+<div class="lrcontainer panel panel-default" style="padding:24px 20px 0px 20px;">
 		<? $details=''; if(count($this->userDetails)){ foreach($this->userDetails as $detailss){ $details=$detailss;}}
 			$dobex=''; if(isset($details->date_of_birth) && $details->date_of_birth!='') {
 				$dob = $details->date_of_birth;
