@@ -36,7 +36,7 @@
 	color: #555555;
 }
 .min_height{
-	min-height:540px;
+	min-height:600px;
 }
 .footer h2{
 	font-size:18px;
@@ -347,6 +347,7 @@ position:absolute;
 }
 .latest_videos li{
 	margin-bottom:10px;
+	position:relative;
 }
 .latestvideos img{
 	width:150px;
@@ -482,7 +483,12 @@ position:absolute;
 }
 /* dropdown end */
 .home_icon{
-vertical-align:middle;
+	border: 2px solid #ddd !important;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+.home_icon:hover{
+	border: 2px solid #2fa4e7 !important;
 }
 .my_ac_drop_down .btn{
 	padding:1px 12px;

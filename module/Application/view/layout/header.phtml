@@ -52,12 +52,10 @@
 			  <div class="col-md-6 topmenu_links my_ac_drop_down">
 					<? if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){ $userid= base64_encode($_SESSION['user']['user_id']);?>
 					<div class="btn-group " role="group">
-						<!--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-							<i>Welcome</i> &nbsp;&nbsp;<span class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; cursor: hand;">
+							<i>Welcome</i> &nbsp;&nbsp;<span class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; cursor: hand;" id="top_bar_drop_down">
 							 <? if(strlen($_SESSION['user']['username'])>8){echo substr($_SESSION['user']['username'],0,8) . '...'; }else{echo $_SESSION['user']['username'];} ?> 
 								<span class="caret" style="cursor: pointer; cursor: hand;"></span>
 							</span>
-						<!--</button>-->
 						<ul class="dropdown-menu">
 							<li><a href="<?php echo $baseUrl; ?>/users/videos-list">My Uploads</a><li>
 							<li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $userid; ?>">Profile</a><li>
@@ -178,7 +176,6 @@ if(strpos($_SERVER['REQUEST_URI'],'register')!==false || strpos($_SERVER['REQUES
 /*if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
  alert('I am chrome');
 }*/
-
 $('#videosSearch').keypress(function(e){
 	if( e.keyCode == 13 ){
 		searchByLocation();
