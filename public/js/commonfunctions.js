@@ -254,10 +254,10 @@ function validateReg()
 	var flag = true;	
 	var userEmail = $("#user_email").val();
 	if($("#user_first_name").val()==''){
-		$("#user_firstname_req").html(Required);
+		$(".error_msg_disp").html(Required);
 		flag = false;
 	}else{
-		$("#user_firstname_req").html('');
+		$(".error_msg_disp").html('');
 	}
 	if($("#user_last_name").val()==''){
 		$("#user_lastname_req").html(Required);
