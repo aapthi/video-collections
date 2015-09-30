@@ -113,13 +113,14 @@ class UserTable
 			}
 			$password=md5($users['user_password']);
 			$data = array(
-				'username' 	     => $fisrt_name, 	
+				'username' 	    => $fisrt_name, 	
 				'email' 		=> $users['user_email'],  		
 				'password' 		=> $password, 	
-				'contact_number'  => $users['user_mobile'],  	
+				'contact_number'=> $users['user_mobile'],  	
 				'display_name'  => $fisrt_name,  	
 				'created_at' 	=> date('Y-m-d H:i:s'),   
 				'state' 		=> 0,  		
+				'user_type' 	=> 2,  		
 			);
 			$insertresult=$this->tableGateway->insert($data);
 			return $this->tableGateway->lastInsertValue;
@@ -141,6 +142,17 @@ class UserTable
 		$select->where('user.state="1"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet->current();
+	}
+	public function checkAdminEmailExists( $userInfo )
+    {
+		$select = $this->tableGateway->getSql()->select();		
+		$select->where('user.email="'.$userInfo['inputEmail'].'"');
+		$select->where('user.password="'.md5($userInfo['password']).'"');
+		$select->where('user.state=1');
+		$select->where('user.user_type=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet->current();
+		return $row;
 	}
 	public function checkEmailExists( $userInfo )
     {

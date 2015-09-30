@@ -236,7 +236,7 @@ class AdminController extends AbstractActionController
 		$basePath = $baseUrlArr['basePath'];
 		if(isset($_POST['inputEmail']) && $_POST['inputEmail']!=""){
 			$usersTable=$this->getUserTable();
-			$userDetailss = $usersTable->checkEmailExists($_POST);
+			$userDetailss = $usersTable->checkAdminEmailExists($_POST);
 			if($userDetailss!=''){
 				$user_id=$userDetailss->user_id;
 				$userDetails = $usersTable->checkUserStatus($user_id);
