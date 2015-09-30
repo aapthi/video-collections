@@ -42,19 +42,19 @@
                                 aTargets: [ 0 ]
                                 }],
                 "bStateSave": true,
-                "bAutoWidth": true,
                 "sRowSelect": "multi",
                 "sPaginationType": "full_numbers",
+				 "bAutoWidth": false,
                 "bProcessing": true,
                 "aaData": data,
                 "aoColumns": [
-                    { "mData": "user_id" },
-                    { "mData": "user_name" },
-                    { "mData": "email_id"},
-                    { "mData": "contact_number"},
-                    { "mData": "status"},
-                    { "mData": "action"}                        
-                ] 
+                    { "mData": "user_id",'sWidth': '5%'},
+                    { "mData": "user_name",'sWidth': '15%' },
+                    { "mData": "email_id",'sWidth': '30%'},
+                    { "mData": "contact_number",'sWidth': '20%'},
+                    { "mData": "status",'sWidth': '10%'},
+                    { "mData": "action",'sWidth': '20%'}                        
+                ],
             });    
         }
     });
