@@ -18,19 +18,19 @@
 		<div class="panel-body" id="tab_1_hide">
 			<div class="form-horizontal">
 				<div class="form-group">
-					<div class="">
+					<div class="pos_relative">
 					<span class="error_msg_disp" id="user_firstname_req"></span>
 						<input type="text" class="form-control" id="user_first_name" placeholder="First Name" name="user_first_name" value="<? if(isset($details->display_name) && $details->display_name!='') {echo ucfirst($details->display_name);}else{}?>">
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="">
+					<div class="pos_relative">
 					<span class="error_msg_disp" id="user_lastname_req"></span>
 						<input type="text" class="form-control" id="user_last_name" placeholder="Last Name" name="user_last_name" value="<? if(isset($details->last_name) && $details->last_name!='') {echo ucfirst($details->last_name);}else{}?>">
 					</div>
 				</div>				
 				<div class="form-group">
-					<div class="">
+					<div class="pos_relative">
 						<span class="error_msg_disp" id="user_email_req"></span>
 						<input type="email" class="form-control" id="user_email" placeholder="Email" name="user_email" value="<? if(isset($details->email) && $details->email!='') {echo $details->email;}else{}?>" <? if(isset($details->email) && $details->email!='') {?> readonly="readonly" <?}else{?> onmouseout="return checkEmailVaild();"<? } ?>>
 					</div>
@@ -38,20 +38,20 @@
 				<input type="hidden" id="hidCheckValue" name="hidCheckValue" value='0'>
 				<? if($details==""){?>
 				<div class="form-group">
-					<div class="">
+					<div class="pos_relative">
 						<span class="error_msg_disp" id="user_pwd_req"></span>
 						<input type="password" class="form-control" id="user_password" name="user_password" value="" placeholder="Password">
 					</div>
 				</div>
 				<? } ?>
 				<div class="form-group">
-					<div class="">
+					<div class="pos_relative">
 						<span class="error_msg_disp" id="user_mobile_req"></span>
 						<input type="text" class="form-control" id="user_mobile" name="user_mobile" value="<? if(isset($details->contact_number) && $details->contact_number!='') {echo $details->contact_number;}else{}?>" placeholder="Your Mobile Number">
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="">
+					<div class="pos_relative">
 						<? if(isset($details->user_id) && $details->user_id!=''){ ?>
 							<button type="button" class="btn btn-primary btn-block"  onCLick="validateReg();">Update</button>
 						<? } else{?>
