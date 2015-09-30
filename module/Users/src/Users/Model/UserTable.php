@@ -163,15 +163,7 @@ class UserTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->current();
 		return $row;
-	}
-	public function checkAdminEmailExists( $userInfo )
-    {
-		$select = $this->tableGateway->getSql()->select();
-		$select->where('email="'.$userInfo['inputEmail'].'"');
-		$select->where('password="'.$userInfo['password'].'"');
-		$resultSet = $this->tableGateway->selectWith($select);
-		return $resultSet;
-	}	
+	}		
 	public function getpassword($pwd,$userid){ 
 		$pwd=md5($pwd);
 		$select = $this->tableGateway->getSql()->select();
