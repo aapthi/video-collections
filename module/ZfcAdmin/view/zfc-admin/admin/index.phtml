@@ -1,3 +1,4 @@
+ <?php if(isset($_SESSION['admin']['user_id'])){ ?>
 <div class="container reg_w_12 min_height">
 	<div class="panel-default mar_t">
 		<div class="panel-heading reg_bg">
@@ -31,3 +32,6 @@
 		</form>			
 	</div>	
 </div>
+<?php }else{?>
+  <script>window.location=BASE_URL+"/admin";</script>
+<?}?>
