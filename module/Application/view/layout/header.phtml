@@ -52,13 +52,15 @@
 			  <div class="col-md-6 topmenu_links my_ac_drop_down">
 					<? if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){ $userid= base64_encode($_SESSION['user']['user_id']);?>
 					<div class="btn-group " role="group">
-						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						My Account &nbsp;&nbsp;&nbsp;
-							<span class="caret"></span>
-						</button>
+						<!--<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+							<i>Welcome</i> &nbsp;&nbsp;<span class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; cursor: hand;">
+							 <? if(strlen($_SESSION['user']['username'])>8){echo substr($_SESSION['user']['username'],0,8) . '...'; }else{echo $_SESSION['user']['username'];} ?> 
+								<span class="caret" style="cursor: pointer; cursor: hand;"></span>
+							</span>
+						<!--</button>-->
 						<ul class="dropdown-menu">
 							<li><a href="<?php echo $baseUrl; ?>/users/videos-list">My Uploads</a><li>
-							<li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $userid; ?>">My Account</a><li>
+							<li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $userid; ?>">Profile</a><li>
 							<li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>
 							<li><a href="<?php echo $baseUrl; ?>/users/logout">Sign Out</a></li>
 						</ul>
