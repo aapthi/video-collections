@@ -6,6 +6,7 @@
 	$videoData = $header->headerarray['videoData'];
 	$topVideos = $header->headerarray['topVideos'];	
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>  
@@ -84,14 +85,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-		  <a class="navbar-brand" href="<?php echo $baseUrl . '/'; ?>"><img src="<?php echo $basePath; ?>/img/logo.png" alt="Video Blogger" width="80%"/></h1></a>
+		  <a class="navbar-brand" href="<?php echo $baseUrl . '/'; ?>"><img src="<?php echo $basePath; ?>/img/logo.png" alt="Video Blogger" width="90%"/></h1></a>
         </div>
       </div>
     </nav>
 <div class="latest_news alert mar_bnone">
-	<div class="container pos_relative">
+	<div class="container pos_relative" id="scroll">
 	<div class="close_lnews"><button type="button" class="close" data-dismiss="alert">×</button></div>
-		<marquee behavior="scroll"  direction="left"  scrollamount="4">
+		<span>
+		<marquee behavior="scroll"  direction="left"  scrollamount="4" onmouseover="javascript:this.setAttribute('scrollamount','0');" onmouseout="javascript:this.setAttribute('scrollamount','5');">
 		<ul class="list-inline">
 			<?  foreach($topVideos as $key=>$videolinks){
 					// if($key == 25){ break; }
@@ -102,6 +104,7 @@
 			<? } ?>				
 		</ul>
 		</marquee>
+		</span>
 	</div>
 </div>
 <div class="search_bar">
@@ -147,14 +150,33 @@
 	</div>
 	</div>
 </div>
+<?php
+if(strpos($_SERVER['REQUEST_URI'],'register')!==false || strpos($_SERVER['REQUEST_URI'],'login')!==false){?>
+	<script>
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 150) {
+			$('.search_bar').addClass('');
+		} else {
+			$('.search_bar').removeClass('');
+		}
+	});
+	</script>
+<?} else { ?>
 <script>
-$(window).scroll(function() {
-	if ($(this).scrollTop() > 150) {
-		$('.search_bar').addClass('search_bar_fix_top');
-	} else {
-		$('.search_bar').removeClass('search_bar_fix_top');
-	}
-});
+	$(window).scroll(function() {
+		if ($(this).scrollTop() > 150) {
+			$('.search_bar').addClass('search_bar_fix_top');
+		} else {
+			$('.search_bar').removeClass('search_bar_fix_top');
+		}
+	});
+</script>
+<?php } ?>
+<script>
+/*if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
+ alert('I am chrome');
+}*/
+
 $('#videosSearch').keypress(function(e){
 	if( e.keyCode == 13 ){
 		searchByLocation();
