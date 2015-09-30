@@ -20,27 +20,6 @@ function searchByLocation(){
 			window.location=BASE_URL+"/search-result/"+searchKey;			
 		}
 }
-function addcategoryFunction(type){
-	flag=true;
-	var catname=$('#catname').val();
-	var cattype=$('#cattype').val();
-	var catbuttontype=$('#hid_cat_butt').val(type);
-	if(catname==""){
-		 $("#catnameError").html("Required");
-		 flag=false;
-	}else{
-	  $("#catnameError").html("");
-	}
-	if(cattype==""){
-		 $("#cattypeError").html("Required");
-		 flag=false;
-	}else{
-	  $("#cattypeError").html("");
-	}
-	if(flag==true){
-		$('#categoryForm').submit();
-	}
-}
 function reloadPageH(){
 	window.location=BASE_URL;
 }
@@ -156,6 +135,27 @@ function removeSubCat(cid){
 		$('#chk_id').prop("checked", false);
 		$("#hidSpan").hide();
 		$("#hidCheck").show();
+	}
+}
+function addcategoryFunction(type){
+	flag=true;
+	var catname=$('#catname').val();
+	var cattype=$('#cattype').val();
+	var catbuttontype=$('#hid_cat_butt').val(type);
+	if(catname==""){
+		 $("#catnameError").html("Required");
+		 flag=false;
+	}else{
+	  $("#catnameError").html("");
+	}
+	if(cattype==""){
+		 $("#cattypeError").html("Required");
+		 flag=false;
+	}else{
+	  $("#cattypeError").html("");
+	}
+	if(flag==true){
+		$('#categoryForm').submit();
 	}
 }
 function addCatCall(){
@@ -383,7 +383,7 @@ function adloginValidations(){
 					$('#reload').html('');
 					if(response.output=='success'){
 						if(response.user_type=='admin'){
-							window.location=BASE_URL+"/admin/dashboard-menu";							
+							window.location=BASE_URL+"/admin/users-list";							
 						}
 					}else{
 						$('#errorMsg').html('Entered wrong username and/or password');
