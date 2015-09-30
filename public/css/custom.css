@@ -317,9 +317,6 @@ position:absolute;
  .list_grou_itemspad .list-group-item:last-child{
 	border-bottom:1px solid #dddddd;
  }
- .featured_video_thumb{
-	text-align:center;
- }
  .featured_video_thumb .list-inline li{
 	margin-bottom:10px;
 	width:130px;
