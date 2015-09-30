@@ -116,7 +116,23 @@ class IndexController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
 		$videoList = $this->getVideoTable()->videoUpdatesList();	
-		$homePageVideos = $this->getVideoTable()->homePageVideos();	
+		$homePageVideos = $this->getVideoTable()->homePageVideos();
+		$topVideos=array();
+		$featuredVideos=array();
+		$lastedVideos=array();
+		if($homePageVideos!="") {
+			$i=0; foreach($homePageVideos as $videosH){
+				if( $i<=6 ){
+					$topVideos[] = $videosH; 
+				}	
+				if( $i>=7 && $i<23 ){
+					$featuredVideos[] = $videosH; 
+				}
+				if($i>=23){			
+					$lastedVideos[] = $videosH;
+				 }
+			$i++; }
+		}		
 		$catSubcatlist = array();
 		$catList = $this->getCategoryTable()->getCategoryListF();	
 		foreach($catList as $getCatid){
@@ -132,7 +148,9 @@ class IndexController extends AbstractActionController
 				'basePath'		=>	$basePath,
 				'catData'		=>	$catSubcatlist,
 				'videoData'		=>	$videoList,
-				'homeVideos'	=>	$homePageVideos
+				'topVideos'	    =>	$topVideos,
+				'featuredVideos'=>	$featuredVideos,
+				'lastedVideos'	=>	$lastedVideos,
 			)
 		);
 	}	

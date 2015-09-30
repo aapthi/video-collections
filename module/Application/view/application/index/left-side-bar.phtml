@@ -1,20 +1,16 @@
-<!--<div class="panel panel-default">
-	<div class="panel-heading">Categories</div>
-	<div class="">
-		<ul class="nav">
-			<? if(isset($catData) && $catData!=''){ foreach($catData as $catinfo){?>
-				<li><a href="<?php echo $baseUrl; ?>/cat/<? echo $catinfo->category_id;?>"><? echo $catinfo->category_name;?></a></li>
-			<?php } }?>
-		</ul>
-	</div>
-</div>-->
+<?php
+	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+	$baseUrl = $header->headerarray['baseUrl'];
+	$basePath = $header->headerarray['basePath'];	
+	$lastedVideos = $header->headerarray['lastedVideos'];	
+?>
 <div class="panel panel-default">
 	<div class="panel-heading">Latest Videos</div>
 	<div class="panel-body pad_bottom_0">
 		<div class="row">
 			<div class="col-xs-12 latest_videos">
 				<ul class="latestvideos">
-					<?php if(isset($_SESSION['lastedVideos'])) { $lastedVideos = $_SESSION['lastedVideos']; foreach($lastedVideos as $videoInfo){
+					<?php if(isset($lastedVideos)) { foreach($lastedVideos as $videoInfo){
 						$video_id = base64_encode($videoInfo->v_id);
 					?>
 						<li class="news-item">
