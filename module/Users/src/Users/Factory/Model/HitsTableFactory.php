@@ -8,8 +8,8 @@ use Zend\Stdlib\Hydrator\ObjectProperty;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\TableGateway\Feature;
 
-use Users\Model\TypeOfVideo;
-use Users\Model\TypeOfVideoTable;
+use Users\Model\Hits;
+use Users\Model\HitsTable;
 
 class  TypeOfVideoTableFactory implements FactoryInterface
 {
@@ -18,9 +18,9 @@ class  TypeOfVideoTableFactory implements FactoryInterface
         $db = $serviceLocator->get('Zend\Db\Adapter\Adapter');
         $resultSetPrototype = new HydratingResultSet();
         $resultSetPrototype->setHydrator(new ObjectProperty());
-        $resultSetPrototype->setObjectPrototype(new TypeOfVideo());
-        $tableGateway       = new TableGateway('vc_type_of_video', $db,array(),$resultSetPrototype);
-        $table              = new TypeOfVideoTable($tableGateway);
+        $resultSetPrototype->setObjectPrototype(new Hits());
+        $tableGateway       = new TableGateway('vc_hits', $db,array(),$resultSetPrototype);
+        $table              = new HitsTable($tableGateway);
         return $table;
     }
 }

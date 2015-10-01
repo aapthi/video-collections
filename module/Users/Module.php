@@ -19,8 +19,8 @@ use Users\Model\ForgotPassword;
 use Users\Model\ForgotPasswordTable;
 use Users\Model\Category;
 use Users\Model\CategoryTable;
-use Users\Model\TypeOfVideo;
-use Users\Model\TypeOfVideoTable;
+use Users\Model\Hits;
+use Users\Model\HitsTable;
 use Users\Model\Video;
 use Users\Model\VideoTable;
 
@@ -55,7 +55,7 @@ class Module implements
             	'Users\Model\UserDetailsFactory'=>'Users\Factory\Model\UserDetailsTableFactory',
             	'Users\Model\ForgotPasswordFactory'=>'Users\Factory\Model\ForgotPasswordTableFactory',
 				'Users\Model\CategoryFactory'=>'Users\Factory\Model\CategoryTableFactory',
-				'Users\Model\TypeOfVideoFactory'=>'Users\Factory\Model\TypeOfVideoTableFactory',
+				'Users\Model\HitsFactory'=>'Users\Factory\Model\HitsTableFactory',
 				'Users\Model\VideoFactory'=>'Users\Factory\Model\VideoTableFactory'
 			),			
         );

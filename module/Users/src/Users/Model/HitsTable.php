@@ -11,7 +11,7 @@ use Zend\Paginator\Paginator;
 use Zend\Db\Sql\Predicate;
 use Zend\Db\Sql\Expression;
 
-class TypeOfVideoTable
+class HitsTable
 {
     protected $tableGateway;
 	protected $select;
