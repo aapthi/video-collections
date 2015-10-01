@@ -40,7 +40,7 @@
   <div class="top_bar">
 	  <div class="container">
 		  <div class="row">
-			  <div class="col-md-6">
+			  <div class="col-md-6 smhide">
 			<?php
 			$date_array = getdate();
 
@@ -111,7 +111,7 @@
 	<div class="container">
 	<div class="row">
 		<div class="col-md-3 filter_cate">
-			<a href="<?php echo $baseUrl . '/'; ?>"><button type="button" class="home_icon"><span class="glyphicon glyphicon-home" style="color:#2fa4e7"></span></button></a>
+			<a href="<?php echo $baseUrl . '/'; ?>" class="smhide"><button type="button" class="home_icon"><span class="glyphicon glyphicon-home" style="color:#2fa4e7"></span></button></a>
 			<div class="btn-group " role="group">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				CATEGORIES &nbsp;&nbsp;&nbsp;
@@ -166,8 +166,11 @@ if(strpos($_SERVER['REQUEST_URI'],'register')!==false || strpos($_SERVER['REQUES
 	$(window).scroll(function() {
 		if ($(this).scrollTop() > 150) {
 			$('.search_bar').addClass('search_bar_fix_top');
+			//$('.filter_cate').css('position','relative');
 		} else {
 			$('.search_bar').removeClass('search_bar_fix_top');
+			//$('.filter_cate').css('position','absolute');
+			//$('.filter_cate .btn-default').css('color','#555 !important');
 		}
 	});
 </script>

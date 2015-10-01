@@ -350,8 +350,8 @@ position:absolute;
 	position:relative;
 }
 .latestvideos img{
-	width:150px;
-	height:150px;
+	width:120px;
+	height:90px;
 	border-radius:5px;
 }
 .video_play{
@@ -513,6 +513,26 @@ position:absolute;
 	}
 	.reg_w_12{
 		width:100%;
+	}
+	.lrcontainer{
+		width:100%;
+	}
+	.smhide,.ad_pos_ab,.latest_news{
+		display:none;
+	}
+	.filter_cate {
+		text-align:center;
+		position:absolute;
+		top:0;
+	}
+	.filter_cate .btn-default{
+		color:#fff !important;
+	}
+	.filter_cate .my_ac_drop_down .filter_cate .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default{
+		background:none;
+	}
+	.copy_right p,.copy_right_t{
+		text-align:center !important;
 	}
 }
 @media (min-width: 768px) and (max-width: 979px) {
