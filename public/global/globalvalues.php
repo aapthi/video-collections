@@ -9,7 +9,7 @@ $frogotPasswordMessage = '<body>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc">
 			<tr><td bgcolor="#178acc">
 				<a href="javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">SFAdda</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -21,7 +21,7 @@ $frogotPasswordMessage = '<body>
 						<tr><td>Note: If you did not request for new password, please ignore this email.</td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Video Blogger Team</td></tr>
+						<tr><td>SFAdda Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -30,7 +30,7 @@ $frogotPasswordMessage = '<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Video Blogger 
+SFAdda 
 </body>';
 /*End Forget Password*/
 
@@ -44,7 +44,7 @@ $activeUsersMessage='<body>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">SFAdda</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -57,7 +57,7 @@ $activeUsersMessage='<body>
 						<tr><td><PASSWORD></td></tr>						
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Video Blogger Team</td></tr>
+						<tr><td>SFAdda Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -66,7 +66,7 @@ $activeUsersMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Video Blogger
+SFAdda
 </body>';
 /* end Cron subject*/
 
@@ -82,7 +82,7 @@ $regMessage='<body>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">SFAdda</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -92,7 +92,7 @@ $regMessage='<body>
 						<tr><td>Please click on this link to verfiy your account.</td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Video Blogger Team</td></tr>
+						<tr><td>SFAdda Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -101,29 +101,29 @@ $regMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Video Blogger
+SFAdda
 </body>';
 /* end register subject*/
 global $completeRegisterSubject;				
 global $completeRegisterMessage;	
-$completeRegisterSubject="Welcome to Video Blogger";
+$completeRegisterSubject="Welcome to SFAdda";
 $completeRegisterMessage='<body>
 		<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">SFAdda</span></a></td>
 			</tr>
 			<tr>
 				<td>
 					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
 						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6 ; font:bold 12px arial; text-decoration:none;">Hello&nbsp;<FULLNAME></a></td></tr>
 						<tr><td><a href="<ClickeHere>"><ClickeHere></a></td></tr>
-						<tr><td>Successfully registered with Video Blogger, Thanks for joining us.</td></tr>
+						<tr><td>Successfully registered with SFAdda, Thanks for joining us.</td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Video Blogger Team</td></tr>
+						<tr><td>SFAdda Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -132,19 +132,19 @@ $completeRegisterMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Video Blogger
+SFAdda
 </body>';
 /* register subject */
 global $sentShareMsgSubject;
 global $sentShareMessage;
-$sentShareMsgSubject= "Share mail from Video Blogger";
+$sentShareMsgSubject= "Share mail from SFAdda";
 $sentShareMessage='<body>
 		<table width="400" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td><table width="400" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">SFAdda</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -170,7 +170,7 @@ $contactMessage='<body>
 			<td><table width="400" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">SFAdda</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -189,14 +189,14 @@ $contactMessage='<body>
 /*  Video Link subject */
 global $videolinkSubject;				
 global $videolinkMessage;
-$videolinkSubject="Welcome to Video Blogger";
+$videolinkSubject="Welcome to SFAdda";
 $videolinkMessage='<body>
 		<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">SFAdda</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -206,7 +206,7 @@ $videolinkMessage='<body>
 						<tr><td><MESSAGE></td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Video Blogger Team</td></tr>
+						<tr><td>SFAdda Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -215,19 +215,19 @@ $videolinkMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Video Blogger
+SFAdda
 </body>';
 /*  Activate and Deactivate Video Link subject */
 global $videolinkSubject;				
 global $videolinkMessage;
-$videolinkSubject="Welcome to Video Blogger";
+$videolinkSubject="Welcome to SFAdda";
 $videolinkMessage='<body>
 		<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">SFAdda</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -238,7 +238,7 @@ $videolinkMessage='<body>
 						<tr><td><MESSAGE></td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Video Blogger Team</td></tr>
+						<tr><td>SFAdda Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -247,19 +247,19 @@ $videolinkMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Video Blogger
+SFAdda
 </body>';
 /*  Activate and Deactivate Users By Admin subject */
 global $activateDeactivateuserSubject;				
 global $activateDeactivateuserMessage;
-$activateDeactivateuserSubject="Welcome to Video Blogger";
+$activateDeactivateuserSubject="Welcome to SFAdda";
 $activateDeactivateuserMessage='<body>
 		<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
 			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Video Blogger</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">SFAdda</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -269,7 +269,7 @@ $activateDeactivateuserMessage='<body>
 						<tr><td><MESSAGE></td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Video Blogger Team</td></tr>
+						<tr><td>SFAdda Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -278,6 +278,6 @@ $activateDeactivateuserMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Video Blogger
+SFAdda
 </body>';
 
