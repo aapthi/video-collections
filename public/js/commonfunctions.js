@@ -1,3 +1,12 @@
+function refresh(){
+	$.ajax({
+		url: BASE_URL+"/users/captcha-getcode",
+		type: "POST",				
+		success: function(msg){ 
+			$("#refreshCode").val(msg.captchcode);
+		},				
+	});   
+}
 function searchByLocation(){
 	var searchKey3='';
 	var searchKeyTitle='';
@@ -255,12 +264,14 @@ function validateReg()
 	var userEmail = $("#user_email").val();
 	if($("#user_first_name").val()==''){
 		$(".error_msg_disp").html(Required);
+		$('#user_lastname').focus();
 		flag = false;
 	}else{
 		$(".error_msg_disp").html('');
 	}
 	if($("#user_last_name").val()==''){
 		$("#user_lastname_req").html(Required);
+		$('#user_lastname').focus();
 		flag = false;
 	}else{
 		$("#user_lastname_req").html('');
@@ -268,13 +279,16 @@ function validateReg()
 	if($("#hid_user_id").val()==""){
 		if(userEmail==""){
 			$("#user_email_req").html(Required);
+			$('#user_email').focus();
 			flag=false;
 		}else if(checkEmail(userEmail)==false){
 			$("#user_email_req").html(email_wrong_format);
+			$('#user_email').focus();
 			flag=false;
 		}else if($("#hidCheckValue").val()==1){
 			tab1flag = false;
 			$("#user_email_req").html(email_already_exists); 
+			$('#user_email').focus();
 			flag=false;
 			return false;
 		}else{
@@ -286,15 +300,27 @@ function validateReg()
 	}
 	if($("#user_password").val()==''){
 		$("#user_pwd_req").html(Required);
+		$('#user_password').focus();
 		flag = false;
 	}else{
 		$("#user_pwd_req").html('');	
 	}		
 	if($("#user_mobile").val()==''){
 		$("#user_mobile_req").html(Required);
+		$('#user_mobile').focus();
 		flag = false;
 	}else{
 		$("#user_mobile_req").html('');	
+	}
+	if($('#user_captcha').val()==""){
+		$("#user_captcha_req").html(Required);
+		$('#user_captcha').focus();
+		flag=false;
+	}else if($('#user_captcha').val()!=$("#refreshCode").val()){ 
+		$("#user_captcha_req").html("Please enter the correct code");
+		flag=false;
+	}else{
+	   $('#user_captcha').html('');
 	}
 	if(flag==false){		
 		return false;

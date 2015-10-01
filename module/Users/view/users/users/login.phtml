@@ -1,22 +1,4 @@
-<?
-	if(isset($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=='4'){?>
-	<script>
-		window.location = BASE_URL+'/admin/dashboard';
-	</script>
-   <? } else if(isset($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=='1'){?>
-	<script>
-		window.location = BASE_URL;
-	</script>
-  <? } else if(isset($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=='2'){?>
-	<script>
-		window.location = BASE_URL;
-	</script>
- <? }else if(isset($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=='3'){?>
-	<script>
-		window.location = BASE_URL;
-	</script>
-<? } else { ?>
- <?php 
+<?php 
 	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
 	$baseUrl = $header->headerarray['baseUrl'];
 	$basePath = $header->headerarray['basePath'];
@@ -80,5 +62,4 @@ $('#password').keypress(function(e){
 });
 //$('body').css('overflow','hidden');
 </script>
-<? } ?>
 <? } ?>

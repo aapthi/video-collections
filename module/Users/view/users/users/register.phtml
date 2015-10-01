@@ -1,11 +1,16 @@
+<?php 
+	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+	$baseUrl = $header->headerarray['baseUrl'];
+	$basePath = $header->headerarray['basePath'];
+?>
 <div class="container  min_height ">
 <div class="lrcontainer panel panel-default" style="padding:24px 20px 0px 20px;">
-		<? $details=''; if(count($this->userDetails)){ foreach($this->userDetails as $detailss){ $details=$detailss;}}
-			$dobex=''; if(isset($details->date_of_birth) && $details->date_of_birth!='') {
-				$dob = $details->date_of_birth;
-				$dobex = explode("/",$dob);
-			}		
-		?>
+	<? $details=''; if(count($this->userDetails)){ foreach($this->userDetails as $detailss){ $details=$detailss;}}
+		$dobex=''; if(isset($details->date_of_birth) && $details->date_of_birth!='') {
+			$dob = $details->date_of_birth;
+			$dobex = explode("/",$dob);
+		}		
+	?>
 <div class="title_h1">
 	<? if(isset($details->user_id) && $details->user_id!=''){ ?>
 		<h1 class="text-center">Profile</h1>
@@ -13,6 +18,11 @@
 		<h1 class="text-center">Sign Up</h1>
 	<? } ?>
 </div>
+<script>
+	$(document).ready(function(e) {
+		refresh();
+	});
+</script>
 <form  id="frm_meth" name="frm_meth" method="post" action="">	
 	<div class="panel-default">		
 		<div class="panel-body" id="tab_1_hide">
@@ -50,6 +60,20 @@
 						<input type="text" class="form-control" id="user_mobile" name="user_mobile" value="<? if(isset($details->contact_number) && $details->contact_number!='') {echo $details->contact_number;}else{}?>" placeholder="Your Mobile Number">
 					</div>
 				</div>
+				<div style="width:100%">
+					<div class="form-group" style="width:40%">					
+						<div class="pos_relative">	
+							<span class="error_msg_disp" id="user_captcha_req"></span>
+							<input type="text" class="form-control" id="user_captcha" name="user_captcha" value="" placeholder="Enter Captcha">
+						</div>
+					</div>
+					<div class="form-group" style=" margin-left: 40%;margin-right: 265px;margin-top: -59px;position: relative; width: 40%;">					
+						<div class="pos_relative">	
+							<input type="text" class="form-control" width="20px;" id="refreshCode" name="refreshCode" readonly="readonly" disabled="disabled"  value="">
+							<img style=" margin-left: 105%;margin-top: -59px;position: relative;cursor: pointer; cursor: hand;" onCLick="refresh();" src="<?php echo $basePath;?>/img/refresh.png"  width="30px;" id="captch_find" alt="refresh"/>
+						</div>
+					</div>
+				</div><div class="clearfix"></div>
 				<div class="form-group">
 					<div class="pos_relative">
 						<? if(isset($details->user_id) && $details->user_id!=''){ ?>
@@ -67,4 +91,4 @@
 		</form>			
 		</div>
 	</div>
-	</div>
+</div>

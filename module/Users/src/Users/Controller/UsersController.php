@@ -54,6 +54,26 @@ class UsersController extends AbstractActionController
 	public function indexAction()
 	{
 	}
+	public function captchaGetcodeAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$returnCode = getUniqueCode(5);
+		$result = new JsonModel(array(					
+			'captchcode' => $returnCode,
+			'success'=>true,
+		));	
+		return $result;
+	}
+	function getUniqueCode($length = "")
+	{
+		$code = md5(uniqid(rand(), true));
+		if ($length != "")
+		return substr($code, 0, $length);
+		else
+		return $code;
+	}	
 	public function videosListAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
@@ -93,18 +113,18 @@ class UsersController extends AbstractActionController
 			foreach($videoData as $video){
 				$id=$video->v_id;
 				$data[$i]['v_id']=$i+1;
-				$data[$i]['user_name']= $video->username;
 				$data[$i]['cat_name']= $video->category_name;
+				$data[$i]['videotitle']= $video->v_title;
 				$data[$i]['videolink']= $video->v_link;
 				if($video->v_state==1){
 					$status = 'Active';
 					$st = 'd';
 				}else{
-					$status = 'Deactivate';
+					$status = 'Deactive';
 					$st = 'a';
 				}
 				$data[$i]['status']= $status;
-				$data[$i]['action'] ='<a href="'.$baseUrl.'/users/video-link?vid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/users/delete-video?vid='.$id.'&st='.$st.'">'.$status.'</a>';
+				$data[$i]['action'] ='<a href="'.$baseUrl.'/users/video-link?vid='.$id.'">Edit</a>';
 				$i++;
 			}
 			$data['aaData'] = $data;

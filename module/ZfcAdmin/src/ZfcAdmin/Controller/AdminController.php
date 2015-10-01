@@ -213,18 +213,20 @@ class AdminController extends AbstractActionController
 			foreach($videoData as $video){
 				$id=$video->v_id;
 				$data[$i]['v_id']=$i+1;
-				$data[$i]['user_name']= $video->username;
 				$data[$i]['cat_name']= $video->category_name;
+				$data[$i]['videotitle']= $video->v_title;
 				$data[$i]['videolink']= $video->v_link;
 				if($video->v_state==1){
 					$status = 'Active';
+					$statusRole = 'Deactive';
 					$st = 'd';
 				}else{
 					$status = 'Deactivate';
+					$statusRole = 'Active';
 					$st = 'a';
 				}
 				$data[$i]['status']= $status;
-				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/add-video?vid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-video?vid='.$id.'&st='.$st.'">'.$status.'</a>';
+				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/add-video?vid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-video?vid='.$id.'&st='.$st.'">'.$statusRole.'</a>';
 				$i++;
 			}
 			$data['aaData'] = $data;

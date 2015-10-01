@@ -94,6 +94,7 @@ class VideoTable
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('user', 'vc_videos.v_user_id=user.user_id',array('*'),'left');	
 		$select->join('vc_categories', 'vc_videos.v_cat_id=vc_categories.category_id',array('*'),'left');	
+		$select->order('vc_videos.v_id DESC');	
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}

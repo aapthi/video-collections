@@ -121,6 +121,7 @@ class UserTable
 				'created_at' 	=> date('Y-m-d H:i:s'),   
 				'state' 		=> 0,  		
 				'user_type' 	=> 2,  		
+				'captch_code' 	=> $users['user_captcha'],  		
 			);
 			$insertresult=$this->tableGateway->insert($data);
 			return $this->tableGateway->lastInsertValue;
