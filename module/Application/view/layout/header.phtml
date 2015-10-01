@@ -53,7 +53,7 @@
 					<? if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){ $userid= base64_encode($_SESSION['user']['user_id']);?>
 					<div class="btn-group " role="group">
 							<i>Welcome</i> &nbsp;&nbsp;<span class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; cursor: hand;" id="top_bar_drop_down">
-							 <? if(strlen($_SESSION['user']['username'])>8){echo substr($_SESSION['user']['username'],0,8) . '...'; }else{echo $_SESSION['user']['username'];} ?> 
+							 <? if(strlen($_SESSION['user']['displayName'])>8){echo substr($_SESSION['user']['displayName'],0,8) . '...'; }else{echo $_SESSION['user']['displayName'];} ?> 
 								<span class="caret" style="cursor: pointer; cursor: hand;"></span>
 							</span>
 						<ul class="dropdown-menu">

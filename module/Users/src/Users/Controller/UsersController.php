@@ -535,7 +535,7 @@ class UsersController extends AbstractActionController
 				if($userDetails!=''){
 					$user_session = new Container('user');
 					$user_session->username=$userDetails->username;
-					$user_session->display_name=$userDetails->display_name;
+					$user_session->displayName=$userDetails->display_name;
 					$user_session->email=$userDetails->email;
 					$user_session->user_id=$user_id;
 					$result = new JsonModel(array(					
