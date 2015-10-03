@@ -80,6 +80,28 @@ class UsersController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];		
 	}
+	public function checkVideoExistsAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];		
+		if(isset($_POST['videoLink']) && $_POST['videoLink']!=""){
+			$existsVideo=$this->getVideoTable()->checkvideoLink($_POST['videoLink']);
+			echo $existsVideo;exit;
+			if($existsVideo!=0){
+				$result = new JsonModel(array(					
+					'output' => 'exists',
+					'success'=>true,
+				));			
+			}else{
+				$result = new JsonModel(array(					
+					'output' => 'notexists',
+					'success'=>false,
+				));	
+			}
+		}
+		return $result;
+	}
 	public function deleteVideoAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
@@ -781,6 +803,7 @@ class UsersController extends AbstractActionController
 		$row = $this->getUserTable()->checkDetailsRecorded($_SESSION['Zend_Auth']->storage);
 		if( $row->countUser == 0 )
 		{
+			
 			$user_details_id = $this->getUserDetailsTable()->addUserDetails( $_SESSION['Zend_Auth']->storage, 'update');
 			$userInfo['status']=1;
 			$userInfo['userId']=$_SESSION['Zend_Auth']->storage;
@@ -794,10 +817,11 @@ class UsersController extends AbstractActionController
 		else
 		{
 			$userInfo['status']=1;
-			$userInfo['userId']=$_SESSION['Zend_Auth']->storage;
+			$userInfo['userId']=$_SESSION['Zend_Auth']->storage;			
 			$user_details_id = $this->getUserDetailsTable()->addUserDetails( $_SESSION['Zend_Auth']->storage, 'insert' );
 			$userRoww = $this->getUserTable()->changeAccountStatus( $userInfo, 'insert');
 			$userRow = $this->getUserTable()->getUser( $_SESSION['Zend_Auth']->storage );
+			$row = $this->getUserTable()->updateAddedDate($_SESSION['Zend_Auth']->storage,$userRow->display_name);
 			$user_session = new Container('user');
 			$user_session->user_id=$userRow->user_id;
 			$user_session->email=$userRow->email;

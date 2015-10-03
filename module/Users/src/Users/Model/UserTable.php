@@ -58,6 +58,13 @@ class UserTable
 		$updateuserid=$this->tableGateway->update($data, array('user_id' => $data['user_id']));
 		return 	$updateuserid;			
 	}
+	public function todayUsersCount(){
+		$todayDate = date('Y-m-d');
+		$select = $this->tableGateway->getSql()->select();	
+		$select->where('user.added_date="'.$todayDate.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet->count();	
+	}
 	public function listUsers(){
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('vc_user_details', 'vc_user_details.u_id=user.user_id',array('*'),'left');	
@@ -119,6 +126,7 @@ class UserTable
 				'contact_number'=> $users['user_mobile'],  	
 				'display_name'  => $fisrt_name,  	
 				'created_at' 	=> date('Y-m-d H:i:s'),   
+				'added_date' 	=> date('Y-m-d'),   
 				'state' 		=> 0,  		
 				'user_type' 	=> 2,  		
 				'captch_code' 	=> $users['user_captcha'],  		
@@ -127,6 +135,14 @@ class UserTable
 			return $this->tableGateway->lastInsertValue;
 		}					
     }
+	public function updateAddedDate($user_id,$userName){
+		$data = array(
+			'added_date' 	=> date('Y-m-d'),  		
+			'username'   	=> $userName  		
+		);
+		$updateresult=$this->tableGateway->update($data, array('user_id' => $user_id));
+		return $updateresult;
+	}
 	public function checkDetailsRecorded($user_id)
     {
 		$select = $this->tableGateway->getSql()->select();

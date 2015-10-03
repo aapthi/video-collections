@@ -43,4 +43,13 @@ class HitsTable
 		$row = $resultSet->count();
 		return $row;
 	}
+	public function todayHitsOnVideo($vid){
+		$todayDate = date('Y-m-d');
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('vc_hits.hv_id="'.$vid.'"');
+		$select->where('vc_hits.hit_date="'.$todayDate.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet->count();
+		return $row;
+	}
 }

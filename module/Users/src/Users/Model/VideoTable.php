@@ -55,6 +55,7 @@ class VideoTable
 				'type_of_video'   => $videoData['video_type'],
 				'v_state'         => $status,
 				'created_at'      => date('Y-m-d H:i:s'),
+				'added_date'      => date('Y-m-d'),
 				'browsed_video'   => $browsed_video,
 				'browsed_imagecode'   => $browsed_imagecode
 			);
@@ -67,6 +68,18 @@ class VideoTable
 		$select->where('vc_videos.v_id="'.$vid.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet->current();	
+	}
+	public function todayVideoCount(){
+		$todayDate = date('Y-m-d');
+		$select = $this->tableGateway->getSql()->select();	
+		$select->where('vc_videos.added_date="'.$todayDate.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet->count();	
+	}
+	public function presentVideoCount(){
+		$select = $this->tableGateway->getSql()->select();	
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet->count();	
 	}
 	public function videoRelatedList($cid,$vid){
 		$select = $this->tableGateway->getSql()->select();	
@@ -91,10 +104,21 @@ class VideoTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet->current();
 	}
+	public function checkvideoLink($videolink){
+		$value = explode('?',$videolink);
+		$qm = "/php\\?/";
+		echo $qm;exit;
+		$select = $this->tableGateway->getSql()->select();	
+		$select->where('vc_videos.v_link="'.$value.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		echo '<pre>';print_r($resultSet);exit;
+		return $resultSet->count();
+	}
 	public function videoList(){
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('user', 'vc_videos.v_user_id=user.user_id',array('*'),'left');	
-		$select->join('vc_categories', 'vc_videos.v_cat_id=vc_categories.category_id',array('*'),'left');	
+		$select->join('vc_categories', 'vc_videos.v_cat_id=vc_categories.category_id',array('*'),'left');
+		$select->where('vc_videos.v_state!="2"');		
 		$select->order('vc_videos.v_id DESC');	
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
@@ -141,7 +165,7 @@ class VideoTable
 	}
 	public function changeAccountStatus( $user)
     {
-	
+		
 			$data = array(
 				'updated_at' 	=> date('Y-m-d H:i:s'),   			
 				'v_state' 	    => $user['status']
