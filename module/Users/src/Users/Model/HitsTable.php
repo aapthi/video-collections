@@ -43,5 +43,4 @@ class HitsTable
 		$row = $resultSet->count();
 		return $row;
 	}
-	public function 
 }
