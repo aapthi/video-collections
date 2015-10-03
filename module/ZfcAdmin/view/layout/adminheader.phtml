@@ -25,7 +25,7 @@
 	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
 	$baseUrl = $header->headerarray['baseUrl'];
 	$basePath = $header->headerarray['basePath'];
-	$userListA ='';$catListA ='';$videoListA ='';$chgpassA ='';
+	$userListA ='';$catListA ='';$videoListA ='';$chgpassA ='';$reportsA='';
 	$page=basename($_SERVER['REQUEST_URI']);
 	if($page == "users-list"){
 		$userListA ="active_a_menu";
@@ -85,7 +85,7 @@
 								<li ><a class="<? echo $userListA; ?>" href="<?php echo $baseUrl; ?>/admin/users-list" >Users</a></li>
 								<li ><a class="<? echo $catListA; ?>"  href="<?php echo $baseUrl; ?>/admin/categories-list">Categories</a></li>
 								<li ><a class="<? echo $videoListA; ?>" href="<?php echo $baseUrl; ?>/admin/videos-list">Videos</a></li>
-								<li ><a class="<? echo $reportsA; ?>" href="<?php echo $baseUrl; ?>/admin/reports">Reports</a></li>
+								<!--<li ><a class="<? echo $reportsA; ?>" href="<?php echo $baseUrl; ?>/admin/reports">Reports</a></li>-->
 								<li ><a class="<? echo $chgpassA; ?>" href="<?php echo $baseUrl; ?>/admin/change-password" >Change Password</a></li>
 								<li ><a href="<?php echo $baseUrl; ?>/admin/logout">log Out</a></li>
 							</ul>

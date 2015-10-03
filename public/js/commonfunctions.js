@@ -1,3 +1,26 @@
+function alreadyExists(){
+	var videocheck = $("#video_link").val();
+	if(videocheck!==''){
+		$.ajax({
+			type:'POST',
+			url:  BASE_URL+'/users/check-video-exists',
+			data:{videoLink:videocheck},
+			success: function(data){
+				if(data.output=='exists'){
+					$("#hidCheckValue").val('1');
+				}else{
+					$("#hidCheckValue").val('0');
+				}
+			}
+		});
+	}
+}
+function deleteVideo(vid){
+	if(confirm("Are you sure you want to delete the video?")){
+		window.location=BASE_URL+'/admin/delete-video?vid='+vid+'&st=del';
+	}
+	
+}
 function refresh(){
 	$.ajax({
 		url: BASE_URL+"/users/captcha-getcode",
@@ -55,6 +78,10 @@ function validateVideo(){
 		alert('Please enter video link.'); 
 		 $( "#video_link" ).focus();
 		return false;
+	}else if($("#hidCheckValue").val()==1){
+		alert('Entered video link is already exists.'); 
+		 $( "#video_link" ).focus();
+		return false;	
 	}
 	if($("#video_desc").val()==''){
 		alert('Please enter video description.'); 

@@ -47,6 +47,20 @@ class AdminController extends AbstractActionController
         }
         return $this->userTable;
     }
+	public function reportsAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$todayVideoCount = $this->getVideoTable()->todayVideoCount();
+		$presentVideoCount = $this->getVideoTable()->presentVideoCount();
+		$todayUsersCount = $this->getUserTable()->todayUsersCount();
+		return new ViewModel(array(
+			'todayVideoCount'	  =>  $todayVideoCount,
+			'todayUsersCount'	  =>  $todayUsersCount,
+			'presentVideoCount'	  =>  $presentVideoCount,	
+			'baseUrl'	  =>  $baseUrl	
+		));
+	}
 	public function addVideoAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
@@ -165,7 +179,9 @@ class AdminController extends AbstractActionController
 		global $videolinkSubject;				
 		global $videolinkMessage;
 		if(isset($_GET['vid']) && $_GET['vid']!=""){
-			if( $_GET['st'] == 'd'){
+			if($_GET['st'] == 'del'){
+				$userInfo['status']=2;
+			}else if( $_GET['st'] == 'd'){
 				$userInfo['status']=0;
 			}else{
 				$userInfo['status']=1;
@@ -182,7 +198,9 @@ class AdminController extends AbstractActionController
 					return $this->redirect()->toUrl($baseUrl.'/admin/videos-list');
 				}else{
 					$userName = ucfirst($userDetails->username);
-					if( $_GET['st'] == 'd'){				
+					if($_GET['st'] == 'del'){
+						$messageText = 'Your video link has been deleted.'; 
+					}else if( $_GET['st'] == 'd'){				
 						$messageText = 'Your video link has been deactivated.'; 
 					}else{
 						$messageText = 'Your video link has been activated.'; 
@@ -226,7 +244,7 @@ class AdminController extends AbstractActionController
 					$st = 'a';
 				}
 				$data[$i]['status']= $status;
-				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/add-video?vid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-video?vid='.$id.'&st='.$st.'">'.$statusRole.'</a>';
+				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/add-video?vid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteVideo('.$id.');">Delete</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-video?vid='.$id.'&st='.$st.'">'.$statusRole.'</a>';
 				$i++;
 			}
 			$data['aaData'] = $data;
