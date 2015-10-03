@@ -21,4 +21,27 @@ class HitsTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
+	public function addHit($vid,$uid)
+    {
+		$data = array(
+			'hv_id' 	    => $vid, 	
+			'hu_id' 		=> $uid,  		
+			'h_ip_add' 		=> $uid, 	
+			'h_status'      => 1,  	
+			'added_date'    => date('Y-m-d H:i:s'),   	
+			'updated_date' 	=> date('Y-m-d H:i:s')   
+				
+		);
+		$insertresult=$this->tableGateway->insert($data);
+		return $this->tableGateway->lastInsertValue;
+    }
+	public function alreadyHit($vid,$uid){
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('vc_hits.hv_id="'.$vid.'"');
+		$select->where('vc_hits.hu_id="'.$uid.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet->count();
+		return $row;
+	}
+	public function 
 }

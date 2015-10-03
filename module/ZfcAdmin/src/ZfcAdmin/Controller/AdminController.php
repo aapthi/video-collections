@@ -217,7 +217,7 @@ class AdminController extends AbstractActionController
 				$data[$i]['videotitle']= $video->v_title;
 				$data[$i]['videolink']= $video->v_link;
 				if($video->v_state==1){
-					$status = 'Active';
+					$status = 'Activate';
 					$statusRole = 'Deactive';
 					$st = 'd';
 				}else{
@@ -492,7 +492,17 @@ class AdminController extends AbstractActionController
                 $id=$categories->category_id;
 				$data[$i]['category_id']=$i+1;
 				$data[$i]['category_name']= $categories->category_name;
-				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/add-category?cid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteCategory('.$id.')">Delete</a>';
+				if($categories->status==1){
+					$status = 'Activate';
+					$statusRole = 'Deactive';
+					$st = 'd';
+				}else{
+					$status = 'Deactivate';
+					$statusRole = 'Active';
+					$st = 'a';
+				}
+				$data[$i]['status']= $status;				
+				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/add-category?cid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-category?cid='.$id.'&st='.$st.'">'.$statusRole.'</a>';
 				$i++;
 			}
 			$data['aaData'] = $data;
@@ -520,10 +530,17 @@ class AdminController extends AbstractActionController
 	  $baseUrlArr = $baseUrls['urls'];
 	  $baseUrl = $baseUrlArr['baseUrl'];
 	  $basePath = $baseUrlArr['basePath'];
-	  if(isset($_GET['id']))
-	  {
-		$deleteissue=$this->getCategoryTable()->deleteCategory($_GET['id']);
-		return $this->redirect()->toUrl($basePath .'/admin/categories-list');
+	  if(isset($_GET['cid']) && $_GET['cid']!=""){
+		if( $_GET['st'] == 'd'){
+			$userInfo['status']=0;
+		}else{
+			$userInfo['status']=1;
+		}
+		$userInfo['cid'] = $_GET['cid'];
+		$chgStatus = $this->getCategoryTable()->changeAccountStatus($userInfo);
+		if($chgStatus>0){	
+			return $this->redirect()->toUrl($basePath .'/admin/categories-list');
+		}
 	  }
 	}
 	public function getUserDetailsTable()

@@ -117,14 +117,14 @@ class UsersController extends AbstractActionController
 				$data[$i]['videotitle']= $video->v_title;
 				$data[$i]['videolink']= $video->v_link;
 				if($video->v_state==1){
-					$status = 'Active';
+					$status = 'Activate';
 					$st = 'd';
 				}else{
-					$status = 'Deactive';
+					$status = 'Deactivate';
 					$st = 'a';
 				}
 				$data[$i]['status']= $status;
-				$data[$i]['action'] ='<a href="'.$baseUrl.'/users/video-link?vid='.$id.'">Edit</a>';
+				// $data[$i]['action'] ='<a href="'.$baseUrl.'/users/video-link?vid='.$id.'">Edit</a>';
 				$i++;
 			}
 			$data['aaData'] = $data;

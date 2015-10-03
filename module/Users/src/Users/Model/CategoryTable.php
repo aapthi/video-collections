@@ -75,6 +75,17 @@ class CategoryTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
+	public function changeAccountStatus( $user)
+    {
+	
+			$data = array(
+				'modified_at' 	=> date('Y-m-d H:i:s'),   			
+				'status' 	    => $user['status']
+			);		
+		
+		$row=$this->tableGateway->update($data, array('category_id' => $user['cid']));
+		return $row;
+	}
 	public function editCategories($editid)
     {
 		$select = $this->tableGateway->getSql()->select();

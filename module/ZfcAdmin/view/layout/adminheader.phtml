@@ -35,6 +35,8 @@
 		$videoListA ="active_a_menu";
 	}else if($page == "change-password"){
 		$chgpassA ="active_a_menu";
+	}else if($page == "reports"){
+		$reportsA ="active_a_menu";
 	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -83,6 +85,7 @@
 								<li ><a class="<? echo $userListA; ?>" href="<?php echo $baseUrl; ?>/admin/users-list" >Users</a></li>
 								<li ><a class="<? echo $catListA; ?>"  href="<?php echo $baseUrl; ?>/admin/categories-list">Categories</a></li>
 								<li ><a class="<? echo $videoListA; ?>" href="<?php echo $baseUrl; ?>/admin/videos-list">Videos</a></li>
+								<li ><a class="<? echo $reportsA; ?>" href="<?php echo $baseUrl; ?>/admin/reports">Reports</a></li>
 								<li ><a class="<? echo $chgpassA; ?>" href="<?php echo $baseUrl; ?>/admin/change-password" >Change Password</a></li>
 								<li ><a href="<?php echo $baseUrl; ?>/admin/logout">log Out</a></li>
 							</ul>

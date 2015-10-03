@@ -8,6 +8,7 @@ class IndexController extends AbstractActionController
 {
 	protected  $categoriesTable;
 	protected  $videoTable;
+	protected  $hitsTable;
 	
     public function indexAction()
     {
@@ -79,6 +80,15 @@ class IndexController extends AbstractActionController
 			$catId = $getCatInfo->v_cat_id;
 			$videoRList = $this->getVideoTable()->videoRelatedList($catId,$vid);	
 		}
+		if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){
+			$userId = $_SESSION['user']['user_id'];			
+		}else{
+			$userId = $_SERVER['REMOTE_ADDR'];			
+		}
+		$checkHiting = $this->getHitsTable()->alreadyHit($vid,$userId);
+		if($checkHiting == 0){
+			$insertedHiting = $this->getHitsTable()->addHit($vid,$userId);			
+		}
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
@@ -87,7 +97,7 @@ class IndexController extends AbstractActionController
 				'vatData' 					=> $videoList,
 				'vatFData' 					=> $videoFList,
 				'getVideo' 					=> $getVideo,
-				'relatedVideos' 					=> $videoRList
+				'relatedVideos' 			=> $videoRList
 		));
 		return $viewModel;
 		
@@ -169,5 +179,13 @@ class IndexController extends AbstractActionController
             $this->videoTable = $sm->get('Users\Model\VideoFactory');			
         }
         return $this->videoTable;
+    }
+	public function getHitsTable()
+    {
+        if (!$this->hitsTable) {				
+            $sm = $this->getServiceLocator();
+            $this->hitsTable = $sm->get('Users\Model\HitsFactory');			
+        }
+        return $this->hitsTable;
     }
 }

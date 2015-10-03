@@ -11,7 +11,7 @@ use Zend\Db\TableGateway\Feature;
 use Users\Model\Hits;
 use Users\Model\HitsTable;
 
-class  TypeOfVideoTableFactory implements FactoryInterface
+class  HitsTableFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
