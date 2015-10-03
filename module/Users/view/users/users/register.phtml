@@ -60,7 +60,9 @@
 						<input type="text" class="form-control" id="user_mobile" name="user_mobile" value="<? if(isset($details->contact_number) && $details->contact_number!='') {echo $details->contact_number;}else{}?>" placeholder="Your Mobile Number">
 					</div>
 				</div>
-				<? if(isset($details->user_id) && $details->user_id==''){ ?>
+				<? if(isset($details->user_id) && $details->user_id!=''){ 
+				
+				}else{?>
 				<div style="width:100%">
 					<div class="form-group" style="width:40%">					
 						<div class="pos_relative">	
