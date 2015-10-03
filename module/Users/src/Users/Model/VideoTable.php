@@ -72,6 +72,7 @@ class VideoTable
 		$select = $this->tableGateway->getSql()->select();	
 		$select->where('vc_videos.v_cat_id="'.$cid.'"');
 		$select->where('vc_videos.v_id!="'.$vid.'"');
+		$select->limit(100);
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;	
 	}
