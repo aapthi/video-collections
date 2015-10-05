@@ -85,7 +85,8 @@ class VideoTable
 		$select = $this->tableGateway->getSql()->select();	
 		$select->where('vc_videos.v_cat_id="'.$cid.'"');
 		$select->where('vc_videos.v_id!="'.$vid.'"');
-		$select->limit(100);
+		$select->order(new \Zend\Db\Sql\Expression('RAND()'))->limit(100);
+		$select->where('vc_videos.type_of_video="featured"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;	
 	}
