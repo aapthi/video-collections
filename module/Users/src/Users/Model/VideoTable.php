@@ -105,14 +105,10 @@ class VideoTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet->current();
 	}
-	public function checkvideoLink($videolink){
-		$value = explode('?',$videolink);
-		$qm = "/php\\?/";
-		echo $qm;exit;
+	public function checkvideoLink($videoCode){		
 		$select = $this->tableGateway->getSql()->select();	
-		$select->where('vc_videos.v_link="'.$value.'"');
+		$select->where('vc_videos.browsed_imagecode="'.$videoCode.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
-		echo '<pre>';print_r($resultSet);exit;
 		return $resultSet->count();
 	}
 	public function videoList(){

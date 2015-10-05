@@ -86,8 +86,32 @@ class UsersController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];		
 		if(isset($_POST['videoLink']) && $_POST['videoLink']!=""){
-			$existsVideo=$this->getVideoTable()->checkvideoLink($_POST['videoLink']);
-			echo $existsVideo;exit;
+			$s=$_POST['videoLink'];
+			$link=explode("/", $s);
+			$url=$link['2'];
+			$urlName=explode(".", $url);
+			if(isset($urlName)){
+				if((isset($urlName['1'])) && ($urlName['1']=='youtube')){
+					$video_url=$urlName['1'];
+					$image=explode("=", $link['3']);
+					$imageCode=$image['1'];
+					$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
+				}else if(isset($urlName['1']) && $urlName['1']=='dailymotion'){
+					$video_url=$urlName['1'];
+					$image=explode("_", $link['4']);
+					$imageCode=$image['0'];
+					$imageUrl="http://www.dailymotion.com/thumbnail/video/".$imageCode;
+				}else if(isset($urlName['0']) && ($urlName['0']=='vimeo')){
+					$video_url= $urlName['0'];
+					$imageCode = $link['5'];
+					$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imageCode.php"));
+					$imageUrl=$hash[0]['thumbnail_medium'];
+				}else{
+					$video_url= '';
+					$imageUrl= '';
+				}
+			}
+			$existsVideo=$this->getVideoTable()->checkvideoLink($imageCode);
 			if($existsVideo!=0){
 				$result = new JsonModel(array(					
 					'output' => 'exists',
