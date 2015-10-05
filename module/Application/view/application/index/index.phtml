@@ -1,3 +1,9 @@
+<style>
+	#dddd{
+		height:1100px;		
+		overflow:auto;
+	}
+</style>
 <div class="container min_height">
 		<? if(isset($_GET['suc']) && $_GET['suc']=='reg'){?>
 			<div class="alert alert-dismissible alert-success">
@@ -15,14 +21,16 @@
 				Latest Videos
 				</a>
 			<div class="list_grou_itemspad">
-			<?if(isset($this->vatTData) && count($this->vatTData)){
-				foreach($this->vatTData as $links){ 
-					$video_id = base64_encode($links->v_id);
-				?>
-				<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>" class="list-group-item"><span class="glyphicon glyphicon-triangle-right cal_next" aria-hidden="true"></span><?php if(strlen($links->v_title)>42){echo substr($links->v_title,0,42) . '...'; }else{echo $links->v_title;}?></a>
-				<?php } } else { ?>
-					<br/>&nbsp;There are no links.
-				<? }?>
+				<div id="dddd">
+					<?if(isset($this->vatTData) && count($this->vatTData)){
+						foreach($this->vatTData as $links){ 
+							$video_id = base64_encode($links->v_id);
+						?>
+						<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>" class="list-group-item"><span class="glyphicon glyphicon-triangle-right cal_next" aria-hidden="true"></span><?php if(strlen($links->v_title)>42){echo substr($links->v_title,0,42) . '...'; }else{echo $links->v_title;}?></a>
+						<?php } } else { ?>
+							<br/>&nbsp;There are no links.
+					<? }?>
+				</div>
 			</div>
 			</div>
 			<div align="center">
@@ -50,3 +58,6 @@
 		</div>
 	</div>
 </div>
+<script>
+	var nicesxPublic = $("#dddd").niceScroll({cursorborder:"",touchbehavior:false,cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5});		
+</script>

@@ -25,8 +25,8 @@ class IndexController extends AbstractActionController
 			$vid = $routes['id'];
 		}
 		$paginator = $this->getVideoTable()->videoTitleList(true,$vid);
-		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page', 1));
-		$paginator->setItemCountPerPage(39);	
+		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page',1));
+		$paginator->setItemCountPerPage(100);	
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
