@@ -496,6 +496,19 @@ position:absolute;
 .my_ac_drop_down .filter_cate .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default{
 	background:#fff;
 }
+.related_video_thumb .list-inline li{
+	margin-bottom:10px;
+	width:153px;
+	position:relative;
+	text-align:right;
+ }
+ .related_video_thumb .list-inline li{
+	padding:0;
+ }
+ .related_video_thumb img{
+	width:143px;
+	border-radius:4px;
+ }
 @media (max-width: 1024px) {
  .reg_w_12{
 	width:85%;

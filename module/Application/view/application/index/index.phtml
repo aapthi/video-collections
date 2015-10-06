@@ -1,7 +1,6 @@
 <style>
 	#dddd{
-		height:1100px;		
-		overflow:auto;
+		height:1100px;
 	}
 </style>
 <div class="container min_height">
@@ -12,10 +11,10 @@
 			</div>
 		<? } ?>
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-13">
 		 <?php include('left-side-bar.phtml');?>
 		</div>
-		<div class="col-md-5">
+		<div class="col-md-15">
 			<div class="list-group cal_next">
 				<a href="#" class="list-group-item active size18">
 				Latest Videos
@@ -59,5 +58,7 @@
 	</div>
 </div>
 <script>
-	var nicesxPublic = $("#dddd").niceScroll({cursorborder:"",cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5,autohidemode: false});		
+$(document).ready(function(){
+	var nicesxPublic = $("#dddd").niceScroll({touchbehavior:false, cursorborder:"",cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5,autohidemode: false});	
+});	
 </script>
