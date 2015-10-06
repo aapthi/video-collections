@@ -22,11 +22,12 @@
 			<div class="list_grou_itemspad">
 				<div id="dddd">
 					<?if(isset($this->vatTData) && count($this->vatTData)){
-						foreach($this->vatTData as $links){ 
+						foreach($this->vatTData as $links){
 							$video_id = base64_encode($links->v_id);
 						?>
+						
 						<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>" class="list-group-item"><span class="glyphicon glyphicon-triangle-right cal_next" aria-hidden="true"></span><?php if(strlen($links->v_title)>42){echo substr($links->v_title,0,42) . '...'; }else{echo $links->v_title;}?></a>
-						<?php } } else { ?>
+						<?php }} else { ?>
 							<br/>&nbsp;There are no links.
 					<? }?>
 				</div>
@@ -58,7 +59,8 @@
 	</div>
 </div>
 <script>
+
 $(document).ready(function(){
-	var nicesxPublic = $("#dddd").niceScroll({touchbehavior:false, cursorborder:"",cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5,autohidemode: false});	
+ $("#dddd").niceScroll({touchbehavior:false, cursorborder:"",cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5,autohidemode: false});
 });	
 </script>
