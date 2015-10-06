@@ -1,12 +1,20 @@
-<table>
-	<tr>
-		<td>Links posted today</td><td>:</td><td><?echo $this->todayVideoCount;?></td>
-	</tr>
-	<tr>
-		<td>Users signed up today</td><td>:</td><td><?echo $this->todayUsersCount;?></td>
-	</tr>
-	<tr>
-		<td>Total Videos in present</td><td>:</td><td><?echo $this->presentVideoCount;?></td>
-	</tr>	
-</table>
-<p><a href="/admin/index?type=customer">BACK</a></p>
+<div class="container min_height reports_page">
+		<table>
+			<tr>
+				<td><h3 class="color_link">Links posted today</h3></td>
+				<td><h3 class="color_link"><?echo $this->todayVideoCount;?></h3></td>
+			</tr>
+			<tr>
+				<td><h3 class="color_link_posted">Users signed up today</h3></td>
+				<td><h3 class="color_link_posted"><?echo $this->todayUsersCount;?></h3></td>
+			</tr>
+			<tr>
+				<td>
+					<h3 class="color_link_totle">Total Videos in present</h3></td>
+					<td><h3 class="color_link_totle"><?echo $this->presentVideoCount;?></h3></td>
+				</tr>
+			<tr>
+				<td>&nbsp;</td><td><a href="/admin/index?type=customer">BACK</a></td>
+			</tr>
+		</table>
+</div>

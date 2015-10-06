@@ -509,6 +509,33 @@ position:absolute;
 	width:143px;
 	border-radius:4px;
  }
+ .reports_page{
+	margin-top:30px;
+	margin-bottom:30px;
+ }
+ .reports_page table{
+	width:100%;
+ }
+ .reports_page tr{
+	border-bottom:1px solid #ddd;
+ }
+ .reports_page td{
+		padding-top:10px;
+	padding-bottom:10px;
+ }
+ .reports_page h3{
+	margin:0;
+	font-size:22px;
+ }
+ .color_link{
+	color:#54b4eb;
+ }
+ .color_link_posted{
+	color:green;
+ }
+ .color_link_totle{
+	color:#fc4242 ;
+ }
 @media (max-width: 1024px) {
  .reg_w_12{
 	width:85%;
