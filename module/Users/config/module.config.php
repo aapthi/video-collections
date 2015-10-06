@@ -52,6 +52,41 @@ return array(
 						),
 					),
 			),
+			//Static Pages
+			'about' => array(
+					'type' => 'literal',
+					'options' => array(
+						'route'    => '/about',
+						'defaults' => array(
+							'controller' => 'Users\Controller\UsersController',
+							'action'     => 'about',
+						),
+					),
+			),
+			'privacy-policy' => array(
+					'type' => 'literal',
+					'options' => array(
+						'route'    => '/privacy-policy',
+						'defaults' => array(
+							'controller' => 'Users\Controller\UsersController',
+							'action'     => 'privacyPolicy',
+						),
+					),
+			),
+			'terms-conditions' => array(
+					'type' => 'literal',
+					'options' => array(
+						'route'    => '/terms-conditions',
+						'defaults' => array(
+							'controller' => 'Users\Controller\UsersController',
+							'action'     => 'termsConditions',
+						),
+					),
+			),
+			
+			// End 
+			
+			
 			'check-password' => array(
 					'type' => 'literal',
 					'options' => array(
@@ -131,10 +166,11 @@ return array(
 					),
 					'defaults'    => array(
 						'controller'    => 'Users\Controller\Users',
-						'action'        => 'contact-us',
+						'action'        => 'contactUs',
 					),
 				),
 			),
+		
 			'online-payments' => array(
 				'type' => 'segment',
 				'options' => array(

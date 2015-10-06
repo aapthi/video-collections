@@ -859,6 +859,59 @@ class UsersController extends AbstractActionController
 			));
 		return $this->redirect()->toUrl($baseUrl);
 	}
+	//Static pages
+	
+	public function aboutAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$view = new ViewModel(
+			array(
+				'baseUrl' 	=> $baseUrl,
+				'basePath' 	=> $basePath,
+			));
+		return $view;
+	}
+	public function privacyPolicyAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$view = new ViewModel(
+			array(
+				'baseUrl' 	=> $baseUrl,
+				'basePath' 	=> $basePath,
+			));
+		return $view;
+	}
+	public function termsConditionsAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$view = new ViewModel(
+			array(
+				'baseUrl' 	=> $baseUrl,
+				'basePath' 	=> $basePath,
+			));
+		return $view;
+	}
+	public function contactUsAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$view = new ViewModel(
+			array(
+				'baseUrl' 	=> $baseUrl,
+				'basePath' 	=> $basePath,
+			));
+		return $view;
+	}
+	
+	
+	// End 
 	public function getUserTable()
     {
         if (!$this->userTable) {				

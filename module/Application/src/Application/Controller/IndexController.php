@@ -117,6 +117,7 @@ class IndexController extends AbstractActionController
 		);
 		
 	}
+	
 	public function rightSideBarAction(){
 		
 		
@@ -132,7 +133,6 @@ class IndexController extends AbstractActionController
 		$topVideos=array();
 		$featuredVideos=array();
 		$lastedVideos=array();
-		//echo "<pre>"; print_r(count($homePageVideos)); exit;
 		if($homePageVideos!="") {
 			$i=0; foreach($homePageVideos as $videosH){
 				if( $i<=6 ){
@@ -141,7 +141,7 @@ class IndexController extends AbstractActionController
 				if( $i>=7 && $i<23 ){
 					$featuredVideos[] = $videosH; 
 				}
-				if($i>=15){			
+				if($i>=23){			
 					$lastedVideos[] = $videosH;
 				 }
 			$i++; }
