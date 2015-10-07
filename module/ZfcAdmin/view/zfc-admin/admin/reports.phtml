@@ -1,5 +1,15 @@
+<?php
+	if(isset($_SESSION['admin']['user_id']) && $_SESSION['admin']['user_id']!=""){
+	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+	$baseUrl = $header->headerarray['baseUrl'];
+	$basePath = $header->headerarray['basePath'];
+?>
 <div class="container min_height reports_page">
 		<table>
+			<tr>
+				<td><h3 class="color_link_totle">Total Videos in present</h3></td>
+				<td><h3 class="color_link_totle"><?echo $this->presentVideoCount;?></h3></td>
+			</tr>
 			<tr>
 				<td><h3 class="color_link">Links posted today</h3></td>
 				<td><h3 class="color_link"><?echo $this->todayVideoCount;?></h3></td>
@@ -7,14 +17,16 @@
 			<tr>
 				<td><h3 class="color_link_posted">Users signed up today</h3></td>
 				<td><h3 class="color_link_posted"><?echo $this->todayUsersCount;?></h3></td>
+			</tr>			
+			<tr>
+				<td><h3 class="color_link">Total number of hits till date</h3></td>
+				<td><h4 class="color_link"><?echo $this->todayHitsCount;?> &nbsp;&nbsp;&nbsp; | <a href="<? echo $baseUrl;?>/admin/hit-count-videos">View</a></h3></td>
 			</tr>
 			<tr>
-				<td>
-					<h3 class="color_link_totle">Total Videos in present</h3></td>
-					<td><h3 class="color_link_totle"><?echo $this->presentVideoCount;?></h3></td>
-				</tr>
-			<tr>
-				<td>&nbsp;</td><td><a href="/admin/index?type=customer">BACK</a></td>
+				<td>&nbsp;</td><td><a href="<? echo $baseUrl;?>/admin/users-list">BACK</a></td>
 			</tr>
 		</table>
 </div>
+<? } else{?>
+	 <script>window.location=BASE_URL+"/admin";</script>
+<? } ?>

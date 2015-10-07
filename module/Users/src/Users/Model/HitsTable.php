@@ -28,6 +28,7 @@ class HitsTable
 			'hu_id' 		=> $uid,  		
 			'h_ip_add' 		=> $uid, 	
 			'h_status'      => 1,  	
+			'hit_date'      => date('Y-m-d'),  	
 			'added_date'    => date('Y-m-d H:i:s'),   	
 			'updated_date' 	=> date('Y-m-d H:i:s')   
 				
@@ -47,6 +48,14 @@ class HitsTable
 		$todayDate = date('Y-m-d');
 		$select = $this->tableGateway->getSql()->select();
 		$select->where('vc_hits.hv_id="'.$vid.'"');
+		$select->where('vc_hits.hit_date="'.$todayDate.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet->count();
+		return $row;
+	}
+	public function todayHitsCount(){
+		$todayDate = date('Y-m-d');
+		$select = $this->tableGateway->getSql()->select();
 		$select->where('vc_hits.hit_date="'.$todayDate.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->count();

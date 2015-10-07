@@ -63,6 +63,16 @@ class VideoTable
 			return $this->tableGateway->lastInsertValue;
 		}	
 	}
+	public function videoListWithCount(){
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('vc_categories', 'vc_videos.v_cat_id=vc_categories.category_id',array('*'),'left');
+		$select->join('vc_hits', 'vc_videos.v_id=vc_hits.hv_id',array('totalHits' =>new Expression('COUNT(h_id)')),'left');
+		$select->group('vc_videos.v_id');	
+		$select->where('vc_videos.v_state!="2"');		
+		$select->order('vc_videos.v_id DESC');	
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 	public function getCategory($vid){
 		$select = $this->tableGateway->getSql()->select();	
 		$select->where('vc_videos.v_id="'.$vid.'"');

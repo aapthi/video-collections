@@ -1,0 +1,65 @@
+<?php if(isset($_SESSION['admin']['user_id'])){
+	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+	$baseUrl = $header->headerarray['baseUrl'];
+	$basePath = $header->headerarray['basePath']; 
+?>
+<div class="container mar_t mar_b min_height" style="position:relative">
+<head>
+  <link rel="stylesheet" type="text/css" href="">
+  <link href="<?php echo $basePath; ?>/css/jquery.datatable.css" rel="stylesheet">
+  <script src="<?php echo $basePath;?>/js/jquery.datatable.min.js"></script>
+</head>
+  <table id="example" class="table table-bordered table-hover">
+	<div style="position:absolute;top:21px;left:200px;z-index:300">
+ <a href="<? echo $baseUrl.'/admin/reports'?>"><button type="button" class="btn btn-primary btn-bloconclick btn-sm" id="add" name="add" >Back</button></a>
+ </div>
+    <thead>
+      <tr><th>#</th>
+     <th>Category Name</th>
+     <th>Video Title</th>
+     <th>Video Link</th>
+     <th>Status</th>
+	 <th>UserHitsCount</th>
+     </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  </div>
+  <center><span id="reload"></span></center>
+  <script>
+  $(function(){
+  $('#reload').html('<img src=<?php echo $basePath; ?>/images/ajax-loader.gif />');
+  $.ajax({
+        type:    'GET',
+        dataType:'json',
+        url: BASE_PATH+'/admin/hits-count-ajax',
+        success: function(data){
+		$('#reload').html('');
+            eval(data);
+            var oTable = $('#example').dataTable( {
+                aoColumnDefs: [{bSortable: false,
+                                aTargets: [ 0 ]
+                                }],
+                "bStateSave": true,
+                "bAutoWidth": true,
+                "sRowSelect": "multi",
+                "sPaginationType": "full_numbers",
+                "bProcessing": true,
+                "aaData": data,
+                "aoColumns": [
+                    { "mData": "v_id" },
+                    { "mData": "cat_name" },
+                    { "mData": "videotitle" },
+                    { "mData": "videolink" },
+                    { "mData": "status" },
+                    { "mData": "usershitcount" }                        
+                ] 
+            });    
+        }
+    });
+});
+  </script>
+<?php }else{?>
+  <script>window.location=BASE_URL+"/admin";</script>
+<?}?>

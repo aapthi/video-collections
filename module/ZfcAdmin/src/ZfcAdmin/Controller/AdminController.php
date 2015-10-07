@@ -17,6 +17,7 @@ class AdminController extends AbstractActionController
 	protected  $categoriesTable;
 	protected  $userDetailsTable;
 	protected  $videoTable;
+	protected  $hitsTable;
 	public function indexAction()
 	{
 		
@@ -47,6 +48,45 @@ class AdminController extends AbstractActionController
         }
         return $this->userTable;
     }
+	public function hitCountVideosAction(){
+	
+	}
+	public function hitsCountAjaxAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$data = array();
+		$i=0;
+		$videoTable=$this->getVideoTable();
+		$videoData = $videoTable->videoListWithCount();		
+		if(isset($videoData) && $videoData->count()!=0){
+		 $catTypeName="";
+			foreach($videoData as $video){
+				$id=$video->v_id;
+				$data[$i]['v_id']=$i+1;
+				$data[$i]['cat_name']= $video->category_name;
+				$data[$i]['videotitle']= $video->v_title;
+				$data[$i]['videolink']= $video->v_link;
+				if($video->v_state==1){
+					$status = 'Activate';
+					$statusRole = 'Deactive';
+					$st = 'd';
+				}else{
+					$status = 'Deactivate';
+					$statusRole = 'Active';
+					$st = 'a';
+				}
+				$data[$i]['status']= $status;
+				$data[$i]['usershitcount'] = $video->totalHits;
+				$i++;
+			}
+			$data['aaData'] = $data;
+			echo json_encode($data['aaData']); exit;
+		}else{
+			echo '1'; exit;
+		}
+	}	
 	public function reportsAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
@@ -54,10 +94,12 @@ class AdminController extends AbstractActionController
 		$todayVideoCount = $this->getVideoTable()->todayVideoCount();
 		$presentVideoCount = $this->getVideoTable()->presentVideoCount();
 		$todayUsersCount = $this->getUserTable()->todayUsersCount();
+		$todayHitsCount = $this->getHitsTable()->todayHitsCount();
 		return new ViewModel(array(
 			'todayVideoCount'	  =>  $todayVideoCount,
 			'todayUsersCount'	  =>  $todayUsersCount,
 			'presentVideoCount'	  =>  $presentVideoCount,	
+			'todayHitsCount'	  =>  $todayHitsCount,	
 			'baseUrl'	  =>  $baseUrl	
 		));
 	}
@@ -576,5 +618,13 @@ class AdminController extends AbstractActionController
             $this->videoTable = $sm->get('Users\Model\VideoFactory');			
         }
         return $this->videoTable;
+    }
+	public function getHitsTable()
+    {
+        if (!$this->hitsTable) {				
+            $sm = $this->getServiceLocator();
+            $this->hitsTable = $sm->get('Users\Model\HitsFactory');			
+        }
+        return $this->hitsTable;
     }	
 }
