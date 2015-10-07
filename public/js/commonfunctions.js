@@ -37,7 +37,7 @@ function serachTitle(){
 	});
 	$("#videosSearch").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
 		var vid=item.idd;
-		 return $("<li><a href='http://localhost/video-collections/trunk/play-video?watch_title="+item.label+"&watch_id="+vid+"'>" + item.label + "</a></li>")
+		 return $("<li><a href='"+item.idd+"'>" + item.label + "</a></li>")
 		 .data("item.uiAutocomplete", item)            
 		 .appendTo(ul);				
 	};

@@ -191,8 +191,8 @@ if(strpos($_SERVER['REQUEST_URI'],'register')!==false || strpos($_SERVER['REQUES
  alert('I am chrome');
 }*/
 $('#videosSearch').keypress(function(e){
-	serachTitle();
-	 // $(".ui-autocomplete").niceScroll({touchbehavior:false, cursorborder:"",cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5,autohidemode: false});
+	serachTitle(e);
+	$(".ui-autocomplete").niceScroll({touchbehavior:false, cursorborder:"",cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5,autohidemode: false,horizrailenabled:false});
 	if( e.keyCode == 13 ){
 		searchByLocation();
 	}

@@ -70,23 +70,23 @@ class IndexController extends AbstractActionController
     }
 	public function searchTitleResultAction()
     {
-		$list_titles='';
-		$hashNameIds="";
-		$count="";
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$list_titles=array();
 		if(isset($_POST['value']) && $_POST['value']!=""){		
 			$getTitles = $this->getVideoTable()->getSearchTilesResults($_POST['value'],true);
 			foreach($getTitles as $key=>$search){				
-				$list_titles[$search->v_id]=$search->v_title;
-				$hashNameIds[$key]=$key;
-				$count=$key;				
+				$list_titles[$search->v_id]=$search->v_title;								
 			}
 			$combined = array();
 			if($list_titles!=''){				
-				foreach($list_titles as $index => $refNumber) {		
-					// if(strlen($refNumber)>66){$sTitle = substr($refNumber,0,66) . '...'; }
+				foreach($list_titles as $key => $refNumber) {	
+					$bseEncode = base64_encode($key);
 					$combined[] = array(
 						'ref'  => $refNumber,
-						'part' => $index
+						'part' => $baseUrl.'/play-video?watch='.$bseEncode,
 					);
 				}
 			}
@@ -107,11 +107,7 @@ class IndexController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
-		if(isset($_GET['watch']) && $_GET['watch']!=""){
-			$vid = base64_decode($_GET['watch']);
-		}else if(isset($_GET['watch_id']) && $_GET['watch_id']!=""){
-			$vid = $_GET['watch_id'];
-		}		
+		$vid = base64_decode($_GET['watch']);				
 		$catList = $this->getCategoryTable()->getCategoryListD();		
 		$videoList = $this->getVideoTable()->videoForentedList();		
 		$videoFList = $this->getVideoTable()->videoFeaturedList();		
