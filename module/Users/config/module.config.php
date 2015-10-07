@@ -53,36 +53,7 @@ return array(
 					),
 			),
 			//Static Pages
-			'about' => array(
-					'type' => 'literal',
-					'options' => array(
-						'route'    => '/about',
-						'defaults' => array(
-							'controller' => 'Users\Controller\UsersController',
-							'action'     => 'about',
-						),
-					),
-			),
-			'privacy-policy' => array(
-					'type' => 'literal',
-					'options' => array(
-						'route'    => '/privacy-policy',
-						'defaults' => array(
-							'controller' => 'Users\Controller\UsersController',
-							'action'     => 'privacyPolicy',
-						),
-					),
-			),
-			'terms-conditions' => array(
-					'type' => 'literal',
-					'options' => array(
-						'route'    => '/terms-conditions',
-						'defaults' => array(
-							'controller' => 'Users\Controller\UsersController',
-							'action'     => 'termsConditions',
-						),
-					),
-			),
+			
 			
 			// End 
 			
@@ -170,7 +141,48 @@ return array(
 					),
 				),
 			),
-		
+			'about-us' => array(
+					'type' => 'segment',
+					'options' => array(
+						'route'    => '/about-us[/:id]',
+						'constraints' => array(
+							'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+							'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+						),
+						'defaults' => array(
+							'controller' => 'Users\Controller\Users',
+							'action'     => 'about',
+						),
+					),
+			),
+			'privacy-policy' => array(
+					'type' => 'segment',
+					'options' => array(
+						'route'    => '/privacy-policy[/:id]',
+						'constraints' => array(
+							'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+							'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+						),
+						'defaults' => array(
+							'controller' => 'Users\Controller\Users',
+							'action'     => 'privacyPolicy',
+						),
+					),
+			),
+			'terms-conditions' => array(
+					'type' => 'segment',
+					'options' => array(
+						'route'    => '/terms-conditions[/:id]',
+						'constraints' => array(
+							'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+							'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+						),
+						'defaults' => array(
+							'controller' => 'Users\Controller\Users',
+							'action'     => 'termsConditions',
+						),
+					),
+			),
 			'online-payments' => array(
 				'type' => 'segment',
 				'options' => array(
