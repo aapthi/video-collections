@@ -536,6 +536,15 @@ position:absolute;
  .color_link_totle{
 	color:#fc4242 ;
  }
+ .heading_title_h2 h2{
+	margin:0;
+	padding-bottom:5px;
+ }
+  .heading_title_h2 h1{
+	margin:0;
+	padding-bottom:20px;
+	padding-top:5px;
+ }
 @media (max-width: 1024px) {
  .reg_w_12{
 	width:85%;
