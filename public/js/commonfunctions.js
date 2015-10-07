@@ -1,3 +1,41 @@
+function contactFormFunction(){
+	var flag=true;
+	var fname=$('#firstName').val();
+	var lnmae=$('#lastName').val();
+	var contactemail=$('#contactEmail').val();
+	var mobile=$('#mobileNumber').val();
+	var message=$('#contactMessage').val();
+	if(fname==""){
+		$('#fnameError').html('Required');
+		flag==false;
+	}else{
+		$('#fnameError').html('');
+	}
+	if(contactemail==''){
+		$('#emailError').html('Required');
+		flag=false;
+	}else if(checkEmail(contactemail)==false){
+		$('#emailError').html('Invalid Email');
+		flag=false;
+	}else{
+		$('#emailError').html('');
+	}
+	if(mobile==''){
+		$('#mobileError').html('Required');
+		flag=false;
+	}else{
+		$('#mobileError').html('');
+	}
+	if(message==""){
+		$('#messageError').html('Required');
+		flag==false;
+	}else{
+		$('#messageError').html('');
+	}
+	if(flag==true){
+		$('#con_form_id').submit();
+	}
+}
 function alreadyExists(){
 	var videocheck = $("#video_link").val();
 	if(videocheck!==''){
