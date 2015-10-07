@@ -141,7 +141,7 @@ class IndexController extends AbstractActionController
 				if( $i>=7 && $i<23 ){
 					$featuredVideos[] = $videosH; 
 				}
-				if($i>=23){			
+				if($i>=15){			
 					$lastedVideos[] = $videosH;
 				 }
 			$i++; }
