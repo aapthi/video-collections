@@ -906,24 +906,21 @@ class UsersController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
 		$output="";
-		//$params=$this->params()->fromRoute('id', 0);
-		if($_POST){
+		if(isset($_POST['contactEmail']) && $_POST['contactEmail']!=""){
 			$userName  		= ucfirst($_POST['firstName'].' '. $_POST['lastName']);
 			$userEmail 		= $_POST['contactEmail'];
 			$usermessage   	= $_POST['contactMessage'];
 			$mobilenumber   = $_POST['mobileNumber'];
 			$contactusMessage = str_replace("<FULLNAME>",$userName, $contactusMessage);				
 			$contactusMessage = str_replace("<EMAIL>",$userEmail, $contactusMessage);
-			$contactusMessage = str_replace("<MOBILENUMBER>",$userEmail, $contactusMessage);
+			$contactusMessage = str_replace("<MOBILENUMBER>",$mobilenumber, $contactusMessage);
 			$contactusMessage = str_replace("<SUBJECT>",$usermessage, $contactusMessage);
 			$to='naveenleela3@gmail.com';				
 			if(sendMail($to,$contactusSubject,$contactusMessage)){		
-				//return $this->redirect()->toUrl('contact-us/1');
 				$output ='success' ;
 			}else{
 				$output ='fail' ;
-			}
-			
+			}			
 		}
 		$view = new ViewModel(
 			array(
@@ -934,9 +931,6 @@ class UsersController extends AbstractActionController
 		return $view;
 		
 	}
-	
-	
-	// End 
 	public function getUserTable()
     {
         if (!$this->userTable) {				
