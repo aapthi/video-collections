@@ -26,7 +26,7 @@
 							$video_id = base64_encode($links->v_id);
 						?>
 						
-						<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>" class="list-group-item"><span class="glyphicon glyphicon-triangle-right cal_next" aria-hidden="true"></span><?php if(strlen($links->v_title)>66){echo substr($links->v_title,0,66) . '...'; }else{echo $links->v_title;}?></a>
+						<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>" class="list-group-item"><span class="glyphicon glyphicon-triangle-right cal_next" aria-hidden="true"></span><?php if(strlen($links->v_title)>45){echo substr($links->v_title,0,46) . '...'; }else{echo $links->v_title;}?></a>
 						<?php }} else { ?>
 							<br/>&nbsp;There are no links.
 					<? }?>
@@ -50,7 +50,15 @@
 		<div class="col-md-4">
 			<div class="panel panel-default">
 			<div class="" align="center">
-				<img  src="<?php echo $basePath; ?>/img/ads.png" alt="ads" width="100%">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- rightbanner -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:250px"
+					 data-ad-client="ca-pub-9408213208791031"
+					 data-ad-slot="6451237032"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
 			</div>
 			</div>
 			<?php include('right-side-bar.phtml');?>
