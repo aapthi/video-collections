@@ -50,8 +50,9 @@ class IndexController extends AbstractActionController
 		$videoList = $this->getVideoTable()->videoForentedList();		
 		$videoFList = $this->getVideoTable()->videoFeaturedList();
 		$routes=$this->params()->fromRoute();
-		$searchres =str_replace('-',' ',$routes['search_name']);
-		$paginator = $this->getVideoTable()->getSearchResults($searchres,true);
+		//$searchres =str_replace('-',' ',$routes['search_name']);
+		$paginator = $this->getVideoTable()->getSearchResults($routes,true);
+		
 		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page', 1));
 		$paginator->setItemCountPerPage(39);
 		$paginator->setPageRange(5);

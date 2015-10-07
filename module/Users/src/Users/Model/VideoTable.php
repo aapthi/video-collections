@@ -188,7 +188,9 @@ class VideoTable
 		$select = $this->tableGateway->getSql()->select();	
 		$select->order('v_id DESC');	
 		$select->where('v_state="1"');		
-		$select->where->like( 'v_title', '%' . $searcKey . '%' );		
+		$select->where(array(
+			new \Zend\Db\Sql\Predicate\Expression("MATCH(v_title) AGAINST ('".$searcKey['search_name']."')")
+		));
 		$resultSet = $this->tableGateway->selectWith($select);
 		$paginatorAdapter = new DbSelect(
 				$select,
@@ -196,6 +198,7 @@ class VideoTable
 				$resultSet
 			);
 			$paginator = new Paginator($paginatorAdapter);
+		
 			return $paginator;
 		return $resultSet;
 	}
