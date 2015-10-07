@@ -899,15 +899,40 @@ class UsersController extends AbstractActionController
 	}
 	public function contactUsAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
+		include('public/PHPMailer_5.2.4/sendmail.php');	
+		global $contactusSubject;				
+		global $contactusMessage;
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
+		$output="";
+		//$params=$this->params()->fromRoute('id', 0);
+		if($_POST){
+			$userName  		= ucfirst($_POST['firstName'].' '. $_POST['lastName']);
+			$userEmail 		= $_POST['contactEmail'];
+			$usermessage   	= $_POST['contactMessage'];
+			$mobilenumber   = $_POST['mobileNumber'];
+			$contactusMessage = str_replace("<FULLNAME>",$userName, $contactusMessage);				
+			$contactusMessage = str_replace("<EMAIL>",$userEmail, $contactusMessage);
+			$contactusMessage = str_replace("<MOBILENUMBER>",$userEmail, $contactusMessage);
+			$contactusMessage = str_replace("<SUBJECT>",$usermessage, $contactusMessage);
+			$to='naveenleela3@gmail.com';				
+			if(sendMail($to,$contactusSubject,$contactusMessage)){		
+				//return $this->redirect()->toUrl('contact-us/1');
+				$output ='success' ;
+			}else{
+				$output ='fail' ;
+			}
+			
+		}
 		$view = new ViewModel(
 			array(
 				'baseUrl' 	=> $baseUrl,
 				'basePath' 	=> $basePath,
+				'output' 	=> $output,
 			));
 		return $view;
+		
 	}
 	
 	
