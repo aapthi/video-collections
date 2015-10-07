@@ -68,12 +68,50 @@ class IndexController extends AbstractActionController
 		));
 		return $viewModel;
     }
+	public function searchTitleResultAction()
+    {
+		$list_titles='';
+		$hashNameIds="";
+		$count="";
+		if(isset($_POST['value']) && $_POST['value']!=""){		
+			$getTitles = $this->getVideoTable()->getSearchTilesResults($_POST['value'],true);
+			foreach($getTitles as $key=>$search){				
+				$list_titles[$search->v_id]=$search->v_title;
+				$hashNameIds[$key]=$key;
+				$count=$key;				
+			}
+			$combined = array();
+			if($list_titles!=''){				
+				foreach($list_titles as $index => $refNumber) {		
+					// if(strlen($refNumber)>66){$sTitle = substr($refNumber,0,66) . '...'; }
+					$combined[] = array(
+						'ref'  => $refNumber,
+						'part' => $index
+					);
+				}
+			}
+			$result = new JsonModel(array(					
+				'searchHashNames' => $combined,
+				'success'=>true,
+			));			
+		}else{
+			$result = new JsonModel(array(					
+				'searchHashNames' => [],
+				'success'=>true,
+			));			
+		}
+		return $result;		
+    }
 	public function playVideoAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
-		$basePath = $baseUrlArr['basePath'];	
-		$vid = base64_decode($_GET['watch']);
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_GET['watch']) && $_GET['watch']!=""){
+			$vid = base64_decode($_GET['watch']);
+		}else if(isset($_GET['watch_id']) && $_GET['watch_id']!=""){
+			$vid = $_GET['watch_id'];
+		}		
 		$catList = $this->getCategoryTable()->getCategoryListD();		
 		$videoList = $this->getVideoTable()->videoForentedList();		
 		$videoFList = $this->getVideoTable()->videoFeaturedList();		

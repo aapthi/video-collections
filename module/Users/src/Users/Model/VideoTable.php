@@ -212,4 +212,14 @@ class VideoTable
 			return $paginator;
 		return $resultSet;
 	}
+	public function getSearchTilesResults($searcKey,$paginated=false){
+		$select = $this->tableGateway->getSql()->select();	
+		$select->order('v_id DESC');	
+		$select->where('v_state="1"');	
+		$select->where(array(
+			new \Zend\Db\Sql\Predicate\Expression("MATCH(v_title) AGAINST ('".$searcKey."')")
+		));
+		$resultSet = $this->tableGateway->selectWith($select);			
+		return $resultSet;
+	}
 }

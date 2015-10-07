@@ -114,9 +114,14 @@
 }
 .ui-autocomplete {
 	position: absolute;
+	height: 300px;
+	width: 670px;
 	top: 0;
 	left: 0;
 	cursor: default;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding-right: 20px;
 }
 .ui-button {
 	display: inline-block;
@@ -849,7 +854,8 @@ body .ui-tooltip {
 	color: #222222;
 }
 .ui-widget-content a {
-	color: #222222;
+	color: #565656;
+	font-size:14px;
 }
 .ui-widget-header {
 	border: 1px solid #aaaaaa;

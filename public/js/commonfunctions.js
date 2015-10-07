@@ -1,3 +1,48 @@
+/***********Auto*********************/
+function serachTitle(){
+	$("#videosSearch").autocomplete({	
+		source: function( request, response ) {
+			var keywordsss = $('#videosSearch').val();
+			var hashName='s';
+			$.ajax({
+				url: BASE_URL+'/search-title-result',
+				dataType: "json",
+				type	: "POST",
+				data	:{value:keywordsss},
+				success: function( data ) {
+					if(data.output!=0) {		
+						response( $.map( data.searchHashNames, function( item ) {
+							return {
+								label: item.ref,
+								idd: item.part,
+							}
+						}));
+					}else{
+						$(".ui-autocomplete").css("display","none");
+					}
+				}				
+			});
+		},
+		minLength: 0,	
+		open: function(event, ui) {				
+			$(".ui-autocomplete").css("width","506px !important");
+		},
+		select: function(event, ui) {
+			$("#videosSearch").val(ui.item.label); 
+			return false;
+		},
+		focus: function(event, ui) {
+			return false;
+		}			
+	});
+	$("#videosSearch").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+		var vid=item.idd;
+		 return $("<li><a href='http://localhost/video-collections/trunk/play-video?watch_title="+item.label+"&watch_id="+vid+"'>" + item.label + "</a></li>")
+		 .data("item.uiAutocomplete", item)            
+		 .appendTo(ul);				
+	};
+}
+/**********************END********************/
 function contactFormFunction(){
 	var flag=true;
 	var fname=$('#firstName').val();

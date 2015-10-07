@@ -138,13 +138,21 @@
 			<div class="input-group">
 			<input id="videosSearch" placeholder="Search for videos" class="form-control" type="textbox">
 			<span class="input-group-btn">
-			<button class="btn btn-default" onClick="searchByLocation();" type="button" id="addressSearch">Search</button>
+			<button class="btn btn-default" onKeypress="serachTitle();" onClick="searchByLocation();" type="button" id="addressSearch">Search</button>
 			</span>
 			</div>
 		</div>
 	</div>
 	</div>
 </div>
+<style>
+	html .ui-autocomplete {
+		height: 300px;
+	}	
+</style>
+<link rel="stylesheet" href="<?php echo $basePath; ?>/css/jquery-ui-1-11-4.css">
+<script src="<?php echo $basePath; ?>/js/jquery-ui-1-11-4.js"></script>
+<script src="<?php echo $basePath; ?>/js/autocomplete.js"></script>
 <?php
 if(strpos($_SERVER['REQUEST_URI'],'register')!==false || strpos($_SERVER['REQUEST_URI'],'login')!==false){?>
 	<script>
@@ -175,6 +183,8 @@ if(strpos($_SERVER['REQUEST_URI'],'register')!==false || strpos($_SERVER['REQUES
  alert('I am chrome');
 }*/
 $('#videosSearch').keypress(function(e){
+	serachTitle();
+	 // $(".ui-autocomplete").niceScroll({touchbehavior:false, cursorborder:"",cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5,autohidemode: false});
 	if( e.keyCode == 13 ){
 		searchByLocation();
 	}
