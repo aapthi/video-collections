@@ -627,12 +627,18 @@ class UsersController extends AbstractActionController
 			));				
 		}	
 	}
-	public function logoutAction(){	
-		$baseUrls = $this->getServiceLocator()->get('config');
-		$baseUrlArr = $baseUrls['urls'];
-		$baseUrl = $baseUrlArr['baseUrl'];
-		unset($_SESSION['user']);
-		return $this->redirect()->toUrl($baseUrl);
+	public function logoutAction(){		
+		foreach($_SESSION as $key => $val)
+		{
+			 unset($_SESSION[$key]);
+		}
+		$this->zfcUserAuthentication()->getAuthAdapter()->resetAdapters();
+        $this->zfcUserAuthentication()->getAuthService()->clearIdentity();
+		$result = new JsonModel(array(					
+			'output' => 'success',
+			'success'=>false,
+		));
+		return $result;
 	}
 	public function changePasswordAction()
 	{

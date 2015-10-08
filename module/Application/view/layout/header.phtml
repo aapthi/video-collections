@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>  
-  <title>SFAdda</title>
+  <title>sfadda.com</title>
 	<script> 	
 		var BASE_URL = '<?php echo $baseUrl;?>';
 		var BASE_PATH = '<?php echo $basePath;?>';	
@@ -61,7 +61,7 @@
 							<li><a href="<?php echo $baseUrl; ?>/users/videos-list">My Uploads</a><li>
 							<li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $userid; ?>">Profile</a><li>
 							<li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>
-							<li><a href="<?php echo $baseUrl; ?>/users/logout">Sign Out</a></li>
+							<li><a onClick="outLoggedFine();" href="javascript:void(0);" >Sign Out</a></li>
 						</ul>
 					</div>
 					<? } else{?>
@@ -158,6 +158,16 @@
 		height: 300px;
 	}	
 </style>
+<?php if($_SERVER['HTTP_HOST']=='sfadda.com'){$appid='685804858155190';}else {$appid='685804858155190';}?>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script type="text/javascript" charset="utf-8">
+ FB.init({
+  appId  : '<?php echo $appid ?>',
+  status : true, 
+  cookie : true, 
+  xfbml  : true  
+});
+</script>
 <link rel="stylesheet" href="<?php echo $basePath; ?>/css/jquery-ui-1-11-4.css">
 <script src="<?php echo $basePath; ?>/js/jquery-ui-1-11-4.js"></script>
 <script src="<?php echo $basePath; ?>/js/autocomplete.js"></script>
@@ -197,4 +207,15 @@ $('#videosSearch').keypress(function(e){
 		searchByLocation();
 	}
 });
+function outLoggedFine(){	
+	FB.logout(function(response){});
+	  $.ajax({
+		url: BASE_URL+'/users/logout',
+		success: function(data){			
+			if(data.output=='success'){
+				window.location='/';
+			}
+		}
+	});
+}
 </script>
