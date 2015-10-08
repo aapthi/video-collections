@@ -1,12 +1,12 @@
 .login_ad_left{
-	position:absolute;
-	top:30%;
-	left:3%;
+	left: 13%;
+    position: absolute;
+    top: 27%;
 }
 .login_ad_right{
-	position:absolute;
-	top:30%;
-	right:3%;
+	right: 13%;
+    position: absolute;
+    top: 27%;
 }
 .home_search{ 
 	margin-left: 35%;
