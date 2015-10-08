@@ -11,14 +11,14 @@ $settings = array(
      *
      * Please specify a Facebook Client ID
      */
-    'facebook_client_id' => '1641879036068124',
+    'facebook_client_id' => '685804858155190',
 
     /**
      * Facebook Secret
      *
      * Please specify a Facebook Secret
      */
-    'facebook_secret' => 'e5209b794101e7c9e5c72e8d4f1a3679',
+    'facebook_secret' => 'a08d46edf868b0533410ce1f607dc1a2',
 
     /**
      * Foursquare Client ID
@@ -53,7 +53,7 @@ $settings = array(
      *
      * Please specify a Google Client ID
      */
-    'google_client_id' => '853225795421-miuf13lftpnd3uikfqp5e2cprdrp4gcg.apps.googleusercontent.com',
+    'google_client_id' => '819363993143-qj22r3547fvq8bbnvd4cdlnbguqp1coh.apps.googleusercontent.com',
 	//'google_client_id' => '815795346530.apps.googleusercontent.com',
 
     /**
@@ -61,7 +61,7 @@ $settings = array(
      *
      * Please specify a Google Secret
      */
-    'google_secret' => 'JnudpiDquWSJhGaAz9HZjN9U',
+    'google_secret' => 'MofQ3-yKOrjwl8zzjBZHl3U1',
 	//'google_secret' => '_zjy0VrU5JMzUWnakM8XueXF',
 
     /**
