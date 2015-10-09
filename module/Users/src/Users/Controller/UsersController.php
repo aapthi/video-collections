@@ -921,8 +921,9 @@ class UsersController extends AbstractActionController
 			$contactusMessage = str_replace("<EMAIL>",$userEmail, $contactusMessage);
 			$contactusMessage = str_replace("<MOBILENUMBER>",$mobilenumber, $contactusMessage);
 			$contactusMessage = str_replace("<SUBJECT>",$usermessage, $contactusMessage);
-			$to='naveenleela3@gmail.com';				
-			if(sendMail($to,$contactusSubject,$contactusMessage)){		
+			$to='info@sfadda.com';				
+			$from_du=$userEmail;				
+			if(sendMail($to,$contactusSubject,$contactusMessage,$from_du)){		
 				$output ='success' ;
 			}else{
 				$output ='fail' ;
