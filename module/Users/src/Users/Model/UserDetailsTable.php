@@ -43,16 +43,16 @@ class UserDetailsTable
 		if( $type=='update' ){
 			$data = array(
 				'updated_at' 	   => date('Y-m-d H:i:s'),
-				'u_id' 	     => $user_id, 
 			);	
+			$updateresult=$this->tableGateway->update($data, array('u_id' => $user_id));
+			return $updateresult;
 		}else{
 			$data = array(
 				'u_id' 	     => $user_id, 
-				'created_at'       => date('Y-m-d H:i:s')
+				'created_at' => date('Y-m-d H:i:s')
 			);	
+			$this->tableGateway->insert($data);		
+			return $this->tableGateway->lastInsertValue;
 		}
-		
-		$this->tableGateway->insert($data);		
-		return $this->tableGateway->lastInsertValue;
     }
 }
