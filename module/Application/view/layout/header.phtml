@@ -5,12 +5,25 @@
 	$catData = $header->headerarray['catData'];	
 	$videoData = $header->headerarray['videoData'];
 	$topVideos = $header->headerarray['topVideos'];	
+	if($_SERVER['REQUEST_URI']=='/'){
+		$_SESSION['tilte_top'] = 'sfadda.com';
+		$image_name = $basePath.'/img/logo.png';
+		$_SESSION['tilte_imag'] = $image_name;
+	}else if($_SERVER['REQUEST_URI']=='/video-collections/trunk/'){
+		$_SESSION['tilte_top'] = 'sfadda.com';
+		$image_name = $basePath.'/img/logo.png';
+		$_SESSION['tilte_imag'] = $image_name;
+	}else{
+		$_SESSION['tilte_top'] = $_SESSION['tilte_top'];
+		$_SESSION['tilte_imag'] = $_SESSION['tilte_imag'];
+	}
+	if($_SERVER['HTTP_HOST']=='sfadda.com'){$appid='685804858155190';}else {$appid='685804858155190';}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
   <head>  
-  <title>sfadda.com</title>
+  <title><?php if(isset($_SESSION['tilte_top'])){ echo $_SESSION['tilte_top']; }else{?>sfadda.com<?php } ?></title>
 	<script> 	
 		var BASE_URL = '<?php echo $baseUrl;?>';
 		var BASE_PATH = '<?php echo $basePath;?>';	
@@ -18,8 +31,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+	<meta property="og:title" content="<?php if(isset($_SESSION['tilte_top'])){ echo $_SESSION['tilte_top']; }else{?>sfadda.com<?php } ?>" />
+	<meta property="og:type" content="Website" />
+	<meta property="og:image" content="<?php if(isset($_SESSION['tilte_imag'])){ echo $_SESSION['tilte_imag']; } ?>" />
+	<meta property="og:url" content="<?php if(isset($_SESSION['tilte_top'])){ echo $_SESSION['tilte_top']; }else{?>sfadda.com<?php } ?>" />
+	<meta property="fb:app_id" content="<? echo $appid;?>">
+	<meta property="og:description" content="<?php if(isset($_SESSION['tilte_top'])){ echo $_SESSION['tilte_top']; }else{?>sfadda.com<?php } ?>" />
+	<meta property="og:site_name" content="<?php echo $baseUrl; ?>" />
     <link rel="shortcut icon" href="<?php echo $basePath; ?>/img/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="<?php echo $basePath; ?>/img/favicon.ico" type="image/x-icon">	
 	<!-- CSS Start -->	
@@ -89,7 +107,7 @@
 					(adsbygoogle = window.adsbygoogle || []).push({});
 					</script></div>
 			<div class="navbar-header">         
-				<a class="navbar-brand" href="<?php echo $baseUrl . '/'; ?>"><img src="<?php echo $basePath; ?>/img/logo.png" alt="Video Blogger" width="90%"/></h1></a>
+				<a class="navbar-brand" href="<?php echo $baseUrl . '/'; ?>"><img src="<?php echo $basePath; ?>/img/logo.png" alt="sfadda.com" width="90%"/></h1></a>
 			</div>
 		</div>
     </nav>
@@ -159,7 +177,6 @@
 		height: 300px;
 	}	
 </style>
-<?php if($_SERVER['HTTP_HOST']=='sfadda.com'){$appid='685804858155190';}else {$appid='685804858155190';}?>
 <script src="http://connect.facebook.net/en_US/all.js"></script>
 <script type="text/javascript" charset="utf-8">
  FB.init({

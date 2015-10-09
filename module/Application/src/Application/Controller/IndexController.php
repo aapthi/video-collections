@@ -112,6 +112,9 @@ class IndexController extends AbstractActionController
 		$videoList = $this->getVideoTable()->videoForentedList();		
 		$videoFList = $this->getVideoTable()->videoFeaturedList();		
 		$getVideo = $this->getVideoTable()->videoPlay($vid);
+		$getVideoTitle = $this->getVideoTable()->getVideoTitle($vid);
+		$_SESSION['tilte_top'] = $getVideoTitle->v_title;
+		$_SESSION['tilte_imag'] = $getVideoTitle->v_thumb_image;
 		$getCatInfo = $this->getVideoTable()->getCategory($vid);
 		if($getCatInfo!=""){
 			$catId = $getCatInfo->v_cat_id;

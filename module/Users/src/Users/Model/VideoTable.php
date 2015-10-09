@@ -170,6 +170,12 @@ class VideoTable
 			return $paginator;
 		return $resultSet;
 	}
+	public function getVideoTitle($vid){
+		$select = $this->tableGateway->getSql()->select();				
+		$select->where('v_id="'.$vid.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet->current();
+	}
 	public function changeAccountStatus( $user)
     {
 		
