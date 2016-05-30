@@ -147,14 +147,29 @@ function validateVideo(){
 		 $( "#video_title" ).focus();
 		return false;
 	}
-	if($("#video_link").val()==''){
-		alert('Please enter video link.'); 
-		 $( "#video_link" ).focus();
-		return false;
-	}else if($("#hidCheckValue").val()==1){
-		alert('Entered video link is already exists.'); 
-		 $( "#video_link" ).focus();
-		return false;	
+	if($("#hid_vid").val()==''){
+		if($("#video_link").val()==''){
+			alert('Please enter video link.'); 
+			 $( "#video_link" ).focus();
+			return false;
+		}else if($("#hidCheckValue").val()==1){
+			alert('Entered video link is already exists.'); 
+			 $( "#video_link" ).focus();
+			return false;	
+		}
+	}else{
+		if($("#video_link").val()==''){
+			alert('Please enter video link.'); 
+			 $( "#video_link" ).focus();
+			return false;
+		}
+		if( $("#video_link_check").val() != $("#video_link").val() ){
+			if($("#hidCheckValue").val()==1){
+				alert('Entered video link is already exists.'); 
+				$( "#video_link" ).focus();
+				return false;
+			}			
+		}
 	}
 	if($("#video_desc").val()==''){
 		alert('Please enter video description.'); 
