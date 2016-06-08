@@ -68,6 +68,21 @@ class IndexController extends AbstractActionController
 		));
 		return $viewModel;
     }
+	public function viewprofileAction()
+    {
+		//echo "dasdfasdfas";
+		//return $result;
+	}
+	public function viewAction()
+    {
+		//echo "dasdfasdfas";
+		//return $result;
+	}
+	public function view1Action()
+    {
+		//echo "dasdfasdfas";
+		//return $result;
+	}
 	public function searchTitleResultAction()
     {
 		$baseUrls = $this->getServiceLocator()->get('config');

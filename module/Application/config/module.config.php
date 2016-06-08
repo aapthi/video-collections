@@ -88,6 +88,48 @@ return array(
 					),
 				),
 			),
+			'view-profile1' => array(
+				'type'    => 'segment',
+				'options' => array(
+					'route' => '/view-profile1',
+					'constraints' => array(
+					  'action' => '[a-zA-Z][a-zA-Z0-9_-|]*',
+                      'id'     => '[a-zA-Z0-9][a-zA-Z0-9_-|]*',
+					),
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'viewprofile',
+					),
+				),
+			),
+			'view' => array(
+				'type'    => 'segment',
+				'options' => array(
+					'route' => '/view',
+					'constraints' => array(
+					  'action' => '[a-zA-Z][a-zA-Z0-9_-|]*',
+                      'id'     => '[a-zA-Z0-9][a-zA-Z0-9_-|]*',
+					),
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'view',
+					),
+				),
+			),
+			'view1' => array(
+				'type'    => 'segment',
+				'options' => array(
+					'route' => '/view1',
+					'constraints' => array(
+					  'action' => '[a-zA-Z][a-zA-Z0-9_-|]*',
+                      'id'     => '[a-zA-Z0-9][a-zA-Z0-9_-|]*',
+					),
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'view1',
+					),
+				),
+			),
 			'search-title-result' => array(
 				'type'    => 'segment',
 				'options' => array(

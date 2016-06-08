@@ -1,3 +1,27 @@
+.img_pic{
+	border:1px solid #eee;
+	padding:4px;
+	border-radius:4px;
+	width:120px;
+	height:120px;
+}
+.pos_r{
+	position:relative;
+}
+.pos_ab_btn{
+	position:absolute;
+	top:0;
+	right:0;
+}
+.dim{
+color:#828282
+}
+.panel-default:hover{
+	border:1px solid #2fa4e7;
+}
+.media-heading{
+	font-size:22px;
+}
 .login_ad_left{
 	left: 13%;
     position: absolute;
