@@ -3,11 +3,11 @@
 	$baseUrl = $header->headerarray['baseUrl'];
 	$basePath = $header->headerarray['basePath'];
 ?>
-<? if(isset($_SESSION['user']) && $_SESSION['user']!=""){?>
+<? /* if(isset($_SESSION['user']) && $_SESSION['user']!=""){?>
 	<script>
-		window.location = BASE_URL;
+		//window.location = BASE_URL;
 	</script>
-<? }else{?>
+<? }else{ */?>
  <div class="container min_height">
   <div id="loginModal" class="show"  role="dialog" aria-hidden="true">
   <div class="lrcontainer panel panel-default" style="padding:24px 20px 0px 20px;">
@@ -83,4 +83,4 @@ $('#password').keypress(function(e){
 });
 //$('body').css('overflow','hidden');
 </script>
-<? } ?>
+<? //} ?>
