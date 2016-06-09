@@ -644,9 +644,9 @@ class UsersController extends AbstractActionController
 		));
 		
 		return $result;
-		if($result>0){
+		/* if($result>0){
 		return $this->redirect()->toUrl($baseUrl);
-		}
+		} */
 	}
 	public function changePasswordAction()
 	{
