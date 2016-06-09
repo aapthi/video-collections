@@ -16,7 +16,7 @@
 			}?>
 		<div class="panel-heading reg_bg">
 			<h3 class="panel-title">View Profile</h3>
-			<div class="view_profile_r"><a href="<?php echo $baseUrl; ?>/users/register?uid=<? echo $base_user_id;?>">Edit Profile</a></div>
+			<div class="view_profile_r"><a href="<?php echo $baseUrl; ?>/edit-profile/<? echo $base_user_id;?>">Edit Profile</a></div>
 		</div> 
 		<? $details=''; if(count($this->userDetails)!=0){ foreach($this->userDetails as $detailss){ $details = $detailss;}}?>
 		<div class="panel-body">
