@@ -9,6 +9,7 @@ class IndexController extends AbstractActionController
 	protected  $categoriesTable;
 	protected  $videoTable;
 	protected  $hitsTable;
+	protected  $catTable;
 	
     public function indexAction()
     {
@@ -177,6 +178,9 @@ class IndexController extends AbstractActionController
 	}
 	public function headerAction($params)
     {
+		//print_r($params);			
+		//$id = $this->params()->fromRoute('', 0);
+		// echo $id;		
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
@@ -198,25 +202,42 @@ class IndexController extends AbstractActionController
 					$lastedVideos[] = $videosH;
 				 }
 			$i++; }
-		}		
-		$catSubcatlist = array();
-		$catList = $this->getCategoryTable()->getCategoryListF();	
-		foreach($catList as $getCatid){
-			if(!is_null($getCatid->parent_cat_id)){
-				$catSubcatlist[$getCatid->parent_cat_id][$getCatid->category_id] = $getCatid->category_name;					
-			}else{
-				$catSubcatlist[$getCatid->category_id][$getCatid->category_id] = $getCatid->category_name;
-			}
 		}
+			
+		$catSubcatlist = array();
+		$userCat = array();
+		
+			if($params == "profiles")
+			{
+				//echo 'k';exit;
+				//$testTable 	= $this->getServiceLocator()->get('Cat\Model\CatFactory');		
+				$catCatlist 	= $this->getCatTable()->CategoryList();
+				//print_r($catList);exit;
+			}
+			else{
+				//echo 'kk';exit;
+				$catList = $this->getCategoryTable()->getCategoryListF();	
+				foreach($catList as $getCatid){
+				if(!is_null($getCatid->parent_cat_id)){
+				$catSubcatlist[$getCatid->parent_cat_id][$getCatid->category_id] = $getCatid->category_name;					
+				}else{
+				$catSubcatlist[$getCatid->category_id][$getCatid->category_id] = $getCatid->category_name;
+				}
+				}
+				
+			}
+		
+		
 		return $this->layout()->setVariable(
 			"headerarray",array(
 				'baseUrl' 		=> 	$baseUrl,
 				'basePath'		=>	$basePath,
-				'catData'		=>	$catSubcatlist,
+				'catData'		=>	$catSubcatlist,			
 				'videoData'		=>	$videoList,
 				'topVideos'	    =>	$topVideos,
 				'featuredVideos'=>	$featuredVideos,
 				'lastedVideos'	=>	$lastedVideos,
+				'userCat'	=>	$userCat
 			)
 		);
 	}	
@@ -244,4 +265,12 @@ class IndexController extends AbstractActionController
         }
         return $this->hitsTable;
     }
+	public function getCatTable()
+   {
+       if (!$this->catTable) {                
+           $sm = $this->getServiceLocator();
+           $this->catTable = $sm->get('Profiles\Model\CatFactory');            
+       }
+       return $this->catTable;
+   }
 }
