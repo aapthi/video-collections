@@ -26,6 +26,7 @@ class UserDetailsTable
 			'u_id' 		       => $user_id,  		
 			'first_name'       => $usersinfo['user_first_name'], 	
 			'last_name' 	   => $usersinfo['user_last_name'], 	
+			'user_photo' 	   => '480px-No_Image_Available.png', 	
 			'created_at'       => date('Y-m-d H:i:s'), 
 			'updated_at' 	   => date('Y-m-d H:i:s')
 		);
