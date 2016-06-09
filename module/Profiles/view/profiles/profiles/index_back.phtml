@@ -1,0 +1,87 @@
+<style>
+	#dddd{
+		height:1100px;
+	}
+</style>
+<div class="container min_height">
+		<? if(isset($_GET['suc']) && $_GET['suc']=='reg'){?>
+			<div class="alert alert-dismissible alert-success">
+				<button type="button" class="close" data-dismiss="alert" onClick="reloadPageH()">×</button>
+				<strong> Account verfication link, sent to your email id. Please click on that link and verify your account. </strong>
+			</div>
+		<? } ?>
+	<div class="row">
+		<div class="col-md-13">
+		 <?php include('userimages.phtml');?>
+		</div>
+		<div class="col-md-15">
+			<div class="list-group cal_next">
+				<a href="#" class="list-group-item active size18">
+				Users List
+				</a>
+			<div class="list_grou_itemspad">
+				<div id="dddd">
+					<?if(isset($this->vatTData) && count($this->vatTData)){
+						foreach($this->vatTData as $links){
+							//$video_id = base64_encode($links->v_id);
+						?>
+						
+						<a href="#" class="list-group-item">
+						<span class="glyphicon glyphicon-triangle-right cal_next" aria-hidden="true"></span><?php echo $links->first_name;?>
+						</a>
+						<?php }} else { ?>
+							<br/>&nbsp;There are no userslist.
+					<? }?>
+				</div>
+			</div>
+			</div>
+			<div align="center">
+				<?php
+				//echo $this->vatTData;exit;
+				//echo $this->id;
+					echo $this->paginationControl(
+					$this->vatTData,
+					'sliding',
+					array('partial/paginator.phtml', 'Application'),
+					array(
+						'route' => 'user',
+						'id' =>$this->id
+						)
+					);
+				?>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="">
+			<div class="" align="center">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- rightbanner -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:250px"
+					 data-ad-client="ca-pub-9408213208791031"
+					 data-ad-slot="6451237032"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+			</div>
+			<?php include('right-side-bar.phtml');?>
+			
+		</div>
+	</div>
+	<div class="smhide"><br/><br/><center>
+		<ins class="adsbygoogle"
+			 style="display:inline-block;width:728px;height:90px"
+			 data-ad-client="ca-pub-9408213208791031"
+			 data-ad-slot="4974503839"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script></center>
+	</div>
+</div>
+<script>
+
+$(document).ready(function(){
+ $("#dddd").niceScroll({touchbehavior:false, cursorborder:"",cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5,autohidemode: false});
+});	
+</script>

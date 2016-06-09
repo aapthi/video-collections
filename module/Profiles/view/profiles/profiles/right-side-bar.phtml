@@ -1,0 +1,25 @@
+<?php
+	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
+	$baseUrl = $header->headerarray['baseUrl'];
+	$basePath = $header->headerarray['basePath'];	
+	$featuredVideos = $header->headerarray['featuredVideos'];	
+?>
+<div class="panel panel-default">
+	<div class="panel-heading">Featured Videos</div>
+	<div class="panel-body pad_bottom_0" align="center">
+		<div class="featured_video_thumb">
+		<ul class="list-inline">
+			<? if(isset($featuredVideos)) {
+				foreach($featuredVideos as $videoInfo){ $video_id = base64_encode($videoInfo->v_id);
+			?>
+				<li>				
+					<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><img  src="<? echo $videoInfo->v_thumb_image;?>" alt="<? echo $videoInfo->v_title;?>">
+					<div class="thumb_play_ico">
+					<span class="glyphicon glyphicon glyphicon-play " aria-hidden="true"></span>
+					</div>	</a>		
+				</li>
+					<? } } ?>
+		</ul>
+		</div>
+	</div>
+</div>

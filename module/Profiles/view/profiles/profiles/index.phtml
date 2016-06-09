@@ -1,0 +1,81 @@
+<?php
+$header=$this->action('Application\Controller\IndexController', 'headerAction','profile');
+//print_r($header);
+?>
+<div class="container min_height">
+	<div class="row">
+		<div class="col-md-8">
+		<?if(isset($this->vatTData) && count($this->vatTData)){
+						foreach($this->vatTData as $links){
+							//$video_id = base64_encode($links->v_id);
+							//print_r($links);
+							$id=$links->u_id;
+						?>
+			<div class="panel panel-default hover_body">
+			
+				<div class="panel-body">
+					<div class="media pos_r">
+					<div class="pos_ab_btn">
+					<a href="<?php echo $baseUrl;?>/profile-user/<?php echo $id;?>"><button type="button" class="btn btn-primary btn-sm" >View More </button></a></div>
+					<div class="media-left"> 
+					<?php if($links->user_profile_photo == ""){?>
+						<img alt="" src="<?php echo $basePath?>/images/<?php echo $links->user_photo;?>" style="width:140px;height:150px;">
+						<?php } else{?>
+						<a href="#"><img class="img_pic" alt="" src="<? echo $basePath .'/images/' .$links->user_profile_photo;?>" /> </a> 
+						<?php }?>
+					</div> 
+					<div class="media-body" style="margin:0"> 
+						<h4 class="media-heading"><a href="<?php echo $baseUrl;?>/profile-user/<?php echo $id;?>"><?php echo  $links->first_name;?></a></h4>
+						<p><span class="dim">City : </span> <?php echo  $links->city;?></p>
+						<p><span class="dim">Industry : </span>Industry Name</p>
+						<p><span class="dim">Skills :</span><?php echo  $links->skills;?></p>	
+					</div>
+					
+					<?php
+					//echo $baseUrl;exit;
+					$string=$links->message;
+					
+					$string = strip_tags($string);
+					if (strlen($string) > 300) {
+						//$a=$row["news_id"];
+						//$b=$row['category_id'];
+						$stringCut = substr($string, 0, 300);
+						$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'... 
+						<a href="'.$baseUrl.'/profile-user/'.$id.'">View More</a>'; 
+					}
+					?>
+						<p><?php echo $string; ?></p>	
+					</div>
+				</div>
+				
+			</div>
+			<?php }} else { ?>
+							<br/>&nbsp;There are no userslist.
+					<? }?>
+			<div align="center">
+				<?php
+				//echo $this->vatTData;exit;
+				//echo $this->id;
+					echo $this->paginationControl(
+					$this->vatTData,
+					'sliding',
+					array('partial/paginator.phtml', 'Application'),
+					array(
+						'route' => 'user',
+						'id' =>$this->id
+						)
+					);
+				?>
+			</div>
+			
+			
+			
+			
+			
+			
+			</div>
+		<div class="col-md-4">
+			<?php include('right-side-bar.phtml');?>
+		</div>
+	</div>
+		</div>

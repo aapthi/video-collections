@@ -1,0 +1,165 @@
+<div class="container min_height">
+	<div class="row">
+	
+		<div class="col-md-9">
+		<form action="" method="POST" enctype="multipart/form-data">
+				<!--<h2 class="">Cast & Crew Profile Form</h2>--->
+				
+				  <div class="col-md-3 ">
+					<div class="">
+					<?php if(!isset($this->allTests->user_profile_photo)){?>
+					<img alt="" src="<?php echo $basePath;?>/images/<?php echo $this->allTests->user_photo?>" style="width:160px;height:160px;">
+					<?php }else{?>
+				<img alt="" src="<?php echo $basePath;?>/images/<?php echo $this->allTests->user_profile_photo?>" style="width:160px;height:160px;">
+					<?php }?>					
+					</div>
+				<div class="text-center" style="padding-top:10px;">
+						<a class="text-center font_15" data-toggle="modal">Update Photo <i class="fa fa-edit"></i></a>
+					</div>
+					
+				  </div>
+					 <div class="col-md-9">
+				  
+                    <div class="form-group row">
+                      <label class="col-sm-3 form-control-label">First Name <sup>*</sup></label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="fname" value="<?php if(isset($this->allTests->first_name) && $this->allTests->first_name != ""){echo  $this->allTests->first_name;}?>">
+                      </div>
+                    </div>
+					<div class="form-group row">
+                      <label class="col-sm-3 form-control-label" >Email</label>
+                      <div class="col-sm-8">
+                        <input type="Email" class="form-control" value="<?php if(isset($this->allTests->email) && $this->allTests->email != ""){echo  $this->allTests->email;}?>" name="email">
+                      </div>
+                    </div>
+				<div class="form-group row">
+                      <label  class="col-sm-3 form-control-label" >Phone Number</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->contact_number) && $this->allTests->contact_number != ""){echo  $this->allTests->contact_number;}?>" name="phno">
+                      </div>
+					  <div class="col-sm-4">
+					  
+					<label class="c-input c-radio">
+					  <input id="radio1" name="public" type="radio" value="public" <?php if(isset($this->allTests->public_or_private) && $this->allTests->public_or_private == "public"){echo  'checked';}?>>
+					  <span class="c-indicator"></span>
+					  Public 
+					</label>
+					<label class="c-input c-radio">
+					  <input id="radio2" name="public" type="radio" value="private" <?php if(isset($this->allTests->public_or_private) && $this->allTests->public_or_private == "private"){echo  'checked';}?>>
+					  <span class="c-indicator"></span>
+					  Private
+					</label>
+					</div>
+				</div>
+				<div class="form-group row">
+                      <label class="col-sm-3 form-control-label" >City</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->city) && $this->allTests->city != ""){echo  $this->allTests->city;}?>" name="city">
+                      </div>
+                 </div>
+				 <div class="form-group row">
+                      <label class="col-sm-3 form-control-label">Face Book Profile Link</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->fb_profile_link) && $this->allTests->fb_profile_link != ""){echo  $this->allTests->fb_profile_link;}?>" name="fb">
+                      </div>
+                 </div>
+				 <div class="form-group row">
+                      <label class="col-sm-3 form-control-label" >Message</label>
+                      <div class="col-sm-8">
+                       <textarea class="form-control" rows="3" id="comment"  name="msg"><?php if(isset($this->allTests->message) && $this->allTests->message != ""){echo  $this->allTests->message;}?></textarea>
+					   <p style="font-size:13px">[Describe yourself 300 words]</p>
+                      </div>
+                 </div>
+				 <div class="form-group row">
+                      <label class="col-sm-3 form-control-label">Skills</label>
+                      <div class="col-sm-8">
+					  <?php $options=array('Actor','Actress','Art-director','Assistant Director','Camera Assistant','Camera-Rental','Co-Director','Color-Correction','Co-Producer','Costume-Dress-Rental','Dialogue-Writer','Director','DOP','Dubbing-Artist','Dubbing-Studio-Rental','Editor','Equipment-Rental','Green-Matte-Studio-Rental','Lens-Rental','Lights-Rental','Location-Rental','Lyric-Writer','Make-up','Photo-Studio-Rental','Poster-Designer','Producer','Production-Manager','Prop-rental','Re-Recording (Music)','SFX (Sound Effects)','Singer','Story-Writer','Title-Designer','VFX (Visual Effects)','Others');
+					  //print_r($options);
+						 $results=explode(',',$this->allTests->skills);
+
+
+					  ?>					 
+                        <select class="form-control" id="state_id" name="state_id[]" multiple="multiple">
+						<option value="default">Select categories</option>
+						
+						<?php foreach($options as $result){
+							//print_r($result);
+							if(in_array($result,$results))
+							{
+								$selected = 'selected';
+							}
+							else{
+								$selected = '';
+							}
+							
+							?>							
+										
+						<option value="<?php echo $result;?>" <?php echo $selected;?>><?php echo $result;?></option>
+									<?php }?>						
+						
+						</select>
+                      </div>
+                 </div>
+				 <div class="form-group row">
+                      <label class="col-sm-3 form-control-label">Pics Upload</label>
+                      <div class="col-sm-8">
+						 <label class="btn btn-primary	 btn-file">
+							Browse <input type="file" style="display: none;" name="images[]" multiple="multiple">
+						</label>
+                      </div>
+                 </div>
+				  <div class="form-group row input_fields_wrap">
+                      <label class="col-sm-3 form-control-label">Video links</label>
+                      <div class="col-sm-8">
+					  <div class="row">
+						<div class="col-xs-10">
+							<input  type="text" class="form-control" value="<?php if(isset($this->allTests->video_links) && $this->allTests->video_links != ""){
+								$videos=explode(' ;',$this->allTests->video_links);
+								foreach($videos as $video){
+							echo  $video.',';}}?>" name="video[]">
+						</div>
+						<div class="col-xs-2">
+							<button class="add_field_button btn btn-primary">Add</button>
+						</div>
+                      </div> 
+                      </div> 
+                 </div>
+				<!--<input type="hidden" name="hid" value="<?php //if(isset($this->allTests->u_id) && $this->allTests->u_id != ""){
+					 //$video=explode(' ;',$this->allTests->u_id);
+					 //foreach ($video as $links){					 
+				// echo  $links;}} ?>"> -->
+				  <div class="form-group row">
+                      <label class="col-sm-3 form-control-label">&nbsp</label>
+                      <div class="col-sm-8">
+                        <input type="submit" class=" btn btn-primary" value="update" name="submit"/>
+                      </div>
+                 </div>
+		</div>
+		</form>
+		</div>
+		<div class="col-md-3">
+			<img width="100%" alt="sfadda.com" src="http://localhost/video-collections/trunk/public/img/adsleft.jpg">			
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function() {
+    var max_fields      = 10; //maximum input boxes allowed
+    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
+    var add_button      = $(".add_field_button"); //Add button ID
+   
+    var x = 1; //initlal text box count
+    $(add_button).click(function(e){ //on add input button click
+        e.preventDefault();
+        if(x < max_fields){ //max input box allowed
+            x++; //text box increment
+            $(wrapper).append('<div class="form-group" id="ddddd"><label class="col-sm-3 form-control-label">&nbsp;</label><div class="col-md-8"><div class="row" ><div class="col-xs-10"><input type="text" class="form-control" name="video[]"/></div><div class="col-xs-2"><a href="#" class="remove_field btn btn-danger"><span class="glyphicon glyphicon-minus"></span></a></div></div></div></div>'); //add input box
+        }
+    });
+   
+    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
+        e.preventDefault(); $('#ddddd').remove(); x--;
+    })
+});
+</script>

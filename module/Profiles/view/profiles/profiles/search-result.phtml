@@ -1,0 +1,46 @@
+<div class="container min_height">
+	<div class="row">
+		<div class="col-md-3">
+		 <?php include('left-side-bar.phtml');?>
+		</div>
+		<div class="col-md-5">
+			<div class="list-group cal_next">
+				<a href="#" class="list-group-item active size18">
+				Latest Videos
+				</a>
+			<div class="list_grou_itemspad">
+			<?if(isset($this->vatTData) && count($this->vatTData)){
+				foreach($this->vatTData as $links){ 
+					$video_id = base64_encode($links->v_id);
+				?>
+				<a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>" class="list-group-item"><span class="glyphicon glyphicon-triangle-right cal_next" aria-hidden="true"></span><?php if(strlen($links->v_title)>45){echo substr($links->v_title,0,45) . '...'; }else{echo $links->v_title;}?></a>
+				<?php } } else { ?>
+					<br/>&nbsp;There are no links.
+				<? }?>
+			</div>
+			</div>
+			<div align="center">
+				<?php
+					echo $this->paginationControl(
+					$this->vatTData,
+					'sliding',
+					array('partial/paginator.phtml', 'Application'),
+					array(
+						'route' => 'cat',
+						'id' =>$this->id
+						)
+					);
+				?>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+			<div class="" align="center">
+				<img  src="<?php echo $basePath; ?>/img/ads.png" alt="ads" width="100%">
+			</div>
+			</div>
+			<?php include('right-side-bar.phtml');?>
+			
+		</div>
+	</div>
+</div>
