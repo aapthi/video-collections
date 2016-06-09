@@ -86,7 +86,7 @@ class UsersController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];		
 		if(isset($_POST['videoLink']) && $_POST['videoLink']!=""){
-			$s=$_POST['videoLink'];
+			//echo $s=$_POST['videoLink'];
 			$link=explode("/", $s);
 			$url=$link['2'];
 			$urlName=explode(".", $url);
@@ -627,7 +627,11 @@ class UsersController extends AbstractActionController
 			));				
 		}	
 	}
-	public function logoutAction(){		
+	public function logoutAction(){	
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		//print_r($baseUrl);	
 		foreach($_SESSION as $key => $val)
 		{
 			 unset($_SESSION[$key]);
@@ -638,7 +642,11 @@ class UsersController extends AbstractActionController
 			'output' => 'success',
 			'success'=>false,
 		));
+		
 		return $result;
+		if($result>0){
+		return $this->redirect()->toUrl($baseUrl);
+		}
 	}
 	public function changePasswordAction()
 	{
