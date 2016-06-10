@@ -23,10 +23,8 @@ class CatTable
     }		
 	public function CategoryList()
 	{
-		//echo 'k';
 		$select = $this->tableGateway->getSql()->select();
 		$resultSet = $this->tableGateway->selectWith($select);		
-		return $resultSet;
-		
+		return $resultSet;		
 	}
 }
