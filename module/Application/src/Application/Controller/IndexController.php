@@ -166,8 +166,7 @@ class IndexController extends AbstractActionController
 				'baseUrl' 		=> 	$baseUrl,
 				'basePath'		=>	$basePath,				
 			)
-		);
-		
+		);		
 	}
 	
 	public function rightSideBarAction(){
@@ -201,16 +200,22 @@ class IndexController extends AbstractActionController
 		}
 			
 		$catSubcatlist = array();
-		$catCatlist = array();			
-				//echo 'kk';exit;
-				$catList = $this->getCategoryTable()->getCategoryListF();	
-				foreach($catList as $getCatid){
+		$catCatlist = array();	
+		if( $params == "profile" ){
+			$catList = $this->getCatTable()->CategoryList();
+			foreach($catList as $getCatid){
+				$catSubcatlist[$getCatid->u_c_id][$getCatid->u_c_id] = $getCatid->u_category_name;
+			}
+		}else{
+			$catList = $this->getCategoryTable()->getCategoryListF();	
+			foreach($catList as $getCatid){
 				if(!is_null($getCatid->parent_cat_id)){
-				$catSubcatlist[$getCatid->parent_cat_id][$getCatid->category_id] = $getCatid->category_name;					
+					$catSubcatlist[$getCatid->parent_cat_id][$getCatid->category_id] = $getCatid->category_name;
 				}else{
-				$catSubcatlist[$getCatid->category_id][$getCatid->category_id] = $getCatid->category_name;
+					$catSubcatlist[$getCatid->category_id][$getCatid->category_id] = $getCatid->category_name;
 				}
-				}		
+			}
+        }
 		return $this->layout()->setVariable(
 			"headerarray",array(
 				'baseUrl' 		=> 	$baseUrl,
