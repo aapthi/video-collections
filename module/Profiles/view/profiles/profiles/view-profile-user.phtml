@@ -8,14 +8,12 @@
  </script>
 				<?php }?>
 <div class="container min_height">
-	<div class="row">
-	
+	<div class="row">	
 		<div class="col-md-9">
 		<div class="panel panel-default">
 				<div class="panel-body">
 				<?php
-				if(isset($this->allTests) && $this->allTests!=""){
-				
+				if(isset($this->allTests) && $this->allTests!=""){				
 					 $base_user_id = base64_encode($this->allTests->u_id);
 					?>
 				  <div class="col-md-3 well">
@@ -43,8 +41,7 @@
                       <div class="col-sm-4">
                        <?php if($this->allTests->contact_number != "" && $this->allTests->public_or_private == "public"){echo $links->contact_number;}elseif($this->allTests->public_or_private == "private"){ echo 'hide';}else{echo 'N/A';}?>
                       </div>
-					  <div class="col-sm-4">
-					
+					  <div class="col-sm-4">					
 					</div>
 				</div>
 				<div class="form-group row">
@@ -68,68 +65,58 @@
 				 <div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">Skills:</label>
                       <div class="col-sm-8">
-					 <?php if($this->allTests->skills != ""){echo $this->allTests->skills;}else{ echo 'N/A';}?>
-                        
+					 <?php if($this->allTests->skills != ""){echo $this->allTests->skills;}else{ echo 'N/A';}?>                        
                       </div>
                  </div>
                  </div>
 				 <div class="col-md-12">
-				 <div class="form-group row">
-                      <label class="col-sm-4 form-control-label"><strong>Pics Upload:</strong></label>
-                      <div class="col-sm-12">
-						 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
-						 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
-						 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
-						 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
-						 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
-                      </div>
-                 </div>
-				<div class="form-group row">
-                      <label class="col-sm-4 form-control-label"><strong>Video links:</strong></label>
-                  <div class="col-sm-12"> 
-							<?php 
-							if(isset($this->allTests->video_links) && $this->allTests->video_links!=""){
-								$videos_result=explode(",",$this->allTests->video_links);
-								$link=explode("/", $videos_result);
-								$url=$link['2'];
-								foreach($videos_result as $video)
-								{
-									$video_id = substr($video, strpos($video, "=") + 1);			
-									$urlName=explode(".", $url);					
-									if(isset($urlName)){
-										if((isset($urlName['1'])) && ($urlName['1']=='youtube')){
-											$video_url=$urlName['1'];								
-											$image=explode("=", $link['3']);
-											 $image=$image['1'];
-											$imageCode = strstr($image, ',', true);
-											$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
-										}else if(isset($urlName['1']) && $urlName['1']=='dailymotion'){
-											$video_url=$urlName['1'];
-											$image=explode("_", $link['4']);
-											$imageCode=$image['0'];
-											$imageUrl="http://www.dailymotion.com/thumbnail/video/".$imageCode;
-										}else if(isset($urlName['0']) && ($urlName['0']=='vimeo')){
-											$video_url= $urlName['0'];
-											$imageCode = $link['5'];
-											$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imageCode.php"));
-											$imageUrl=$hash[0]['thumbnail_medium'];
-										}else{
-											$video_url= '';
-											$imageUrl= '';
+					 <div class="form-group row">
+						  <label class="col-sm-4 form-control-label"><strong>Pics Upload:</strong></label>
+						  <div class="col-sm-12">
+							 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
+							 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
+							 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
+							 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
+							 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
+						  </div>
+					 </div>
+					<div class="form-group row">
+						  <label class="col-sm-4 form-control-label"><strong>Video links:</strong></label>
+						<div class="col-sm-12"> 
+								<?php 
+								if(isset($this->allTests->video_links) && $this->allTests->video_links!=""){
+									
+									$videos_result=explode(",",$this->allTests->video_links);
+									$link=explode("/ ", $this->allTests->video_links);
+									
+									foreach($videos_result as $video)
+									{
+										
+										$links=explode('/', $video);									
+										$video_id = substr($video, strpos($video, "=") + 1);				
+										if(isset($links['2']) && $links['2']== 'www.youtube.com')
+										{
+											$imageUrl="http://i.ytimg.com/vi/".$video_id."/default.jpg";
 										}
-									}
-							     ?>	
-									
-									<a href="<?php echo $baseUrl; ?>/play-video?watch=HeMmavFtJ3c"><img  src="<?php echo $imageUrl;?>">
-							<?php }  } else { ?>
-								No videos
-							<?php } ?>
-									
-					
-              </div>
-                </div>
+										elseif(isset($links['2']) && $links['2']== 'www.dailymotion.com')
+										{
+											$imageUrl="http://i.ytimg.com/vi/".$video_id."/default.jpg";
+										}
+										else{
+										$imageUrl="http://vimeo.com/api/v2/video/".$video_id."/default.jpg";	
+										}			
+										
+									 ?>										
+									<a href="<?php echo $video;?>" onclick="openPopup(2)" class="popup-youtube"><img  src="<?php echo $imageUrl;?>"></a>
+								<?php }  } else { ?>
+									No videos
+								<?php } ?>
+										
+						
+						</div>
+					</div>
 				 
-		</div>
+				</div>
 				<?php } else{echo 'no results to show';}?>
 		</div>
 		</div>
@@ -140,3 +127,34 @@
 		</div>
 	</div>
 </div>
+<script>
+	function openPopup(value){
+		//alert();
+	$('#myModal'+value).modal('show');
+	$('.modal-open .modal').css('overflow-y','hidden');
+	}
+	$(document).ready(function(){ 
+		var video_h = $(window).height();
+		$('.window_height').css('height',($(window).height()-50)+'px');
+	});
+
+	$(document).ready(function() {
+
+        $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+
+          disableOn: 700,
+
+          type: 'iframe',
+
+          mainClass: 'mfp-fade',
+
+          removalDelay: 160,
+
+          preloader: false,
+
+          fixedContentPos: false
+
+        });
+
+    });
+</script>
