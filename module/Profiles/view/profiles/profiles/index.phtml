@@ -1,16 +1,13 @@
 <?php
-$header=$this->action('Application\Controller\IndexController', 'headerAction','profile');
-//print_r($header);
+	$header=$this->action('Application\Controller\IndexController', 'headerAction','profile');
 ?>
 <div class="container min_height">
 	<div class="row">
 		<div class="col-md-8">
-		<?if(isset($this->vatTData) && count($this->vatTData)){
-						foreach($this->vatTData as $links){
-							//$video_id = base64_encode($links->v_id);
-							//print_r($links);
-							$id=$links->u_id;
-						?>
+		<?php if(isset($this->vatTData) && count($this->vatTData)){
+			  foreach($this->vatTData as $links){
+				$id=$links->u_id;
+		?>
 			<div class="panel panel-default hover_body">
 			
 				<div class="panel-body">
