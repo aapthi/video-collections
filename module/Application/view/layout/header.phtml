@@ -1,13 +1,10 @@
 <?php
-	$header=$this->action('Application\Controller\IndexController', 'headerAction');
-	
+	$header=$this->action('Application\Controller\IndexController', 'headerAction');	
 	$baseUrl = $header->headerarray['baseUrl'];
 	$basePath = $header->headerarray['basePath'];
 	$catData = $header->headerarray['catData'];	
-	//$catCatlist = $header->headerarray['catCatlist'];	
 	$videoData = $header->headerarray['videoData'];
 	$topVideos = $header->headerarray['topVideos'];	
-	$userCat = $header->headerarray['userCat'];	
 	if($_SERVER['REQUEST_URI']=='/'){
 		$_SESSION['tilte_top'] = 'sfadda.com';
 		$image_name = $basePath.'/img/logo.png';
@@ -21,7 +18,6 @@
 		$_SESSION['tilte_imag'] = $_SESSION['tilte_imag'];
 	}
 	if($_SERVER['HTTP_HOST']=='sfadda.com'){$appid='685804858155190';}else {$appid='685804858155190';}
-	//print_r($catCatlist);
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +56,6 @@
   </head>
   <body>
   <!-- Top bar -->
-  <?php //echo $_GET['profile-user'];?>
   <div class="top_bar">
 	  <div class="container">
 		  <div class="row">

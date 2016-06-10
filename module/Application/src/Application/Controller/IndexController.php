@@ -51,9 +51,7 @@ class IndexController extends AbstractActionController
 		$videoList = $this->getVideoTable()->videoForentedList();		
 		$videoFList = $this->getVideoTable()->videoFeaturedList();
 		$routes=$this->params()->fromRoute();
-		//$searchres =str_replace('-',' ',$routes['search_name']);
-		$paginator = $this->getVideoTable()->getSearchResults($routes,true);
-		
+		$paginator = $this->getVideoTable()->getSearchResults($routes,true);		
 		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page', 1));
 		$paginator->setItemCountPerPage(39);
 		$paginator->setPageRange(5);
@@ -178,9 +176,7 @@ class IndexController extends AbstractActionController
 	}
 	public function headerAction($params)
     {
-		//print_r($params);			
-		//$id = $this->params()->fromRoute('', 0);
-		// echo $id;		
+				
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
@@ -205,16 +201,7 @@ class IndexController extends AbstractActionController
 		}
 			
 		$catSubcatlist = array();
-		$userCat = array();
-		
-			if($params == "profiles")
-			{
-				//echo 'k';exit;
-				//$testTable 	= $this->getServiceLocator()->get('Cat\Model\CatFactory');		
-				$catCatlist 	= $this->getCatTable()->CategoryList();
-				//print_r($catList);exit;
-			}
-			else{
+		$catCatlist = array();			
 				//echo 'kk';exit;
 				$catList = $this->getCategoryTable()->getCategoryListF();	
 				foreach($catList as $getCatid){
@@ -223,11 +210,7 @@ class IndexController extends AbstractActionController
 				}else{
 				$catSubcatlist[$getCatid->category_id][$getCatid->category_id] = $getCatid->category_name;
 				}
-				}
-				
-			}
-		
-		
+				}		
 		return $this->layout()->setVariable(
 			"headerarray",array(
 				'baseUrl' 		=> 	$baseUrl,
@@ -237,7 +220,7 @@ class IndexController extends AbstractActionController
 				'topVideos'	    =>	$topVideos,
 				'featuredVideos'=>	$featuredVideos,
 				'lastedVideos'	=>	$lastedVideos,
-				'userCat'	=>	$userCat
+				
 			)
 		);
 	}	

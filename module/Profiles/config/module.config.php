@@ -11,7 +11,7 @@ return array(
             'profiles' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/profiles[/:action][/:id]',
+                    'route'    => '/profiles',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',

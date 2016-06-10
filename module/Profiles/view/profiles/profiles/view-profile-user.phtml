@@ -1,42 +1,47 @@
+<?php 
+	 $ses_id=$_SESSION['user']['user_id'];
+	 if(!isset($ses_id) && $ses_id == "")
+	 {
+?>
+ <script>
+	window.location = '<?php echo $baseUrl;?>/users/login'
+ </script>
+				<?php }?>
 <div class="container min_height">
 	<div class="row">
 	
 		<div class="col-md-9">
 		<div class="panel panel-default">
 				<div class="panel-body">
-				<?php 
-				 $ses_id=$_SESSION['user']['user_id'];
-				//echo $user_session->user_id;
-				if(isset($this->allTests)){
-				foreach($this->allTests as $links){
-					//print_r($links);
-					//echo $links->u_id;
-					$base_user_id = base64_encode($links->u_id);
+				<?php
+				if(isset($this->allTests) && $this->allTests!=""){
+				
+					 $base_user_id = base64_encode($this->allTests->u_id);
 					?>
 				  <div class="col-md-3 well">
-						<?php if(!isset($links->user_profile_photo)){?>
-						<img alt="" src="<?php echo $basePath?>/images/<?php echo $links->user_photo;?>" style="width:140px;height:150px;">
+						<?php if(!isset($this->allTests->user_profile_photo)){?>
+						<img alt="" src="<?php echo $basePath?>/images/<?php echo $this->allTests->user_photo;?>" style="width:140px;height:150px;">
 						<?php } else{?>
-						<img alt="" src="<?php echo $basePath?>/images/<?php echo $links->user_profile_photo;?>" style="width:140px;height:150px;">
+						<img alt="" src="<?php echo $basePath?>/images/<?php echo $this->allTests->user_profile_photo;?>" style="width:140px;height:150px;">
 						<?php }?>
-				</div><span style="margin-left:414px;"><?php if(isset($ses_id) && $ses_id == $links->u_id){?><a href="<?php echo $baseUrl; ?>/edit-profile/<? echo $base_user_id;?>">edit Profile</a><?php }?></span>
+				</div><span style="margin-left:414px;"><?php if(isset($ses_id) && $ses_id == $this->allTests->u_id){?><a href="<?php echo $baseUrl; ?>/edit-profile/<? echo $base_user_id;?>">edit Profile</a><?php }?></span>
 					 <div class="col-md-9">
                     <div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">First Name :</label>
                       <div class="col-sm-9">
-                       <?php if($links->first_name != ""){echo $links->first_name;}else{ echo 'N/A';}?>
+                       <?php if($this->allTests->first_name != ""){echo $this->allTests->first_name;}else{ echo 'N/A';}?>
                       </div>
                     </div>
 					<div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">Email:</label>
                       <div class="col-sm-8">
-                         <?php if($links->email != ""){echo $links->email;}else{ echo 'N/A';}?>
+                         <?php if($this->allTests->email != ""){echo $this->allTests->email;}else{ echo 'N/A';}?>
                       </div>
                     </div>
 				<div class="form-group row">
                       <label  class="col-sm-3 form-control-label" style="color:#828282">Phone Number:</label>
                       <div class="col-sm-4">
-                       <?php if($links->contact_number != ""){echo $links->contact_number;}else{ echo 'N/A';}?>
+                       <?php if($this->allTests->contact_number != "" && $this->allTests->public_or_private == "public"){echo $links->contact_number;}elseif($this->allTests->public_or_private == "private"){ echo 'hide';}else{echo 'N/A';}?>
                       </div>
 					  <div class="col-sm-4">
 					
@@ -45,25 +50,25 @@
 				<div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">City:</label>
                       <div class="col-sm-8">
-                      <?php if($links->city != ""){echo $links->city;}else{ echo 'N/A';}?>
+                      <?php if($this->allTests->city != ""){echo $this->allTests->city;}else{ echo 'N/A';}?>
                       </div>
                  </div>
 				 <div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">Face Book Profile Link:</label>
                       <div class="col-sm-8">
-                      <?php if($links->fb_profile_link != ""){echo $links->fb_profile_link;}else{ echo 'N/A';}?>
+                      <?php if($this->allTests->fb_profile_link != ""){echo $this->allTests->fb_profile_link;}else{ echo 'N/A';}?>
                       </div>
                  </div>
 				 <div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">Message:</label>
                       <div class="col-sm-8">
-                      <?php if($links->message != ""){echo $links->message;}else{ echo 'N/A';}?>
+                      <?php if($this->allTests->message != ""){echo $this->allTests->message;}else{ echo 'N/A';}?>
                       </div>
                  </div>
 				 <div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">Skills:</label>
                       <div class="col-sm-8">
-					 <?php if($links->skills != ""){echo $links->skills;}else{ echo 'N/A';}?>
+					 <?php if($this->allTests->skills != ""){echo $this->allTests->skills;}else{ echo 'N/A';}?>
                         
                       </div>
                  </div>
@@ -81,24 +86,51 @@
                  </div>
 				<div class="form-group row">
                       <label class="col-sm-4 form-control-label"><strong>Video links:</strong></label>
-                  <div class="col-sm-12">
-				  				
-					<a href="http://localhost/video-collections/trunk/play-video?watch=OTM="><img alt="Greeku Veerudu Telugu Full Movie | Nagarjuna Akkineni | Nayantara | S Thaman" src="http://i.ytimg.com/vi/4gmGRztRSGQ/default.jpg">
-						</a>		
+                  <div class="col-sm-12"> 
+							<?php 
+							if(isset($this->allTests->video_links) && $this->allTests->video_links!=""){
+								$videos_result=explode(",",$this->allTests->video_links);
+								$link=explode("/", $videos_result);
+								$url=$link['2'];
+								foreach($videos_result as $video)
+								{
+									$video_id = substr($video, strpos($video, "=") + 1);			
+									$urlName=explode(".", $url);					
+									if(isset($urlName)){
+										if((isset($urlName['1'])) && ($urlName['1']=='youtube')){
+											$video_url=$urlName['1'];								
+											$image=explode("=", $link['3']);
+											 $image=$image['1'];
+											$imageCode = strstr($image, ',', true);
+											$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
+										}else if(isset($urlName['1']) && $urlName['1']=='dailymotion'){
+											$video_url=$urlName['1'];
+											$image=explode("_", $link['4']);
+											$imageCode=$image['0'];
+											$imageUrl="http://www.dailymotion.com/thumbnail/video/".$imageCode;
+										}else if(isset($urlName['0']) && ($urlName['0']=='vimeo')){
+											$video_url= $urlName['0'];
+											$imageCode = $link['5'];
+											$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imageCode.php"));
+											$imageUrl=$hash[0]['thumbnail_medium'];
+										}else{
+											$video_url= '';
+											$imageUrl= '';
+										}
+									}
+							     ?>	
 									
-					<a href="http://localhost/video-collections/trunk/play-video?watch=MTI5"><img alt="MR. Productions &amp; Nine Productions 'Two Side Love'" src="http://i.ytimg.com/vi/scTWs5F5Mn4/default.jpg"></a>		
+									<a href="<?php echo $baseUrl; ?>/play-video?watch=HeMmavFtJ3c"><img  src="<?php echo $imageUrl;?>">
+							<?php }  } else { ?>
+								No videos
+							<?php } ?>
 									
-					<a href="http://localhost/video-collections/trunk/play-video?watch=MTk0"><img alt=" Hello Brother Trailer || Telugu Short Film Trailer/ Teaser || by Ajay Ejjada || Creative Frames" src="http://i.ytimg.com/vi/qjlRu_99Z1A/default.jpg">
-						</a>	
-					<a href="http://localhost/video-collections/trunk/play-video?watch=OTM="><img alt="Greeku Veerudu Telugu Full Movie | Nagarjuna Akkineni | Nayantara | S Thaman" src="http://i.ytimg.com/vi/4gmGRztRSGQ/default.jpg">
-					</a>
-					<a href="http://localhost/video-collections/trunk/play-video?watch=OTM="><img alt="Greeku Veerudu Telugu Full Movie | Nagarjuna Akkineni | Nayantara | S Thaman" src="http://i.ytimg.com/vi/4gmGRztRSGQ/default.jpg">
-					</a>
+					
               </div>
                 </div>
 				 
 		</div>
-				<?php } }else{echo 'no results to show';}?>
+				<?php } else{echo 'no results to show';}?>
 		</div>
 		</div>
 		

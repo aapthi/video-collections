@@ -26,6 +26,7 @@ class ProfileTable
 		
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('user', 'vc_user_details.u_id=user.user_id',array('*'),'left');
+		//$select->where('public_or_private="'.$todayDate.'"');
 		$resultSet = $this->tableGateway->selectWith($select);		
 		return $resultSet;
 	}
@@ -36,18 +37,7 @@ class ProfileTable
 		$resultSet = $this->tableGateway->selectWith($select);		
 		return $resultSet;
 	}
-	/* public function videoUpdatesList(){
-		$select = $this->tableGateway->getSql()->select();				
-		$resultSet = $this->tableGateway->selectWith($select);		
-		return $resultSet;
-	}
-	public function homePageVideos(){
-		$select = $this->tableGateway->getSql()->select();				
-		//$select->where('state="1"');
-		$select->order(new \Zend\Db\Sql\Expression('RAND()'))->limit(30);
-		$resultSet = $this->tableGateway->selectWith($select);
-		return $resultSet;
-	} */
+	
 	public function videoTitleList($paginator=false,$cid){
 		
 		$select = $this->tableGateway->getSql()->select();
@@ -98,7 +88,7 @@ class ProfileTable
 		$select->join('user', 'vc_user_details.u_id=user.user_id',array('*'),'left');
 		$select->where('vc_user_details.u_id="'.$id.'"');
 		$resultSet = $this->tableGateway->selectWith($select);		
-		return $resultSet;
+		return $resultSet->current();
 	}
 	public function EditProfile($base_user_id)
 	{

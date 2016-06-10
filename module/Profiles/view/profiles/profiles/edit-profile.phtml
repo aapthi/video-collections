@@ -2,9 +2,8 @@
 	<div class="row">
 	
 		<div class="col-md-9">
-		<form action="" method="POST" enctype="multipart/form-data">
-				<!--<h2 class="">Cast & Crew Profile Form</h2>--->
-				
+		<form action="" method="POST" enctype="multipart/form-data" onsubmit="return validate();" name="form">
+			
 				  <div class="col-md-3 ">
 					<div class="">
 					<?php if(!isset($this->allTests->user_profile_photo)){?>
@@ -74,28 +73,21 @@
                       <label class="col-sm-3 form-control-label">Skills</label>
                       <div class="col-sm-8">
 					  <?php $options=array('Actor','Actress','Art-director','Assistant Director','Camera Assistant','Camera-Rental','Co-Director','Color-Correction','Co-Producer','Costume-Dress-Rental','Dialogue-Writer','Director','DOP','Dubbing-Artist','Dubbing-Studio-Rental','Editor','Equipment-Rental','Green-Matte-Studio-Rental','Lens-Rental','Lights-Rental','Location-Rental','Lyric-Writer','Make-up','Photo-Studio-Rental','Poster-Designer','Producer','Production-Manager','Prop-rental','Re-Recording (Music)','SFX (Sound Effects)','Singer','Story-Writer','Title-Designer','VFX (Visual Effects)','Others');
-					  //print_r($options);
-						 $results=explode(',',$this->allTests->skills);
-
-
+						$results=explode(',',$this->allTests->skills);
 					  ?>					 
                         <select class="form-control" id="state_id" name="state_id[]" multiple="multiple">
-						<option value="default">Select categories</option>
-						
-						<?php foreach($options as $result){
-							//print_r($result);
-							if(in_array($result,$results))
+						<option value="default">Select categories</option>						
+						<?php foreach($options as $values){
+							if(in_array($values,$results['0']))
 							{
 								$selected = 'selected';
 							}
 							else{
 								$selected = '';
-							}
-							
-							?>							
-										
-						<option value="<?php echo $result;?>" <?php echo $selected;?>><?php echo $result;?></option>
-									<?php }?>						
+							}							
+						?>				
+						<option value="<?php echo $values;?>" <?php echo $selected;?>><?php echo $values;?></option>
+					  <?php }?>						
 						
 						</select>
                       </div>
@@ -162,4 +154,14 @@
         e.preventDefault(); $('#ddddd').remove(); x--;
     })
 });
+
+function validate()
+{
+	//alert();
+	if ((form.public[0].checked == false ) && ( form.public[1].checked == false ) )
+	{
+	alert ( "Please choose Public or Private for your contact number" );
+	return false;
+	}
+}
 </script>

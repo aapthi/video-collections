@@ -86,7 +86,7 @@ class UsersController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];		
 		if(isset($_POST['videoLink']) && $_POST['videoLink']!=""){
-			//echo $s=$_POST['videoLink'];
+			$s=$_POST['videoLink'];
 			$link=explode("/", $s);
 			$url=$link['2'];
 			$urlName=explode(".", $url);
@@ -194,6 +194,7 @@ class UsersController extends AbstractActionController
 			// }
 			$image_v ='';
 			$s=$_POST['video_link'];
+			//print_r($s);exit;
 			$link=explode("/", $s);
 			$url=$link['2'];
 			$urlName=explode(".", $url);
@@ -631,22 +632,18 @@ class UsersController extends AbstractActionController
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
-		//print_r($baseUrl);	
 		foreach($_SESSION as $key => $val)
 		{
 			 unset($_SESSION[$key]);
 		}
+		session_destroy();
 		$this->zfcUserAuthentication()->getAuthAdapter()->resetAdapters();
         $this->zfcUserAuthentication()->getAuthService()->clearIdentity();
 		$result = new JsonModel(array(					
 			'output' => 'success',
 			'success'=>false,
-		));
-		
-		return $result;
-		/* if($result>0){
-		return $this->redirect()->toUrl($baseUrl);
-		} */
+		));		
+		return $result;		
 	}
 	public function changePasswordAction()
 	{

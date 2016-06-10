@@ -22,6 +22,8 @@ class ProfilesController extends AbstractActionController
 	{
 		
 	/* 	Index  */
+		//echo $params;
+		
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
@@ -53,46 +55,7 @@ class ProfilesController extends AbstractActionController
 		return $viewModel;
 	
 	}
-	/* public function headerAction($params)
-    {
-		$baseUrls = $this->getServiceLocator()->get('config');
-		$testTable 	= $this->getServiceLocator()->get('Profiles\Model\ProfileFactory');		
-		$baseUrlArr = $baseUrls['urls'];
-		 $baseUrl = $baseUrlArr['baseUrl'];
-		$basePath = $baseUrlArr['basePath'];
-		$videoList = $testTable->videoUpdatesList();
-		//echo '<pre>';print_r($videoList);		
-		$homePageVideos = $testTable->homePageVideos();
-		//echo '<pre>';print_r($homePageVideos);
-		$topVideos=array();
-		$featuredVideos=array();
-		$lastedVideos=array();
-		if($homePageVideos!="") {
-			$i=0; foreach($homePageVideos as $videosH){
-				if( $i<=6 ){
-					$topVideos[] = $videosH; 
-				}	
-				if( $i>=7 && $i<23 ){
-					$featuredVideos[] = $videosH; 
-				}
-				if($i>=15){			
-					$lastedVideos[] = $videosH;
-				 }
-			$i++; }
-		}		
-		
-		
-		return $this->layout()->setVariable(
-			"headerarray",array(
-				'baseUrl' 		=> 	$baseUrl,
-				'basePath'		=>	$basePath,				
-				'videoData'		=>	$videoList,
-				'topVideos'	    =>	$topVideos,
-				'featuredVideos'=>	$featuredVideos,
-				'lastedVideos'	=>	$lastedVideos,
-			)
-		);
-	}	 */
+	
 	public function searchResultAction()
     {
 		$baseUrls = $this->getServiceLocator()->get('config');
@@ -119,9 +82,8 @@ class ProfilesController extends AbstractActionController
     }
 	public function viewProfileUserAction()
 	{
-		//echo 'k';
-		 $id = $this->params()->fromRoute('id', 0);
-		 //echo $id;exit;
+		
+		$id = $this->params()->fromRoute('id', 0);		 
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
@@ -167,11 +129,43 @@ class ProfilesController extends AbstractActionController
 					//print_r($_POST);exit;
 					//print_r($_POST['images']);
 					//print_r($_FILES['images']);
-					$folder='/www/';
+					//$folder='/www/';
+					//print_r($_POST['video']);
+					
+					$s=$_POST['video'];
+					foreach($s as $v){
+					$link=explode("/", $v);					
+					$url=$link['2'];					
+					$urlName=explode(".", $url);					
+						if(isset($urlName)){
+							if((isset($urlName['1'])) && ($urlName['1']=='youtube')){
+								$video_url=$urlName['1'];								
+								$image=explode("=", $link['3']);
+								$imageCode=$image['1'];
+								$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
+								//return $imageUrl;
+							}else if(isset($urlName['1']) && $urlName['1']=='dailymotion'){
+								$video_url=$urlName['1'];
+								$image=explode("_", $link['4']);
+								$imageCode=$image['0'];
+								$imageUrl="http://www.dailymotion.com/thumbnail/video/".$imageCode;
+							}else if(isset($urlName['0']) && ($urlName['0']=='vimeo')){
+								$video_url= $urlName['0'];
+								$imageCode = $link['5'];
+								$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imageCode.php"));
+								$imageUrl=$hash[0]['thumbnail_medium'];
+							}else{
+								$video_url= '';
+								$imageUrl= '';
+							}
+					}	
+					}
+					//exit;
 					$testTable 	= $this->getServiceLocator()->get('Profiles\Model\UserFactory');		
 					$allTests 	= $testTable->UpdateUser($_POST,$id);
 					$UpdateTable 	= $this->getServiceLocator()->get('Profiles\Model\ProfileFactory');	
 					$allTests 	= $UpdateTable->UpdateUser($_POST,$id);
+					return $imageUrl;
 					if($allTests>0)
 					{
 						return $this->redirect()->toUrl($baseUrl.'/profile-user/'.$base_user_id);
