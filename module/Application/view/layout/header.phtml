@@ -20,8 +20,11 @@
 		$image_name = $basePath.'/img/logo.png';
 		$_SESSION['tilte_imag'] = $image_name;
 	}else{
-		$_SESSION['tilte_top'] = $_SESSION['tilte_top'];
-		$_SESSION['tilte_imag'] = $_SESSION['tilte_imag'];
+		if(isset($_SESSION['tilte_top']) && $_SESSION['tilte_top']!=""){
+			$_SESSION['tilte_top'] = $_SESSION['tilte_top'];
+		}else if(isset($_SESSION['tilte_imag']) && $_SESSION['tilte_imag']!=""){
+			$_SESSION['tilte_imag'] = $_SESSION['tilte_imag'];
+		}
 	}
 	if($_SERVER['HTTP_HOST']=='sfadda.com'){$appid='685804858155190';}else {$appid='685804858155190';}
 ?>
@@ -167,12 +170,17 @@
 									$dropMenu = '';
 								}
 								if($key == $catid){ ?>
-									<li class ="<? echo $dropMenu; ?>" tabindex='-1'><a href="<?php echo $baseUrl; ?>/cat/<? echo $catid;?>"><? echo $catname;?></a>
+									<li class ="<? echo $dropMenu; ?>" tabindex='-1'>
+									<?php if($parmsName =="profile") {?>
+									<a href="<?php echo $baseUrl; ?>/profiles/<? echo $catid;?>"><? echo $catname;?></a>
+									<?php } else {?>
+									<a href="<?php echo $baseUrl; ?>/cat/<? echo $catid;?>"><? echo $catname;?></a>
+									<?php } ?>	
 										<ul class='dropdown-menu' role = 'menu'>
 											<? foreach($catinfo as $catid=>$catname){ 
 													if($key != $catid){	?>
 														<?php if($parmsName =="profile") {?>
-															<li><a tabindex='-1' href="<?php echo $baseUrl; ?>/profile/<? echo $catid;?>"><? echo $catname;?>
+															<li><a tabindex='-1' href="<?php echo $baseUrl; ?>/profiles/<? echo $catid;?>"><? echo $catname;?></a></li>
 														<?php } else{?>
 														<li><a tabindex='-1' href="<?php echo $baseUrl; ?>/cat/<? echo $catid;?>"><? echo $catname;?></a></li>
 													<?php } ?>

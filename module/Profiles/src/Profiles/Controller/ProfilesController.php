@@ -105,74 +105,38 @@ class ProfilesController extends AbstractActionController
 		return $viewModel;		
 	}
 	public function editProfileAction()
-	{
-		
+	{		
 		$id = $this->params()->fromRoute('uid', 0);
-		 $base_user_id = base64_decode($id);		
+		$base_user_id = base64_decode($id);		
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
 		$testTable 	= $this->getServiceLocator()->get('Profiles\Model\ProfileFactory');		
-		$allTests 	= $testTable->EditProfile($base_user_id)->current();
-		$viewModel = new ViewModel(
+		$userCategoriesTable	=$this->getServiceLocator()->get('Profiles\Model\CatFactory');
+		/* Editing profile */ 
+		if(isset($_POST['video']) && $_POST['video']!=""){			
+			$testTable 	= $this->getServiceLocator()->get('Profiles\Model\UserFactory');		
+			$allTests 	= $testTable->UpdateUser($_POST,$id);
+			$UpdateTable 	= $this->getServiceLocator()->get('Profiles\Model\ProfileFactory');	
+			$allTests 	= $UpdateTable->UpdateUser($_POST,$id);
+			if($allTests>0)
+			{
+				return $this->redirect()->toUrl($baseUrl.'/profile-user/'.$base_user_id);
+			}
+		// List 
+		}else{
+			$catList = $userCategoriesTable->CategoryList();		
+			$allTests 	= $testTable->EditProfile($base_user_id)->current();
+			$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
 				'basePath' 					=> $basePath,				
 				'allTests' 					=> $allTests,				
-				'id'                        => $base_user_id
-		));
-		
-			if(isset($_POST['submit']))
-			{
-					
-					$s=$_POST['video'];
-					foreach($s as $v){
-					$link=explode("/", $v);					
-					$url=$link['2'];					
-					$urlName=explode(".", $url);					
-						if(isset($urlName)){
-							if((isset($urlName['1'])) && ($urlName['1']=='youtube')){
-								$video_url=$urlName['1'];								
-								$image=explode("=", $link['3']);
-								$imageCode=$image['1'];
-								$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
-							}else if(isset($urlName['1']) && $urlName['1']=='dailymotion'){
-								$video_url=$urlName['1'];
-								$image=explode("_", $link['4']);
-								$imageCode=$image['0'];
-								$imageUrl="http://www.dailymotion.com/thumbnail/video/".$imageCode;
-							}else if(isset($urlName['0']) && ($urlName['0']=='vimeo')){
-								$video_url= $urlName['0'];
-								$imageCode = $link['5'];
-								$hash = unserialize(file_get_contents("http://vimeo.com/api/v2/video/$imageCode.php"));
-								$imageUrl=$hash[0]['thumbnail_medium'];
-							}else{
-								$video_url= '';
-								$imageUrl= '';
-							}
-					}	
-					}
-					//exit;
-					$testTable 	= $this->getServiceLocator()->get('Profiles\Model\UserFactory');		
-					$allTests 	= $testTable->UpdateUser($_POST,$id);
-					$UpdateTable 	= $this->getServiceLocator()->get('Profiles\Model\ProfileFactory');	
-					$allTests 	= $UpdateTable->UpdateUser($_POST,$id);
-					return $imageUrl;
-					if($allTests>0)
-					{
-						return $this->redirect()->toUrl($baseUrl.'/profile-user/'.$base_user_id);
-					}
-			}
-			
-			
-			return $viewModel;
-		
+				'id'                        => $base_user_id,
+				'catList'                   => $catList
+			));
+			return $viewModel;	
+		}			
 	}
-	public function categoriesAction()
-	{
-		
-	}
-	
-	
 }

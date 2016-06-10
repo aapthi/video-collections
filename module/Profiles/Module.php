@@ -13,6 +13,8 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 
 use Profiles\Model\Category;
 use Profiles\Model\CategoryTable;
+use Profiles\Model\UserSkills;
+use Profiles\Model\UserSkillsTable;
 
 
 class Module implements 
@@ -43,6 +45,7 @@ class Module implements
             'factories' => array( 
 				'Profiles\Model\ProfileFactory'=>'Profiles\Factory\Model\ProfileTableFactory','Profiles\Model\UserFactory'=>'Profiles\Factory\Model\UserTableFactory',
 				'Profiles\Model\CatFactory'=>'Profiles\Factory\Model\CatTableFactory',
+				'Profiles\Model\UserSkillsFactory'=>'Profiles\Factory\Model\UserSkillsTableFactory',
 			),			
         );
     }
