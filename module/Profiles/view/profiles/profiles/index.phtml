@@ -8,8 +8,7 @@
 			  foreach($this->vatTData as $links){
 				$id=$links->u_id;
 		?>
-			<div class="panel panel-default hover_body">
-			
+			<div class="panel panel-default hover_body">			
 				<div class="panel-body">
 					<div class="media pos_r">
 					<div class="pos_ab_btn">
@@ -22,16 +21,15 @@
 						<?php }?>
 					</div> 
 					<div class="media-body" style="margin:0"> 
-						<h4 class="media-heading"><a href="<?php echo $baseUrl;?>/profile-user/<?php echo $id;?>"><?php echo  $links->first_name;?></a></h4>
-						<p><span class="dim">City : </span> <?php echo  $links->city;?></p>
+						<h4 class="media-heading"><a href="<?php echo $baseUrl;?>/profile-user/<?php echo $id;?>"><?php if(isset($links->first_name) && $links->first_name != ""){echo  $links->first_name;}else{ echo 'N/A';}?></a></h4>
+						<p><span class="dim">City : </span> <?php if(isset($links->city) && $links->city != ""){echo  $links->city;}else{ echo 'N/A';}?></p>
 						<p><span class="dim">Industry : </span>Industry Name</p>
-						<p><span class="dim">Skills :</span><?php echo  $links->skills;?></p>	
+						<p><span class="dim">Skills :</span><?php  if(isset($links->skills) && $links->skills != ""){ echo  $links->skills;}else{echo 'N/A';}?></p>	
 					</div>
 					
 					<?php
 					//echo $baseUrl;exit;
-					$string=$links->message;
-					
+					$string=$links->message;					
 					$string = strip_tags($string);
 					if (strlen($string) > 300) {
 						//$a=$row["news_id"];
@@ -41,7 +39,7 @@
 						<a href="'.$baseUrl.'/profile-user/'.$id.'">View More</a>'; 
 					}
 					?>
-						<p><?php echo $string; ?></p>	
+					<p><?php echo $string; ?></p>	
 					</div>
 				</div>
 				
@@ -50,9 +48,7 @@
 							<br/>&nbsp;There are no userslist.
 					<? }?>
 			<div align="center">
-				<?php
-				//echo $this->vatTData;exit;
-				//echo $this->id;
+				<?php				
 					echo $this->paginationControl(
 					$this->vatTData,
 					'sliding',
@@ -63,16 +59,10 @@
 						)
 					);
 				?>
-			</div>
-			
-			
-			
-			
-			
-			
+			</div>			
 			</div>
 		<div class="col-md-4">
 			<?php include('right-side-bar.phtml');?>
 		</div>
 	</div>
-		</div>
+	</div>
