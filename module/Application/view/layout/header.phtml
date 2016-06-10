@@ -1,5 +1,11 @@
 <?php
-	$header=$this->action('Application\Controller\IndexController', 'headerAction');	
+	$page=basename($_SERVER['REQUEST_URI']);
+	if($page=='profiles'){
+		 $parmsName  = "profile";	
+	}else{
+		$parmsName  = "all";			
+	}
+	$header=$this->action('Application\Controller\IndexController', 'headerAction',$parmsName);	
 	$baseUrl = $header->headerarray['baseUrl'];
 	$basePath = $header->headerarray['basePath'];
 	$catData = $header->headerarray['catData'];	
@@ -62,9 +68,6 @@
 			  <div class="col-md-6 smhide">
 			<?php
 			$date_array = getdate();
-
-			foreach ( $date_array as $key => $val )
-			{ }
 			?>
 			Today: <?php echo $date_array['weekday'];?>, <?php echo $date_array['month'];?> <?php echo $date_array['mday'];?>, <?php echo $date_array['year'];?> Last Update: <?php echo $date_array['hours'];?>:<?php echo $date_array['minutes'];?>
 			</div>
@@ -153,9 +156,7 @@
 				<ul class="dropdown-menu" style="left:0 !important">
 					<? 
 					if(isset($catData)){ foreach($catData as $key=>$catinfo){
-							//print_r($catinfo->u_categoty_name);
 							foreach($catinfo as $catid=>$catname){
-								//print_r($catname);
 								if(count( $catinfo )>1){
 									$dropMenu = 'dropdown-submenu';
 								}else{
@@ -165,9 +166,12 @@
 									<li class ="<? echo $dropMenu; ?>" tabindex='-1'><a href="<?php echo $baseUrl; ?>/cat/<? echo $catid;?>"><? echo $catname;?></a>
 										<ul class='dropdown-menu' role = 'menu'>
 											<? foreach($catinfo as $catid=>$catname){ 
-											//print_r($catname);
 													if($key != $catid){	?>
+														<?php if($parmsName =="profile") {?>
+															<li><a tabindex='-1' href="<?php echo $baseUrl; ?>/profile/<? echo $catid;?>"><? echo $catname;?>
+														<?php } else{?>
 														<li><a tabindex='-1' href="<?php echo $baseUrl; ?>/cat/<? echo $catid;?>"><? echo $catname;?></a></li>
+													<?php } ?>
 											<? } } ?> 			
 										</ul>										
 									</li>
