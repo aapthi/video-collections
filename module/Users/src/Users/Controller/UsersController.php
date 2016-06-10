@@ -86,9 +86,9 @@ class UsersController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];		
 		if(isset($_POST['videoLink']) && $_POST['videoLink']!=""){
-			$s=$_POST['videoLink'];
+			$s=$_POST['videoLink'];			
 			$link=explode("/", $s);
-			$url=$link['2'];
+			$url=$link['2'];			
 			$urlName=explode(".", $url);
 			if(isset($urlName)){
 				if((isset($urlName['1'])) && ($urlName['1']=='youtube')){
@@ -193,8 +193,7 @@ class UsersController extends AbstractActionController
 				// $image_v = $_FILES['video_img']['name'];
 			// }
 			$image_v ='';
-			$s=$_POST['video_link'];
-			//print_r($s);exit;
+			$s=$_POST['video_link'];			
 			$link=explode("/", $s);
 			$url=$link['2'];
 			$urlName=explode(".", $url);
@@ -202,7 +201,7 @@ class UsersController extends AbstractActionController
 				if((isset($urlName['1'])) && ($urlName['1']=='youtube')){
 					$video_url=$urlName['1'];
 					$image=explode("=", $link['3']);
-					$imageCode=$image['1'];
+					$imageCode=$image['1'];					
 					$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
 				}else if(isset($urlName['1']) && $urlName['1']=='dailymotion'){
 					$video_url=$urlName['1'];
