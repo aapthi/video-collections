@@ -115,7 +115,6 @@ class ProfilesController extends AbstractActionController
 		$basePath = $baseUrlArr['basePath'];
 		$testTable 	= $this->getServiceLocator()->get('Profiles\Model\ProfileFactory');		
 		$allTests 	= $testTable->EditProfile($base_user_id)->current();
-			//print_r($allTests);exit;
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
@@ -126,11 +125,6 @@ class ProfilesController extends AbstractActionController
 		
 			if(isset($_POST['submit']))
 			{
-					//print_r($_POST);exit;
-					//print_r($_POST['images']);
-					//print_r($_FILES['images']);
-					//$folder='/www/';
-					//print_r($_POST['video']);
 					
 					$s=$_POST['video'];
 					foreach($s as $v){
@@ -143,7 +137,6 @@ class ProfilesController extends AbstractActionController
 								$image=explode("=", $link['3']);
 								$imageCode=$image['1'];
 								$imageUrl="http://i.ytimg.com/vi/".$imageCode."/default.jpg";
-								//return $imageUrl;
 							}else if(isset($urlName['1']) && $urlName['1']=='dailymotion'){
 								$video_url=$urlName['1'];
 								$image=explode("_", $link['4']);
