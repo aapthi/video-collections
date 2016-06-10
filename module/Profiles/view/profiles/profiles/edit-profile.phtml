@@ -1,10 +1,8 @@
 <div class="container min_height">
-	<div class="row">
-	
+	<div class="row">	
 		<div class="col-md-9">
-		<form action="" method="POST" enctype="multipart/form-data" onsubmit="return validate();" name="form">
-			
-				  <div class="col-md-3 ">
+		<form action="" method="POST" enctype="multipart/form-data" onsubmit="return validate();" name="form">		
+				<div class="col-md-3 ">
 					<div class="">
 					<?php if(!isset($this->allTests->user_profile_photo)){?>
 					<img alt="" src="<?php echo $basePath;?>/images/<?php echo $this->allTests->user_photo?>" style="width:160px;height:160px;">
@@ -14,11 +12,9 @@
 					</div>
 				<div class="text-center" style="padding-top:10px;">
 						<a class="text-center font_15" data-toggle="modal">Update Photo <i class="fa fa-edit"></i></a>
-					</div>
-					
+					</div>					
 				  </div>
-					 <div class="col-md-9">
-				  
+					 <div class="col-md-9">				  
                     <div class="form-group row">
                       <label class="col-sm-3 form-control-label">First Name <sup>*</sup></label>
                       <div class="col-sm-8">
@@ -87,8 +83,7 @@
 							}							
 						?>				
 						<option value="<?php echo $values;?>" <?php echo $selected;?>><?php echo $values;?></option>
-					  <?php }?>						
-						
+					  <?php }?>							
 						</select>
                       </div>
                  </div>
@@ -115,11 +110,7 @@
 						</div>
                       </div> 
                       </div> 
-                 </div>
-				<!--<input type="hidden" name="hid" value="<?php //if(isset($this->allTests->u_id) && $this->allTests->u_id != ""){
-					 //$video=explode(' ;',$this->allTests->u_id);
-					 //foreach ($video as $links){					 
-				// echo  $links;}} ?>"> -->
+                 </div>			
 				  <div class="form-group row">
                       <label class="col-sm-3 form-control-label">&nbsp</label>
                       <div class="col-sm-8">
@@ -155,13 +146,13 @@
     })
 });
 
-function validate()
-{
-	//alert();
-	if ((form.public[0].checked == false ) && ( form.public[1].checked == false ) )
+	function validate()
 	{
-	alert ( "Please choose Public or Private for your contact number" );
-	return false;
+		//alert();
+		if ((form.public[0].checked == false ) && ( form.public[1].checked == false ) )
+		{
+		alert ( "Please choose Public or Private for your contact number" );
+		return false;
+		}
 	}
-}
 </script>
