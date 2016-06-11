@@ -5,4 +5,6 @@ ALTER TABLE `video_collections`.`vc_user_details` ADD COLUMN `public_or_private`
  ALTER TABLE `video_collections`.`vc_user_details` ADD COLUMN `message` TEXT NULL AFTER `fb_profile_link`; 
  ALTER TABLE `video_collections`.`vc_user_details` ADD COLUMN `skills` VARCHAR(100) NULL AFTER `message`;   
  ALTER TABLE `video_collections`.`vc_user_details` CHANGE `fb_profile_link` `fb_profile_link` TEXT CHARSET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `video_links` `video_links` TEXT CHARSET latin1 COLLATE latin1_swedish_ci NULL; 
- ALTER TABLE `video_collections`.`vc_user_details` ADD COLUMN `user_profile_photo` VARCHAR(150) NULL AFTER `video_links`;  
+ ALTER TABLE `video_collections`.`vc_user_details` ADD COLUMN `user_profile_photo` VARCHAR(150) NULL AFTER `video_links`;
+CREATE TABLE `video_collections`.`vc_user_pics`( `vp_id` INT NOT NULL AUTO_INCREMENT, `vp_u_id` INT, `vp_pics` VARCHAR(150), `vp_created_at` DATETIME, `vp_updated_at` DATETIME, `vp_status` INT, PRIMARY KEY (`vp_id`) ); 
+ CREATE TABLE `video_collections`.`vc_user_videos`( `v_v_id` INT NOT NULL AUTO_INCREMENT, `v_user_id` INT, `v_video_link` TEXT, `v_updated_at` DATETIME, `v_created_at` DATETIME, PRIMARY KEY (`v_v_id`) );  
