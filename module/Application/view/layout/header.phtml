@@ -156,7 +156,11 @@
 			<a href="<?php echo $baseUrl . '/'; ?>" class="smhide"><button type="button" class="home_icon"><span class="glyphicon glyphicon-home" style="color:#2fa4e7"></span></button></a>
 			<div class="btn-group " role="group">
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<?php if($parmsName =="profile") {?>
+				SKILLS &nbsp;&nbsp;&nbsp;
+				<?php } else {?>
 				CATEGORIES &nbsp;&nbsp;&nbsp;
+				<?php } ?>
 					<img  src="<?php echo $basePath; ?>/img/menu.png" alt="ads">
 					<span class="caret"></span>
 				</button>
@@ -196,7 +200,11 @@
 		</div>
 		<div class="col-md-9 input_search">
 			<div class="input-group">
-			<input id="videosSearch" placeholder="Search for videos" class="form-control" type="textbox">
+			<?php if($parmsName =="profile") {?>
+				<input id="videosSearch" placeholder="Search for user name" class="form-control" type="textbox">
+			<?php } else { ?>
+				<input id="videosSearch" placeholder="Search for videos" class="form-control" type="textbox">
+			<?php } ?>
 			<span class="input-group-btn">
 			<button class="btn btn-default" onKeypress="serachTitle();" onClick="searchByLocation();" type="button" id="addressSearch">Search</button>
 			</span>

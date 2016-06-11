@@ -31,7 +31,7 @@ CREATE TABLE `session` (
 
 /*Data for the table `session` */
 
-insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('6addbe9e72c6570514f8b1be73dd92ed','PHPSESSID',1443849930,1440,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1443849930.0681629180908203125;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('92dkvghd7jtm5hmaefjq4nn042','PHPSESSID',1444024916,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444024916.271615;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('kpqasu1c0vr2656vjb5het6i55','PHPSESSID',1443879318,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1443879317.737694;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}'),('q7frgnv62071jngtknoo874qq7','PHPSESSID',1443887255,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1443887255.527709;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}user|C:23:\"Zend\\Stdlib\\ArrayObject\":236:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:6:\"Dileep\";s:11:\"displayName\";s:6:\"Dileep\";s:5:\"email\";s:21:\"dkonda@aapthitech.com\";s:7:\"user_id\";s:2:\"15\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('qt0imcak05d0tpsvauj6n2d635','PHPSESSID',1444219692,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444219691.5203149;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('3atutjtp68bstol4ift2m1ut67','PHPSESSID',1444049047,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444049047.1888249;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('fbiv5aacnifpjv89lj2a30l4d4','PHPSESSID',1444116127,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444116127.0026619;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('jabtkvabkunmdg1f9ec6m7ghf4','PHPSESSID',1444216365,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444216365.0420511;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('tpeie307j8ciqkq99f2rd8fmc5','PHPSESSID',1444221944,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444221944.7881939;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('g43l7o0luehfbud3ja9u1nkg01','PHPSESSID',1444224729,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444224728.683424;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('tdtdins7fgafqfp2knpovq34k7','PHPSESSID',1444312168,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444312167.9917049;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('8un9e69lrq6melb54oa2sckin3','PHPSESSID',1444372452,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444372452.8170991;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";'),('7amqd4u66ndf1esspi3m3ljdg6','PHPSESSID',1444372327,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444372322.1516249;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}tilte_top|s:10:\"sfadda.com\";'),('758bk46npj4p0d19ihf0edqtd0','PHPSESSID',1444372475,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444372475.170378;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";'),('bvping902nfmetkhcejmn0m6q0','PHPSESSID',1444373470,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444373469.463248;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";'),('s3h6nu0l6n3rgehijcnc2ofm36','PHPSESSID',1444376539,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444376539.310833;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";'),('c2en2vl83d9ta2053u1e4m00g2','PHPSESSID',1444886314,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444886311.6001229;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";'),('h6afae79e0spsq37ffbtj7m2f2','PHPSESSID',1445238678,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1445238677.5040879;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";admin|C:23:\"Zend\\Stdlib\\ArrayObject\":237:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:14:\"Administration\";s:11:\"displayname\";s:5:\"Admin\";s:5:\"email\";s:15:\"admin@gmail.com\";s:7:\"user_id\";s:1:\"9\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('gfup09kj1h52jseda096a6jvt6','PHPSESSID',1445250242,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1445250242.4435649;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}admin|C:23:\"Zend\\Stdlib\\ArrayObject\":237:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:14:\"Administration\";s:11:\"displayname\";s:5:\"Admin\";s:5:\"email\";s:15:\"admin@gmail.com\";s:7:\"user_id\";s:1:\"9\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:96:\"Ee Janakiki Nene Raamudini latest telugu shortfilm 2015||cute comedy Love story by Mahesh Uppala\";tilte_imag|s:45:\"http://i.ytimg.com/vi/xZs1E8fpMrc/default.jpg\";'),('erl6ksd8dvok3me5t2sl8tloo0','PHPSESSID',1445411565,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1445411561.192476;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";'),('j9esfvu1turdusqb5gr86a5nl7','PHPSESSID',1445579215,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1445579215.6247489;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";'),('vprgik9bc0e8apr2dge8qb73c5','PHPSESSID',1465557588,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1465557587.4271829;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";');
+insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('6addbe9e72c6570514f8b1be73dd92ed','PHPSESSID',1443849930,1440,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1443849930.0681629180908203125;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('92dkvghd7jtm5hmaefjq4nn042','PHPSESSID',1444024916,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444024916.271615;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('kpqasu1c0vr2656vjb5het6i55','PHPSESSID',1443879318,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1443879317.737694;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}'),('q7frgnv62071jngtknoo874qq7','PHPSESSID',1443887255,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1443887255.527709;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}user|C:23:\"Zend\\Stdlib\\ArrayObject\":236:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:6:\"Dileep\";s:11:\"displayName\";s:6:\"Dileep\";s:5:\"email\";s:21:\"dkonda@aapthitech.com\";s:7:\"user_id\";s:2:\"15\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('qt0imcak05d0tpsvauj6n2d635','PHPSESSID',1444219692,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444219691.5203149;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('3atutjtp68bstol4ift2m1ut67','PHPSESSID',1444049047,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444049047.1888249;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('fbiv5aacnifpjv89lj2a30l4d4','PHPSESSID',1444116127,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444116127.0026619;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('jabtkvabkunmdg1f9ec6m7ghf4','PHPSESSID',1444216365,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444216365.0420511;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('tpeie307j8ciqkq99f2rd8fmc5','PHPSESSID',1444221944,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444221944.7881939;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('g43l7o0luehfbud3ja9u1nkg01','PHPSESSID',1444224729,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444224728.683424;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('tdtdins7fgafqfp2knpovq34k7','PHPSESSID',1444312168,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444312167.9917049;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('8un9e69lrq6melb54oa2sckin3','PHPSESSID',1444372452,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444372452.8170991;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";'),('7amqd4u66ndf1esspi3m3ljdg6','PHPSESSID',1444372327,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444372322.1516249;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}tilte_top|s:10:\"sfadda.com\";'),('758bk46npj4p0d19ihf0edqtd0','PHPSESSID',1444372475,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444372475.170378;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";'),('bvping902nfmetkhcejmn0m6q0','PHPSESSID',1444373470,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444373469.463248;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";'),('s3h6nu0l6n3rgehijcnc2ofm36','PHPSESSID',1444376539,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444376539.310833;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";'),('c2en2vl83d9ta2053u1e4m00g2','PHPSESSID',1444886314,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1444886311.6001229;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";'),('h6afae79e0spsq37ffbtj7m2f2','PHPSESSID',1445238678,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1445238677.5040879;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";admin|C:23:\"Zend\\Stdlib\\ArrayObject\":237:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:14:\"Administration\";s:11:\"displayname\";s:5:\"Admin\";s:5:\"email\";s:15:\"admin@gmail.com\";s:7:\"user_id\";s:1:\"9\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('gfup09kj1h52jseda096a6jvt6','PHPSESSID',1445250242,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1445250242.4435649;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}admin|C:23:\"Zend\\Stdlib\\ArrayObject\":237:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:14:\"Administration\";s:11:\"displayname\";s:5:\"Admin\";s:5:\"email\";s:15:\"admin@gmail.com\";s:7:\"user_id\";s:1:\"9\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:96:\"Ee Janakiki Nene Raamudini latest telugu shortfilm 2015||cute comedy Love story by Mahesh Uppala\";tilte_imag|s:45:\"http://i.ytimg.com/vi/xZs1E8fpMrc/default.jpg\";'),('erl6ksd8dvok3me5t2sl8tloo0','PHPSESSID',1445411565,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1445411561.192476;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";'),('j9esfvu1turdusqb5gr86a5nl7','PHPSESSID',1445579215,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1445579215.6247489;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";'),('vprgik9bc0e8apr2dge8qb73c5','PHPSESSID',1465557588,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1465557587.4271829;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";'),('ipve7gkde3cntgcjtlpkn9sp33','PHPSESSID',1465619595,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1465619594.880137;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}tilte_top|s:10:\"sfadda.com\";tilte_imag|s:60:\"http://localhost/video-collections/trunk/public/img/logo.png\";');
 
 /*Table structure for table `user` */
 
@@ -50,29 +50,13 @@ CREATE TABLE `user` (
   `added_date` date DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`user_id`)
+  PRIMARY KEY (`user_id`),
+  FULLTEXT KEY `username` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
 
 insert  into `user`(`user_id`,`username`,`email`,`password`,`display_name`,`contact_number`,`user_type`,`captch_code`,`state`,`added_date`,`created_at`,`updated_at`) values (9,'Administration','admin@gmail.com','b59c67bf196a4758191e42f76670ceba','Admin','9999999999',1,NULL,1,NULL,'2015-09-21 18:33:04','2015-09-21 18:33:06'),(15,'Dileep','dkonda@aapthitech.com','ea452f3b31ac158c119a0b295740d63e','Dileep','9701059345',2,NULL,1,'2015-10-03','2015-09-24 08:32:00','2015-10-03 17:47:26');
-
-/*Table structure for table `user_category` */
-
-DROP TABLE IF EXISTS `user_category`;
-
-CREATE TABLE `user_category` (
-  `u_c_id` int(11) NOT NULL AUTO_INCREMENT,
-  `u_category_name` varchar(150) DEFAULT NULL,
-  `u_state` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `update_at` datetime DEFAULT NULL,
-  KEY `u_c_id` (`u_c_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
-
-/*Data for the table `user_category` */
-
-insert  into `user_category`(`u_c_id`,`u_category_name`,`u_state`,`created_at`,`update_at`) values (2,'Actor',NULL,'2016-06-09 21:38:41',NULL),(3,'Actress',NULL,'2016-06-09 21:38:41',NULL),(4,'Art-director',NULL,'2016-06-09 21:38:41',NULL),(5,'Assistant Director',NULL,'2016-06-09 21:38:41',NULL),(6,'Camera Assistant',NULL,'2016-06-09 21:38:41',NULL),(7,'Camera-Rental',NULL,'2016-06-09 21:38:41',NULL),(8,'Co-Director',NULL,'2016-06-09 21:38:41',NULL),(9,'Color-Correction',NULL,'2016-06-09 21:38:41',NULL),(10,'Co-Producer',NULL,'2016-06-09 21:38:41',NULL),(11,'Costume-Dress-Rental',NULL,'2016-06-09 21:38:41',NULL),(12,'Dialogue-Writer',NULL,'2016-06-09 21:38:41',NULL),(13,'Director',NULL,'2016-06-09 21:38:41',NULL),(14,'DOP',NULL,'2016-06-09 21:38:41',NULL),(15,'Dubbing-Artist',NULL,'2016-06-09 21:38:41',NULL),(16,'Dubbing-Studio-Rental',NULL,'2016-06-09 21:38:41',NULL),(17,'Editor',NULL,'2016-06-09 21:38:41',NULL),(18,'Equipment-Rental',NULL,'2016-06-09 21:38:41',NULL),(19,'Green-Matte-Studio-Rental',NULL,'2016-06-09 21:38:41',NULL),(20,'Lens-Rental',NULL,'2016-06-09 21:38:41',NULL),(21,'Lights-Rental',NULL,'2016-06-09 21:38:41',NULL),(22,'Location-Rental',NULL,'2016-06-09 21:38:41',NULL),(23,'Lyric-Writer',NULL,'2016-06-09 21:38:41',NULL),(24,'Make-up',NULL,'2016-06-09 21:38:41',NULL),(25,'Photo-Studio-Rental',NULL,'2016-06-09 21:38:41',NULL),(26,'Poster-Designer',NULL,'2016-06-09 21:38:41',NULL),(27,'Producer',NULL,'2016-06-09 21:38:41',NULL),(28,'Production-Manager',NULL,'2016-06-09 21:38:41',NULL),(29,'Prop-rental',NULL,'2016-06-09 21:38:41',NULL),(30,'Re-Recording (Music)',NULL,'2016-06-09 21:38:41',NULL),(31,'SFX (Sound Effects)',NULL,'2016-06-09 21:38:41',NULL),(32,'Singer',NULL,'2016-06-09 21:38:41',NULL),(33,'Story-Writer',NULL,'2016-06-09 21:38:41',NULL),(34,'Title-Designer',NULL,'2016-06-09 21:38:41',NULL),(35,'VFX (Visual Effects)',NULL,'2016-06-09 21:38:41',NULL),(36,'Others',NULL,'2016-06-09 21:38:41',NULL);
 
 /*Table structure for table `user_provider` */
 
@@ -104,6 +88,23 @@ CREATE TABLE `vc_categories` (
 /*Data for the table `vc_categories` */
 
 insert  into `vc_categories`(`category_id`,`category_name`,`parent_cat_id`,`status`,`created_at`,`modified_at`) values (1,'Short Films',NULL,1,'2015-10-02 17:09:00','2015-10-03 08:38:02'),(2,'Short Film Trailers',NULL,1,'2015-10-02 17:09:15','2015-10-03 08:39:30'),(3,'Comedy',NULL,1,'2015-10-02 17:09:24',NULL),(4,'Movies Full',NULL,1,'2015-10-02 17:09:44',NULL),(5,'Movie Trailers',NULL,1,'2015-10-02 17:09:53',NULL),(6,'Movie Reviews',NULL,1,'2015-10-02 17:10:04',NULL),(7,'News',NULL,1,'2015-10-02 17:10:15',NULL),(8,'Sports',NULL,1,'2015-10-02 17:10:30',NULL),(9,'Music Videos',NULL,1,'2015-10-02 17:10:58',NULL),(10,'Celebrity Interviews ',NULL,1,'2015-10-02 18:21:28',NULL);
+
+/*Table structure for table `vc_cities` */
+
+DROP TABLE IF EXISTS `vc_cities`;
+
+CREATE TABLE `vc_cities` (
+  `c_id` int(11) NOT NULL AUTO_INCREMENT,
+  `c_name` varchar(100) DEFAULT NULL,
+  `c_created_at` datetime DEFAULT NULL,
+  `c_updated_at` datetime DEFAULT NULL,
+  `c_status` smallint(6) DEFAULT NULL,
+  PRIMARY KEY (`c_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+/*Data for the table `vc_cities` */
+
+insert  into `vc_cities`(`c_id`,`c_name`,`c_created_at`,`c_updated_at`,`c_status`) values (1,'hyderabad','2016-06-11 10:16:24','2016-06-11 10:16:26',1),(2,'bangulore','2016-06-11 10:16:49','2016-06-11 10:16:51',1),(3,'chennai','2016-06-11 10:17:08','2016-06-11 10:17:11',1),(4,'mumbai','2016-06-11 10:18:30','2016-06-11 10:18:32',1),(5,'kirala','2016-06-11 10:18:59','2016-06-11 10:19:01',1),(6,'cochin','2016-06-11 10:29:03','2016-06-11 10:29:05',1),(7,'panjab','2016-06-11 10:29:35','2016-06-11 10:29:37',1);
 
 /*Table structure for table `vc_forget_tokens` */
 
@@ -141,6 +142,23 @@ CREATE TABLE `vc_hits` (
 
 insert  into `vc_hits`(`h_id`,`hv_id`,`hu_id`,`h_ip_add`,`h_status`,`hit_date`,`added_date`,`updated_date`) values (3,488,'127.0.0.1','127.0.0.1',1,'2015-10-07','2015-10-07 11:35:34','2015-10-07 11:35:34'),(4,0,'127.0.0.1','127.0.0.1',1,'2015-10-07','2015-10-07 14:48:38','2015-10-07 14:48:38'),(5,452,'127.0.0.1','127.0.0.1',1,'2015-10-07','2015-10-07 14:49:11','2015-10-07 14:49:11'),(6,460,'127.0.0.1','127.0.0.1',1,'2015-10-07','2015-10-07 15:12:09','2015-10-07 15:12:09'),(7,306,'127.0.0.1','127.0.0.1',1,'2015-10-07','2015-10-07 15:27:49','2015-10-07 15:27:49'),(8,486,'::1','::1',1,'2015-10-07','2015-10-07 16:32:43','2015-10-07 16:32:43'),(9,14,'127.0.0.1','127.0.0.1',1,'2015-10-07','2015-10-07 16:42:13','2015-10-07 16:42:13'),(10,458,'127.0.0.1','127.0.0.1',1,'2015-10-07','2015-10-07 16:43:11','2015-10-07 16:43:11'),(11,486,'127.0.0.1','127.0.0.1',1,'2015-10-07','2015-10-07 16:44:19','2015-10-07 16:44:19'),(12,138,'127.0.0.1','127.0.0.1',1,'2015-10-07','2015-10-07 17:03:00','2015-10-07 17:03:00'),(13,488,'::1','::1',1,'2015-10-07','2015-10-07 18:10:30','2015-10-07 18:10:30'),(14,469,'127.0.0.1','127.0.0.1',1,'2015-10-07','2015-10-07 18:40:27','2015-10-07 18:40:27'),(15,79,'127.0.0.1','127.0.0.1',1,'2015-10-08','2015-10-08 18:43:17','2015-10-08 18:43:17'),(16,487,'127.0.0.1','127.0.0.1',1,'2015-10-09','2015-10-09 12:03:36','2015-10-09 12:03:36'),(17,483,'127.0.0.1','127.0.0.1',1,'2015-10-09','2015-10-09 12:10:22','2015-10-09 12:10:22'),(18,485,'127.0.0.1','127.0.0.1',1,'2015-10-09','2015-10-09 12:21:03','2015-10-09 12:21:03'),(19,435,'127.0.0.1','127.0.0.1',1,'2015-10-19','2015-10-19 15:38:58','2015-10-19 15:38:58'),(20,434,'127.0.0.1','127.0.0.1',1,'2015-10-19','2015-10-19 15:40:25','2015-10-19 15:40:25'),(21,381,'127.0.0.1','127.0.0.1',1,'2015-10-19','2015-10-19 15:53:11','2015-10-19 15:53:11');
 
+/*Table structure for table `vc_languages` */
+
+DROP TABLE IF EXISTS `vc_languages`;
+
+CREATE TABLE `vc_languages` (
+  `lan_id` int(11) NOT NULL AUTO_INCREMENT,
+  `lang_name` varchar(15) DEFAULT NULL,
+  `lang_created_at` datetime DEFAULT NULL,
+  `lang_updated_at` datetime DEFAULT NULL,
+  `lang_status` smallint(5) DEFAULT NULL,
+  PRIMARY KEY (`lan_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+/*Data for the table `vc_languages` */
+
+insert  into `vc_languages`(`lan_id`,`lang_name`,`lang_created_at`,`lang_updated_at`,`lang_status`) values (1,'telugu','2016-06-11 10:37:10','2016-06-11 10:37:13',1);
+
 /*Table structure for table `vc_payments` */
 
 DROP TABLE IF EXISTS `vc_payments`;
@@ -175,6 +193,23 @@ CREATE TABLE `vc_type_of_video` (
 
 insert  into `vc_type_of_video`(`typeofvideo_id`,`video_type`,`state`) values (1,'normal',1),(2,'featured',1);
 
+/*Table structure for table `vc_user_category` */
+
+DROP TABLE IF EXISTS `vc_user_category`;
+
+CREATE TABLE `vc_user_category` (
+  `u_c_id` int(11) NOT NULL AUTO_INCREMENT,
+  `u_category_name` varchar(150) DEFAULT NULL,
+  `u_state` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `update_at` datetime DEFAULT NULL,
+  KEY `u_c_id` (`u_c_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=latin1;
+
+/*Data for the table `vc_user_category` */
+
+insert  into `vc_user_category`(`u_c_id`,`u_category_name`,`u_state`,`created_at`,`update_at`) values (2,'Actor',1,'2016-06-09 21:38:41',NULL),(3,'Actress',1,'2016-06-09 21:38:41',NULL),(4,'Art-director',1,'2016-06-09 21:38:41',NULL),(5,'Assistant Director',1,'2016-06-09 21:38:41',NULL),(6,'Camera Assistant',1,'2016-06-09 21:38:41',NULL),(7,'Camera-Rental',1,'2016-06-09 21:38:41',NULL),(8,'Co-Director',1,'2016-06-09 21:38:41',NULL),(9,'Color-Correction',1,'2016-06-09 21:38:41',NULL),(10,'Co-Producer',1,'2016-06-09 21:38:41',NULL),(11,'Costume-Dress-Rental',1,'2016-06-09 21:38:41',NULL),(12,'Dialogue-Writer',1,'2016-06-09 21:38:41',NULL),(13,'Director',1,'2016-06-09 21:38:41',NULL),(14,'DOP',1,'2016-06-09 21:38:41',NULL),(15,'Dubbing-Artist',1,'2016-06-09 21:38:41',NULL),(16,'Dubbing-Studio-Rental',1,'2016-06-09 21:38:41',NULL),(17,'Editor',1,'2016-06-09 21:38:41',NULL),(18,'Equipment-Rental',1,'2016-06-09 21:38:41',NULL),(19,'Green-Matte-Studio-Rental',1,'2016-06-09 21:38:41',NULL),(20,'Lens-Rental',1,'2016-06-09 21:38:41',NULL),(21,'Lights-Rental',1,'2016-06-09 21:38:41',NULL),(22,'Location-Rental',1,'2016-06-09 21:38:41',NULL),(23,'Lyric-Writer',1,'2016-06-09 21:38:41',NULL),(24,'Make-up',1,'2016-06-09 21:38:41',NULL),(25,'Photo-Studio-Rental',1,'2016-06-09 21:38:41',NULL),(26,'Poster-Designer',1,'2016-06-09 21:38:41',NULL),(27,'Producer',1,'2016-06-09 21:38:41',NULL),(28,'Production-Manager',1,'2016-06-09 21:38:41',NULL),(29,'Prop-rental',1,'2016-06-09 21:38:41',NULL),(30,'Re-Recording (Music)',1,'2016-06-09 21:38:41',NULL),(31,'SFX (Sound Effects)',1,'2016-06-09 21:38:41',NULL),(32,'Singer',1,'2016-06-09 21:38:41',NULL),(33,'Story-Writer',1,'2016-06-09 21:38:41',NULL),(34,'Title-Designer',1,'2016-06-09 21:38:41',NULL),(35,'VFX (Visual Effects)',1,'2016-06-09 21:38:41',NULL),(36,'Others',1,'2016-06-09 21:38:41',NULL);
+
 /*Table structure for table `vc_user_details` */
 
 DROP TABLE IF EXISTS `vc_user_details`;
@@ -192,6 +227,12 @@ CREATE TABLE `vc_user_details` (
   `city` varchar(50) DEFAULT NULL,
   `zipcode` varchar(50) DEFAULT NULL,
   `alter_number` varchar(50) DEFAULT NULL,
+  `home_phone` varchar(50) DEFAULT NULL,
+  `work_phone` varchar(50) DEFAULT NULL,
+  `fb_profile_link` varchar(250) DEFAULT NULL,
+  `video_links` text,
+  `message` text,
+  `languages` text,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`ud_id`)
@@ -199,7 +240,54 @@ CREATE TABLE `vc_user_details` (
 
 /*Data for the table `vc_user_details` */
 
-insert  into `vc_user_details`(`ud_id`,`u_id`,`first_name`,`last_name`,`user_photo`,`permanent_address`,`persent_address`,`country`,`s_state`,`city`,`zipcode`,`alter_number`,`created_at`,`updated_at`) values (1,15,'Dileep','Kumar',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-10-03 17:47:27','2015-10-03 17:47:27');
+insert  into `vc_user_details`(`ud_id`,`u_id`,`first_name`,`last_name`,`user_photo`,`permanent_address`,`persent_address`,`country`,`s_state`,`city`,`zipcode`,`alter_number`,`home_phone`,`work_phone`,`fb_profile_link`,`video_links`,`message`,`languages`,`created_at`,`updated_at`) values (1,15,'Dileep','Kumar',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2015-10-03 17:47:27','2015-10-03 17:47:27');
+
+/*Table structure for table `vc_user_pics` */
+
+DROP TABLE IF EXISTS `vc_user_pics`;
+
+CREATE TABLE `vc_user_pics` (
+  `vp_id` int(11) NOT NULL AUTO_INCREMENT,
+  `vp_u_id` int(11) DEFAULT NULL,
+  `vp_pics` varchar(150) DEFAULT NULL,
+  `vp_created_at` datetime DEFAULT NULL,
+  `vp_updated_at` datetime DEFAULT NULL,
+  `vp_status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`vp_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `vc_user_pics` */
+
+/*Table structure for table `vc_user_skills` */
+
+DROP TABLE IF EXISTS `vc_user_skills`;
+
+CREATE TABLE `vc_user_skills` (
+  `us_id` int(11) NOT NULL AUTO_INCREMENT,
+  `us_user_id` int(11) DEFAULT NULL,
+  `us_u_c_id` int(11) DEFAULT NULL,
+  `us_created_at` datetime DEFAULT NULL,
+  `us_updated_at` datetime DEFAULT NULL,
+  `us_status` smallint(5) DEFAULT NULL,
+  PRIMARY KEY (`us_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `vc_user_skills` */
+
+/*Table structure for table `vc_user_videos` */
+
+DROP TABLE IF EXISTS `vc_user_videos`;
+
+CREATE TABLE `vc_user_videos` (
+  `v_v_id` int(11) NOT NULL AUTO_INCREMENT,
+  `v_user_id` int(11) DEFAULT NULL,
+  `v_video_link` text,
+  `v_updated_at` datetime DEFAULT NULL,
+  `v_created_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`v_v_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `vc_user_videos` */
 
 /*Table structure for table `vc_videos` */
 

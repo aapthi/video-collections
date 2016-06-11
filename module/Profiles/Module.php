@@ -15,6 +15,10 @@ use Profiles\Model\Category;
 use Profiles\Model\CategoryTable;
 use Profiles\Model\UserSkills;
 use Profiles\Model\UserSkillsTable;
+use Profiles\Model\City;
+use Profiles\Model\CityTable;
+use Profiles\Model\Languages;
+use Profiles\Model\LanguagesTable;
 
 
 class Module implements 
@@ -43,9 +47,12 @@ class Module implements
     {
         return array(
             'factories' => array( 
-				'Profiles\Model\ProfileFactory'=>'Profiles\Factory\Model\ProfileTableFactory','Profiles\Model\UserFactory'=>'Profiles\Factory\Model\UserTableFactory',
+				'Profiles\Model\ProfileFactory'=>'Profiles\Factory\Model\ProfileTableFactory',
+				'Profiles\Model\UserFactory'=>'Profiles\Factory\Model\UserTableFactory',
 				'Profiles\Model\CatFactory'=>'Profiles\Factory\Model\CatTableFactory',
 				'Profiles\Model\UserSkillsFactory'=>'Profiles\Factory\Model\UserSkillsTableFactory',
+				'Profiles\Model\CityFactory'=>'Profiles\Factory\Model\CityTableFactory',
+				'Profiles\Model\LanguagesFactory'=>'Profiles\Factory\Model\LanguagesTableFactory',
 			),			
         );
     }
