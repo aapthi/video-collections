@@ -53,6 +53,8 @@ class Module implements
 				'Profiles\Model\UserSkillsFactory'=>'Profiles\Factory\Model\UserSkillsTableFactory',
 				'Profiles\Model\CityFactory'=>'Profiles\Factory\Model\CityTableFactory',
 				'Profiles\Model\LanguagesFactory'=>'Profiles\Factory\Model\LanguagesTableFactory',
+				'Profiles\Model\UserVideoFactory'=>'Profiles\Factory\Model\UserVideoTableFactory',
+				'Profiles\Model\UserPicsFactory'=>'Profiles\Factory\Model\UserPicsTableFactory',
 			),			
         );
     }
