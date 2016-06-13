@@ -21,22 +21,50 @@ class ProfilesController extends AbstractActionController
 	public function indexAction()
 	{
 		
-	/* 	Index  */		
+	}
+	
+	
+	public function allProfilesAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];	
-		$testTable 	= $this->getServiceLocator()->get('Profiles\Model\ProfileFactory');
-		$userTable 	= $this->getServiceLocator()->get('Profiles\Model\UserFactory');		
-		$allTests 	= $testTable->UsersList();				
-		$allTests 	= $userTable->UsersList();				
-		$userImages	= $testTable->UserImagesList();		
-		  $routes=$this->params()->fromRoute();
-		$vid='';
-		if(isset($routes['id']) && $routes['id']!=""){
-			$vid = $routes['id'];
-		}		
-		$paginator = $testTable->videoTitleList(true,$vid);
+		$userTable 	= $this->getServiceLocator()->get('Users\Model\UserTableFactory');
+		$languagesTable	= $this->getServiceLocator()->get('Profiles\Model\LanguagesFactory');
+		if(isset($_GET['u_name']) && $_GET['u_name']!=''){
+			if( $_GET['cat']!='all' ){
+				$catid=$_GET['cat'];				
+			}else{
+				$catid=0;	
+			}
+			if(isset($_GET['city']) && $_GET['city']!='' ){
+				$cid=$_GET['city'];				
+			}else{
+				$cid=0;	
+			}
+			$userName= $_GET['u_name'];
+		}else if(isset($_GET['city']) && $_GET['city']!=''){
+			if($_GET['cat']=='all'){
+				$catid=0; 
+			}else{
+				$catid=$_GET['cat']; 
+			}
+			$cid =$_GET['city'];
+			$userName=0;
+		}else if(isset($_GET['cat']) && $_GET['cat']!=''){
+			if( $_GET['cat']!='all' ){
+				$catid=$_GET['cat'];				
+			}else{
+				$catid=0;	
+			}
+			$cid =0;
+			$userName=0;
+		}else{
+			$catid=0;	
+			$cid =0;
+			$userName=0;	
+		}	
+		$paginator 	= $userTable->allUsersData($catid,$cid,$userName);
 		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page',1));
 		$paginator->setItemCountPerPage(2);	
 		$paginator->setPageRange(5);
@@ -46,14 +74,9 @@ class ProfilesController extends AbstractActionController
 				'baseUrl'				 	=> $baseUrl,
 				'basePath' 					=> $basePath,			
 				'vatTData' 					=> $paginator,
-				'id'                        => $vid,
-				'allTests' 					=> $allTests,			
-				'userImages' 				=> $userImages
 		));
-		return $viewModel;
-	
+		return $viewModel;	
 	}
-	
 	public function searchResultAction()
     {
 		$baseUrls = $this->getServiceLocator()->get('config');

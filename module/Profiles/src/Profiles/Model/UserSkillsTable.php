@@ -45,7 +45,6 @@ class UserSkillsTable
 	public function skillsList($id)
 	{
 		$u_id = base64_decode($id);		
-//print_r($id);exit;	
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('vc_user_category', 'vc_user_skills.us_u_c_id=vc_user_category.u_c_id',array('*'),'left');
 		$select->where('vc_user_skills.us_user_id="'.$u_id.'"');

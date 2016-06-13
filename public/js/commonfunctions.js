@@ -43,6 +43,7 @@ function serachTitle(){
 	};
 }
 /**********************END********************/
+
 function contactFormFunction(){
 	var flag=true;
 	var fname=$('#firstName').val();
@@ -482,7 +483,7 @@ function loginValidations(){
 						if(response.user_type_id==4){
 							window.location=BASE_URL+"/admin/dashboard";							
 						}else {
-							window.location=BASE_URL+"/profiles";
+							window.location=BASE_URL+"/all-profiles?cat=all";
 						}
 					}else{
 						$('#errorMsg').html('Entered wrong username and/or password');
@@ -732,3 +733,4 @@ function openPopup(url)
 		$('#userMessage').html( "" );
 		window.location=url;
 	}
+

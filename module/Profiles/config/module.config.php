@@ -72,6 +72,20 @@ return array(
                     ),
                  ),
              ),
+			 'all-profiles' => array(
+                       'type'    => 'segment',
+                       'options' => array(
+                           'route' => '/all-profiles[/:id][/:cid]',
+                            'constraints' => array(
+                               'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+								'id'     => '[a-zA-Z0-9][a-zA-Z0-9_-]*',
+                            ),
+                           'defaults' => array(
+                               'controller' => 'Profiles\Controller\Profiles',
+                               'action'     => 'allProfiles',
+                    ),
+                 ),
+             ),
 			 'edit-profile' => array(
                        'type'    => 'segment',
                        'options' => array(

@@ -10,10 +10,10 @@
 					<div class="">
 					<?php if(isset($this->allTests->user_photo) && $this->allTests->user_photo != ""){?>
 					<img alt="" src="<?php echo $baseUrl;?>/<?php echo $this->allTests->user_photo?>" style="width:160px;height:160px;">
-					<?php }else{
+					<?php }else{ ?>
 						
-						echo 'no photo';
-						?>
+						<img class="img_pic" alt="" src="<? echo $basePath; ?>/images/480px-No_Image_Available.png" />
+					
 				
 					<?php }?>					
 					</div>
@@ -103,8 +103,7 @@
 						<option value="default">--select city --</option>
 					   <?php foreach($this->cities as $city){
 						   if(isset($this->allTests->city) && $this->allTests->city != "0")
-						   {
-						   
+						   {						   
 						   ?>
 						<option value="<?php echo $this->allTests->c_id; ?>" <?php echo 'selected';?>><?php echo $city->c_name; ?></option>
 					   <?php }

@@ -42,4 +42,11 @@ class LanguagesTable
 		$resultSet = $this->tableGateway->selectWith($select);		
 		return $resultSet;
 	}
+	public function getUserLang($lan_id)
+    {		
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('lan_id IN('.$lan_id.')');
+		$resultSet = $this->tableGateway->selectWith($select);		
+		return $resultSet;
+	}
 }

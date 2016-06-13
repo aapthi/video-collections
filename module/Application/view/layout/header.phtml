@@ -1,7 +1,15 @@
 <?php
-	$page=basename($_SERVER['REQUEST_URI']);
-	if($page=='profiles'){
-		 $parmsName  = "profile";	
+	if(isset($_SERVER['REDIRECT_URL']) && $_SERVER['REDIRECT_URL']!=""){
+		$page=basename($_SERVER['REDIRECT_URL']);
+		if($page=='all-profiles'){
+			 $parmsName  = "profile";	
+		}else if($page=='profile-user'){
+			 $parmsName  = "profile";	
+		}else if($page=='edit-profile'){
+			 $parmsName  = "profile";	
+		}else{
+			$parmsName  = "all";			
+		}
 	}else{
 		$parmsName  = "all";			
 	}
@@ -11,6 +19,7 @@
 	$catData = $header->headerarray['catData'];	
 	$videoData = $header->headerarray['videoData'];
 	$topVideos = $header->headerarray['topVideos'];	
+	$allCities = $header->headerarray['allCities'];	
 	if($_SERVER['REQUEST_URI']=='/'){
 		$_SESSION['tilte_top'] = 'sfadda.com';
 		$image_name = $basePath.'/img/logo.png';
@@ -132,7 +141,7 @@
 <div class="container">
 <div class="row">
 <div class="col-md-2">
-<h4><a href="<?php echo $baseUrl;?>/profiles">Cast & Crew</a></h4> 
+<h4><a href="<?php echo $baseUrl;?>/all-profiles?cat=all">Cast & Crew</a></h4> 
 </div>
 <div class="col-md-10">
 <div class="latest_news alert mar_bnone">
@@ -183,7 +192,7 @@
 								if($key == $catid){ ?>
 									<li class ="<? echo $dropMenu; ?>" tabindex='-1'>
 									<?php if($parmsName =="profile") {?>
-									<a href="<?php echo $baseUrl; ?>/profiles/<? echo $catid;?>"><? echo $catname;?></a>
+									<a href="<?php echo $baseUrl; ?>/all-profiles?cat=<? echo $catid;?>"><? echo $catname;?></a>
 									<?php } else {?>
 									<a href="<?php echo $baseUrl; ?>/cat/<? echo $catid;?>"><? echo $catname;?></a>
 									<?php } ?>	
@@ -191,7 +200,7 @@
 											<? foreach($catinfo as $catid=>$catname){ 
 													if($key != $catid){	?>
 														<?php if($parmsName =="profile") {?>
-															<li><a tabindex='-1' href="<?php echo $baseUrl; ?>/profiles/<? echo $catid;?>"><? echo $catname;?></a></li>
+															<li><a tabindex='-1' href="<?php echo $baseUrl; ?>/all-profiles/<? echo $catid;?>"><? echo $catname;?></a></li>
 														<?php } else{?>
 														<li><a tabindex='-1' href="<?php echo $baseUrl; ?>/cat/<? echo $catid;?>"><? echo $catname;?></a></li>
 													<?php } ?>
@@ -204,26 +213,33 @@
 					?>
 				</ul>
 			</div></div>
-			
+			<?php if($parmsName =="profile") {?>
 			<div class="col-md-3">
-			<label>CITIES</label>&nbsp;&nbsp;
-			<select style="height:30px;width:auto">
-			<option>Select</option>
-			<option>Hyderabad</option>
-			<option>Secunderabad</option>
-			</select>
+				<label>CITIES</label>&nbsp;&nbsp;
+				<select style="height:30px;width:auto" id="c_id" value="c_id" onChange="filterByCity();">
+					<option value="">Select</option>
+					<?php if(isset($allCities) && count($allCities)>0) { 
+						foreach($allCities as $allCity){
+					?>
+					<option value="<?php echo $allCity->c_id; ?>"><?php echo ucfirst($allCity->c_name); ?></option>
+					<?php } } ?>
+				</select>
 			</div>
-		
+			<?php } ?>
 		<div class="col-md-6 input_search">
 			<div class="input-group">
 			<?php if($parmsName =="profile") {?>
-				<input id="videosSearch" placeholder="Search for user name" class="form-control" type="textbox">
+				<input id="nameSearch" placeholder="Search for user name" class="form-control" type="textbox">
+				<span class="input-group-btn">
+				<button class="btn btn-default"  onClick="searchByName();" type="button" id="addressSearch">Search</button>
+				</span>
 			<?php } else { ?>
 				<input id="videosSearch" placeholder="Search for videos" class="form-control" type="textbox">
+				<span class="input-group-btn">
+				<button class="btn btn-default" onKeypress="serachTitle();" onClick="searchByLocation();" type="button" id="addressSearch">Search</button>
+				</span>
 			<?php } ?>
-			<span class="input-group-btn">
-			<button class="btn btn-default" onKeypress="serachTitle();" onClick="searchByLocation();" type="button" id="addressSearch">Search</button>
-			</span>
+			
 			</div>
 		</div>
 	</div>
@@ -282,6 +298,7 @@ $('#videosSearch').keypress(function(e){
 		searchByLocation();
 	}
 });
+
 function outLoggedFine(){	
 	FB.logout(function(response){});
 	  $.ajax({
@@ -293,4 +310,37 @@ function outLoggedFine(){
 		}
 	});
 }
+function filterByCity(){
+	var cat_id = "<?php if(isset($_GET['cat']) && $_GET['cat']!=""){ echo $_GET['cat']; }else{ echo "all"; } ?>";
+	var c_id = $("#c_id").val();
+	if(c_id==""){
+		window.location=BASE_URL+"/all-profiles?cat="+cat_id;
+	}else{
+		window.location=BASE_URL+"/all-profiles?cat="+cat_id+"&city="+c_id;
+	}
+	$("#c_id").val(c_id);
+}
+function searchByName(){
+	var cat_id = "<?php if(isset($_GET['cat']) && $_GET['cat']!=""){ echo $_GET['cat']; }else{ echo "all"; } ?>";
+	var c_id = '<?php if(isset($_GET['city']) && $_GET['city']!=""){ echo $_GET['city']; }else{ echo ""; }  ?>';
+	var nameSearch = $("#nameSearch").val();
+	if(nameSearch==""){
+		if(c_id==""){
+			window.location=BASE_URL+"/all-profiles?cat="+cat_id;
+		}else{
+			window.location=BASE_URL+"/all-profiles?cat="+cat_id+"&city="+c_id;
+		}
+	}else{		
+		if(c_id==""){
+			window.location=BASE_URL+"/all-profiles?cat="+cat_id+"&u_name="+nameSearch;
+		}else{
+			window.location=BASE_URL+"/all-profiles?cat="+cat_id+"&city="+c_id+"&u_name="+nameSearch;
+		}	
+	}
+}
+
+$(document).ready(function() {
+	var c_id = '<?php if(isset($_GET['city']) && $_GET['city']!=""){ echo $_GET['city']; }else{ echo ""; }  ?>';
+	$("#c_id").val(c_id);
+});
 </script>

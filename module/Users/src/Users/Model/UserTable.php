@@ -230,5 +230,32 @@ class UserTable
 		$row = $resultSet->count();
 		return $row;
 	}
-	
+	public function allUsersData($catid,$cid,$username){
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('vc_user_details', 'vc_user_details.u_id=user.user_id',array('*'),'left');	
+		$select->join('vc_cities','vc_user_details.city=vc_cities.c_id',array('*'),'left');	
+		$select->join('vc_user_skills','user.user_id=vc_user_skills.us_user_id',array('*'),'left');	
+		if($cid!='0'){
+			$select->where('vc_user_details.city="'.$cid.'"');
+		}
+		if($catid!='0'){
+			$select->where('vc_user_skills.us_u_c_id="'.$catid.'"');
+		}
+		if($username!='0'){
+			$select->where(array(
+				new \Zend\Db\Sql\Predicate\Expression("MATCH(username) AGAINST ('".$username."')")
+			));
+		}
+		$select->where('user.state="1"');
+		$select->where('user.user_type="2"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$paginatorAdapter = new DbSelect(
+				$select,
+				$this->tableGateway->getAdapter(),
+				$resultSet
+			);
+			$paginator = new Paginator($paginatorAdapter);
+			return $paginator;
+		return $resultSet;
+	}
 }
