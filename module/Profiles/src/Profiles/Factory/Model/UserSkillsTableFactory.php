@@ -10,7 +10,7 @@ use Zend\Db\TableGateway\Feature;
 use Profiles\Model\UserSkills;
 use Profiles\Model\UserSkillsTable;
 
-class UserSkillsFactory implements FactoryInterface
+class UserSkillsTableFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
