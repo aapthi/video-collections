@@ -180,6 +180,7 @@ class IndexController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
+		$cityTable 	= $this->getServiceLocator()->get('Profiles\Model\CityFactory');
 		$videoList = $this->getVideoTable()->videoUpdatesList();	
 		$homePageVideos = $this->getVideoTable()->homePageVideos();
 		$topVideos=array();
@@ -216,6 +217,7 @@ class IndexController extends AbstractActionController
 				}
 			}
         }
+		$allCities = $cityTable->cityList();
 		return $this->layout()->setVariable(
 			"headerarray",array(
 				'baseUrl' 		=> 	$baseUrl,
@@ -225,6 +227,7 @@ class IndexController extends AbstractActionController
 				'topVideos'	    =>	$topVideos,
 				'featuredVideos'=>	$featuredVideos,
 				'lastedVideos'	=>	$lastedVideos,
+				'allCities'	    =>	$allCities,
 				
 			)
 		);

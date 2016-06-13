@@ -21,9 +21,7 @@ class ProfilesController extends AbstractActionController
 	public function indexAction()
 	{
 		
-	/* 	Index  */
-		//echo $params;
-		
+	/* 	Index  */		
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
@@ -37,8 +35,6 @@ class ProfilesController extends AbstractActionController
 			$vid = $routes['id'];
 		}		
 		$paginator = $testTable->videoTitleList(true,$vid);
-		//print_r($paginator);exit;
-		//echo (int)$this->params()->fromQuery('page',1);exit;
 		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page',1));
 		$paginator->setItemCountPerPage(2);	
 		$paginator->setPageRange(5);

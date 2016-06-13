@@ -10,7 +10,7 @@ use Zend\Db\TableGateway\Feature;
 use Profiles\Model\Languages;
 use Profiles\Model\LanguagesTable;
 
-class LanguagesFactory implements FactoryInterface
+class LanguagesTableFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {

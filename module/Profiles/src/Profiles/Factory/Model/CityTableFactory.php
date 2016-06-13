@@ -10,7 +10,7 @@ use Zend\Db\TableGateway\Feature;
 use Profiles\Model\City;
 use Profiles\Model\CityTable;
 
-class CityFactory implements FactoryInterface
+class CityTableFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
