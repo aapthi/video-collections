@@ -5,25 +5,26 @@
 	<div class="row">
 		<div class="col-md-8">
 		<?php if(isset($this->vatTData) && count($this->vatTData)){
+			//print_r($this->allTests);exit;
 			  foreach($this->vatTData as $links){
-				$id=$links->u_id;
-		?>
+				$id=$links->c_name;
+				?>
 			<div class="panel panel-default hover_body">			
 				<div class="panel-body">
 					<div class="media pos_r">
 					<div class="pos_ab_btn">
 					<a href="<?php echo $baseUrl;?>/profile-user/<?php echo $id;?>"><button type="button" class="btn btn-primary btn-sm" >View More </button></a></div>
 					<div class="media-left"> 
-					<?php if($links->user_profile_photo == ""){?>
-						<img alt="" src="<?php echo $basePath?>/images/<?php echo $links->user_photo;?>" style="width:140px;height:150px;">
+					<?php if($links->user_photo != ""){?>
+						<img alt="" src="<?php echo $baseUrl?>/<?php echo $links->user_photo;?>" style="width:140px;height:150px;">
 						<?php } else{?>
-						<a href="#"><img class="img_pic" alt="" src="<? echo $basePath .'/images/' .$links->user_profile_photo;?>" /> </a> 
+						<img alt="" src="<?php echo $basePath?>/images/480px-No_Image_Available.png" style="width:140px;height:150px;">
 						<?php }?>
 					</div> 
 					<div class="media-body" style="margin:0"> 
-						<h4 class="media-heading"><a href="<?php echo $baseUrl;?>/profile-user/<?php echo $id;?>"><?php if(isset($links->first_name) && $links->first_name != ""){echo  $links->first_name;}else{ echo 'N/A';}?></a></h4>
-						<p><span class="dim">City : </span> <?php if(isset($links->city) && $links->city != ""){echo  $links->city;}else{ echo 'N/A';}?></p>
-						<p><span class="dim">Industry : </span>Industry Name</p>
+						<h4 class="media-heading"><a href="<?php echo $baseUrl;?>/profile-user/<?php echo $id;?>"><?php if(isset($links->first_name) && $links->first_name != ""){echo  $links->first_name;  }else{ echo 'N/A';}?></a></h4>
+						<p><span class="dim">City : </span> <?php if(isset($links->city) && $links->city != ""){echo  $links->c_name;}else{ echo 'N/A';}?></p>
+						<p><span class="dim">Languages: </span>Industry Name</p>
 						<p><span class="dim">Skills :</span><?php  if(isset($links->skills) && $links->skills != ""){ echo  $links->skills;}else{echo 'N/A';}?></p>	
 					</div>
 					
