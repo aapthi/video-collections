@@ -25,8 +25,9 @@ class ProfileTable
     {
 		
 		$select = $this->tableGateway->getSql()->select();
-		$select->join('user', 'vc_user_details.u_id=user.user_id',array('*'),'left');
-		//$select->where('public_or_private="'.$todayDate.'"');
+		$select->join('user', 'vc_user_details.u_id=user.user_id',array('*'),'left');		
+		$select->join('vc_cities', 'vc_user_details.city=vc_cities.c_id',array('*'),'left');		
+				
 		$resultSet = $this->tableGateway->selectWith($select);		
 		return $resultSet;
 	}
@@ -41,14 +42,8 @@ class ProfileTable
 	public function videoTitleList($paginator=false,$cid){
 		
 		$select = $this->tableGateway->getSql()->select();
-		//$select->join('user', 'vc_user_details.u_id=user.user_id',array('*'),'left');
-			/* if($cid!=''){
-			$select->where('vc_user_details.ud_id="'.$cid.'"');
-		} */
-		$select->order('vc_user_details.ud_id DESC');
-		
-		//$select->where('vc_user_details.state="1"');
-		//$select->group('user.user_id');
+		$select->join('vc_cities', 'vc_user_details.city=vc_cities.c_id',array('*'),'left');		
+		$select->order('vc_user_details.ud_id DESC');		
 		$resultSet = $this->tableGateway->selectWith($select);
 		$paginatorAdapter = new DbSelect(
 				$select,
@@ -86,6 +81,7 @@ class ProfileTable
 		//echo $id;exit;
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('user', 'vc_user_details.u_id=user.user_id',array('*'),'left');
+		$select->join('vc_cities', 'vc_user_details.city=vc_cities.c_id',array('*'),'left');
 		$select->where('vc_user_details.u_id="'.$id.'"');
 		$resultSet = $this->tableGateway->selectWith($select);		
 		return $resultSet->current();
@@ -94,7 +90,9 @@ class ProfileTable
 	{
 		//echo $base_user_id;exit;
 		$select = $this->tableGateway->getSql()->select();
-		$select->join('user', 'vc_user_details.u_id=user.user_id',array('*'),'left');
+		$select->join('user', 'vc_user_details.u_id=user.user_id',array('*'),'left');		
+		$select->join('vc_cities', 'vc_user_details.city=vc_cities.c_id',array('*'),'left');		
+		$select->join('vc_user_videos', 'vc_user_details.u_id=vc_user_videos.v_user_id',array('*'),'left');		
 		$select->where('vc_user_details.u_id="'.$base_user_id.'"');
 		$resultSet = $this->tableGateway->selectWith($select);		
 		return $resultSet;
@@ -114,24 +112,31 @@ class ProfileTable
 			return $updateresult;
 		}
 	}
-	public function UpdateUser($user,$id)
+	public function UpdateUser($user,$id,$target_file)
 	{
-		print_r($user);
+		//print_r($user['fileToupload']);exit;
 		//print_r($user['video']);
-		$skills = implode(', ', $user['state_id']);
+		//$skills = implode(', ', $user['state_id']);
+		$lang = implode(', ', $user['lang']);
 		$video = implode(', ', $user['video']);
 		//print_r($commaList);exit;
 		//echo $user['public'];exit;
 		$user_id=base64_decode($id);
 		$data = array(			 		
 			'first_name'       => $user['fname'], 	
-			'public_or_private' 	   => $user['public'], 	
-			'user_photo' 	   => '480px-No_Image_Available.png', 	
+			'home_phone'       => $user['home'], 	
+			'work_phone'       => $user['work'], 	
+			'ph_pub_pri'       => $user['ph'], 	
+			'work_pub_pri'       => $user['work_phno'], 	
+			'home_pub_pri'       => $user['home_phno'], 	
+			//'public_or_private' 	   => $user['public'], 	
+			'user_photo' 	   => $target_file, 	
 			'city' 	   => $user['city'], 	
+			'languages' 	   => $lang, 	
 			'fb_profile_link' 	   => $user['fb'], 	
 			'message' 	   => $user['msg'], 	
 			'video_links' 	   => rtrim($video), 	
-			'skills' 	   => $skills, 	
+			//'skills' 	   => $skills, 	
 			'created_at'       => date('Y-m-d H:i:s'), 
 			'updated_at' 	   => date('Y-m-d H:i:s')
 		);
