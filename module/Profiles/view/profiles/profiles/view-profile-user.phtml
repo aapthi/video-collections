@@ -13,21 +13,22 @@
 		<div class="panel panel-default">
 				<div class="panel-body">
 				<?php
+				
 				if(isset($this->allTests) && $this->allTests!=""){				
 					 $base_user_id = base64_encode($this->allTests->u_id);
 					?>
 				  <div class="col-md-3 well">
-						<?php if(!isset($this->allTests->user_profile_photo)){?>
-						<img alt="" src="<?php echo $basePath?>/images/<?php echo $this->allTests->user_photo;?>" style="width:140px;height:150px;">
+						<?php if(isset($this->allTests->user_photo)){?>
+						<img alt="" src="<?php echo $baseUrl?>/<?php echo $this->allTests->user_photo;?>" style="width:140px;height:150px;">
 						<?php } else{?>
-						<img alt="" src="<?php echo $basePath?>/images/<?php echo $this->allTests->user_profile_photo;?>" style="width:140px;height:150px;">
+						<img alt="" src="<?php echo $basePath?>/images/480px-No_Image_Available.png" style="width:140px;height:150px;">
 						<?php }?>
-				</div><span style="margin-left:414px;"><?php if(isset($ses_id) && $ses_id == $this->allTests->u_id){?><a href="<?php echo $baseUrl; ?>/edit-profile/<? echo $base_user_id;?>">edit Profile</a><?php }?></span>
+				</div><span style="margin-left:414px;"><?php if(isset($ses_id) && $ses_id == $this->allTests->u_id){?><a href="<?php echo $baseUrl; ?>/edit-profile/<? echo $base_user_id;?>">Edit Profile</a><?php }?></span>
 					 <div class="col-md-9">
                     <div class="form-group row">
-                      <label class="col-sm-3 form-control-label" style="color:#828282">First Name :</label>
+                      <label class="col-sm-3 form-control-label" style="color:#828282">Full Name :</label>
                       <div class="col-sm-9">
-                       <?php if($this->allTests->first_name != ""){echo $this->allTests->first_name;}else{ echo 'N/A';}?>
+                       <?php if($this->allTests->first_name != ""){echo $this->allTests->first_name; echo '&nbsp;&nbsp;';  }else{ echo 'N/A';}?>
                       </div>
                     </div>
 					<div class="form-group row">
@@ -39,7 +40,7 @@
 				<div class="form-group row">
                       <label  class="col-sm-3 form-control-label" style="color:#828282">Phone Number:</label>
                       <div class="col-sm-4">
-                       <?php if($this->allTests->contact_number != "" && $this->allTests->public_or_private == "public"){echo $links->contact_number;}elseif($this->allTests->public_or_private == "private"){ echo 'hide';}else{echo 'N/A';}?>
+                       <?php if($this->allTests->contact_number != "" && $this->allTests->ph_pub_pri == "public"){echo $links->contact_number;}elseif($this->allTests->ph_pub_pri == "private"){ echo 'hide';}else{echo 'N/A';}?>
                       </div>
 					  <div class="col-sm-4">					
 					</div>
@@ -47,7 +48,7 @@
 				<div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">City:</label>
                       <div class="col-sm-8">
-                      <?php if($this->allTests->city != ""){echo $this->allTests->city;}else{ echo 'N/A';}?>
+                      <?php if($this->allTests->c_name != ""){echo $this->allTests->c_name;}else{ echo 'N/A';}?>
                       </div>
                  </div>
 				 <div class="form-group row">
@@ -65,7 +66,12 @@
 				 <div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">Skills:</label>
                       <div class="col-sm-8">
-					 <?php if($this->allTests->skills != ""){echo $this->allTests->skills;}else{ echo 'N/A';}?>                        
+					 <?php if($this->skills != ""){
+						 foreach($this->skills as $skill_name){
+						 echo $skill_name->u_category_name;
+						 echo ' ';
+						 }
+					 }else{ echo 'N/A';}?>                        
                       </div>
                  </div>
                  </div>
@@ -73,27 +79,34 @@
 					 <div class="form-group row">
 						  <label class="col-sm-4 form-control-label"><strong>Pics Upload:</strong></label>
 						  <div class="col-sm-12">
-							 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
-							 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
-							 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
-							 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
-							 <img alt="Keratam Telugu Full Movie | Rakul Preet Singh, Siddharth Raj Kumar | Sri Balaji Video" src="http://i.ytimg.com/vi/NqpamDXgXaE/default.jpg" style="width:120px;height:90px;"/>
+							 
+							 <?php 
+							 foreach($this->pics as $userpic)
+							 {?>
+								<a href="<?php echo $baseUrl;?>/<?php echo $userpic->vp_pics;?>" class="lsb-preview" data-lsb-group="header"><img alt="" src="<?php echo $baseUrl;?>/<?php echo $userpic->vp_pics;?>" style="width:120px;height:90px;"/></a>
+							 <?php
+							 }
+							 
+							 ?>
 						  </div>
 					 </div>
 					<div class="form-group row">
 						  <label class="col-sm-4 form-control-label"><strong>Video links:</strong></label>
 						<div class="col-sm-12"> 
-								<?php 
-								if(isset($this->allTests->video_links) && $this->allTests->video_links!=""){
-									
-									$videos_result=explode(",",$this->allTests->video_links);
-									$link=explode("/ ", $this->allTests->video_links);
-									
-									foreach($videos_result as $video)
-									{
+								<?php
+									//print_r($this->videos);	exit;							
+								if(isset($this->videos) && $this->videos!=""){
+									foreach($this->videos as $v_links){									
+									//$videos_result=explode(",",$v_links->video_links);
+									$link=explode("/ ", $v_links->v_video_link);
+									//print_r($link);
+									// foreach($videos_result as $video)
+									// {
 										
-										$links=explode('/', $video);									
-										$video_id = substr($video, strpos($video, "=") + 1);				
+										$links=explode('/', $v_links->v_video_link);
+										//print_r($links);									
+										$video_id = substr($v_links->v_video_link, strpos($v_links->v_video_link, "=") + 1);
+										//print_r($video_id);										
 										if(isset($links['2']) && $links['2']== 'www.youtube.com')
 										{
 											$imageUrl="http://i.ytimg.com/vi/".$video_id."/default.jpg";
@@ -107,8 +120,10 @@
 										}			
 										
 									 ?>										
-									<a href="<?php echo $video;?>" onclick="openPopup(2)" class="popup-youtube"><img  src="<?php echo $imageUrl;?>"></a>
-								<?php }  } else { ?>
+									<a href="<?php echo $v_links->v_video_link;?>" onclick="openPopup(2)" class="popup-youtube"><img  src="<?php echo $imageUrl;?>"></a>
+									<?php }
+									//} 
+									} else { ?>
 									No videos
 								<?php } ?>
 										
@@ -128,6 +143,29 @@
 	</div>
 </div>
 <script>
+	$(window).load(function() {
+	  $.fn.lightspeedBox();
+	  $.fn.lightspeedBox({
+		  showImageTitle: true,
+		  showImageCount: true,
+		  showDownloadButton: true,
+		  showAutoPlayButton: true,
+		  autoPlayback: false,
+		  playbackTiming: 3500,
+		  zIndex: 30,
+		  locale: {
+			nextButton: 'Next image',
+			prevButton: 'Previous image',
+			closeButton: 'Close',
+			downloadButton: 'Download image',
+			noImageFound: 'Sorry, no image found.',
+			autoplayButton: 'Enable autoplay'
+		  }
+		});
+
+	});
+
+
 	function openPopup(value){
 		//alert();
 	$('#myModal'+value).modal('show');
