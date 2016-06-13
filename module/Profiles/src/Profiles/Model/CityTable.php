@@ -42,4 +42,5 @@ class CityTable
 		$resultSet = $this->tableGateway->selectWith($select);		
 		return $resultSet;
 	}
+
 }
