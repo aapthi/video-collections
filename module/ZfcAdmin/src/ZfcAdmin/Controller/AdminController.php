@@ -458,12 +458,14 @@ class AdminController extends AbstractActionController
 				if($user->state==1){
 					$status = 'Active';
 					$st = 'd';
+					$stMode = 'Deactivate';
 				}else{
-					$status = 'Deactivate';
+					$status = 'Deactive';
+					$stMode = 'Activate';
 					$st = 'a';
 				}
 				$data[$i]['status']= $status;
-				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/edit-user-profile?uid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-user?uid='.$id.'&st='.$st.'">'.$status.'</a>';
+				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/edit-user-profile?uid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-user?uid='.$id.'&st='.$st.'">'.$stMode.'</a>';
 				$i++;
 			}
 			$data['aaData'] = $data;

@@ -213,7 +213,7 @@
 			</div></div>
 			<?php if($parmsName =="profile") {?>
 			<div class="col-md-3">
-				<label>CITIES</label>&nbsp;&nbsp;
+				<label>CITY</label>&nbsp;&nbsp;
 				<select style="height:30px;width:auto" id="c_id" value="c_id" onChange="filterByCity();">
 					<option value="">Select</option>
 					<?php if(isset($allCities) && count($allCities)>0) { 
@@ -228,7 +228,7 @@
 			<?php if($parmsName =="profile") {?>
 				<div class="col-md-6 input_search">
 					<div class="input-group">
-						<input id="nameSearch" placeholder="Search for user name" class="form-control" type="textbox">
+						<input id="nameSearch" placeholder="Search for name" class="form-control" type="textbox">
 						<span class="input-group-btn">
 						<button class="btn btn-default"  onClick="searchByName();" type="button" id="addressSearch">Search</button>
 						</span>

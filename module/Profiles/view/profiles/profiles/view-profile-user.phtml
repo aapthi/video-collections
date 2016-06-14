@@ -241,7 +241,7 @@
 							<a class="lsb-preview" data-lsb-group="header" href="<?php echo $v_links->v_video_link;?>">
 							<img  src="<?php echo $imageUrl;?>"></a>
 							<?php }else{ if($j==0){ echo "No videos"; }} }else{ ?>
-									<a class="lsb-preview" data-lsb-group="header" href="<?php echo $v_links->v_video_link;?>">
+									<a target="_blank" href="<?php echo $v_links->v_video_link;?>">
 									<img  src="<?php echo $imageUrl;?>"></a>
 							<?php } ?>
 							<?php 
@@ -285,28 +285,6 @@
 			autoplayButton: 'Enable autoplay'
 		  }
 		});
-
 	});
-
-
-	function openPopup(value){
-		$('#myModal'+value).modal('show');
-		$('.modal-open .modal').css('overflow-y','hidden');
-	}
-	$(document).ready(function(){ 
-		var video_h = $(window).height();
-		$('.window_height').css('height',($(window).height()-50)+'px');
-	});
-
-	$(document).ready(function() {
-        $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
-			  disableOn: 700,
-			  type: 'iframe',
-			  mainClass: 'mfp-fade',
-			  removalDelay: 160,
-			  preloader: false,
-			  fixedContentPos: false
-        });
-    });
 </script>
 <?php } ?>
