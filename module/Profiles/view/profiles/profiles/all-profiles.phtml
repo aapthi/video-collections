@@ -23,8 +23,8 @@
 					<div class="media-body" style="margin:0"> 
 						<h4 class="media-heading"><a href="<?php echo $baseUrl;?>/profile-user/<?php echo $id;?>"><?php if(isset($links->username) && $links->username != ""){echo  ucfirst($links->username);}else{ echo 'N/A';}?></a></h4>
 						<p><span class="dim">City : </span> <?php if(isset($links->c_name) && $links->c_name != ""){echo  ucfirst($links->c_name);}else{ echo 'N/A';}?></p>
-						<p><span class="dim">Languages : </span>Industry Name</p>
-						<p><span class="dim">Skills :</span><?php  if(isset($links->skills) && $links->skills != ""){ echo  $links->skills;}else{echo 'N/A';}?></p>	
+						<p><span class="dim">Languages : </span>English, Hindi, Telugu</p>
+						<p><span class="dim">Skills :</span><?php  if(isset($links->skills) && $links->skills != ""){ echo  $links->skills;}else{echo 'Actor, Art-director, Co-Director';}?></p>	
 					</div>					
 					<?php
 					$string=$links->message;					

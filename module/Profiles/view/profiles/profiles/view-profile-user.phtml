@@ -186,6 +186,7 @@
 						  <label class="col-sm-4 form-control-label"><strong>Pics Upload</strong></label>
 						  <div class="col-sm-12">							 
 							<?php 
+								$i = 0;
 								if(isset($this->pics) && count($this->pics)>0){
 								foreach($this->pics as $userpic)
 								{
@@ -195,13 +196,17 @@
 							?>
 										<a href="<?php echo $baseUrl;?>/<?php echo $userpic->vp_pics;?>" class="lsb-preview" data-lsb-group="header"><img alt="" src="<?php echo $baseUrl;?>/<?php echo $userpic->vp_pics;?>" style="width:120px;height:90px;"/></a>
 							<?php 		
-									    } 
+									    }else{
+											if($i==0){
+												echo "No pics";
+											}
+										} 
 									}else{
 							?>
 										<a href="<?php echo $baseUrl;?>/<?php echo $userpic->vp_pics;?>" class="lsb-preview" data-lsb-group="header"><img alt="" src="<?php echo $baseUrl;?>/<?php echo $userpic->vp_pics;?>" style="width:120px;height:90px;"/></a>
 							<?php			
 									} 	 
-								}
+								$i++; }
 								}else{
 									echo "No pics";
 								}
@@ -212,6 +217,7 @@
 						  <label class="col-sm-4 form-control-label"><strong>Video links</strong></label>
 						<div class="col-sm-12"> 
 							<?php
+								$j=0;
 								if(isset($this->videos) && count($this->videos)>1){
 								foreach($this->videos as $v_links){									
 								$link=explode("/ ", $v_links->v_video_link);										
@@ -228,12 +234,18 @@
 									else{
 									$imageUrl="http://vimeo.com/api/v2/video/".$video_id."/default.jpg";	
 									}			
-									
+									if($v_links->v_status==0){
+										if( $userpic->vp_u_id == $ses_id )
+										{
 							?>										
 							<a class="lsb-preview" data-lsb-group="header" href="<?php echo $v_links->v_video_link;?>">
 							<img  src="<?php echo $imageUrl;?>"></a>
+							<?php }else{ if($j==0){ echo "No videos"; }} }else{ ?>
+									<a class="lsb-preview" data-lsb-group="header" href="<?php echo $v_links->v_video_link;?>">
+									<img  src="<?php echo $imageUrl;?>"></a>
+							<?php } ?>
 							<?php 
-								} } else {
+								$j++;} } else {
 							?>
 								No videos
 							<?php 								
