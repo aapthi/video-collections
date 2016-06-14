@@ -169,15 +169,24 @@
 		<div class="col-md-3 filter_cate">
 			<a href="<?php echo $baseUrl . '/'; ?>" class="smhide"><button type="button" class="home_icon"><span class="glyphicon glyphicon-home" style="color:#2fa4e7"></span></button></a>
 			<div class="btn-group " role="group">
-				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				<?php if($parmsName =="profile") {?>
 				SKILLS &nbsp;&nbsp;&nbsp;
 				<?php } else {?>
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				CATEGORIES &nbsp;&nbsp;&nbsp;
-				<?php } ?>
-					<img  src="<?php echo $basePath; ?>/img/menu.png" alt="ads">
+				<img  src="<?php echo $basePath; ?>/img/menu.png" alt="ads">
 					<span class="caret"></span>
 				</button>
+				<?php } ?>
+					
+				<?php if($parmsName =="profile") {?>
+					<select style="height:30px;width:auto" id="u_c_id" value="u_c_id" onChange="filterByskill();">
+								<option value="">Select</option>
+					<?php if(isset($catData)){ foreach($catData as $catinfo){ ?>
+								<option value="<?php echo $catinfo->u_c_id; ?>"><?php echo ucfirst($catinfo->u_category_name); ?></option>
+								<?php } } ?>
+							</select>		
+					<?php  } else {?>
 				<ul class="dropdown-menu" <?php if($parmsName =="profile") { ?>style=" height:350px; overflow:auto; left:0 !important"<?php } else{?> style="left:0 !important" <?php } ?> >
 					<? 
 					if(isset($catData)){ foreach($catData as $key=>$catinfo){
@@ -205,11 +214,10 @@
 											<? } } ?> 			
 										</ul>										
 									</li>
-					<?php } } } }					
-					 
-					
+					<?php } } } }	
 					?>
 				</ul>
+				<?php } ?>
 			</div></div>
 			<?php if($parmsName =="profile") {?>
 			<div class="col-md-3">
@@ -306,8 +314,22 @@ function outLoggedFine(){
 		}
 	});
 }
+function filterByskill(){
+	var catid= $("#u_c_id").val();
+	var c_id = $("#c_id").val();
+	if(c_id==""){
+		window.location=BASE_URL+"/all-profiles?cat="+catid;
+	}else{
+		window.location=BASE_URL+"/all-profiles?cat="+catid+"&city="+c_id;
+	}
+}
 function filterByCity(){
-	var cat_id = "<?php if(isset($_GET['cat']) && $_GET['cat']!=""){ echo $_GET['cat']; }else{ echo "all"; } ?>";
+	var cat_id = $("#u_c_id").val();
+	if(cat_id !=""){		
+		cat_id = cat_id;
+	}else{
+		cat_id = "all";
+	}
 	var c_id = $("#c_id").val();
 	if(c_id==""){
 		window.location=BASE_URL+"/all-profiles?cat="+cat_id;
@@ -317,7 +339,12 @@ function filterByCity(){
 	$("#c_id").val(c_id);
 }
 function searchByName(){
-	var cat_id = "<?php if(isset($_GET['cat']) && $_GET['cat']!=""){ echo $_GET['cat']; }else{ echo "all"; } ?>";
+	var cat_id = $("#u_c_id").val();
+	if(cat_id !=""){		
+		cat_id = cat_id;
+	}else{
+		cat_id = "all";
+	}
 	var c_id = '<?php if(isset($_GET['city']) && $_GET['city']!=""){ echo $_GET['city']; }else{ echo ""; }  ?>';
 	var nameSearch = $("#nameSearch").val();
 	if(nameSearch==""){
@@ -336,7 +363,14 @@ function searchByName(){
 }
 
 $(document).ready(function() {
+	var cat_id = "<?php if(isset($_GET['cat']) && $_GET['cat']!=""){ echo $_GET['cat']; }else{ echo "all"; } ?>";
 	var c_id = '<?php if(isset($_GET['city']) && $_GET['city']!=""){ echo $_GET['city']; }else{ echo ""; }  ?>';
 	$("#c_id").val(c_id);
+	if(cat_id!="all"){
+		$("#u_c_id").val(cat_id);
+	}else{
+		$("#u_c_id").val('');		
+	}
+	
 });
 </script>

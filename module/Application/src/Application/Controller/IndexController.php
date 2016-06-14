@@ -204,9 +204,7 @@ class IndexController extends AbstractActionController
 		$catCatlist = array();	
 		if( $params == "profile" ){
 			$catList = $this->getCatTable()->CategoryList();
-			foreach($catList as $getCatid){
-				$catSubcatlist[$getCatid->u_c_id][$getCatid->u_c_id] = $getCatid->u_category_name;
-			}
+			$catSubcatlist =$catList;
 		}else{
 			$catList = $this->getCategoryTable()->getCategoryListF();	
 			foreach($catList as $getCatid){
