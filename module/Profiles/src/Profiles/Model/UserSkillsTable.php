@@ -21,20 +21,18 @@ class UserSkillsTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }		
-	public function addUserSkills($us_u_c_id,$user_id)
+	public function addUserSkills($us_u_c_id,$u_id)
 	{
-
+		$this->delUserSkills($u_id);
 		foreach($us_u_c_id['state_id'] as $skill=>$val){	
-		$u_id=base64_decode($user_id);
-		$data = array(
-			'us_user_id'  	    => $u_id,
-			'us_u_c_id'         => $skill,
-			'us_created_at'     => date('Y-m-d H:i:s'),	
-			'us_updated_at'     => date('Y-m-d H:i:s'),
-			'us_status'         => 1
-		);
-		
-		$insertresult=$this->tableGateway->insert($data);		
+			$data = array(
+				'us_user_id'  	    => $u_id,
+				'us_u_c_id'         => $val,
+				'us_created_at'     => date('Y-m-d H:i:s'),	
+				'us_updated_at'     => date('Y-m-d H:i:s'),
+				'us_status'         => 1
+			);
+			$insertresult=$this->tableGateway->insert($data);		
 		}
 		return $this->tableGateway->lastInsertValue;
 	}
@@ -44,10 +42,9 @@ class UserSkillsTable
 	}
 	public function skillsList($id)
 	{
-		$u_id = base64_decode($id);		
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('vc_user_category', 'vc_user_skills.us_u_c_id=vc_user_category.u_c_id',array('*'),'left');
-		$select->where('vc_user_skills.us_user_id="'.$u_id.'"');
+		$select->where('vc_user_skills.us_user_id="'.$id.'"');
 		$resultSet = $this->tableGateway->selectWith($select);		
 		return $resultSet;
 	}

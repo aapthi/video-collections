@@ -101,6 +101,16 @@ class UserTable
 		$row=$this->tableGateway->update($data, array('user_id' => $user['userId']));
 		return $row;
 	}
+	public function updateUser($users,$user_id){
+		$data = array(
+			'contact_number'  	=> $users['phno'],
+			'username'          => $users['fname'],
+			'display_name'      => $users['fname'],	
+			'updated_at'        => date('Y-m-d H:i:s')	
+		);	
+		$updateresult=$this->tableGateway->update($data, array('user_id' => $user_id));
+		return $updateresult;	
+	}
 	public function addUser($users,$user_id)
     {
 		if($user_id!=""){

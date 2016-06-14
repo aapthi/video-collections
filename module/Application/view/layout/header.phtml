@@ -1,5 +1,5 @@
 <?php
-	if(isset($_SERVER['REDIRECT_URL']) && $_SERVER['REDIRECT_URL']!=""){
+	if(isset($_SERVER['REDIRECT_URL']) && $_SERVER['REDIRECT_URL']!=""){		
 		$page=basename($_SERVER['REDIRECT_URL']);
 		if($page=='all-profiles'){
 			 $parmsName  = "profile";	
@@ -63,8 +63,8 @@
     <link href="<?php echo $basePath; ?>/css/main.css" rel="stylesheet">
     <link href="<?php echo $basePath; ?>/css/custom.css" rel="stylesheet">
     <link href="<?php echo $basePath; ?>/css/sticky-footer-navbar.css" rel="stylesheet">
-	<link href="<?php echo $basePath; ?>/css/magnafic.css" rel="stylesheet" />
-	<link href="<?php echo $basePath; ?>/css/magnaficpopup.css" rel="stylesheet" />
+	<!--<link href="<?php echo $basePath; ?>/css/magnafic.css" rel="stylesheet" />
+	<link href="<?php echo $basePath; ?>/css/magnaficpopup.css" rel="stylesheet" />-->
 	<!-- Js Script-->	
 	<script src="<?php echo $basePath; ?>/js/jquery-112min.js"></script>
 	<script type="text/javascript" src="<?php echo $basePath; ?>/js/jquery.nicescroll.min.js"></script>
@@ -72,13 +72,12 @@
 	<script src="<?php echo $basePath; ?>/js/isotope.pkgd.min.js"></script>
 	<script src="<?php echo $basePath; ?>/js/poorapo.isotope.js"></script>
     <script src="<?php echo $basePath; ?>/js/commonfunctions.js"></script>
-	<script src="<?php echo $basePath; ?>/js/popup.min.js"></script>
+	<!--<script src="<?php echo $basePath; ?>/js/popup.min.js"></script>-->
 	
     <script src="<?php echo $basePath; ?>/js/jquery.bootstrap.newsbox.min.js"></script>
 	<link href="<?php echo $basePath; ?>/dist/lsb.css" rel="stylesheet">
 	<script src="//code.jquery.com/jquery.min.js"></script>
 	<script src="<?php echo $basePath; ?>/dist/lsb.min.js"></script>
-	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="<?php echo $basePath; ?>../src/lsb.css">
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   <script src="<?php echo $basePath; ?>../src/lsb.js"></script>
@@ -104,7 +103,7 @@
 							</span>
 						<ul class="dropdown-menu">
 							<li><a href="<?php echo $baseUrl; ?>/users/videos-list">My Uploads</a><li>
-							<li><a href="<?php echo $baseUrl; ?>/profile-user/<? echo $usersid; ?>">Profile</a><li>
+							<li><a href="<?php echo $baseUrl; ?>/profile-user?uid=<? echo base64_encode($usersid."-143"); ?>">Profile</a><li>
 							<li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>
 							<li><a onClick="outLoggedFine();" href="javascript:void(0);" >Sign Out</a></li>
 						</ul>
@@ -180,7 +179,7 @@
 					<img  src="<?php echo $basePath; ?>/img/menu.png" alt="ads">
 					<span class="caret"></span>
 				</button>
-				<ul class="dropdown-menu" style="left:0 !important">
+				<ul class="dropdown-menu" <?php if($parmsName =="profile") { ?>style=" height:350px; overflow:auto; left:0 !important"<?php } else{?> style="left:0 !important" <?php } ?> >
 					<? 
 					if(isset($catData)){ foreach($catData as $key=>$catinfo){
 							foreach($catinfo as $catid=>$catname){
@@ -226,22 +225,26 @@
 				</select>
 			</div>
 			<?php } ?>
-		<div class="col-md-6 input_search">
-			<div class="input-group">
+		
 			<?php if($parmsName =="profile") {?>
-				<input id="nameSearch" placeholder="Search for user name" class="form-control" type="textbox">
-				<span class="input-group-btn">
-				<button class="btn btn-default"  onClick="searchByName();" type="button" id="addressSearch">Search</button>
-				</span>
+				<div class="col-md-6 input_search">
+					<div class="input-group">
+						<input id="nameSearch" placeholder="Search for user name" class="form-control" type="textbox">
+						<span class="input-group-btn">
+						<button class="btn btn-default"  onClick="searchByName();" type="button" id="addressSearch">Search</button>
+						</span>
+					</div>
+				</div>
 			<?php } else { ?>
-				<input id="videosSearch" placeholder="Search for videos" class="form-control" type="textbox">
-				<span class="input-group-btn">
-				<button class="btn btn-default" onKeypress="serachTitle();" onClick="searchByLocation();" type="button" id="addressSearch">Search</button>
-				</span>
-			<?php } ?>
-			
-			</div>
-		</div>
+				<div class="col-md-9 input_search">
+					<div class="input-group">
+						<input id="videosSearch" placeholder="Search for videos" class="form-control" type="textbox">
+						<span class="input-group-btn">
+						<button class="btn btn-default" onKeypress="serachTitle();" onClick="searchByLocation();" type="button" id="addressSearch">Search</button>
+						</span>
+					</div>
+				</div>
+			<?php } ?>			
 	</div>
 	</div>
 </div>

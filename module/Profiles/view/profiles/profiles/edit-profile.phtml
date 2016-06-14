@@ -1,25 +1,19 @@
 <div class="container min_height">
 	<div class="row">
-<?php 
-//echo $baseUrl;
-//exit;
-?>	
 		<div class="col-md-9">
 		<form action="" method="POST"  onsubmit="return validate();" enctype="multipart/form-data" name="form" >		
 				<div class="col-md-3 ">
 					<div class="">
 					<?php if(isset($this->allTests->user_photo) && $this->allTests->user_photo != ""){?>
 					<img alt="" src="<?php echo $baseUrl;?>/<?php echo $this->allTests->user_photo?>" style="width:160px;height:160px;">
-					<?php }else{ ?>
-						
+					<?php }else{ ?>						
 						<img class="img_pic" alt="" src="<? echo $basePath; ?>/images/480px-No_Image_Available.png" />
-					
-				
 					<?php }?>					
 					</div>
+					<input type="hidden" id="hid_user_photo" name="hid_user_photo" value="<?php echo $this->allTests->user_photo; ?>">
 				<div class="text-center" style="padding-top:10px;">	
-					<label class="btn btn-primary btn-file">
-					<input type="file" name="fileToUpload" id="image_file" style="display: none;">
+					<label class="btn-file">
+					<input type="file" name="fileToUpload" id="image_file" class="form-control file_pad" style="height:auto">
 					</label>	
 					</div>					
 				  </div>
@@ -27,7 +21,7 @@
                     <div class="form-group row">					
                       <label class="col-sm-3 form-control-label">Full Name <sup>*</sup></label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" name="fname" id="fname" value="<?php if(isset($this->allTests->first_name) && $this->allTests->first_name != ""){echo  $this->allTests->first_name; }?>"><span id="f_name" style="color:red;"></span>
+                        <input type="text" class="form-control" name="fname" id="fname" value="<?php if(isset($this->allTests->username) && $this->allTests->username != ""){echo  ucfirst($this->allTests->username); }?>"><span id="f_name" style="color:red;"></span>
                       </div>
                     </div>
 					<div class="form-group row">
@@ -44,7 +38,7 @@
 					  <div class="col-sm-4">
 					  
 					<label class="c-input c-radio">
-					  <input id="radio1" name="ph" id="ph" type="radio" value="public" <?php if(isset($this->allTests->ph_pub_pri) && $this->allTests->ph_pub_pri == "public"){echo  'checked';}?>>
+					  <input id="radio1" name="ph" id="ph" type="radio" value="public" checked <?php if(isset($this->allTests->ph_pub_pri) && $this->allTests->ph_pub_pri == "public"){echo  'checked';}?>>
 					  <span class="c-indicator"></span>
 					  Public 
 					</label>
@@ -77,7 +71,7 @@
 				<div class="form-group row">
                       <label  class="col-sm-3 form-control-label" >Home</label>
                       <div class="col-sm-4">
-                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->contact_number) && $this->allTests->contact_number != ""){echo  $this->allTests->contact_number;}?>" name="home" id="home"><span id="ph_home" style="color:red;"></span>
+                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->home_phone) && $this->allTests->home_phone != ""){echo  $this->allTests->home_phone;}?>" name="home" id="home"><span id="ph_home" style="color:red;"></span>
                       </div>
 					  <div class="col-sm-4">
 					  
@@ -95,33 +89,35 @@
 				</div>
 				<div class="form-group row">
                       <label class="col-sm-3 form-control-label" >City</label>
-					   <?php  //print_r($this->cities);
-					   //print_r($this->allTests->city);exit;
-					   ?>
-                      <div class="col-sm-8">
-                       <select name="city" id="city">
-						<option value="default">--select city --</option>
-					   <?php foreach($this->cities as $city){
-						   if(isset($this->allTests->city) && $this->allTests->city != "0")
-						   {						   
-						   ?>
-						<option value="<?php echo $this->allTests->c_id; ?>" <?php echo 'selected';?>><?php echo $city->c_name; ?></option>
-					   <?php }
-					   else{?>
-						 <option value="<?php echo $city->c_id; ?>" <?php //echo 'selected';?>><?php echo $city->c_name; ?></option>  
-					   <?php }
-					   
-					   }?>
+					   <div class="col-sm-8">
+                       <select name="city" id="city" class="form-control">
+						<option value="default">Select city</option>
+					   <?php foreach($this->cities as $city){ 
+						if($city->c_id == $this->allTests->city) { ?>
+						  <option value="<?php echo $city->c_id; ?>" selected="selected"><?php echo ucfirst($city->c_name); ?></option>  
+					  <?php  } else{ ?>
+						 <option value="<?php echo $city->c_id; ?>" ><?php echo ucfirst($city->c_name); ?></option>  
+					  <?php } }?>
                        </select><span id="c_ity" style="color:red"></span>
                       </div>
                  </div>
 				 <div class="form-group row">
                       <label class="col-sm-3 form-control-label" >Languages</label>
                       <div class="col-sm-8">
-                       <select name="lang[]" id="lang" multiple="multiple">
-						<option value="default" selected>-- select languages --</option>
-					   <?php foreach($this->lang as $language){?>
-						<option value="<?php echo $language->lan_id; ?>"><?php echo $language->lang_name; ?></option>
+                       <select name="lang[]" id="lang" multiple="multiple" class="form-control">
+						<option value="default">Select languages</option>
+					   <?php 
+						$str = $this->allTests->languages;
+						$expoldeData = explode(',',$str);
+						$lan = $expoldeData;
+						foreach($this->lang as $language){							
+							if(in_array($language->lan_id,$lan)){
+								$lSele  = "selected";
+							}else{
+								$lSele  = "";
+							}
+					   ?>
+						<option value="<?php echo $language->lan_id; ?>" <?php echo $lSele; ?>><?php echo ucfirst($language->lang_name); ?></option>
 					   <?php }?>
                        </select><span id="l_ang" style="color:red"></span>
                       </div>
@@ -129,28 +125,31 @@
 				 <div class="form-group row">
                       <label class="col-sm-3 form-control-label">Skills</label>
                       <div class="col-sm-8">
-						<?php //print_r($this->skill);exit;
-						foreach($this->skill as $result)
-						{
-							//echo $res=$result->u_category_name;
-						}
-						?>
+						
                         <select class="form-control" id="state_id" name="state_id[]" multiple="multiple">
-						<option value="default" selected>Select categories</option>						
-						<?php 
-						if(isset($this->allSkills)){
-						foreach($this->allSkills as $skills){							
-							if(in_array($skills,$res))
-							{
-								$selected = 'selected';
-							}
-							else{
-								$selected = '';
-							}							
-						?>				
-						<option value="<?php echo $skills->u_c_id;?>" <?php echo $selected;?>><?php echo $skills->u_category_name?></option>
-					  <?php }
-						}?>							
+						<option value="default" >Select skills</option>	
+							<?php
+								$res =''; $i=0;	
+								foreach($this->skill as $result)
+								{
+									 $res[$i]=$result->us_u_c_id;
+									 $i++;
+								}	
+							?>
+							<?php 							
+								if(isset($this->allSkills)){
+									foreach($this->allSkills as $skills){							
+										if(in_array($skills->u_c_id,$res))
+										{
+											$selected = 'selected';
+										}
+										else{
+											$selected = '';
+									}							
+							?>				
+								<option value="<?php echo $skills->u_c_id;?>" <?php echo $selected;?>>
+								<?php echo $skills->u_category_name?></option>
+							<?php } } ?>							
 						</select><span id="s_kill" style="color:red"></span>
                       </div>
                  </div>
@@ -173,16 +172,19 @@
                       <div class="col-sm-8">
 					  <div class="row">
 						<div class="col-xs-10">
-						
-						<?php
-						//print_r($this->videos);exit;
-						if(isset($this->allTests->v_video_link) && $this->allTests->v_video_link != ""){
-							foreach($this->videos as $video){
-							?>
-							<input  type="text" class="form-control" value="<?php	
-								
-							echo $video->v_video_link; ?>" name="video[]">
-						<?php }}?>
+							<?php
+								if(isset($this->videos) && count($this->videos)>1){
+									$i = 0;
+									foreach($this->videos as $video){
+								?>
+									<input  type="text" class="form-control" value="<?php echo $video->v_video_link; ?>" 
+									name="video[]"><br/>
+									<?php if($i!='0'){?>
+									<a href="#" class="remove_field btn btn-danger"><span class="glyphicon glyphicon-minus"></span></a>
+									<?php } ?>
+							<?php $i++; } } else{?>
+								<input  type="text" class="form-control" value="" name="video[]">
+							<?php } ?>
 						</div>
 						<div class="col-xs-2">
 							<button class="add_field_button btn btn-primary">Add</button>
@@ -190,118 +192,96 @@
                       </div> 
                       </div> 
                  </div>	
+				 <input type="hidden" id="hid_u_id" name="hid_u_id" value="<?php echo $this->allTests->u_id; ?>">		 
 				 <div class="form-group row">
                       <label class="col-sm-3 form-control-label" >More Information</label>
                       <div class="col-sm-8">
                        <textarea class="form-control" rows="3" id="comment"  name="msg"><?php if(isset($this->allTests->message) && $this->allTests->message != ""){echo  $this->allTests->message;}?></textarea>
 					   <p style="font-size:13px">[Describe yourself 300 words]</p>
                       </div>
-                 </div>
-				 
-				 
-				 		
+                 </div>				 
 				  <div class="form-group row">
                       <label class="col-sm-3 form-control-label">&nbsp</label>
                       <div class="col-sm-8">
-                        <input type="submit" class=" btn btn-primary" value="update" name="submit"/>
+                        <input type="submit" class=" btn btn-primary" value="Update" name="submit"/>
                       </div>
                  </div>
 		</div>
 		</form>
 		</div>
 		<div class="col-md-3">
-			<img width="100%" alt="sfadda.com" src="http://localhost/video-collections/trunk/public/img/adsleft.jpg">			
+			<img width="100%" alt="sfadda.com" src="http://localhost/video-collections/trunk/public/img/adsleft.jpg">		
 		</div>
 	</div>
 </div>
 
 <script>
-	$(document).ready(function() {
-    var max_fields      = 10; //maximum input boxes allowed
-    var wrapper         = $(".input_fields_wrap"); //Fields wrapper
-    var add_button      = $(".add_field_button"); //Add button ID
-   
-    var x = 1; //initlal text box count
-    $(add_button).click(function(e){ //on add input button click
+$(document).ready(function() {
+    var max_fields      = 10; 
+    var wrapper         = $(".input_fields_wrap"); 
+    var add_button      = $(".add_field_button");    
+    var x = 1; 
+    $(add_button).click(function(e){ 
         e.preventDefault();
-        if(x < max_fields){ //max input box allowed
-            x++; //text box increment
-            $(wrapper).append('<div class="form-group" id="ddddd"><label class="col-sm-3 form-control-label">&nbsp;</label><div class="col-md-8"><div class="row" ><div class="col-xs-10"><input type="text" class="form-control" name="video[]"/></div><div class="col-xs-2"><a href="#" class="remove_field btn btn-danger"><span class="glyphicon glyphicon-minus"></span></a></div></div></div></div>'); //add input box
+        if(x < max_fields){ 
+            x++; 
+			$(wrapper).append('<div class="form-group" id="ddddd"><label class="col-sm-3 form-control-label">&nbsp;</label><div class="col-md-8"><div class="row" ><div class="col-xs-10"><input type="text" class="form-control" name="video[]"/></div><div class="col-xs-2"><a href="#" class="remove_field btn btn-danger"><span class="glyphicon glyphicon-minus"></span></a></div></div></div></div>'); //add input box
         }
-    });
-   
+    });   
     $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
         e.preventDefault(); $('#ddddd').remove(); x--;
-    })
+    });
 });
-
-	function validate()
+function validate(){
+	var name= document.getElementById('fname').value;
+	var email= document.getElementById('email').value;
+	var phno= document.getElementById('phno').value;
+	var city= document.getElementById('city').value;
+	var state_id= document.getElementById('state_id').value;
+	var lang= document.getElementById('lang').value;
+	var ename=/^[a-zA-Z]+$/;
+	var eexp=/^[a-z0-9._]+@+[a-z0-9]+.+[a-z]{2,4}/;
+	var moble=/^[0-9]+$/;
+	if(!name.match(ename) && name == "")
 	{
-		//alert();
-		/* if ((form.public[0].checked == false ) && ( form.public[1].checked == false ) )
-		{
-		alert ( "Please choose Public or Private for your contact number" );
+		document.getElementById("f_name").innerHTML="Please enter full name";
+		document.getElementById("fname").focus();
 		return false;
-		} */
-		//alert();return false;
-		var name= document.getElementById('fname').value;
-		var email= document.getElementById('email').value;
-		var phno= document.getElementById('phno').value;
-		var city= document.getElementById('city').value;
-		var state_id= document.getElementById('state_id').value;
-		//alert(city);
-		var lang= document.getElementById('lang').value;
-		
-		var ename=/^[a-zA-Z]+$/;
-		var eexp=/^[a-z0-9._]+@+[a-z0-9]+.+[a-z]{2,4}/;
-		var moble=/^[0-9]+$/;
-		if(!name.match(ename) && name == "")
-		{
-			alert('');
-			document.getElementById("f_name").innerHTML="Please enter full name";
-			document.getElementById("fname").focus();
-			return false;
-		}
-		if(!email.match(eexp) && email == "")
-		{
-			alert('');
-			document.getElementById("e_mail").innerHTML="Please enter email";
-			document.getElementById("email").focus();
-			return false;
-		}
-		if(!phno.match(moble) && phno == "")
-		{
-			alert('');
-			document.getElementById("ph_no").innerHTML="Please enter email";
-			document.getElementById("phno").focus();
-			return false;
-		}
-		if ((form.ph[0].checked == false ) && ( form.ph[1].checked == false ) )
-		{
-		alert ( "Please choose Public or Private for your contact number" );
-		return false;
-		}
-		if(city == "default")			
-		{
-			alert('');			
-			document.getElementById("c_ity").innerHTML="Please select city";
-			return false;
-			
-		}
-		if(lang == "default")			
-		{
-				document.getElementById("l_ang").innerHTML="Please select languages";
-				return false;
-		}
-		if(state_id == "default")			
-		{
-				document.getElementById("s_kill").innerHTML="Please select skills";
-				return false;
-		}
-		
-		//alert(name);return false;
 	}
-	$(document).ready(function() {
+	if(!email.match(eexp) && email == "")
+	{
+		document.getElementById("e_mail").innerHTML="Please enter email";
+		document.getElementById("email").focus();
+		return false;
+	}
+	if(!phno.match(moble) && phno == "")
+	{
+		document.getElementById("ph_no").innerHTML="Please enter email";
+		document.getElementById("phno").focus();
+		return false;
+	}
+	if ((form.ph[0].checked == false ) && ( form.ph[1].checked == false ) )
+	{
+		alert ( "Please choose Public or Private for your contact number" );
+		return false;
+	}
+	if(city == "default")			
+	{
+		document.getElementById("c_ity").innerHTML="Please select city";
+		return false;
+	}
+	if(lang == "default")			
+	{
+		document.getElementById("l_ang").innerHTML="Please select languages";
+		return false;
+	}
+	if(state_id == "default")			
+	{
+		document.getElementById("s_kill").innerHTML="Please select skills";
+		return false;
+	}
+}
+$(document).ready(function() {
     var flag=true;
     $('#image_file').bind('change', function() {
         if($('#image_file').val()!=""){

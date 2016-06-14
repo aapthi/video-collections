@@ -78,17 +78,15 @@ class ProfileTable
 	}
 	public function UsersProfileList($id)
 	{
-		//echo $id;exit;
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('user', 'vc_user_details.u_id=user.user_id',array('*'),'left');
 		$select->join('vc_cities', 'vc_user_details.city=vc_cities.c_id',array('*'),'left');
 		$select->where('vc_user_details.u_id="'.$id.'"');
 		$resultSet = $this->tableGateway->selectWith($select);		
-		return $resultSet->current();
+		return $resultSet;
 	}
 	public function EditProfile($base_user_id)
 	{
-		//echo $base_user_id;exit;
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('user', 'vc_user_details.u_id=user.user_id',array('*'),'left');		
 		$select->join('vc_cities', 'vc_user_details.city=vc_cities.c_id',array('*'),'left');		
@@ -112,37 +110,24 @@ class ProfileTable
 			return $updateresult;
 		}
 	}
-	public function UpdateUser($user,$id,$target_file)
+	public function UpdateUserD($user,$user_id,$target_file)
 	{
-		//print_r($user['fileToupload']);exit;
-		//print_r($user['video']);
-		//$skills = implode(', ', $user['state_id']);
-		$lang = implode(', ', $user['lang']);
-		$video = implode(', ', $user['video']);
-		//print_r($commaList);exit;
-		//echo $user['public'];exit;
-		$user_id=base64_decode($id);
+		$lang = implode(',', $user['lang']);
 		$data = array(			 		
 			'first_name'       => $user['fname'], 	
 			'home_phone'       => $user['home'], 	
 			'work_phone'       => $user['work'], 	
 			'ph_pub_pri'       => $user['ph'], 	
-			'work_pub_pri'       => $user['work_phno'], 	
-			'home_pub_pri'       => $user['home_phno'], 	
-			//'public_or_private' 	   => $user['public'], 	
+			'work_pub_pri'     => $user['work_phno'], 	
+			'home_pub_pri'     => $user['home_phno'], 	
 			'user_photo' 	   => $target_file, 	
-			'city' 	   => $user['city'], 	
+			'city' 	           => $user['city'], 	
 			'languages' 	   => $lang, 	
-			'fb_profile_link' 	   => $user['fb'], 	
-			'message' 	   => $user['msg'], 	
-			'video_links' 	   => rtrim($video), 	
-			//'skills' 	   => $skills, 	
-			'created_at'       => date('Y-m-d H:i:s'), 
+			'fb_profile_link'  => $user['fb'], 	
+			'message' 	       => $user['msg'], 	
 			'updated_at' 	   => date('Y-m-d H:i:s')
 		);
-		//print_r($data);exit;
 		$updateresult=$this->tableGateway->update($data, array('u_id' => $user_id));
-			return $updateresult;
-	}
-	
+		return $updateresult;
+	}	
 }
