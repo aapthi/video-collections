@@ -465,9 +465,51 @@ class AdminController extends AbstractActionController
 					$st = 'a';
 				}
 				$data[$i]['status']= $status;
+				$data[$i]['pics_videos'] ='<a href="'.$baseUrl.'/admin/user-pics?uid='.$id.'">Pics</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/user-videos?uid='.$id.'">Video Links</a>';
 				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/edit-user-profile?uid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-user?uid='.$id.'&st='.$st.'">'.$stMode.'</a>';
 				$i++;
 			}
+			$data['aaData'] = $data;
+			echo json_encode($data['aaData']); exit;
+		}else{
+			echo '1'; exit;
+		}
+	}
+	public function userPicsAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$view= new ViewModel(array(
+				'basePath'=>$basePath,
+			));
+		return $view;	
+	}
+	public function userPicsAjaxAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$usersTable=$this->getUserTable();
+		$userDetailss = $usersTable->listUsers();
+		$baseUrlD = 'http://localhost/video-collections/trunk';
+		$data = array();
+		$i=0;
+		$UserPicsTable 	  = $this->getServiceLocator()->get('Profiles\Model\UserPicsFactory');
+		if(isset($_GET['uid']) && $_GET['uid']!=""){
+			$uid = $_GET['uid'];
+			$pics 	  = $UserPicsTable->picList($uid);	
+	foreach($pics as $userpics){
+	$data['action']='<input type="checkbox" id="check[]" name="check[]" onClick="selectAll()"value="'.$userpics->vp_id.'">';
+	$data[$i]['thumb_image']= '<img alt="" src="'.$baseUrlD.'/'.$userpics->vp_pics.'">';				
+	if($userpics->vp_status==1){
+		$status = 'Active';
+	}else{
+		$status = 'Deactive';
+	}
+	$data[$i]['status']= $status;
+	$i++;
+	}
 			$data['aaData'] = $data;
 			echo json_encode($data['aaData']); exit;
 		}else{
