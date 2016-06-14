@@ -20,7 +20,7 @@
     <thead>
       <tr>
 	  <th><input type="checkbox" name="selcheck" id="selcheck[]" onChange="checkAll(this)">&nbsp;&nbsp;Select All</th>
-	  <th>Thumb Pic</th>	 
+	  <th>Link</th>	 
 	  <th>Status</th>	 
      </tr>
     </thead>
@@ -35,7 +35,7 @@
   $.ajax({
         type:    'GET',
         dataType:'json',
-        url: BASE_PATH+'/admin/user-pics-ajax?uid=<?php echo $_GET['uid'];?>',
+        url: BASE_PATH+'/admin/user-video-ajax?uid=<?php echo $_GET['uid'];?>',
         success: function(data){
 		$('#reload').html('');
             eval(data);
@@ -51,7 +51,7 @@
                 "aaData": data,
                 "aoColumns": [
                     { "mData": "action",'sWidth': '20%'},              
-                    { "mData": "thumb_image",'sWidth': '55%'},
+                    { "mData": "link",'sWidth': '55%'},
                     { "mData": "status",'sWidth': '25%'},
                  
                 ],
@@ -79,10 +79,10 @@ function activeAll(roleMode){
 				type	: 	"POST",
 				cache	:	false,
 				url		:  BASE_URL+'/admin/status-mode',
-				data	:  {ids:num,type:'userpics',roleMode:roleMode},
+				data	:  {ids:num,type:'videolinks',roleMode:roleMode},
 				success	: 	function(res) {
 					if(res.status == 1){
-						 window.location=BASE_URL+"/admin/user-pics?uid=<?php echo $_GET['uid'];?>";	
+						 window.location=BASE_URL+"/admin/user-videos?uid=<?php echo $_GET['uid'];?>";	
 					}
 				}
 			});						

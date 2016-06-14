@@ -48,4 +48,12 @@ class UserVideoTable
 		$resultSet = $this->tableGateway->selectWith($select);		
 		return $resultSet;
 	}
+	public function updateStatus($id,$status){
+		$data = array(
+			'v_status'  	=> $status,
+			'v_updated_at'  => date('Y-m-d H:i:s')	
+		);
+		$updateresult=$this->tableGateway->update($data, array('v_v_id' => $id));
+		return $updateresult;	
+	}
 }
