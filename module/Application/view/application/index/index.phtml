@@ -1,5 +1,5 @@
 <style>
-	#dddd{
+	#VideoTiles{
 		height:1100px;
 	}
 </style>
@@ -20,7 +20,7 @@
 				Latest Videos
 				</a>
 			<div class="list_grou_itemspad">
-				<div id="dddd">
+				<div id="VideoTiles">
 					<?if(isset($this->vatTData) && count($this->vatTData)){
 						foreach($this->vatTData as $links){
 							$video_id = base64_encode($links->v_id);
@@ -74,9 +74,10 @@
 		</script></center>
 	</div>
 </div>
+<script type="text/javascript" src="<?php echo $basePath; ?>/js/jquery.nicescroll.min.js"></script>
 <script>
 
 $(document).ready(function(){
- $("#dddd").niceScroll({touchbehavior:false, cursorborder:"",cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5,autohidemode: false});
+ $("#VideoTiles").niceScroll({touchbehavior:false, cursorborder:"",cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5,autohidemode: false});
 });	
 </script>

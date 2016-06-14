@@ -67,8 +67,7 @@
 	<link href="<?php echo $basePath; ?>/css/magnaficpopup.css" rel="stylesheet" />-->
 	<!-- Js Script-->	
 	<script src="<?php echo $basePath; ?>/js/jquery-112min.js"></script>
-	<script type="text/javascript" src="<?php echo $basePath; ?>/js/jquery.nicescroll.min.js"></script>
-    <script src="<?php echo $basePath; ?>/js/bootstrap.min.js"></script>
+	<script src="<?php echo $basePath; ?>/js/bootstrap.min.js"></script>
 	<script src="<?php echo $basePath; ?>/js/isotope.pkgd.min.js"></script>
 	<script src="<?php echo $basePath; ?>/js/poorapo.isotope.js"></script>
     <script src="<?php echo $basePath; ?>/js/commonfunctions.js"></script>
@@ -281,19 +280,13 @@ if(strpos($_SERVER['REQUEST_URI'],'register')!==false || strpos($_SERVER['REQUES
 	$(window).scroll(function() {
 		if ($(this).scrollTop() > 150) {
 			$('.search_bar').addClass('search_bar_fix_top');
-			//$('.filter_cate').css('position','relative');
 		} else {
-			$('.search_bar').removeClass('search_bar_fix_top');
-			//$('.filter_cate').css('position','absolute');
-			//$('.filter_cate .btn-default').css('color','#555 !important');
+			$('.search_bar').removeClass('search_bar_fix_top');			
 		}
 	});
 </script>
 <?php } ?>
 <script>
-/*if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
- alert('I am chrome');
-}*/
 $('#videosSearch').keypress(function(e){
 	serachTitle(e);
 	$(".ui-autocomplete").niceScroll({touchbehavior:false, cursorborder:"",cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5,autohidemode: false,horizrailenabled:false});
