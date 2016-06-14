@@ -4,7 +4,7 @@
 <div class="container min_height">
 	<div class="row">
 		<div class="col-md-8">
-		<?php if(isset($this->vatTData) && count($this->vatTData)){
+		<?php if(isset($this->vatTData) && count($this->vatTData)>0){
 			  foreach($this->vatTData as $links){
 				$id=$links->u_id;
 		?>
@@ -15,13 +15,13 @@
 					<a href="<?php echo $baseUrl;?>/profile-user?uid=<? echo base64_encode($id."-143"); ?>"><button type="button" class="btn btn-primary btn-sm" >View More </button></a></div>
 					<div class="media-left"> 
 					<?php if(isset($links->user_photo) && $links->user_photo!= ""){?>
-						<img alt="" src="<?php echo $basePath?>/images/<?php echo $links->user_photo;?>" style="width:140px;height:150px;">
+						<img alt="" src="<?php echo $links->user_photo;?>" style="width:140px;height:150px;">
 						<?php } else{?>
 						<img class="img_pic" alt="" src="<? echo $basePath; ?>/images/480px-No_Image_Available.png" />
 						<?php }?>
 					</div> 
 					<div class="media-body" style="margin:0"> 
-						<h4 class="media-heading"><a href="<?php echo $baseUrl;?>/profile-user/<?php echo $id;?>"><?php if(isset($links->username) && $links->username != ""){echo  $links->username;}else{ echo 'N/A';}?></a></h4>
+						<h4 class="media-heading"><a href="<?php echo $baseUrl;?>/profile-user/<?php echo $id;?>"><?php if(isset($links->username) && $links->username != ""){echo  ucfirst($links->username);}else{ echo 'N/A';}?></a></h4>
 						<p><span class="dim">City : </span> <?php if(isset($links->c_name) && $links->c_name != ""){echo  ucfirst($links->c_name);}else{ echo 'N/A';}?></p>
 						<p><span class="dim">Languages : </span>Industry Name</p>
 						<p><span class="dim">Skills :</span><?php  if(isset($links->skills) && $links->skills != ""){ echo  $links->skills;}else{echo 'N/A';}?></p>	
@@ -47,9 +47,9 @@
 					echo $this->paginationControl(
 					$this->vatTData,
 					'sliding',
-					array('partial/paginator.phtml', 'Application'),
+					array('partial/paginator.phtml', 'Profiles'),
 					array(
-						'route' => 'user',
+						'route' => 'all-profiles',
 						'id' =>$this->id
 						)
 					);

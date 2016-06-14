@@ -97,7 +97,7 @@
 					$usersid= base64_decode($userid);?>
 					<div class="btn-group " role="group">							
 							<i>Welcome</i> &nbsp;&nbsp;<span class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; cursor: hand;" id="top_bar_drop_down">
-							 <? if(strlen($_SESSION['user']['displayName'])>8){echo substr($_SESSION['user']['displayName'],0,8) . '...'; }else{echo $_SESSION['user']['displayName'];} ?> 
+							 <? if(strlen($_SESSION['user']['displayName'])>8){echo substr(ucfirst($_SESSION['user']['displayName']),0,8) . '...'; }else{echo ucfirst($_SESSION['user']['displayName']);} ?> 
 								<span class="caret" style="cursor: pointer; cursor: hand;"></span>
 							</span>
 						<ul class="dropdown-menu">

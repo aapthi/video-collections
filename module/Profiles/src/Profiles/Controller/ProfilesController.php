@@ -52,7 +52,7 @@ class ProfilesController extends AbstractActionController
 			$cid =$_GET['city'];
 			$userName=0;
 		}else if(isset($_GET['cat']) && $_GET['cat']!=''){
-			if( $_GET['cat']!='all' ){
+			if( $_GET['cat']!='all'){
 				$catid=$_GET['cat'];				
 			}else{
 				$catid=0;	
@@ -68,12 +68,11 @@ class ProfilesController extends AbstractActionController
 		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page',1));
 		$paginator->setItemCountPerPage(2);	
 		$paginator->setPageRange(5);
-		
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
 				'basePath' 					=> $basePath,			
-				'vatTData' 					=> $paginator,
+				'vatTData' 					=> $paginator
 		));
 		return $viewModel;	
 	}
