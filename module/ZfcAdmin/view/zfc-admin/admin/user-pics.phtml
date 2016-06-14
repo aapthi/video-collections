@@ -9,9 +9,13 @@
   <link href="<?php echo $basePath; ?>/css/jquery.datatable.css" rel="stylesheet">
   <script src="<?php echo $basePath;?>/js/jquery.datatable.min.js"></script>
 </head>
+	<div class="form-controller" style="float:left">	
+		<input type="button" class="btn" id="actId" name="actId" value="Activate" onClick="activeAll('a')" />
+		<input type="button" class="btn" id="deactId" name="deactId" value="Deactive" onClick="activeAll('d')" />         
+	</div><br/>
   <table id="example_div" class="table table-bordered table-hover">
 	<div style="position:absolute;top:3px;left:200px;z-index:300">
-
+		
  </div>
     <thead>
       <tr>
@@ -28,7 +32,6 @@
   <script>
   $(function(){
   $('#reload').html('<img src=<?php echo $basePath; ?>/images/ajax-loader.gif />');
-  alert();
   $.ajax({
         type:    'GET',
         dataType:'json',
@@ -47,19 +50,16 @@
                 "bProcessing": true,
                 "aaData": data,
                 "aoColumns": [
-                    { "mData": "action",'sWidth': '5%'},              
-                    { "mData": "thumb_image",'sWidth': '25%'},
-                    { "mData": "status",'sWidth': '10%'}                 
+                    { "mData": "action",'sWidth': '20%'},              
+                    { "mData": "thumb_image",'sWidth': '55%'},
+                    { "mData": "status",'sWidth': '25%'},
+                 
                 ],
             });    
         }
     });
 });
-
-
-
-
-function delstudent(){
+function activeAll(roleMode){
 	var num=""; var count=0;
 	var deleteId=document.getElementsByTagName("input");
 	for(var i = 0; i < deleteId.length; i++){
@@ -71,11 +71,21 @@ function delstudent(){
 		}
 	}
 	if(count==0){
-		alert("Please Check Only One Field!");
+		alert("Please check only one field!");
 		return false;
 	}else{
 		if(confirm("Are you sure you want delete row?")){
-		 window.location="listofquestion.php?qdelid="+num;					
+			$.ajax({
+				type	: 	"POST",
+				cache	:	false,
+				url		:  BASE_PATH+'/admin/status-mode',
+				data	:  {ids:num,type:'userpics',roleMode:roleMode},
+				success	: 	function(res) {
+					if(res.status == 1){
+						 window.location=BASE_PATH+"/admin/user-pics?uid=<?php echo $_GET['uid'];?>";	
+					}
+				}
+			});						
 		}
 	}
 }	
@@ -95,6 +105,7 @@ function selectAll(){
 	}
 }
 function checkAll(){
+	alert(document.getElementById('selcheck[]').checked);
 	if(document.getElementById('selcheck[]').checked){
 		$("INPUT[type='checkbox']").attr('checked',true);
 	}else{

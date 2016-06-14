@@ -40,4 +40,12 @@ class UserPicsTable
 		$insertresult=$this->tableGateway->insert($data);		
 		return $insertresult;
 	}
+	public function updateStatus($id,$status){
+		$data = array(
+			'vp_status'  	=> $status,
+			'vp_updated_at'  => date('Y-m-d H:i:s')	
+		);
+		$updateresult=$this->tableGateway->update($data, array('vp_id' => $id));
+		return $updateresult;	
+	}
 }

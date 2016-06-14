@@ -489,9 +489,7 @@ class AdminController extends AbstractActionController
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
-		$basePath = $baseUrlArr['basePath'];
-		$usersTable=$this->getUserTable();
-		$userDetailss = $usersTable->listUsers();
+		$basePath = $baseUrlArr['basePath'];		
 		$baseUrlD = 'http://localhost/video-collections/trunk';
 		$data = array();
 		$i=0;
@@ -499,14 +497,14 @@ class AdminController extends AbstractActionController
 		if(isset($_GET['uid']) && $_GET['uid']!=""){
 			$uid = $_GET['uid'];
 			$pics 	  = $UserPicsTable->picList($uid);	
-	foreach($pics as $userpics){
-	$data['action']='<input type="checkbox" id="check[]" name="check[]" onClick="selectAll()"value="'.$userpics->vp_id.'">';
-	$data[$i]['thumb_image']= '<img alt="" src="'.$baseUrlD.'/'.$userpics->vp_pics.'">';				
+	foreach($pics as $userpics){				
 	if($userpics->vp_status==1){
 		$status = 'Active';
 	}else{
 		$status = 'Deactive';
 	}
+	$data[$i]['action']='<input type="checkbox" id="check[]" name="check[]" onClick="selectAll()"value="'.$userpics->vp_id.'">';
+	$data[$i]['thumb_image']= '<img alt="" width="50px" height="50px" src="'.$baseUrlD.'/'.$userpics->vp_pics.'">';	
 	$data[$i]['status']= $status;
 	$i++;
 	}
@@ -514,6 +512,34 @@ class AdminController extends AbstractActionController
 			echo json_encode($data['aaData']); exit;
 		}else{
 			echo '1'; exit;
+		}
+	}
+	public function statusModeAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_POST['type']) && $_POST['type']=="userpics"){
+			$UserPicsTable 	  = $this->getServiceLocator()->get('Profiles\Model\UserPicsFactory');
+			$ids = $_POST['ids'];
+			$id = trim($ids, ',');
+			if($_POST['roleMode']=='a'){
+				$status =1;
+			}else{		
+				$status =0;
+			}
+			$userData = explode(',',$id);			
+			foreach($userData as $vpidd){
+				$vpid = $vpidd[0];
+				$updateData = $UserPicsTable->updateStatus($vpid,$status);
+			}
+			if($updateData){
+				return new JsonModel(array(				
+					'status' 		=> '1',	
+					'baseUrl' 			=> $baseUrl,
+					'basePath' 			=> $basePath,
+				));
+			}
 		}
 	}
 	public function deleteUserAction(){
@@ -550,7 +576,7 @@ class AdminController extends AbstractActionController
 				}				
 			}
 		}
-	}
+	}	
 	public function editUserProfileAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
