@@ -21,22 +21,23 @@
                     <div class="form-group row">					
                       <label class="col-sm-3 form-control-label">Full Name <sup>*</sup></label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" readonly name="fname" id="fname" value="<?php if(isset($this->allTests->username) && $this->allTests->username != ""){echo  ucfirst($this->allTests->username); }?>"><span id="f_name" style="color:red;"></span>
+                        <input type="text" class="form-control" readonly name="fname" id="fname" value="<?php if(isset($this->allTests->username) && $this->allTests->username != ""){echo  ucfirst($this->allTests->username); }?>">
                       </div>
+					  <div><span id="f_name" style="color:red;"></span></div>
                     </div>
 					<div class="form-group row">
                       <label class="col-sm-3 form-control-label" >Email</label>
                       <div class="col-sm-8">
-                        <input type="Email" class="form-control" readonly value="<?php if(isset($this->allTests->email) && $this->allTests->email != ""){echo  $this->allTests->email;}?>" name="email" id="email"><span id="e_mail" style="color:red;"></span>
+                        <input type="Email" class="form-control" readonly value="<?php if(isset($this->allTests->email) && $this->allTests->email != ""){echo  $this->allTests->email;}?>" name="email" id="email">
                       </div>
+					  <div><span id="e_mail" style="color:red;"></span></div>
                     </div>
 				<div class="form-group row">
                       <label  class="col-sm-3 form-control-label" >Phone Number</label>
                       <div class="col-sm-4">
-                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->contact_number) && $this->allTests->contact_number != ""){echo  $this->allTests->contact_number;}?>" name="phno" id="phno"><span id="ph_no" style="color:red;"></span>
-                      </div>
-					  <div class="col-sm-4">
-					  
+                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->contact_number) && $this->allTests->contact_number != ""){echo  $this->allTests->contact_number;}?>" name="phno" id="phno">
+                      </div>					  
+					  <div class="col-sm-4">					  
 					<label class="c-input c-radio">
 					  <input id="radio1" name="ph" id="ph" type="radio" value="public" checked <?php if(isset($this->allTests->ph_pub_pri) && $this->allTests->ph_pub_pri == "public"){echo  'checked';}?>>
 					  <span class="c-indicator"></span>
@@ -48,11 +49,17 @@
 					  Private
 					</label>
 					</div>
+					<div class="col-sm-10">
+						<div class="text-center">						
+						<h6 id="ph_no" style="color:red;"></h6>
+						</div>
+						
+					</div>
 				</div>
 				<div class="form-group row">
                       <label  class="col-sm-3 form-control-label" >Work</label>
                       <div class="col-sm-4">
-                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->work_phone) && $this->allTests->work_phone != ""){echo  $this->allTests->work_phone;}?>" name="work" id="work"><span id="ph_work" style="color:red;"></span>
+                        <input type="text" class="form-control" onblur="return validy();"value="<?php if(isset($this->allTests->work_phone) && $this->allTests->work_phone != ""){echo  $this->allTests->work_phone;}?>" name="work" id="work"><span id="ph_work" style="color:red;"></span>
                       </div>
 					  <div class="col-sm-4">
 					  
@@ -91,12 +98,12 @@
                       <label  class="col-sm-3 form-control-label" >Gender</label>                      
 					  <div class="col-sm-4">					  
 					<label class="c-input c-radio">
-					  <input id="male" name="gender" type="radio" value="male" checked <?php //if(isset($this->allTests->home_pub_pri) && $this->allTests->home_pub_pri == "public"){echo  'checked';}?>>
+					  <input id="male" name="gender" type="radio" value="male" checked <?php if(isset($this->allTests->gender) && $this->allTests->gender == "male"){echo  'checked';}?>>
 					  <span class="c-indicator"></span>
 					  Male 
 					</label>
 					<label class="c-input c-radio">
-					  <input id="female" name="gender" type="radio" value="female" <?php //if(isset($this->allTests->home_pub_pri) && $this->allTests->home_pub_pri == "private"){echo  'checked';}?>>
+					  <input id="female" name="gender" type="radio" value="female" <?php if(isset($this->allTests->gender) && $this->allTests->gender == "female"){echo  'checked';}?>>
 					  <span class="c-indicator"></span>
 					  Female
 					</label>
@@ -191,11 +198,12 @@
 								if(isset($this->videos) && count($this->videos)>1){
 									$i = 0;
 									foreach($this->videos as $video){
-								?>
-									<input  type="text" class="form-control" value="<?php echo $video->v_video_link; ?>" 
-									name="video[]"><br/>
+								?>				
+									<input id="ddddd" type="text" class="form-control" value="<?php echo $video->v_video_link; ?>" 
+									name="video[]">
 									<?php if($i!='0'){?>
-									<a href="#" class="remove_field btn btn-danger"><span class="glyphicon glyphicon-minus"></span></a>
+									
+									<a href="#" class="remove_field btn btn-danger" id="ddddd"><span class="glyphicon glyphicon-minus"></span></a>
 									<?php } ?>
 							<?php $i++; } } else{?>
 								<input  type="text" class="form-control" value="" name="video[]">
@@ -250,13 +258,16 @@ $(document).ready(function() {
 function validate(){
 	var name= document.getElementById('fname').value;
 	var email= document.getElementById('email').value;
-	var phno= document.getElementById('phno').value;
+	var phno= document.getElementById('phno').value;	
+	var work= document.getElementById('work').value;	
+	var home= document.getElementById('home').value;	
 	var city= document.getElementById('city').value;
 	var state_id= document.getElementById('state_id').value;
 	var lang= document.getElementById('lang').value;
 	var ename=/^[a-zA-Z]+$/;
 	var eexp=/^[a-z0-9._]+@+[a-z0-9]+.+[a-z]{2,4}/;
-	var moble=/^[0-9]+$/;
+	var moble=/^[0-9]/;
+	//var moble=/\d{10}/;
 	if(!name.match(ename) && name == "")
 	{
 		document.getElementById("f_name").innerHTML="Please enter full name";
@@ -269,12 +280,13 @@ function validate(){
 		document.getElementById("email").focus();
 		return false;
 	}
-	if(!phno.match(moble) && phno == "")
+	if(!phno.match(moble) || phno == "" || phno.length > 10)
 	{
-		document.getElementById("ph_no").innerHTML="Please enter email";
+		document.getElementById("ph_no").innerHTML="Please enter valid phone  number";
 		document.getElementById("phno").focus();
 		return false;
 	}
+	
 	if ((form.ph[0].checked == false ) && ( form.ph[1].checked == false ) )
 	{
 		alert ( "Please choose Public or Private for your contact number" );
@@ -293,6 +305,23 @@ function validate(){
 	if(state_id == "default")			
 	{
 		document.getElementById("s_kill").innerHTML="Please select skills";
+		return false;
+	}
+}
+function validy()
+{
+	alert();return false;
+	if(!work.match(moble) ||  work.length > 10)
+	{
+		document.getElementById("ph_work").innerHTML="Please enter valid phone  number";
+		document.getElementById("work").focus();
+		return false;
+	}
+	
+	if(!home.match(moble)  || home.length > 10)
+	{
+		document.getElementById("ph_home").innerHTML="Please enter valid phone  number";
+		document.getElementById("home").focus();
 		return false;
 	}
 }
