@@ -21,7 +21,7 @@
 						<?php }?>
 					</div> 
 					<div class="media-body" style="margin:0"> 
-						<h4 class="media-heading"><a href="<?php echo $baseUrl;?>/profile-user/<?php echo $id;?>"><?php if(isset($links->username) && $links->username != ""){echo  ucfirst($links->username);}else{ echo 'N/A';}?></a></h4>
+				<h4 class="media-heading"><a href="<?php echo $baseUrl;?>/profile-user?uid=<? echo base64_encode($id."-143"); ?>"><?php if(isset($links->username) && $links->username != ""){echo  ucfirst($links->username);}else{ echo 'N/A';}?></a></h4>
 						<p><span class="dim">City : </span> <?php if(isset($links->c_name) && $links->c_name != ""){echo  ucfirst($links->c_name);}else{ echo 'N/A';}?></p>
 						<p><span class="dim">Languages : </span>
 							<?php 	
