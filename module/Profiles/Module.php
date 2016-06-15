@@ -10,6 +10,8 @@ use Zend\EventManager\EventInterface;
 use Zend\Mvc\Router\RouteMatch;
 use Zend\ModuleManager\ModuleManager;
 use Zend\Stdlib\Hydrator\ClassMethods;
+/* Helpers Method */
+use Zend\ModuleManager\Feature\ViewHelperProviderInterface; 
 
 use Profiles\Model\Category;
 use Profiles\Model\CategoryTable;
@@ -24,7 +26,9 @@ use Profiles\Model\LanguagesTable;
 class Module implements 
 	Feature\AutoloaderProviderInterface,
     Feature\ConfigProviderInterface,
-    Feature\ServiceProviderInterface
+    Feature\ServiceProviderInterface,
+	/* Helper Implements Method */
+    Feature\ViewHelperProviderInterface
 {
     public function getAutoloaderConfig()
     {
@@ -58,4 +62,16 @@ class Module implements
 			),			
         );
     }
+	public function getViewHelperConfig()
+	{
+		return array(
+			'factories' => array(
+				'profile_helper' => function($sl) {
+					$sm = $sl->getServiceLocator(); 
+					$helper = new View\Helper\Profilehelper($sm);
+					return $helper;
+				}
+			)
+		);   
+   }
 }

@@ -23,8 +23,41 @@
 					<div class="media-body" style="margin:0"> 
 						<h4 class="media-heading"><a href="<?php echo $baseUrl;?>/profile-user/<?php echo $id;?>"><?php if(isset($links->username) && $links->username != ""){echo  ucfirst($links->username);}else{ echo 'N/A';}?></a></h4>
 						<p><span class="dim">City : </span> <?php if(isset($links->c_name) && $links->c_name != ""){echo  ucfirst($links->c_name);}else{ echo 'N/A';}?></p>
-						<p><span class="dim">Languages : </span>English, Hindi, Telugu</p>
-						<p><span class="dim">Skills :</span><?php  if(isset($links->skills) && $links->skills != ""){ echo  $links->skills;}else{echo 'Actor, Art-director, Co-Director';}?></p>	
+						<p><span class="dim">Languages : </span>
+							<?php 	
+								if(isset($links->languages) && $links->languages!=""){
+									$testAll = $this->plugin('profile_helper')->userInformation($links->languages);
+									$lName = "";
+									$lang_names = "";    
+									foreach($testAll['langNames'] as $key=>$langs){
+										$lang_names .= ucfirst($langs.', ');
+										$lName = rtrim($lang_names, ', ');
+									}
+									echo $lName;
+								}else{
+									echo "N/A";
+								}
+							?>
+						</p>
+						<p><span class="dim">Skills :</span>
+						<?php  
+							$skills = $this->plugin('profile_helper')->userSkills($links->user_id);
+							if(isset($skills) && count($skills)>1)
+							{
+								$sName = "";
+								$skill_names = "";    
+								foreach($skills as $skill){
+									$skill_names .= ucfirst($skill->u_category_name.', ');
+									$sName = rtrim($skill_names, ', ');
+								}
+								echo $sName;
+							}
+							else
+							{ 
+								echo 'N/A';
+							}							
+						?>							
+						</p>	
 					</div>					
 					<?php
 					$string=$links->message;					
