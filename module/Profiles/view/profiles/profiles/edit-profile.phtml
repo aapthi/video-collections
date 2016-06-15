@@ -19,23 +19,24 @@
 				  </div>
 					 <div class="col-md-9">				  
                     <div class="form-group row">					
-                      <label class="col-sm-3 form-control-label">Full Name <sup>*</sup></label>
+                      <label class="col-sm-3 form-control-label">Full Name <span style="color:red">*</span></label>
                       <div class="col-sm-8">
                         <input type="text" class="form-control" readonly name="fname" id="fname" value="<?php if(isset($this->allTests->username) && $this->allTests->username != ""){echo  ucfirst($this->allTests->username); }?>">
                       </div>
 					  <div><span id="f_name" style="color:red;"></span></div>
                     </div>
 					<div class="form-group row">
-                      <label class="col-sm-3 form-control-label" >Email</label>
+                      <label class="col-sm-3 form-control-label" >Email <span style="color:red">*</span></label>
                       <div class="col-sm-8">
                         <input type="Email" class="form-control" readonly value="<?php if(isset($this->allTests->email) && $this->allTests->email != ""){echo  $this->allTests->email;}?>" name="email" id="email">
                       </div>
 					  <div><span id="e_mail" style="color:red;"></span></div>
                     </div>
 				<div class="form-group row">
-                      <label  class="col-sm-3 form-control-label" >Phone Number</label>
+                      <label  class="col-sm-3 form-control-label" >Phone 
+					 Number <span style="color:red">*</span></label>
                       <div class="col-sm-4">
-                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->contact_number) && $this->allTests->contact_number != ""){echo  $this->allTests->contact_number;}?>" name="phno" id="phno">
+                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->contact_number) && $this->allTests->contact_number != ""){echo  $this->allTests->contact_number;}?>" name="phno" id="phno" onblur="return validy();">
                       </div>					  
 					  <div class="col-sm-4">					  
 					<label class="c-input c-radio">
@@ -59,7 +60,7 @@
 				<div class="form-group row">
                       <label  class="col-sm-3 form-control-label" >Work</label>
                       <div class="col-sm-4">
-                        <input type="text" class="form-control" onblur="return validy();"value="<?php if(isset($this->allTests->work_phone) && $this->allTests->work_phone != ""){echo  $this->allTests->work_phone;}?>" name="work" id="work"><span id="ph_work" style="color:red;"></span>
+                        <input type="text" class="form-control" onblur="return validy();" value="<?php if(isset($this->allTests->work_phone) && $this->allTests->work_phone != ""){echo  $this->allTests->work_phone;}?>" name="work" id="work">
                       </div>
 					  <div class="col-sm-4">
 					  
@@ -74,11 +75,17 @@
 					  Private
 					</label>
 					</div>
+					<div class="col-sm-10">
+						<div class="text-center">						
+						<h6 id="ph_work" style="color:red;"></h6>
+						</div>
+						
+					</div>
 				</div>
 				<div class="form-group row">
                       <label  class="col-sm-3 form-control-label" >Home</label>
                       <div class="col-sm-4">
-                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->home_phone) && $this->allTests->home_phone != ""){echo  $this->allTests->home_phone;}?>" name="home" id="home"><span id="ph_home" style="color:red;"></span>
+                        <input type="text" class="form-control" onblur="return validy();" value="<?php if(isset($this->allTests->home_phone) && $this->allTests->home_phone != ""){echo  $this->allTests->home_phone;}?>" name="home" id="home">
                       </div>
 					  <div class="col-sm-4">
 					  
@@ -93,9 +100,15 @@
 					  Private
 					</label>
 					</div>
+					<div class="col-sm-10">
+						<div class="text-center">						
+						<h6 id="ph_home" style="color:red;"></h6>
+						</div>
+						
+					</div>
 				</div>
 				<div class="form-group row">
-                      <label  class="col-sm-3 form-control-label" >Gender</label>                      
+                      <label  class="col-sm-3 form-control-label" >Gender <span style="color:red">*</span></label>                      
 					  <div class="col-sm-4">					  
 					<label class="c-input c-radio">
 					  <input id="male" name="gender" type="radio" value="male" checked <?php if(isset($this->allTests->gender) && $this->allTests->gender == "male"){echo  'checked';}?>>
@@ -109,10 +122,11 @@
 					</label>
 					</div>
 				</div>
+				
 				<div class="form-group row">
-                      <label class="col-sm-3 form-control-label" >City</label>
+                      <label class="col-sm-3 form-control-label" >City <span style="color:red">*</span></label>
 					   <div class="col-sm-8">
-                       <select name="city" id="city" class="form-control">
+                       <select name="city" id="city" class="form-control" onblur="return validy();">
 						<option value="default">Select city</option>
 					   <?php foreach($this->cities as $city){ 
 						if($city->c_id == $this->allTests->city) { ?>
@@ -120,13 +134,18 @@
 					  <?php  } else{ ?>
 						 <option value="<?php echo $city->c_id; ?>" ><?php echo ucfirst($city->c_name); ?></option>  
 					  <?php } }?>
-                       </select><span id="c_ity" style="color:red"></span>
+                       </select>
                       </div>
+					  <div class="col-sm-10">
+						<div class="text-center">						
+						<h6 id="c_ity" style="color:red;"></h6>
+						</div>						
+					</div>
                  </div>
 				 <div class="form-group row">
-                      <label class="col-sm-3 form-control-label" >Languages</label>
+                      <label class="col-sm-3 form-control-label" >Languages <span style="color:red">*</span></label>
                       <div class="col-sm-8">
-                       <select name="lang[]" id="lang" multiple="multiple" class="form-control">
+                       <select name="lang[]" id="lang" multiple="multiple" class="form-control" onblur="return validy();">
 						<option value="default">Select languages</option>
 					   <?php 
 						$str = $this->allTests->languages;
@@ -141,14 +160,20 @@
 					   ?>
 						<option value="<?php echo $language->lan_id; ?>" <?php echo $lSele; ?>><?php echo ucfirst($language->lang_name); ?></option>
 					   <?php }?>
-                       </select><span id="l_ang" style="color:red"></span>
+                       </select>
                       </div>
+					  <div class="col-sm-10">
+						<div class="text-center">						
+						<h6 id="l_ang" style="color:red;"></h6>
+						</div>
+						
+					</div>
                  </div>
 				 <div class="form-group row">
-                      <label class="col-sm-3 form-control-label">Skills</label>
+                      <label class="col-sm-3 form-control-label">Skills <span style="color:red">*</span></label>
                       <div class="col-sm-8">
 						
-                        <select class="form-control" id="state_id" name="state_id[]" multiple="multiple">
+                        <select class="form-control" id="state_id" name="state_id[]" multiple="multiple" onblur="return validy();">
 						<option value="default" >Select skills</option>	
 							<?php
 								$res =''; $i=0;	
@@ -172,14 +197,24 @@
 								<option value="<?php echo $skills->u_c_id;?>" <?php echo $selected;?>>
 								<?php echo $skills->u_category_name?></option>
 							<?php } } ?>							
-						</select><span id="s_kill" style="color:red"></span>
+						</select>
                       </div>
+					  <div class="col-sm-10">
+						<div class="text-center">						
+						<h6 id="s_kill" style="color:red;"></h6>
+						</div>						
+					</div>
                  </div>
 				 <div class="form-group row">
-                      <label class="col-sm-3 form-control-label">Face Book Profile Link</label>
+                      <label class="col-sm-3 form-control-label">Face Book Profile Link <span style="color:red">*</span></label>
                       <div class="col-sm-8">
-                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->fb_profile_link) && $this->allTests->fb_profile_link != ""){echo  $this->allTests->fb_profile_link;}?>" name="fb">
+                        <input type="text" class="form-control" value="<?php if(isset($this->allTests->fb_profile_link) && $this->allTests->fb_profile_link != ""){echo  $this->allTests->fb_profile_link;}?>" name="fb" id="fb" onblur="return validy();">
                       </div>
+					  <div class="col-sm-10">
+						<div class="text-center">						
+						<h6 id="f_b" style="color:red;"></h6>
+						</div>						
+					</div>
                  </div>
 				 <div class="form-group row">
                       <label class="col-sm-3 form-control-label">Pics Upload</label>
@@ -258,12 +293,13 @@ $(document).ready(function() {
 function validate(){
 	var name= document.getElementById('fname').value;
 	var email= document.getElementById('email').value;
-	var phno= document.getElementById('phno').value;	
-	var work= document.getElementById('work').value;	
-	var home= document.getElementById('home').value;	
+	var phno= document.getElementById('phno').value;		
 	var city= document.getElementById('city').value;
 	var state_id= document.getElementById('state_id').value;
 	var lang= document.getElementById('lang').value;
+	var work= document.getElementById('work').value;	
+	var home= document.getElementById('home').value;
+	var fb= document.getElementById('fb').value;
 	var ename=/^[a-zA-Z]+$/;
 	var eexp=/^[a-z0-9._]+@+[a-z0-9]+.+[a-z]{2,4}/;
 	var moble=/^[0-9]/;
@@ -280,16 +316,43 @@ function validate(){
 		document.getElementById("email").focus();
 		return false;
 	}
-	if(!phno.match(moble) || phno == "" || phno.length > 10)
+	if(!phno.match(moble) || phno == "" || phno.length != 10)
 	{
 		document.getElementById("ph_no").innerHTML="Please enter valid phone  number";
 		document.getElementById("phno").focus();
 		return false;
 	}
 	
+	if(work  != "")
+	{
+		//alert();return false;
+		if(!work.match(moble) ||   work.length != 10)
+		{
+			//alert();return false;
+			document.getElementById("ph_work").innerHTML="Please enter valid phone  number";
+			document.getElementById("work").focus();
+			return false;
+		}
+	}
+	if(home  != "")
+	{
+		//alert();return false;
+		if(!home.match(moble) ||  home.length != 10)
+		{
+			//alert();return false;
+			document.getElementById("ph_home").innerHTML="Please enter valid phone  number";
+			document.getElementById("home").focus();
+			return false;
+		}
+	}
 	if ((form.ph[0].checked == false ) && ( form.ph[1].checked == false ) )
 	{
 		alert ( "Please choose Public or Private for your contact number" );
+		return false;
+	}
+	if ((form.gender[0].checked == false ) && ( form.gender[1].checked == false ) )
+	{
+		alert ( "Please choose gender" );
 		return false;
 	}
 	if(city == "default")			
@@ -307,24 +370,22 @@ function validate(){
 		document.getElementById("s_kill").innerHTML="Please select skills";
 		return false;
 	}
+	if(fb == "")
+	{
+	document.getElementById("f_b").innerHTML="Please enter facebook profile link";
+		return false;	
+	}
 }
-function validy()
+ function validy()
 {
-	alert();return false;
-	if(!work.match(moble) ||  work.length > 10)
-	{
-		document.getElementById("ph_work").innerHTML="Please enter valid phone  number";
-		document.getElementById("work").focus();
-		return false;
-	}
-	
-	if(!home.match(moble)  || home.length > 10)
-	{
-		document.getElementById("ph_home").innerHTML="Please enter valid phone  number";
-		document.getElementById("home").focus();
-		return false;
-	}
-}
+	document.getElementById("ph_no").innerHTML="";
+	document.getElementById("ph_work").innerHTML="";
+	document.getElementById("ph_home").innerHTML="";
+	document.getElementById("c_ity").innerHTML="";
+	document.getElementById("l_ang").innerHTML="";
+	document.getElementById("s_kill").innerHTML="";
+	document.getElementById("f_b").innerHTML="";
+} 
 $(document).ready(function() {
     var flag=true;
     $('#image_file').bind('change', function() {
