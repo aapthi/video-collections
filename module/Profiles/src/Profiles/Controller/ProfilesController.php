@@ -68,6 +68,7 @@ class ProfilesController extends AbstractActionController
 		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page',1));
 		$paginator->setItemCountPerPage(2);	
 		$paginator->setPageRange(5);
+		echo "<pre>";print_r($paginator);exit;
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
