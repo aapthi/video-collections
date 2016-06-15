@@ -231,16 +231,19 @@
 						<div class="col-xs-10">
 							<?php
 								if(isset($this->videos) && count($this->videos)>1){
-									$i = 0;
-									foreach($this->videos as $video){
-								?>				
-									<input id="ddddd" type="text" class="form-control" value="<?php echo $video->v_video_link; ?>" 
-									name="video[]">
+									$i = 0;									
+									foreach($this->videos as $video){									
+								?>	
+									<div class="col-xs-10 form-group">								
+									<input  type="text" class="form-control rem_input" 
+									value="<?php echo $video->v_video_link; ?>" 
+									name="video[]"></div>
 									<?php if($i!='0'){?>
-									
-									<a href="#" class="remove_field btn btn-danger" id="ddddd"><span class="glyphicon glyphicon-minus"></span></a>
-									<?php } ?>
-							<?php $i++; } } else{?>
+									<div class="col-xs-2">									
+									<a href="#" class="remove_field btn btn-danger rem" ><span class="glyphicon glyphicon-minus" onClick="return rem();"></span></a></div>
+										<?php } ?>
+														
+									<?php $i++; } } else{?>
 								<input  type="text" class="form-control" value="" name="video[]">
 							<?php } ?>
 						</div>
@@ -283,11 +286,11 @@ $(document).ready(function() {
         e.preventDefault();
         if(x < max_fields){ 
             x++; 
-			$(wrapper).append('<div class="form-group" id="ddddd"><label class="col-sm-3 form-control-label">&nbsp;</label><div class="col-md-8"><div class="row" ><div class="col-xs-10"><input type="text" class="form-control" name="video[]"/></div><div class="col-xs-2"><a href="#" class="remove_field btn btn-danger"><span class="glyphicon glyphicon-minus"></span></a></div></div></div></div>'); //add input box
+			$(wrapper).append('<div class="form-group ddddd" ><label class="col-sm-3 form-control-label">&nbsp;</label><div class="col-md-8"><div class="row" ><div class="col-xs-10"><input type="text" class="form-control" name="video[]"/></div><div class="col-xs-2"><a href="#" class="remove_field btn btn-danger"><span class="glyphicon glyphicon-minus"></span></a></div></div></div></div>'); //add input box
         }
     });   
     $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-        e.preventDefault(); $('#ddddd').remove(); x--;
+        e.preventDefault(); $('.ddddd').remove(); x--;
     });
 });
 function validate(){
@@ -302,8 +305,7 @@ function validate(){
 	var fb= document.getElementById('fb').value;
 	var ename=/^[a-zA-Z]+$/;
 	var eexp=/^[a-z0-9._]+@+[a-z0-9]+.+[a-z]{2,4}/;
-	var moble=/^[0-9]/;
-	//var moble=/\d{10}/;
+	var moble=/^[0-9]/;	
 	if(!name.match(ename) && name == "")
 	{
 		document.getElementById("f_name").innerHTML="Please enter full name";
@@ -325,10 +327,9 @@ function validate(){
 	
 	if(work  != "")
 	{
-		//alert();return false;
+		
 		if(!work.match(moble) ||   work.length != 10)
 		{
-			//alert();return false;
 			document.getElementById("ph_work").innerHTML="Please enter valid phone  number";
 			document.getElementById("work").focus();
 			return false;
@@ -336,10 +337,8 @@ function validate(){
 	}
 	if(home  != "")
 	{
-		//alert();return false;
 		if(!home.match(moble) ||  home.length != 10)
 		{
-			//alert();return false;
 			document.getElementById("ph_home").innerHTML="Please enter valid phone  number";
 			document.getElementById("home").focus();
 			return false;
@@ -415,4 +414,5 @@ $(document).ready(function() {
         }
     });
 });
+	
 </script>
