@@ -62,6 +62,7 @@ class Module implements
 			),			
         );
     }
+	/* Set View HelperConfig */
 	public function getViewHelperConfig()
 	{
 		return array(
@@ -74,4 +75,5 @@ class Module implements
 			)
 		);   
    }
+   /* End */
 }
