@@ -124,6 +124,17 @@
 							  <div class="col-sm-4">					
 							</div>
 						</div>
+						<div class="form-group row">
+							  <label  class="col-sm-3 form-control-label" style="color:#828282">Gender</label>
+							  <div class="col-sm-4">
+							  <?php 
+									if(isset($this->allTests['gender']) && $this->allTests['gender']!=''){echo $this->allTests['gender'];
+									}						
+								?>                        
+							  </div>
+							  <div class="col-sm-4">					
+							</div>
+						</div>
 				<div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">Skills</label>
                       <div class="col-sm-8">
@@ -238,10 +249,10 @@
 										if( $userpic->vp_u_id == $ses_id )
 										{
 							?>										
-							<a class="lsb-preview" data-lsb-group="header" href="<?php echo $v_links->v_video_link;?>">
+							<a  href="<?php echo $v_links->v_video_link;?>" onclick="openPopup(2)" class="popup-youtube">
 							<img  src="<?php echo $imageUrl;?>"></a>
 							<?php }else{ if($j==0){ echo "No videos"; }} }else{ ?>
-									<a target="_blank" href="<?php echo $v_links->v_video_link;?>">
+									<a  href="<?php echo $v_links->v_video_link;?>" onclick="openPopup(2)" class="popup-youtube">
 									<img  src="<?php echo $imageUrl;?>"></a>
 							<?php } ?>
 							<?php 
@@ -266,6 +277,24 @@
 	</div>
 </div>
 <script>
+	function openPopup(value){
+	$('#myModal'+value).modal('show');
+	$('.modal-open .modal').css('overflow-y','hidden');
+	}
+	$(document).ready(function(){ 
+		var video_h = $(window).height();
+		$('.window_height').css('height',($(window).height()-50)+'px');
+	});
+	$(document).ready(function() {
+        $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+          disableOn: 700,
+          type: 'iframe',
+          mainClass: 'mfp-fade',
+          removalDelay: 160,
+          preloader: false,
+          fixedContentPos: false
+        });
+    });
 	$(window).load(function() {
 	  $.fn.lightspeedBox();
 	  $.fn.lightspeedBox({
@@ -286,5 +315,6 @@
 		  }
 		});
 	});
+	
 </script>
 <?php } ?>
