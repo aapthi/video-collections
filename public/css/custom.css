@@ -450,6 +450,14 @@ position:absolute;
 	background:none;
 	border:none;
 }
+.filter_cate2  a{
+	padding:5px;
+	border: 2px solid #ddd;
+	border-radius:4px;
+	color:#2fa4e7 ;
+	text-decoration:none;
+
+	}
 .filter_cate .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default{
 	background:none;
 }
@@ -520,6 +528,9 @@ position:absolute;
 	border: 2px solid #ddd !important;
     border-radius: 4px;
     vertical-align: middle;
+}
+.hover_body:hover{
+border: 2px solid #2fa4e7 !important;
 }
 .home_icon:hover{
 	border: 2px solid #2fa4e7 !important;
@@ -611,6 +622,8 @@ position:absolute;
 	.filter_cate .btn-default{
 		color:#fff !important;
 	}
+	
+	
 	.filter_cate .my_ac_drop_down .filter_cate .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default{
 		background:none;
 	}

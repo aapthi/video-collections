@@ -138,8 +138,8 @@
     </nav>
 <div class="container">
 <div class="row">
-<div class="col-md-2">
-<h4><a href="<?php echo $baseUrl;?>/all-profiles?cat=all">Cast & Crew</a></h4> 
+<div class="col-md-2 filter_cate2 ">
+<h5 style="font-family: Roboto"><a class="hover_body"href="<?php echo $baseUrl;?>/all-profiles?cat=all" >Cast & Crew</a></h5> 
 </div>
 <div class="col-md-10">
 <div class="latest_news alert mar_bnone">
@@ -166,12 +166,12 @@
 <div class="search_bar">
 	<div class="container">
 	<div class="row">
-		<div class="col-md-3 filter_cate">
+		<div class="col-md-5 filter_cate">
 			<a href="<?php echo $baseUrl . '/'; ?>" class="smhide"><button type="button" class="home_icon"><span class="glyphicon glyphicon-home" style="color:#2fa4e7"></span></button></a>
 			<div class="btn-group " role="group">
 				<?php if($parmsName =="profile") {?>
 				<!-- Skills Label -->
-				SKILLS &nbsp;&nbsp;&nbsp;
+				<span style="font-family: Roboto;font-size:16px">SKILLS</span> &nbsp;&nbsp;&nbsp;
 				<!-- END -->
 				<?php } else {?>
 				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -241,7 +241,7 @@
 		
 			<?php if($parmsName =="profile") {?>
 			<!-- Search Text BOX-->
-				<div class="col-md-6 input_search">
+				<div class="col-md-4 input_search">
 					<div class="input-group">
 						<input id="nameSearch" placeholder="Search for name" class="form-control" type="textbox">
 						<span class="input-group-btn">
@@ -251,7 +251,7 @@
 				</div>
 			<!--End-->
 			<?php } else { ?>
-				<div class="col-md-9 input_search">
+				<div class="col-md-7 input_search">
 					<div class="input-group">
 						<input id="videosSearch" placeholder="Search for videos" class="form-control" type="textbox">
 						<span class="input-group-btn">
