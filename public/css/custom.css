@@ -451,10 +451,10 @@ position:absolute;
 	border:none;
 }
 .filter_cate2  a{
-	padding:5px;
+	 padding: 5px 19px;
 	border: 2px solid #ddd;
 	border-radius:4px;
-	color:#2fa4e7 ;
+	color:blue ;
 	text-decoration:none;
 
 	}

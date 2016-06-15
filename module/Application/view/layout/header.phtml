@@ -139,7 +139,7 @@
 <div class="container">
 <div class="row">
 <div class="col-md-2 filter_cate2 ">
-<h5 style="font-family: Roboto"><a class="hover_body"href="<?php echo $baseUrl;?>/all-profiles?cat=all" >Cast & Crew</a></h5> 
+<h4 style="font-family: Roboto"><a class="hover_body"href="<?php echo $baseUrl;?>/all-profiles?cat=all" >Cast & Crew</a></h4> 
 </div>
 <div class="col-md-10">
 <div class="latest_news alert mar_bnone">
@@ -183,7 +183,7 @@
 					
 				<?php if($parmsName =="profile") {?>
 				<!-- Skills Drop Down -->
-					<select style="height:30px;width:auto" id="u_c_id" value="u_c_id" onChange="filterByskill();">
+					<select style="height:30px;padding-right: 77px;" id="u_c_id" value="u_c_id" onChange="filterByskill();">
 								<option value="">Select</option>
 					<?php if(isset($catData)){ foreach($catData as $catinfo){ ?>
 								<option value="<?php echo $catinfo->u_c_id; ?>"><?php echo ucfirst($catinfo->u_category_name); ?></option>
@@ -227,7 +227,7 @@
 			<!-- Cities DropDown -->
 			<div class="col-md-3">
 				<label>CITY</label>&nbsp;&nbsp;
-				<select style="height:30px;width:auto" id="c_id" value="c_id" onChange="filterByCity();">
+				<select style="height:30px;width:auto;padding-right: 85px;" id="c_id" value="c_id" onChange="filterByCity();">
 					<option value="">Select</option>
 					<?php if(isset($allCities) && count($allCities)>0) { 
 						foreach($allCities as $allCity){
