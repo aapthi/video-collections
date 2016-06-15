@@ -112,6 +112,7 @@ class ProfileTable
 	}
 	public function UpdateUserD($user,$user_id,$target_file)
 	{
+		
 		$lang = implode(',', $user['lang']);
 		$data = array(			 		
 			'first_name'       => $user['fname'], 	
@@ -124,6 +125,7 @@ class ProfileTable
 			'city' 	           => $user['city'], 	
 			'languages' 	   => $lang, 	
 			'fb_profile_link'  => $user['fb'], 	
+			'gender'  		   => $user['gender'], 	
 			'message' 	       => $user['msg'], 	
 			'updated_at' 	   => date('Y-m-d H:i:s')
 		);
