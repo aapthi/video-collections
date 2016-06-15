@@ -88,6 +88,21 @@
 					</div>
 				</div>
 				<div class="form-group row">
+                      <label  class="col-sm-3 form-control-label" >Gender</label>                      
+					  <div class="col-sm-4">					  
+					<label class="c-input c-radio">
+					  <input id="male" name="gender" type="radio" value="male" checked <?php //if(isset($this->allTests->home_pub_pri) && $this->allTests->home_pub_pri == "public"){echo  'checked';}?>>
+					  <span class="c-indicator"></span>
+					  Male 
+					</label>
+					<label class="c-input c-radio">
+					  <input id="female" name="gender" type="radio" value="female" <?php //if(isset($this->allTests->home_pub_pri) && $this->allTests->home_pub_pri == "private"){echo  'checked';}?>>
+					  <span class="c-indicator"></span>
+					  Female
+					</label>
+					</div>
+				</div>
+				<div class="form-group row">
                       <label class="col-sm-3 form-control-label" >City</label>
 					   <div class="col-sm-8">
                        <select name="city" id="city" class="form-control">
