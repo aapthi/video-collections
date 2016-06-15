@@ -183,7 +183,7 @@
 					
 				<?php if($parmsName =="profile") {?>
 				<!-- Skills Drop Down -->
-					<select style="height:30px;padding-right: 65px;" id="u_c_id" value="u_c_id" onChange="filterByskill();">
+					<select style="height:30px;padding-right: 60px; border:1px solid #ddd;" id="u_c_id" value="u_c_id" onChange="filterByskill();">
 								<option value="">Select</option>
 					<?php if(isset($catData)){ foreach($catData as $catinfo){ ?>
 								<option value="<?php echo $catinfo->u_c_id; ?>"><?php echo ucfirst($catinfo->u_category_name); ?></option>
@@ -227,7 +227,7 @@
 			<!-- Cities DropDown -->
 			<div class="col-md-3">
 				<label>CITY</label>&nbsp;&nbsp;
-				<select style="height:30px;width:auto;padding-right: 85px;" id="c_id" value="c_id" onChange="filterByCity();">
+				<select style="height:30px;width:auto;padding-right: 80px; border:1px solid #ddd;" id="c_id" value="c_id" onChange="filterByCity();">
 					<option value="">Select</option>
 					<?php if(isset($allCities) && count($allCities)>0) { 
 						foreach($allCities as $allCity){
@@ -253,7 +253,7 @@
 			<?php } else { ?>
 				<div class="col-md-7 input_search">
 					<div class="input-group">
-						<input id="videosSearch" placeholder="Search for videos" class="form-control" type="textbox">
+						<input id="videosSearch" placeholder="Search for videos" class="form-control"  style="padding-left:50px"type="textbox">
 						<span class="input-group-btn">
 						<button class="btn btn-default" onKeypress="serachTitle();" onClick="searchByLocation();" type="button" id="addressSearch">Search</button>
 						</span>
