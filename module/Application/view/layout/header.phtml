@@ -168,6 +168,7 @@
 	<div class="row">
 		<div class="col-md-5 filter_cate">
 			<a href="<?php echo $baseUrl . '/'; ?>" class="smhide"><button type="button" class="home_icon"><span class="glyphicon glyphicon-home" style="color:#2fa4e7"></span></button></a>
+			&nbsp;&nbsp;
 			<div class="btn-group " role="group">
 				<?php if($parmsName =="profile") {?>
 				<!-- Skills Label -->
@@ -183,12 +184,12 @@
 					
 				<?php if($parmsName =="profile") {?>
 				<!-- Skills Drop Down -->
-					<select style="height:30px;padding-right: 77px;" id="u_c_id" value="u_c_id" onChange="filterByskill();">
+					<select style="height:30px;padding-right: 65px;" id="u_c_id" value="u_c_id" onChange="filterByskill();">
 								<option value="">Select</option>
 					<?php if(isset($catData)){ foreach($catData as $catinfo){ ?>
 								<option value="<?php echo $catinfo->u_c_id; ?>"><?php echo ucfirst($catinfo->u_category_name); ?></option>
 								<?php } } ?>
-							</select>	
+					</select>	
 				<!--End-->							
 					<?php  } else {?>
 				<ul class="dropdown-menu" <?php if($parmsName =="profile") { ?>style=" height:350px; overflow:auto; left:0 !important"<?php } else{?> style="left:0 !important" <?php } ?> >
