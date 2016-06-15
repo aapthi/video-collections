@@ -68,7 +68,7 @@ class ProfilesController extends AbstractActionController
 		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page',1));
 		$paginator->setItemCountPerPage(2);	
 		$paginator->setPageRange(5);
-		echo "<pre>";print_r($paginator);exit;
+		// echo "<pre>";print_r($paginator);exit;
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
@@ -142,7 +142,7 @@ class ProfilesController extends AbstractActionController
 					}					
 				}
 			}
-			$videos   = $UserVideoTable->videoList($id);		
+			$videos   = $UserVideoTable->videoListView($id);		
 			$skills   = $UserSkillsTable->skillsList($id);			
 			$pics 	  = $UserPicsTable->picList($id);		
 			$viewModel = new ViewModel(

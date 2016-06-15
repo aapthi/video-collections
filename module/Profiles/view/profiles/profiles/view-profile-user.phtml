@@ -198,7 +198,7 @@
 						  <div class="col-sm-12">							 
 							<?php 
 								$i = 0;
-								if(isset($this->pics) && count($this->pics)>0){
+								if(isset($this->pics) && !empty($this->pics)){
 								foreach($this->pics as $userpic)
 								{
 									if($userpic->vp_status==0){
@@ -229,7 +229,7 @@
 						<div class="col-sm-12"> 
 							<?php
 								$j=0;
-								if(isset($this->videos) && count($this->videos)>1){
+								if(isset($this->videos) && !empty($this->videos)){
 								foreach($this->videos as $v_links){									
 								$link=explode("/ ", $v_links->v_video_link);										
 									$links=explode('/', $v_links->v_video_link);

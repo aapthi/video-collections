@@ -224,48 +224,52 @@
 						</label>
                       </div>
                  </div>
+				 <input type="hidden" name="hid_value" id="hid_value" value="<?php if(isset($this->videos) && !empty($this->videos)){ echo count($this->videos)-1;}else{ echo "0"; }?> ">
 				  <div class="form-group row input_fields_wrap">							
                       <label class="col-sm-3 form-control-label">Video links</label>
+					  <div id="addmore">
+					<?php
+						if(isset($this->videos) && !empty($this->videos)){
+							$i = 0;									
+							foreach($this->videos as $video){ ?>
+							<div id="dyDiv<?php echo $i; ?>">
+							<?php if($i!=0){ ?>
+							<label class="col-sm-3 form-control-label">&nbsp;&nbsp;</label>
+							<?php } ?>
+						<div class="col-sm-8">
+					  <div class="row">
+						<div class="col-xs-10">						
+						<div class="my-form">   
+							<p class="text-box">										
+				<input type="text" class="form-control" value="<?php echo $video->v_video_link; ?>" name="video[]" id="video<?php echo $i;?>"/>									
+			<?php if($i==0){ ?>
+<a style=" margin-left: 100%;position:absolute;margin-top:-13%;" href="javascript:void(0);" class="btn btn-primary" onclick="addMore()"> <span class="glyphicon glyphicon-plus"></span> </a>
+			<?php  } else { ?>
+<a style=" margin-left: 100%;position:absolute;margin-top:-13%;" href="javascript:void(0);" class="btn btn-primary" onclick="delVideo('<?php echo $i;?>')" ><span class="glyphicon glyphicon-minus"></span> </a>
+			<?php } ?>
+							</p>
+						<div class="clearfix"></div>
+						</div>						
+                      </div> 
+                      </div> 
+                      </div> 							
+                      </div> 							
+					<?php $i++;} }else{ ?>	
                       <div class="col-sm-8">
 					  <div class="row">
-						<div class="col-xs-10">
-						
-							<?php
-								if(isset($this->videos) && count($this->videos)>1){
-									$i = 0;									
-									foreach($this->videos as $video){									
-								?>	
-									<div class="my-form">   
-										<p class="text-box">										
-											<input type="text" class="form-control" name="video[]" value="<?php echo $video->v_video_link; ?>" 
-									name="video[]" id="box1" />										
-											<a href="#" class="remove-box">Remove</a>				
-									</p>									
-									</div>									
-									<?php if($i!='0'){?>
-										<div class="my-form">   
-										<p class="text-box">										
-											<input type="text" class="form-control" name="video[]" value="" 
-											name="video[]" id="box1" />									
-											<a class="add-box" href="#">Add More</a>					
-										</p>									
-										</div>
-										<?php } ?>
-														
-									<?php $i++; } } else{?>
-									<div class="my-form">   
-										<p class="text-box">										
-											<input type="text" class="form-control" name="video[]" value="" 
-											name="video[]" id="box1" />									
-											<a class="add-box" href="#">Add More</a>				
-										</p>
-									<div class="clearfix"></div>
-									</div>
-							<?php } ?>						
-						
+						<div class="col-xs-10">						
+						<div class="my-form">   
+							<p class="text-box">										
+				<input type="text" class="form-control" value="" name="video[]" id="video0"/>									
+							<a style=" margin-left: 100%;position:absolute;margin-top:-13%;" href="javascript:void(0);" class="btn btn-primary" onclick="addMore()"> <span class="glyphicon glyphicon-plus"></span> </a>
+							</p>
+						<div class="clearfix"></div>
+						</div>						
                       </div> 
                       </div> 
-                 </div>	
+                      </div> 
+						<?php } ?>
+					</div>	
 				 <input type="hidden" id="hid_u_id" name="hid_u_id" value="<?php echo $this->allTests->u_id; ?>">		 
 				 <div class="form-group row">
                       <label class="col-sm-3 form-control-label" >More Information</label>
@@ -436,5 +440,34 @@ $(document).ready(function() {
         }
     });
 });
-	
+function addMore(){
+	if($("#video"+$('#hid_value').val()).val()==""){
+		alert("Required");
+		$("#video"+$('#hid_value').val()).focus();
+		return false;
+	}else{
+		var html ="";
+		var value = parseInt($('#hid_value').val())+1;
+		html +='<div id="dyDiv'+value+'"><label class="col-sm-3 form-control-label">&nbsp;&nbsp;</label>';
+		html +='<div class="col-sm-8"><div class="row">';
+		html +='<div class="col-xs-10"><div class="my-form">';
+		html +='<p class="text-box">';
+		html +='<input type="text" class="form-control" value="" name="video[]" id="video'+value+'">';
+		html +='<a style=" margin-left: 100%;position:absolute;margin-top:-13%;" href="javascript:void(0);" class="btn btn-primary" onclick="delVideo('+value+')" ><span class="glyphicon glyphicon-minus"></span> </a>';
+		html +='</p><div class="clearfix"></div></div></div></div></div></div>';
+		$('#addmore').append(html);							
+		$('#hid_value').val(value);
+	}
+}
+function delVideo(value){
+	if($("#video"+value).val()==""){
+		$('#dyDiv'+value).remove();
+		$('#hid_value').val(parseInt(value)-1);
+	}else{
+		if (confirm("Are you sure?")){
+			$('#dyDiv'+value).remove();
+			$('#hid_value').val(parseInt(value)-1);
+		}
+	}	
+}
 </script>
