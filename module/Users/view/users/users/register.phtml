@@ -4,7 +4,7 @@
 	$basePath = $header->headerarray['basePath'];
 ?>
 <div class="container  min_height ">
-<div class="lrcontainer panel panel-default" style="padding:24px 20px 0px 20px;">
+<div class="lrcontainer panel " style="padding:24px 20px 0px 20px;">
 	<? $details=''; if(count($this->userDetails)){ foreach($this->userDetails as $detailss){ $details=$detailss;}}
 		$dobex=''; if(isset($details->date_of_birth) && $details->date_of_birth!='') {
 			$dob = $details->date_of_birth;
@@ -24,7 +24,7 @@
 	});
 </script>
 <form  id="frm_meth" name="frm_meth" method="post" action="">	
-	<div class="panel-default">		
+	<div class="">		
 		<div class="panel-body" id="tab_1_hide">
 			<div class="form-horizontal">
 				<div class="form-group">
