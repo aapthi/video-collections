@@ -142,7 +142,7 @@ class ProfilesController extends AbstractActionController
 					}					
 				}
 			}
-			$videos   = $UserVideoTable->videoListView($id);		
+			$videos   = $UserVideoTable->videoList($id);		
 			$skills   = $UserSkillsTable->skillsList($id);			
 			$pics 	  = $UserPicsTable->picList($id);		
 			$viewModel = new ViewModel(
