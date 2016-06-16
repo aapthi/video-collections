@@ -1,21 +1,3 @@
-/*
-SQLyog Community v11.52 (32 bit)
-MySQL - 5.6.17 : Database - video_collections
-*********************************************************************
-*/
-
-/*!40101 SET NAMES utf8 */;
-
-/*!40101 SET SQL_MODE=''*/;
-
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`video_collections` /*!40100 DEFAULT CHARACTER SET latin1 */;
-
-USE `video_collections`;
-
 /*Table structure for table `session` */
 
 DROP TABLE IF EXISTS `session`;
@@ -30,6 +12,8 @@ CREATE TABLE `session` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 /*Data for the table `session` */
+
+insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('a69ioh495fr5kg3322jk6pd0t2','PHPSESSID',1465994915,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1465994915.1268361;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}');
 
 /*Table structure for table `user` */
 
@@ -48,8 +32,7 @@ CREATE TABLE `user` (
   `added_date` date DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  FULLTEXT KEY `username` (`username`)
+  PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user` */
