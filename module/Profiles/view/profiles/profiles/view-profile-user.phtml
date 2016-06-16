@@ -1,4 +1,9 @@
 <?php 
+	if(isset($_GET["uid"]) && $_GET['uid']!=""){
+		$_SESSION["url_id"] = $_GET["uid"];
+	}else{
+		$_SESSION["url_id"] = "";
+	}	
 	if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){
 		$ses_id=$_SESSION['user']['user_id'];
 		if(!isset($ses_id) && $ses_id == "")

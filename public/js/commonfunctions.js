@@ -483,7 +483,12 @@ function loginValidations(){
 						if(response.user_type_id==4){
 							window.location=BASE_URL+"/admin/dashboard";							
 						}else {
-							window.location=BASE_URL+"/all-profiles?cat=all";
+							var url_id = $("#hid_url_id").val();
+							if(url_id == ""){
+								window.location=BASE_URL+"/all-profiles?cat=all";
+							}else{
+								window.location=BASE_URL+"/profile-user?uid="+url_id;							
+							}
 						}
 					}else{
 						$('#errorMsg').html('Entered wrong username and/or password');

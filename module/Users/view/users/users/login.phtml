@@ -25,6 +25,7 @@
 		</div>
       <div class="">
           <form id="loginForm" class="form  center-block" method="POST">
+		  <input type="hidden" id="hid_url_id" name="" value="<?php if(isset($_SESSION["url_id"]) && $_SESSION["url_id"]!=""){ echo $_SESSION["url_id"];}else { }?>">
             <div class="form-group">
 				<div class="pos_relative">
 					<span class="error_msg_disp" id="emailError"></span>
