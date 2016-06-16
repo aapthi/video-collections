@@ -16,14 +16,50 @@ use ScnSocialAuth\Options\ModuleOptions;
 
 class ProfilesController extends AbstractActionController
 {
-	//protected  $userTable;		
-	
 	public function indexAction()
 	{
 		
 	}
-	
-	
+	public function viewProfileCountAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];	
+		$viewProfileCountTable	= $this->getServiceLocator()->get('Profiles\Model\ViewProfileCountFactory');
+		if(isset($_POST['vpc_pu_id']) && $_POST['vpc_pu_id']!=""){
+			$vpc_pu_id = $_POST['vpc_pu_id']; // Profile user id Viewing on
+			$vpc_vu_id = $_SESSION['user']['user_id']; // Logged User Id -- Viewer By
+			$getLastActivityLoggedU  = $viewProfileCountTable->getUserCount($vpc_pu_id,$vpc_vu_id);
+			$time_diff_Lu = 0;
+			if($getLastActivityLoggedU!=""){
+				$time_diff_Lu = time() - strtotime($getLastActivityLoggedU->vpc_updated_at);
+				$minutes_lu = floor($time_diff_Lu / 60);
+				if($minutes_lu>1){
+					$addedViewerCount 	  = $viewProfileCountTable->addViewCount($vpc_pu_id,$vpc_vu_id,$count=1);
+					if($addedViewerCount>=1){
+						return $jsonModel = new JsonModel(array(
+							'output' => 'success',
+						));
+					}	
+				}else{
+					return $jsonModel = new JsonModel(array(
+						'output' => 'process',
+					));
+				}
+			}else{
+				$addedViewerCount 	  = $viewProfileCountTable->addViewCount($vpc_pu_id,$vpc_vu_id,$count=1);
+				if($addedViewerCount>=1){
+					return $jsonModel = new JsonModel(array(
+						'output' => 'success',
+					));
+				}	
+			}
+		}else{
+			return $jsonModel = new JsonModel(array(
+					'output' => 'fail'
+			));
+		}
+	}	
 	public function allProfilesAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];

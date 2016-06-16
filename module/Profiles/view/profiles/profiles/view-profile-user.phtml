@@ -34,6 +34,7 @@
 					if(isset($this->allTests) && $this->allTests!=""){				
 					 $base_user_id = base64_encode($this->allTests['u_id'].'-143');
 					?>
+					<input type="hidden" id="hid_profile_id" name="hid_profile_id" value="<?php echo $this->allTests['u_id']; ?>">
 					<div class="col-md-3 well">
 						<?php if(isset($this->allTests['user_photo']) && $this->allTests['user_photo']!=""){?>
 							<img alt="" src="<?php echo $baseUrl?>/<?php echo $this->allTests['user_photo'];?>" style="width:140px;height:150px;">
@@ -289,6 +290,7 @@
 	$(document).ready(function(){ 
 		var video_h = $(window).height();
 		$('.window_height').css('height',($(window).height()-50)+'px');
+		viewProfileCount();
 	});
 	$(document).ready(function() {
         $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
@@ -320,6 +322,21 @@
 		  }
 		});
 	});
+	function viewProfileCount(){
+		var hid_profile_id = $("#hid_profile_id").val(); 
+		$.ajax({
+			type:'POST',
+			url:  BASE_URL+'/view-profile-count',
+			data:{vpc_pu_id:hid_profile_id},
+			success: function(data){
+				if(data.output=='success'){
+					console.log(data.output);
+				}else{
+					console.log(data.output);
+				}
+			}
+		});
 	
+	}
 </script>
 <?php } ?>

@@ -72,6 +72,19 @@ return array(
                     ),
                  ),
              ),
+			 'view-profile-count' => array(
+                       'type'    => 'segment',
+                       'options' => array(
+                           'route' => '/view-profile-count[/:id]',
+                            'constraints' => array(
+                               'id' => '[%&;a-zA-Z0-9][%&+,;a-zA-Z0-9_~-]*',
+                            ),
+                           'defaults' => array(
+                               'controller' => 'Profiles\Controller\Profiles',
+                               'action'     => 'viewProfileCount',
+                    ),
+                 ),
+             ),
 			 'all-profiles' => array(
                        'type'    => 'segment',
                        'options' => array(

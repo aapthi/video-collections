@@ -21,6 +21,8 @@ use Profiles\Model\City;
 use Profiles\Model\CityTable;
 use Profiles\Model\Languages;
 use Profiles\Model\LanguagesTable;
+use Profiles\Model\ViewProfileCount;
+use Profiles\Model\ViewProfileCountTable;
 
 
 class Module implements 
@@ -59,6 +61,7 @@ class Module implements
 				'Profiles\Model\LanguagesFactory'=>'Profiles\Factory\Model\LanguagesTableFactory',
 				'Profiles\Model\UserVideoFactory'=>'Profiles\Factory\Model\UserVideoTableFactory',
 				'Profiles\Model\UserPicsFactory'=>'Profiles\Factory\Model\UserPicsTableFactory',
+				'Profiles\Model\ViewProfileCountFactory'=>'Profiles\Factory\Model\ViewProfileCountTableFactory',
 			),			
         );
     }
