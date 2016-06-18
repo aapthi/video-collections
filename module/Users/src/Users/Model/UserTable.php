@@ -69,7 +69,7 @@ class UserTable
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('vc_user_details', 'vc_user_details.u_id=user.user_id',array('*'),'left');	
 		$select->where('user.username!="Administration"');
-		// $select->where('user.state="1"');
+		$select->order('user.user_id DESC');	
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}

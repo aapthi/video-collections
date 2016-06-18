@@ -102,7 +102,7 @@ class ProfilesController extends AbstractActionController
 		}	
 		$paginator 	= $userTable->allUsersData($catid,$cid,$userName);
 		$paginator->setCurrentPageNumber((int)$this->params()->fromQuery('page',1));
-		$paginator->setItemCountPerPage(2);	
+		$paginator->setItemCountPerPage(10);	
 		$paginator->setPageRange(5);
 		// echo "<pre>";print_r($paginator);exit;
 		$viewModel = new ViewModel(

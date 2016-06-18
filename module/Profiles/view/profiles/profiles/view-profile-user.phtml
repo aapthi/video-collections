@@ -50,8 +50,11 @@
 							<label class="col-sm-3 form-control-label" style="color:#828282">Full Name</label>
 							<div class="col-sm-9">
 								<?php 
-									if(isset($this->allTests['username']) && $this->allTests['username']!= ""){
-									echo $this->allTests['username']; echo '&nbsp;&nbsp;';  }else{ echo 'N/A';}
+									if(isset($this->allTests['first_name']) && $this->allTests['first_name']!= ""){
+									echo $this->allTests['first_name']; echo '&nbsp;&nbsp;';  }
+									
+									if(isset($this->allTests['last_name']) && $this->allTests['last_name']!= ""){
+									echo $this->allTests['last_name']; echo '&nbsp;&nbsp;';  }
 								?>
 							</div>
 						</div>
@@ -135,7 +138,7 @@
 							  <div class="col-sm-4">
 							  <?php 
 									if(isset($this->allTests['gender']) && $this->allTests['gender']!=''){echo ucfirst($this->allTests['gender']);
-									}						
+									}else{ echo "N/A"; }						
 								?>                        
 							  </div>
 							  <div class="col-sm-4">					
@@ -186,10 +189,14 @@
                       </div>
                  </div>
 				 <div class="form-group row">
-                      <label class="col-sm-3 form-control-label" style="color:#828282">Face Book Profile Link</label>
-                      <div class="col-sm-8">
-                      <?php if(isset($this->allTests['fb_profile_link']) && $this->allTests['fb_profile_link'] != ""){echo $this->allTests['fb_profile_link'];}else{ echo 'N/A';}?>
-                      </div>
+                    <label class="col-sm-3 form-control-label" style="color:#828282">Face Book Profile Link</label>
+                    <div class="col-sm-8">
+						<?php if(isset($this->allTests['fb_profile_link']) && $this->allTests['fb_profile_link'] != ""){ ?>
+						<a href="<?php echo $this->allTests['fb_profile_link'];?>" target="_blank">
+							<?php  echo $this->allTests['fb_profile_link']; ?>
+						</a>	
+						<?php 	} else{ echo 'N/A';}?>											 
+                    </div>
                  </div>
 				 <div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">More Information</label>

@@ -465,7 +465,7 @@ class AdminController extends AbstractActionController
 					$st = 'a';
 				}
 				$data[$i]['status']= $status;
-				$data[$i]['pics_videos'] ='<a href="'.$baseUrl.'/admin/user-pics?uid='.$id.'">Pics</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/user-videos?uid='.$id.'">Video Links</a>';
+				$data[$i]['pics_videos'] ='<a href="'.$baseUrl.'/admin/user-pics?uid='.$id.'">Pics</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/user-videos?uid='.$id.'">Videos</a>';
 				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/edit-user-profile?uid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-user?uid='.$id.'&st='.$st.'">'.$stMode.'</a>';
 				$i++;
 			}
