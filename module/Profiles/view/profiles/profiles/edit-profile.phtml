@@ -220,7 +220,7 @@
                       <label class="col-sm-3 form-control-label">Pics Upload</label>
                       <div class="col-sm-8">
 						 <label class="btn btn-primary	 btn-file">
-							Browse <input type="file" style="display: none;" name="images[]" multiple="multiple">
+							Browse <input type="file"  name="images[]" multiple="multiple">
 						</label>
                       </div>
                  </div>
@@ -260,7 +260,7 @@
 						<div class="col-xs-10">						
 						<div class="my-form">   
 							<p class="text-box">										
-				<input type="text" class="form-control" value="" name="video[]" id="video0"/>									
+				<input type="text" class="form-control" value="" name="video[]" placeholder="link" id="video0"/>									
 							<a style=" margin-left: 100%;position:absolute;margin-top:-13%;" href="javascript:void(0);" class="btn btn-primary" onclick="addMore()"> <span class="glyphicon glyphicon-plus"></span> </a>
 							</p>
 						<div class="clearfix"></div>
@@ -294,31 +294,7 @@
 		</div>
 	</div>
 </div>
-								
-
-<script type="text/javascript">
-jQuery(document).ready(function($){
-    $('.my-form .add-box').click(function(){
-        var n = $('.text-box').length + 1;
-        var box_html = $('<p class="text-box"><input type="text" class="form-control" name="video[]" value="" id="box' + n + '" /> <a href="#" class="remove-box">Remove</a></p>');
-        box_html.hide();
-        $('.my-form p.text-box:last').after(box_html);
-        box_html.fadeIn('slow');
-        return false;
-    });
-});
-</script>
 <script>
-$('.my-form').on('click', '.remove-box', function(){    
-    $(this).parent().fadeOut("slow", function() {
-        $(this).remove();
-        $('.box-number').each(function(index){
-            $(this).text( index + 1 );
-        });
-    });
-    return false;
-});
-
 function validate(){
 	var name= document.getElementById('fname').value;
 	var email= document.getElementById('email').value;
@@ -452,7 +428,7 @@ function addMore(){
 		html +='<div class="col-sm-8"><div class="row">';
 		html +='<div class="col-xs-10"><div class="my-form">';
 		html +='<p class="text-box">';
-		html +='<input type="text" class="form-control" value="" name="video[]" id="video'+value+'">';
+		html +='<input type="text" class="form-control" value="" placeholder="link" name="video[]" id="video'+value+'">';
 		html +='<a style=" margin-left: 100%;position:absolute;margin-top:-13%;" href="javascript:void(0);" class="btn btn-primary" onclick="delVideo('+value+')" ><span class="glyphicon glyphicon-minus"></span> </a>';
 		html +='</p><div class="clearfix"></div></div></div></div></div></div>';
 		$('#addmore').append(html);							

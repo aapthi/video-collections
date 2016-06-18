@@ -26,7 +26,7 @@
 	$baseUrl = $header->headerarray['baseUrl'];
 	$basePath = $header->headerarray['basePath'];
 	$userListA ='';$catListA ='';$videoListA ='';$chgpassA ='';$reportsA='';
-	$page=basename($_SERVER['REQUEST_URI']);
+	$page=basename($_SERVER['REDIRECT_URL']);
 	if($page == "users-list"){
 		$userListA ="active_a_menu";
 	}else if($page == "categories-list"){
@@ -39,6 +39,18 @@
 		$reportsA ="active_a_menu";
 	}else if($page == "hit-count-videos"){
 		$reportsA ="active_a_menu";
+	}else if($page == "user-pics"){
+		$userListA ="active_a_menu";
+	}else if($page == "user-videos"){
+		$userListA ="active_a_menu";
+	}else if($page == "edit-user-profile"){
+		$userListA ="active_a_menu";
+	}else if($page == "add-category"){
+		$catListA ="active_a_menu";
+	}else if($page == "add-category"){
+		$catListA ="active_a_menu";
+	}else if($page == "add-video"){
+		$videoListA ="active_a_menu";
 	}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

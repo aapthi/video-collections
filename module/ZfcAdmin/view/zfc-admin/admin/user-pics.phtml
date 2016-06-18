@@ -9,10 +9,12 @@
   <link href="<?php echo $basePath; ?>/css/jquery.datatable.css" rel="stylesheet">
   <script src="<?php echo $basePath;?>/js/jquery.datatable.min.js"></script>
 </head>
+	<?php if(isset($this->countPics) && $this->countPics!=0){?>
 	<div class="form-controller" style="float:left">	
 		<input type="button" class="btn" id="actId" name="actId" value="Activate" onClick="activeAll('a')" />
 		<input type="button" class="btn" id="deactId" name="deactId" value="Deactive" onClick="activeAll('d')" />         
-	</div><br/>
+	</div>
+	<?php } ?><br/>
   <table id="example_div" class="table table-bordered table-hover">
 	<div style="position:absolute;top:3px;left:200px;z-index:300">
 		

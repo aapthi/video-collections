@@ -867,7 +867,7 @@ class UsersController extends AbstractActionController
 				'baseUrl' 	=> $baseUrl,
 				'basePath' 	=> $basePath,
 			));
-		return $this->redirect()->toUrl($baseUrl);
+		return $this->redirect()->toUrl($baseUrl.'/all-profiles?cat=all');
 	}
 	//Static pages
 	

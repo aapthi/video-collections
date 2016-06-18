@@ -480,8 +480,12 @@ class AdminController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
+		$UserPicsTable 	  = $this->getServiceLocator()->get('Profiles\Model\UserPicsFactory');
+		$uid = $_GET['uid'];
+		$countPics 	  = $UserPicsTable->picList($uid)->count();	
 		$view= new ViewModel(array(
 				'basePath'=>$basePath,
+				'countPics'=>$countPics,
 			));
 		return $view;	
 	}
@@ -520,7 +524,6 @@ class AdminController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];		
-		$baseUrlD = 'http://localhost/video-collections/trunk';
 		$data = array();
 		$i=0;
 		$UserVideoTable   = $this->getServiceLocator()->get('Profiles\Model\UserVideoFactory');
@@ -549,8 +552,12 @@ class AdminController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
+		$UserVideoTable   = $this->getServiceLocator()->get('Profiles\Model\UserVideoFactory');
+		$uid = $_GET['uid'];
+		$countVideos   = $UserVideoTable->videoList($uid)->count();
 		$view= new ViewModel(array(
 					'basePath'=>$basePath,
+					'countVideos'=>$countVideos,
 				));
 			return $view;		
 	}	
