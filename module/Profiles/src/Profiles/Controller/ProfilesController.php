@@ -213,10 +213,7 @@ class ProfilesController extends AbstractActionController
 		$allSkills 	= $userCategoriesTable->CategoryList();
 		$cities 	= $CityTable->cityList();
 		if(isset($_POST['hid_u_id']) && $_POST['hid_u_id']!=""){
-			$u_id = $_POST['hid_u_id'];
-			// echo "<pre>";print_r($_POST);
-			// echo "<pre>";print_r($_FILES);
-			// exit;
+			$u_id = $_POST['hid_u_id'];			
 			if(isset($_FILES["fileToUpload"]["name"]) && $_FILES["fileToUpload"]["name"]!=""){
 				$target_dir = "./public/upload/";			
 				$target_file =$target_dir.basename($_FILES["fileToUpload"]["name"]);					
@@ -240,7 +237,9 @@ class ProfilesController extends AbstractActionController
 				}
 			}
 			$addSkills       = $UserSkillsTable->addUserSkills($_POST,$u_id);
-			$updateVideos 	 = $UserVideoTable->UpdateUserVideo($_POST,$u_id);
+			if(isset($_POST["video"]) && !empty($_POST["video"])){
+				$updateVideos 	 = $UserVideoTable->UpdateUserVideo($_POST,$u_id);
+			}
 			$updateUDetails  = $testTable->UpdateUserD($_POST,$u_id,$hid_user_photo);
 			$updateUsers 	 = $userTable->updateUser($_POST,$u_id);
 			$base_user_id = base64_encode($u_id.'-143');

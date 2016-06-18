@@ -27,7 +27,7 @@
 ?>
 <div class="container min_height">
 	<div class="row">	
-		<div class="col-md-9">
+		<div class="col-md-8">
 		    <div class="panel panel-default">
 				<div class="panel-body">
 				<?php				
@@ -35,17 +35,17 @@
 					 $base_user_id = base64_encode($this->allTests['u_id'].'-143');
 					?>
 					<input type="hidden" id="hid_profile_id" name="hid_profile_id" value="<?php echo $this->allTests['u_id']; ?>">
-					<div class="col-md-3 well">
+					<div class="col-md-3 well" style="padding:3px">
 						<?php if(isset($this->allTests['user_photo']) && $this->allTests['user_photo']!=""){?>
-							<img alt="" src="<?php echo $baseUrl?>/<?php echo $this->allTests['user_photo'];?>" style="width:140px;height:150px;">
+							<img alt="" src="<?php echo $baseUrl?>/<?php echo $this->allTests['user_photo'];?>" style="width:148px;height:150px;">
 						<?php } else { ?>
-							<img alt="" src="<?php echo $basePath?>/images/480px-No_Image_Available.png" style="width:140px;height:150px;">
+							<img alt="" src="<?php echo $basePath?>/images/480px-No_Image_Available.png" style="width:148px;height:150px;">
 						<?php }?>
 					</div>
-					<span style="margin-left:414px;"><?php if(isset($ses_id) && $ses_id == $this->allTests['u_id']){?>
-						<a href="<?php echo $baseUrl; ?>/edit-profile?uid=<? echo $base_user_id;?>">Edit Profile</a><?php }?>
-					</span>
 					<div class="col-md-9">
+						<div class="text-right"><?php if(isset($ses_id) && $ses_id == $this->allTests['u_id']){?>
+						<a href="<?php echo $baseUrl; ?>/edit-profile?uid=<? echo $base_user_id;?>">Edit Profile</a><?php }?>
+					</div>
 						<div class="form-group row">
 							<label class="col-sm-3 form-control-label" style="color:#828282">Full Name</label>
 							<div class="col-sm-9">
@@ -243,7 +243,8 @@
 							<?php
 								$j=0;
 								if(isset($this->videos) && !empty($this->videos)){
-								foreach($this->videos as $v_links){									
+								foreach($this->videos as $v_links){
+								if($v_links->v_video_link!=""){
 								$link=explode("/ ", $v_links->v_video_link);										
 									$links=explode('/', $v_links->v_video_link);
 									$video_id = substr($v_links->v_video_link, strpos($v_links->v_video_link, "=") + 1);
@@ -259,7 +260,7 @@
 									$imageUrl="http://vimeo.com/api/v2/video/".$video_id."/default.jpg";	
 									}			
 									if($v_links->v_status==0){
-										if( $userpic->vp_u_id == $ses_id )
+										if( $v_links->v_user_id == $ses_id )
 										{
 							?>										
 							<a  href="<?php echo $v_links->v_video_link;?>" onclick="openPopup(2)" class="popup-youtube">
@@ -269,7 +270,7 @@
 									<img  src="<?php echo $imageUrl;?>"></a>
 							<?php } ?>
 							<?php 
-								$j++;} } else {
+								$j++;} } } else {
 							?>
 								No videos
 							<?php 								
@@ -282,10 +283,46 @@
 				<?php } else{echo 'no results to show';}?>
 		</div>
 		</div>
-		
+		<div  align="center">
+		<div class="">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- topbanner -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:728px;height:90px"
+					 data-ad-client="ca-pub-9408213208791031"
+					 data-ad-slot="4974503839"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script></div>
+	</div>
 		</div>
-		<div class="col-md-3">
-			<?php include('right-side-bar.phtml');?>				
+		<div class="col-md-4">
+			<div class="">
+			<div class="" align="center">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- rightbanner -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:250px"
+					 data-ad-client="ca-pub-9408213208791031"
+					 data-ad-slot="6451237032"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div><br/><br/><br/>
+			<div class="" align="center">
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- rightbanner -->
+				<ins class="adsbygoogle"
+					 style="display:inline-block;width:300px;height:250px"
+					 data-ad-client="ca-pub-9408213208791031"
+					 data-ad-slot="6451237032"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+			</div>
+			
+			</div>
+			<?php // include('right-side-bar.phtml');?>				
 		</div>
 	</div>
 </div>
