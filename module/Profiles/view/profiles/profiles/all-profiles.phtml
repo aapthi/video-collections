@@ -58,16 +58,21 @@
 							}							
 						?>							
 						</p>	
-					</div>					
-					<?php
-					$string=$links->message;					
-					$string = strip_tags($string);
-					if (strlen($string) > 300) {
-						$stringCut = substr($string, 0, 300);
-						$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...'; 
-					}
+						<?php
+					if(isset($links->message) && $links->message!="") { 		
+						$string= $links->message; 					
+						$string = strip_tags($string);
+						if (strlen($string) > 300) {
+							$stringCut = substr($string, 0, 300);
+							$string = substr($stringCut, 0, strrpos($stringCut, ' ')).'...'; 
+						}
 					?>
-					<p><?php echo $string; ?></p>	
+					<p> <span class="dim">More information : </span> <?php echo $string; ?></p>	
+					<?php } else {?>
+						<p> <span class="dim">More information : </span> N/A </p>	
+					<?php } ?>
+					</div>					
+					
 					</div>
 				</div>
 				
