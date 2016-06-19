@@ -68,8 +68,10 @@ class UserTable
 	public function listUsers(){
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('vc_user_details', 'vc_user_details.u_id=user.user_id',array('*'),'left');	
+		$select->join('vc_view_profiles_count', new Expression('vc_view_profiles_count.vpc_pu_id=user.user_id'),array('userPoints' => new Expression('COALESCE((SUM(vc_view_profiles_count.vpc_count)),0)')),'left');
 		$select->where('user.username!="Administration"');
 		$select->order('user.user_id DESC');	
+		$select->group('user.user_id');	
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
