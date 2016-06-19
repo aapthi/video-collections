@@ -57,10 +57,11 @@ class ViewProfileCountTable
 		$row = $this->tableGateway->delete(array('us_user_id' => $uid));
 		return $row;
 	}
-	public function cityList()
+	public function getViewCount($id)
     {		
 		$select = $this->tableGateway->getSql()->select();
-		$resultSet = $this->tableGateway->selectWith($select);		
+		$resultSet = $this->tableGateway->selectWith($select);
+		$select->where('vpc_pu_id="'.$id.'"');		
 		return $resultSet;
 	}
 
