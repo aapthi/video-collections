@@ -1,0 +1,320 @@
+<div class="container min_height">
+	<div class="row">	
+		<div class="col-md-8">
+		    <div class="panel panel-default">
+				<div class="panel-body">
+				<?php				
+					if(isset($this->allTests) && $this->allTests!=""){				
+					 $base_user_id = base64_encode($this->allTests['u_id'].'-143');
+					?>
+					<input type="hidden" id="hid_profile_id" name="hid_profile_id" value="<?php echo $this->allTests['u_id']; ?>">
+					<div class="col-md-3 well" style="padding:3px">
+						<?php if(isset($this->allTests['user_photo']) && $this->allTests['user_photo']!=""){?>
+							<img alt="" src="<?php echo $baseUrl?>/<?php echo $this->allTests['user_photo'];?>" style="width:148px;height:150px;">
+						<?php } else { ?>
+							<img alt="" src="<?php echo $basePath?>/images/480px-No_Image_Available.png" style="width:148px;height:150px;">
+						<?php }?>
+					</div>
+					<div class="col-md-9">
+						<div class="text-right"><?php if(isset($ses_id) && $ses_id == $this->allTests['u_id']){?>
+						<a href="<?php echo $baseUrl; ?>/edit-profile?uid=<? echo $base_user_id;?>">Edit Profile</a><?php }?>
+					</div>
+						<div class="form-group row">
+							<label class="col-sm-3 form-control-label" style="color:#828282">Full Name</label>
+							<div class="col-sm-9">
+								<?php 
+									if(isset($this->allTests['first_name']) && $this->allTests['first_name']!= ""){
+									echo $this->allTests['first_name']; echo '&nbsp;&nbsp;';  }
+									
+									if(isset($this->allTests['last_name']) && $this->allTests['last_name']!= ""){
+									echo $this->allTests['last_name']; echo '&nbsp;&nbsp;';  }
+								?>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-sm-3 form-control-label" style="color:#828282">Email </label>
+							<div class="col-sm-8">
+								<?php
+									if(isset($this->allTests['email']) && $this->allTests['email'] != ""){
+									echo $this->allTests['email'];}else{ echo 'N/A';}
+								?>
+							</div>
+						</div>
+						<div class="form-group row">
+							  <label  class="col-sm-3 form-control-label" style="color:#828282">Phone Number</label>
+							  <div class="col-sm-4">
+								<?php 
+									if(isset($this->allTests['ph_pub_pri']) && $this->allTests['ph_pub_pri']!=''){
+										if($this->allTests['ph_pub_pri'] =='public'){ 
+											if(isset($this->allTests['contact_number']) && $this->allTests['contact_number'] != ""){
+												echo $this->allTests['contact_number'];
+											}else{
+												echo "XXXXXXXXXX";
+											}
+										}else if($this->allTests['ph_pub_pri'] =='private'){ 
+											echo "XXXXXXXXXX";			
+										}							
+									}else{
+										echo $this->allTests['contact_number'];
+									}						
+								?>                       
+							  </div>
+							  <div class="col-sm-4">					
+							</div>
+						</div>
+						<div class="form-group row">
+							  <label  class="col-sm-3 form-control-label" style="color:#828282">Work</label>
+							  <div class="col-sm-4">
+								<?php 
+									if(isset($this->allTests['work_pub_pri']) && $this->allTests['work_pub_pri']!=''){
+										if($this->allTests['work_pub_pri'] =='public'){ 
+											if(isset($this->allTests['work_phone']) && $this->allTests['work_phone'] != ""){
+												echo $this->allTests['work_phone'];
+											}else{
+												echo "XXXXXXXXXX";
+											}
+										}else if($this->allTests['work_pub_pri'] =='private'){ 
+											echo "XXXXXXXXXX";			
+										}							
+									}else{
+										echo "XXXXXXXXXX";									
+									}						
+								?> 
+							  </div>
+							  <div class="col-sm-4">					
+							</div>
+						</div>
+						<div class="form-group row">
+							  <label  class="col-sm-3 form-control-label" style="color:#828282">Home</label>
+							  <div class="col-sm-4">
+							  <?php 
+									if(isset($this->allTests['home_pub_pri']) && $this->allTests['home_pub_pri']!=''){
+										if($this->allTests['home_pub_pri'] =='public'){ 
+											if(isset($this->allTests['home_phone']) && $this->allTests['home_phone'] != ""){
+												echo $this->allTests['home_phone'];
+											}else{
+												echo "XXXXXXXXXX";
+											}
+										}else if($this->allTests['home_pub_pri'] =='private'){ 
+											echo "XXXXXXXXXX";			
+										}							
+									}else{
+										echo "XXXXXXXXXX";									
+									}						
+								?>                        
+							  </div>
+							  <div class="col-sm-4">					
+							</div>
+						</div>
+						<div class="form-group row">
+							  <label  class="col-sm-3 form-control-label" style="color:#828282">Gender</label>
+							  <div class="col-sm-4">
+							  <?php 
+									if(isset($this->allTests['gender']) && $this->allTests['gender']!=''){echo ucfirst($this->allTests['gender']);
+									}else{ echo "N/A"; }						
+								?>                        
+							  </div>
+							  <div class="col-sm-4">					
+							</div>
+						</div>
+				<div class="form-group row">
+                      <label class="col-sm-3 form-control-label" style="color:#828282">Skills</label>
+                      <div class="col-sm-8">
+						    <?php 
+								if(isset($this->skills) && count($this->skills)>1)
+								{
+									$sName = "";
+									$skill_names = "";    
+									foreach($this->skills as $skills){
+										$skill_names .= ucfirst($skills->u_category_name.', ');
+										$sName = rtrim($skill_names, ', ');
+									}
+									echo $sName;
+								}
+								else
+								{ 
+									echo 'N/A';
+								}
+						    ?>                        
+                      </div>
+                </div>				
+				 <div class="form-group row">
+                      <label class="col-sm-3 form-control-label" style="color:#828282">Languages</label>
+                      <div class="col-sm-8">
+                      <?php if(isset($this->allTests['langNames']) && count($this->allTests['langNames'])>1){
+									$lName = "";
+									$lang_names = "";    
+									foreach($this->allTests['langNames'] as $key=>$langs){
+										$lang_names .= ucfirst($langs.', ');
+										$lName = rtrim($lang_names, ', ');
+									}
+									echo $lName;
+							}else{ 
+								echo 'N/A';							
+							}					  
+					  ?>
+                      </div>
+                 </div>
+				 <div class="form-group row">
+                      <label class="col-sm-3 form-control-label" style="color:#828282">City</label>
+                      <div class="col-sm-8">
+                      <?php if(isset($this->allTests['c_name']) && $this->allTests['c_name']!= ""){echo ucfirst($this->allTests['c_name']);}else{ echo 'N/A';}?>
+                      </div>
+                 </div>
+				 <div class="form-group row">
+                    <label class="col-sm-3 form-control-label" style="color:#828282">Face Book Profile Link</label>
+                    <div class="col-sm-8">
+						<?php if(isset($this->allTests['fb_profile_link']) && $this->allTests['fb_profile_link'] != ""){ ?>
+						<a href="<?php echo $this->allTests['fb_profile_link'];?>" target="_blank">
+							<?php  echo $this->allTests['fb_profile_link']; ?>
+						</a>	
+						<?php 	} else{ echo 'N/A';}?>											 
+                    </div>
+                 </div>
+				 <div class="form-group row">
+                      <label class="col-sm-3 form-control-label" style="color:#828282">More Information</label>
+                      <div class="col-sm-8">
+                      <?php if(isset($this->allTests['message']) && $this->allTests['message'] != ""){echo ucfirst($this->allTests['message']);}else{ echo 'N/A';}?>
+                      </div>
+                 </div>				 
+                 </div>
+				 <div class="col-md-12">
+					 <div class="form-group row">
+						  <label class="col-sm-4 form-control-label"><strong>Pics Upload</strong></label>
+						  <div class="col-sm-12">							 
+							<?php 
+								$i = 0;
+								if(isset($this->pics) && !empty($this->pics)){
+								foreach($this->pics as $userpic)
+								{
+									if($userpic->vp_status==0){
+										if( $userpic->vp_u_id == $ses_id )
+										{
+							?>
+										<a href="<?php echo $baseUrl;?>/<?php echo $userpic->vp_pics;?>" class="lsb-preview" data-lsb-group="header"><img alt="" src="<?php echo $baseUrl;?>/<?php echo $userpic->vp_pics;?>" style="width:120px;height:90px;"/></a>
+							<?php 		
+									    }else{
+											if($i==0){
+												echo "No pics";
+											}
+										} 
+									}else{
+							?>
+										<a href="<?php echo $baseUrl;?>/<?php echo $userpic->vp_pics;?>" class="lsb-preview" data-lsb-group="header"><img alt="" src="<?php echo $baseUrl;?>/<?php echo $userpic->vp_pics;?>" style="width:120px;height:90px;"/></a>
+							<?php			
+									} 	 
+								$i++; }
+								}else{
+									echo "No pics";
+								}
+							?>
+						  </div>
+					 </div>
+					<div class="form-group row">
+						  <label class="col-sm-4 form-control-label"><strong>Video links</strong></label>
+						<div class="col-sm-12"> 
+							<?php
+								$j=0;
+								if(isset($this->videos) && !empty($this->videos)){
+								foreach($this->videos as $v_links){
+								if($v_links->v_video_link!=""){
+								$link=explode("/ ", $v_links->v_video_link);										
+									$links=explode('/', $v_links->v_video_link);
+									$video_id = substr($v_links->v_video_link, strpos($v_links->v_video_link, "=") + 1);
+									if(isset($links['2']) && $links['2']== 'www.youtube.com')
+									{
+										$imageUrl="http://i.ytimg.com/vi/".$video_id."/default.jpg";
+									}
+									elseif(isset($links['2']) && $links['2']== 'www.dailymotion.com')
+									{
+										$imageUrl="http://i.ytimg.com/vi/".$video_id."/default.jpg";
+									}
+									else{
+									$imageUrl="http://vimeo.com/api/v2/video/".$video_id."/default.jpg";	
+									}			
+									if($v_links->v_status==0){
+										if( $v_links->v_user_id == $ses_id )
+										{
+							?>										
+							<a  href="<?php echo $v_links->v_video_link;?>" onclick="openPopup(2)" class="popup-youtube">
+							<img  src="<?php echo $imageUrl;?>"></a>
+							<?php }else{ if($j==0){ echo "No videos"; }} }else{ ?>
+									<a  href="<?php echo $v_links->v_video_link;?>" onclick="openPopup(2)" class="popup-youtube">
+									<img  src="<?php echo $imageUrl;?>"></a>
+							<?php } ?>
+							<?php 
+								$j++;} } } else {
+							?>
+								No videos
+							<?php 								
+							} 								
+							?>	
+						</div>
+					</div>
+				 
+				</div>
+				<?php } else{echo 'no results to show';}?>
+		</div>
+		</div>
+		
+		</div>
+		
+	</div>
+</div>
+<script>
+	function openPopup(value){
+	$('#myModal'+value).modal('show');
+	$('.modal-open .modal').css('overflow-y','hidden');
+	}
+	$(document).ready(function(){ 
+		var video_h = $(window).height();
+		$('.window_height').css('height',($(window).height()-50)+'px');
+		viewProfileCount();
+	});
+	$(document).ready(function() {
+        $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
+          disableOn: 700,
+          type: 'iframe',
+          mainClass: 'mfp-fade',
+          removalDelay: 160,
+          preloader: false,
+          fixedContentPos: false
+        });
+    });
+	$(window).load(function() {
+	  $.fn.lightspeedBox();
+	  $.fn.lightspeedBox({
+		  showImageTitle: true,
+		  showImageCount: true,
+		  showDownloadButton: true,
+		  showAutoPlayButton: true,
+		  autoPlayback: false,
+		  playbackTiming: 3500,
+		  zIndex: 1060,
+		  locale: {
+			nextButton: 'Next image',
+			prevButton: 'Previous image',
+			closeButton: 'Close',
+			downloadButton: 'Download image',
+			noImageFound: 'Sorry, no image found.',
+			autoplayButton: 'Enable autoplay'
+		  }
+		});
+	});
+	function viewProfileCount(){
+		var hid_profile_id = $("#hid_profile_id").val(); 
+		$.ajax({
+			type:'POST',
+			url:  BASE_URL+'/view-profile-count',
+			data:{vpc_pu_id:hid_profile_id},
+			success: function(data){
+				if(data.output=='success'){
+					console.log(data.output);
+				}else{
+					console.log(data.output);
+				}
+			}
+		});
+	
+	}
+</script>

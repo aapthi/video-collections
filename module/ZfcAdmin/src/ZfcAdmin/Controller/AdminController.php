@@ -464,9 +464,15 @@ class AdminController extends AbstractActionController
 					$stMode = 'Activate';
 					$st = 'a';
 				}
+				if($user->userPoints!=""){
+					$cnt = $user->userPoints;
+				}else{
+					$cnt = 0;
+				}
 				$data[$i]['status']= $status;
+				$data[$i]['viewCount']= $cnt;
 				$data[$i]['pics_videos'] ='<a href="'.$baseUrl.'/admin/user-pics?uid='.$id.'">Pics</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/user-videos?uid='.$id.'">Videos</a>';
-				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/edit-user-profile?uid='.$id.'">Edit</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-user?uid='.$id.'&st='.$st.'">'.$stMode.'</a>';
+				$data[$i]['action'] ='<a href="'.$baseUrl.'/admin/view-profile-user?uid='.$id.'">View</a>&nbsp;/&nbsp;<a href="'.$baseUrl.'/admin/delete-user?uid='.$id.'&st='.$st.'">'.$stMode.'</a>';
 				$i++;
 			}
 			$data['aaData'] = $data;
@@ -474,6 +480,58 @@ class AdminController extends AbstractActionController
 		}else{
 			echo '1'; exit;
 		}
+	}
+	public function viewProfileUserAction()
+	{
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];		
+		$testTable 	      = $this->getServiceLocator()->get('Profiles\Model\ProfileFactory');		
+		$UserVideoTable   = $this->getServiceLocator()->get('Profiles\Model\UserVideoFactory');
+		$UserSkillsTable  = $this->getServiceLocator()->get('Profiles\Model\UserSkillsFactory');
+		$UserPicsTable 	  = $this->getServiceLocator()->get('Profiles\Model\UserPicsFactory');		
+		$LangTable 	= $this->getServiceLocator()->get('Profiles\Model\LanguagesFactory');	
+		if(isset($_GET["uid"]) && $_GET['uid']!=""){
+			$id = $_GET["uid"];
+		}else{
+			$id=0;
+		}
+		if($id!=0){
+			$allTests = $testTable->UsersProfileList($id);
+			if($allTests->count()>0){
+				$userArray = "";
+				$resultSet = $allTests->toArray(); 
+				foreach($resultSet as $uData){					
+					$userArray["langNames"]=array();
+					$userArray= $uData;
+					if($uData['languages']!=""){
+						$explodeData = explode(",",$uData['languages']);
+						foreach($explodeData as $key=>$lan_id){
+							$langNames = $LangTable->getUserLang($lan_id)->toArray();
+							foreach($langNames as $lName){
+								$userArray["langNames"][] = $lName['lang_name'];
+							}
+						}
+					}else{
+						$userArray["langNames"][] ="";
+					}					
+				}
+			}
+			$videos   = $UserVideoTable->videoList($id);		
+			$skills   = $UserSkillsTable->skillsList($id);			
+			$pics 	  = $UserPicsTable->picList($id);		
+			$viewModel = new ViewModel(
+				array(
+					'baseUrl'				 	=> $baseUrl,
+					'basePath' 					=> $basePath,				
+					'allTests' 					=> $userArray,				
+					'videos' 					=> $videos,				
+					'pics' 					    => $pics,				
+					'skills' 					=> $skills,				
+			));
+			return $viewModel;	
+		}		
 	}
 	public function userPicsAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
