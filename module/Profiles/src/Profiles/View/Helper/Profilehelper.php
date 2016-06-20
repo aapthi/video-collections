@@ -63,7 +63,7 @@
 		}
 		public function userSkills($uid){
 			$skill 	= $this->getUserSkillsTable()->skillsList($uid);			
-			return $skill;
+			return $skill->toArray();
 		}
 		public function getUsersTable()
 		{
