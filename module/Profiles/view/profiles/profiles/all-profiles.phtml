@@ -42,12 +42,12 @@
 						<p><span class="dim">Skills :</span>
 						<?php  
 							$skills = $this->plugin('profile_helper')->userSkills($links->user_id);
-							if(isset($skills) && count($skills)>1)
+							if(isset($skills) && count($skills)>=1)
 							{
 								$sName = "";
 								$skill_names = "";    
 								foreach($skills as $skill){
-									$skill_names .= ucfirst($skill->u_category_name.', ');
+									$skill_names .= ucfirst($skill['u_category_name'].', ');
 									$sName = rtrim($skill_names, ', ');
 								}
 								echo $sName;
