@@ -639,18 +639,20 @@ class AdminController extends AbstractActionController
 		if(isset($_GET['uid']) && $_GET['uid']!=""){
 			$uid = $_GET['uid'];
 			$pics 	  = $UserPicsTable->picListAdmin($uid);	
-			foreach($pics as $userpics){				
-				if($userpics->vp_status==1){
-					$status = 'Active';
-				}else{
-					$status = 'Deactive';
+			foreach($pics as $userpics){		
+				if($userpics->vp_pics!=""){
+					if($userpics->vp_status==1){
+						$status = 'Active';
+					}else{
+						$status = 'Deactive';
+					}
+					$data[$i]['action']='<input type="checkbox" id="check[]" name="check[]" onClick="selectAll()"value="'.$userpics->vp_id.'">';
+					$data[$i]['thumb_image']= '<img alt="" width="50px" height="50px" src="'.$baseUrlD.'/'.$userpics->vp_pics.'">';	
+					$data[$i]['status']= $status;
+					$data[$i]['phone']= $userpics->contact_number;
+					$data[$i]['email']= $userpics->email;
+					$i++;
 				}
-				$data[$i]['action']='<input type="checkbox" id="check[]" name="check[]" onClick="selectAll()"value="'.$userpics->vp_id.'">';
-				$data[$i]['thumb_image']= '<img alt="" width="50px" height="50px" src="'.$baseUrlD.'/'.$userpics->vp_pics.'">';	
-				$data[$i]['status']= $status;
-				$data[$i]['phone']= $userpics->contact_number;
-				$data[$i]['email']= $userpics->email;
-				$i++;
 			}
 			$data['aaData'] = $data;
 			echo json_encode($data['aaData']); exit;
@@ -670,18 +672,20 @@ class AdminController extends AbstractActionController
 		if(isset($_GET['uid']) && $_GET['uid']!=""){
 			$uid = $_GET['uid'];
 			$videos   = $UserVideoTable->videoListAdmin($uid);
-			foreach($videos as $uservideo){				
-				if($uservideo->v_status==1){
-					$status = 'Active';
-				}else{
-					$status = 'Deactive';
+			foreach($videos as $uservideo){		
+				if($uservideo->v_video_link!=""){
+					if($uservideo->v_status==1){
+						$status = 'Active';
+					}else{
+						$status = 'Deactive';
+					}
+					$data[$i]['action']='<input type="checkbox" id="check[]" name="check[]" onClick="selectAll()"value="'.$uservideo->v_v_id.'">';
+					$data[$i]['link']= $uservideo->v_video_link;	
+					$data[$i]['status']= $status;
+					$data[$i]['phone']= $uservideo->contact_number;
+					$data[$i]['email']= $uservideo->email;
+					$i++;
 				}
-				$data[$i]['action']='<input type="checkbox" id="check[]" name="check[]" onClick="selectAll()"value="'.$uservideo->v_v_id.'">';
-				$data[$i]['link']= $uservideo->v_video_link;	
-				$data[$i]['status']= $status;
-				$data[$i]['phone']= $uservideo->contact_number;
-				$data[$i]['email']= $uservideo->email;
-				$i++;
 			}
 			$data['aaData'] = $data;
 			echo json_encode($data['aaData']); exit;

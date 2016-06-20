@@ -26,14 +26,16 @@ class UserVideoTable
 		$this->delUserVideos($user_id);
 		foreach($us_video['video'] as $video)
 		{
-			$data = array(
-				'v_user_id'  	     => $user_id,
-				'v_video_link'  	 => $video,
-				'v_created_at'       => date('Y-m-d H:i:s'),	
-				'v_updated_at'       => date('Y-m-d H:i:s'),
-				'v_status'           => 0
-			);
-			$insertresult=$this->tableGateway->insert($data);
+			if(isset($video) && $video!=""){
+				$data = array(
+					'v_user_id'  	     => $user_id,
+					'v_video_link'  	 => $video,
+					'v_created_at'       => date('Y-m-d H:i:s'),	
+					'v_updated_at'       => date('Y-m-d H:i:s'),
+					'v_status'           => 0
+				);			
+				$insertresult=$this->tableGateway->insert($data);
+			}
 		}
 		return $this->tableGateway->lastInsertValue;
 	}
