@@ -147,28 +147,29 @@
 				<div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">Skills</label>
                       <div class="col-sm-8">
-						    <?php 
-								if(isset($this->skills) && count($this->skills)>1)
-								{
-									$sName = "";
-									$skill_names = "";    
-									foreach($this->skills as $skills){
-										$skill_names .= ucfirst($skills->u_category_name.', ');
-										$sName = rtrim($skill_names, ', ');
-									}
-									echo $sName;
+						  <?php  
+							$skills = $this->plugin('profile_helper')->userSkills($this->allTests['user_id']);
+							if(isset($skills) && count($skills)>=1)
+							{
+								$sName = "";
+								$skill_names = "";    
+								foreach($skills as $skill){
+									$skill_names .= ucfirst($skill['u_category_name'].', ');
+									$sName = rtrim($skill_names, ', ');
 								}
-								else
-								{ 
-									echo 'N/A';
-								}
-						    ?>                        
+								echo $sName;
+							}
+							else
+							{ 
+								echo 'N/A';
+							}							
+						?>	                    
                       </div>
                 </div>				
 				 <div class="form-group row">
                       <label class="col-sm-3 form-control-label" style="color:#828282">Languages</label>
                       <div class="col-sm-8">
-                      <?php if(isset($this->allTests['langNames']) && count($this->allTests['langNames'])>1){
+                      <?php if(isset($this->allTests['languages']) && $this->allTests['languages']!=""){
 									$lName = "";
 									$lang_names = "";    
 									foreach($this->allTests['langNames'] as $key=>$langs){

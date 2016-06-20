@@ -10,9 +10,9 @@
   <script src="<?php echo $basePath;?>/js/jquery.datatable.min.js"></script>
 </head>
 	<?php if(isset($this->countPics) && $this->countPics!=0){?>
-	<div class="form-controller" style="float:left">	
-		<input type="button" class="btn" id="actId" name="actId" value="Activate" onClick="activeAll('a')" />
-		<input type="button" class="btn" id="deactId" name="deactId" value="Deactive" onClick="activeAll('d')" />         
+	<div class="form-controller" style="float:right">	
+		<input type="button" class="btn btn-primary" id="actId" name="actId" value="Activate" onClick="activeAll('a')" />
+		<input type="button" class="btn btn-warning" id="deactId" name="deactId" value="Deactive" onClick="activeAll('d')" />         
 	</div>
 	<?php } ?><br/>
   <table id="example_div" class="table table-bordered table-hover">
