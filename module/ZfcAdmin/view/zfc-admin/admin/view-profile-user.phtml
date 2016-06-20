@@ -16,8 +16,8 @@
 						<?php }?>
 					</div>
 					<div class="col-md-9">
-						<div class="text-right"><?php if(isset($ses_id) && $ses_id == $this->allTests['u_id']){?>
-						<a href="<?php echo $baseUrl; ?>/edit-profile?uid=<? echo $base_user_id;?>">Edit Profile</a><?php }?>
+						<div class="text-right">
+						<a href="<?php echo $baseUrl; ?>/admin/edit-profile?uid=<? echo $base_user_id;?>">Edit Profile</a>
 					</div>
 						<div class="form-group row">
 							<label class="col-sm-3 form-control-label" style="color:#828282">Full Name</label>
@@ -269,7 +269,6 @@
 	$(document).ready(function(){ 
 		var video_h = $(window).height();
 		$('.window_height').css('height',($(window).height()-50)+'px');
-		viewProfileCount();
 	});
 	$(document).ready(function() {
         $('.popup-youtube, .popup-vimeo, .popup-gmaps').magnificPopup({
@@ -301,20 +300,4 @@
 		  }
 		});
 	});
-	function viewProfileCount(){
-		var hid_profile_id = $("#hid_profile_id").val(); 
-		$.ajax({
-			type:'POST',
-			url:  BASE_URL+'/view-profile-count',
-			data:{vpc_pu_id:hid_profile_id},
-			success: function(data){
-				if(data.output=='success'){
-					console.log(data.output);
-				}else{
-					console.log(data.output);
-				}
-			}
-		});
-	
-	}
 </script>

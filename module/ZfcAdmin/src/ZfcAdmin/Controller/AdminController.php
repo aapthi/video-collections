@@ -295,6 +295,86 @@ class AdminController extends AbstractActionController
 			echo '1'; exit;
 		}
 	}
+	public function editProfileAction()
+	{		
+		$baseUrls    = $this->getServiceLocator()->get('config');
+		$baseUrlArr  = $baseUrls['urls'];
+		$baseUrl     = $baseUrlArr['baseUrl'];
+		$basePath    = $baseUrlArr['basePath'];
+		$userTable 	         = $this->getServiceLocator()->get('Users\Model\UserTableFactory');		
+		$testTable 	         = $this->getServiceLocator()->get('Profiles\Model\ProfileFactory');		
+		$userCategoriesTable = $this->getServiceLocator()->get('Profiles\Model\CatFactory');
+		$CityTable 	         = $this->getServiceLocator()->get('Profiles\Model\CityFactory');	
+		$LangTable 	         = $this->getServiceLocator()->get('Profiles\Model\LanguagesFactory');
+		$UserPicsTable       = $this->getServiceLocator()->get('Profiles\Model\UserPicsFactory');
+		$UserSkillsTable 	 = $this->getServiceLocator()->get('Profiles\Model\UserSkillsFactory');	
+		$UserVideoTable 	 = $this->getServiceLocator()->get('Profiles\Model\UserVideoFactory');		
+		$lang 	    = $LangTable->languagesList();					
+		$allSkills 	= $userCategoriesTable->CategoryList();
+		$cities 	= $CityTable->cityList();
+		if(isset($_POST['hid_u_id']) && $_POST['hid_u_id']!=""){
+			$u_id = $_POST['hid_u_id'];			
+			if(isset($_FILES["fileToUpload"]["name"]) && $_FILES["fileToUpload"]["name"]!=""){
+				$target_dir = "./public/upload/";			
+				$target_file =$target_dir.basename($_FILES["fileToUpload"]["name"]);					
+				if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+					$hid_user_photo = $target_file;
+				}
+			}else{
+				if(isset($_POST['hid_user_photo']) && $_POST['hid_user_photo']!=""){
+					$hid_user_photo = $_POST['hid_user_photo'];	
+				}else{
+					$hid_user_photo = '';	
+				}
+			}
+			if(isset($_FILES['images']['name']) && $_FILES['images']['name']!=""){
+				$target_path = "./public/useruploads/";
+				for ($i = 0; $i < count($_FILES['images']['name']); $i++) {
+					$target_files =$target_path.basename($_FILES["images"]["name"][$i]);
+					if (move_uploaded_file($_FILES['images']['tmp_name'][$i], $target_files)) {
+						$images 	= $UserPicsTable->insertImages($u_id,$target_files);	
+					}				
+				}
+			}
+			$addSkills       = $UserSkillsTable->addUserSkills($_POST,$u_id);
+			if(isset($_POST["video"]) && !empty($_POST["video"])){
+				$updateVideos 	 = $UserVideoTable->UpdateUserVideo($_POST,$u_id);
+			}
+			$updateUDetails  = $testTable->UpdateUserD($_POST,$u_id,$hid_user_photo);
+			$updateUsers 	 = $userTable->updateUser($_POST,$u_id);
+			$base_user_id = base64_encode($u_id.'-143');
+			$user_session = new Container('user');
+			$user_session->username=$_POST['fname'];
+			$user_session->displayName=$_POST['fname'];
+			if($updateUsers){
+				return $this->redirect()->toUrl($baseUrl.'/admin/users-list');
+			}else{
+				return $this->redirect()->toUrl($baseUrl.'/admin/users-list');
+			}			
+		}else if(isset($_GET["uid"]) && $_GET['uid']!=""){
+			$uid = base64_decode($_GET["uid"]);			
+			$exploadData = explode('-',$uid);
+			$id = $exploadData['0'];
+			$allTests = $testTable->UsersProfileList($id);
+			$resultSet = $allTests->current(); 
+			$videos 	= $UserVideoTable->videoList($id);
+			$skill 	   = $UserSkillsTable->skillsList($id);
+			$pics 	  = $UserPicsTable->picList($id);	
+			$viewModel = new ViewModel(array(
+				'baseUrl'				 	=> $baseUrl,
+				'basePath' 					=> $basePath,				
+				'allTests' 					=> $resultSet,				
+				'cities' 					=> $cities,									
+				'allSkills' 				=> $allSkills,									
+				'lang' 					    => $lang,				
+				'id'                        => $uid,
+				'videos'                    => $videos,
+				'skill'                     => $skill,
+				'pics'                     => $pics
+			));
+			return $viewModel;
+		}		
+	}
 	public function changePasswordAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
