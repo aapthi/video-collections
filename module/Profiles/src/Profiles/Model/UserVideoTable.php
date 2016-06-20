@@ -48,6 +48,14 @@ class UserVideoTable
 		$resultSet = $this->tableGateway->selectWith($select);		
 		return $resultSet;
 	}
+	public function videoListAdmin($id)
+    {
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('user', 'vc_user_videos.v_user_id=user.user_id',array('*'),'left');	
+		$select->where('vc_user_videos.v_user_id="'.$id.'"');
+		$resultSet = $this->tableGateway->selectWith($select);		
+		return $resultSet;
+	}
 	public function updateStatus($id,$status){
 		$data = array(
 			'v_status'  	=> $status,

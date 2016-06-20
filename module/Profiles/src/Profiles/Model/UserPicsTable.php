@@ -28,6 +28,14 @@ class UserPicsTable
 		$resultSet = $this->tableGateway->selectWith($select);		
 		return $resultSet;
 	}
+	public function picListAdmin($id)
+	{	
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('user', 'vc_user_pics.vp_u_id=user.user_id',array('*'),'left');	
+		$select->where('vc_user_pics.vp_u_id="'.$id.'"');
+		$resultSet = $this->tableGateway->selectWith($select);		
+		return $resultSet;
+	}
 	public function insertImages($u_id,$target_files)
 	{
 		$data = array(			 		
