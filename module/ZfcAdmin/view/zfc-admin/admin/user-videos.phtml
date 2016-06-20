@@ -22,6 +22,8 @@
     <thead>
       <tr>
 	  <th><input type="checkbox" name="selcheck" id="selcheck[]" onChange="checkAll(this)">&nbsp;&nbsp;Select All</th>
+	  <th>Email</th>
+	  <th>Phone</th>
 	  <th>Link</th>	 
 	  <th>Status</th>	 
      </tr>
@@ -53,6 +55,8 @@
                 "aaData": data,
                 "aoColumns": [
                     { "mData": "action",'sWidth': '20%'},              
+                    { "mData": "email",'sWidth': '20%'},              
+                    { "mData": "phone",'sWidth': '20%'},              
                     { "mData": "link",'sWidth': '55%'},
                     { "mData": "status",'sWidth': '25%'},
                  
