@@ -136,9 +136,9 @@
     </nav>
 <div class="container">
 <div class="row">
-<div class="col-md-2 filter_cate2 ">
-<h4 style="font-family: Roboto"><a class="hover_body"href="<?php echo $baseUrl;?>/all-profiles?cat=all" >Cast & Crew</a></h4> 
-</div>
+	<div class="col-md-2 filter_cate2 ">
+		<a href="<?php echo $baseUrl;?>/all-profiles?cat=all"><button type="button" class="btn btn-primary btn-xs"><h4>Cast & Crew</h4></button></a>
+	</div>
 <div class="col-md-10">
 <div class="latest_news alert mar_bnone">
 	<div class="pos_relative" id="scroll">
@@ -225,9 +225,9 @@
 		<?php } ?>
 			<?php if($parmsName =="profile") {?>
 			<!-- Cities DropDown -->
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<label>CITY</label>&nbsp;&nbsp;
-				<select style="height:30px;width:auto;padding-right: 80px; border:1px solid #ddd;" id="c_id" value="c_id" onChange="filterByCity();">
+				<select style="height:30px;width:auto;padding-right: 47px; border:1px solid #ddd;" id="c_id" value="c_id" onChange="filterByCity();">
 					<option value="">Select</option>
 					<?php if(isset($allCities) && count($allCities)>0) { 
 						foreach($allCities as $allCity){
@@ -241,28 +241,34 @@
 		
 			<?php if($parmsName =="profile") {?>
 			<!-- Search Text BOX-->
-				<div class="col-md-4 input_search">
-					<div class="input-group">
+				<div class="col-md-3 input_search">
+					<div class="input-group" >
+					
 						<input id="nameSearch" placeholder="Search for name" class="form-control" type="textbox">
 						<span class="input-group-btn">
-						<button class="btn btn-default"  onClick="searchByName();" type="button" id="addressSearch">Search</button>
+						<button class="btn glyphicon glyphicon-search" style="margin-top:-2px"  onClick="searchByName();" type="button" id="addressSearch"></button>
 						</span>
+						
 					</div>
 				</div>
 			<!--End-->
 			<?php } else { ?>
 				<div class="col-md-9 input_search">
 					<div class="input-group">
-						<input id="videosSearch" placeholder="Search for videos" class="form-control"  style="padding-left:50px"type="textbox">
+						<input id="videosSearch" placeholder="Search for videos" class="form-control"  style="padding-left:px"type="textbox">
 						<span class="input-group-btn">
 						<button class="btn btn-default" onKeypress="serachTitle();" onClick="searchByLocation();" type="button" id="addressSearch">Search</button>
 						</span>
 					</div>
 				</div>
-			<?php } ?>			
+				
+				
+			<?php } ?>	
+			
+<div class="clearfix">			
 	</div>
 	</div>
-</div>
+</div><br>
 <style>
 	html .ui-autocomplete {
 		height: 300px;

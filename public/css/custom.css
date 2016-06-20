@@ -450,13 +450,14 @@ position:absolute;
 	background:none;
 	border:none;
 }
-.filter_cate2  a{
-	 padding: 5px 19px;
-	border: 2px solid #ddd;
+.filter_cate2  a h4{
+	 padding: 0px 19px;
+	font-size:16px;
 	border-radius:4px;
-	color:#2fa4e7 ;
+	color:#fff ;
 	text-decoration:none;
-
+	font-family: Roboto;
+	
 	}
 .filter_cate .btn-default:hover, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .dropdown-toggle.btn-default{
 	background:none;
