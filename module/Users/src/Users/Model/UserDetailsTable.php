@@ -26,6 +26,7 @@ class UserDetailsTable
 			'u_id' 		       => $user_id,  		
 			'first_name'       => $usersinfo['user_first_name'], 	
 			'last_name' 	   => $usersinfo['user_last_name'], 	
+			'user_check_data'  => 0, 	
 			'user_photo' 	   => '', 	
 			'created_at'       => date('Y-m-d H:i:s'), 
 			'updated_at' 	   => date('Y-m-d H:i:s')
