@@ -23,10 +23,18 @@
 		refresh();
 	});
 </script>
-<form  id="frm_meth" name="frm_meth" method="post" action="">	
+<form  id="frm_meth" name="frm_meth" method="post" action="" enctype="multipart/form-data">	
 	<div class="">		
 		<div class="panel-body" id="tab_1_hide">
 			<div class="form-horizontal">
+				<div class="form-group">
+					<div class="pos_relative">							
+						<img class="img_pic" alt="" src="<? echo $basePath; ?>/images/480px-No_Image_Available.png" />	
+						<label class="btn-file">
+						<input type="file" name="fileToUpload" id="image_file" class="form-control file_pad" style="height:auto">
+						</label>	
+					</div>
+				</div>
 				<div class="form-group">
 					<div class="pos_relative">
 					<span class="error_msg_disp" id="user_firstname_req"></span>
@@ -55,6 +63,20 @@
 				</div>
 				<? } ?>
 				<div class="form-group">
+					<div class="pos_relative">				  
+					<label class="c-input c-radio">
+					  <input id="male" name="gender" type="radio" value="male" checked >
+					  <span class="c-indicator"></span>
+					  Male 
+					</label>
+					<label class="c-input c-radio">
+					  <input id="female" name="gender" type="radio" value="female" >
+					  <span class="c-indicator"></span>
+					  Female
+					</label>
+					</div>
+				</div>
+				<div class="form-group">
 					<div class="pos_relative">
 						<span class="error_msg_disp" id="user_mobile_req"></span>
 						<input type="text" class="form-control" id="user_mobile" name="user_mobile" value="<? if(isset($details->contact_number) && $details->contact_number!='') {echo $details->contact_number;}else{}?>" placeholder="Your Mobile Number">
@@ -63,6 +85,92 @@
 				<? if(isset($details->user_id) && $details->user_id!=''){ 
 				
 				}else{?>
+				<div class="form-group">
+					   <div class="pos_relative">
+                       <select name="city" id="city" class="form-control">
+						<option value="">Select city</option>
+					   <?php foreach($this->cities as $city){  ?>
+						 <option value="<?php echo $city->c_id; ?>" ><?php echo ucfirst($city->c_name); ?></option>  
+					  <?php  } ?>
+                       </select>
+                      </div>
+					  <div class="col-sm-10">
+						<div class="text-center">						
+						<h6 id="c_ity" style="color:red;"></h6>
+						</div>						
+					</div>
+                 </div>	
+				 <div class="form-group">
+                       <div class="pos_relative">
+                       <select name="lang[]" id="lang" multiple="multiple" class="form-control">
+						<option value="">Select languages</option>
+						<?php 
+							foreach($this->lang as $language){	
+						?>
+						<option value="<?php echo $language->lan_id; ?>"><?php echo ucfirst($language->lang_name); ?></option>
+						<?php }?>
+                       </select>
+                      </div>
+					  <div class="col-sm-10">
+						<div class="text-center">						
+						<h6 id="l_ang" style="color:red;"></h6>
+						</div>
+						
+					</div>
+                 </div>
+				 <div class="form-group">
+                       <div class="pos_relative">
+						<select class="form-control" id="state_id" name="state_id[]" multiple="multiple" >
+						<option value="" >Select skills</option>							
+							<?php 							
+								if(isset($this->allSkills)){
+									foreach($this->allSkills as $skills){							
+															
+							?>				
+								<option value="<?php echo $skills->u_c_id;?>">
+								<?php echo $skills->u_category_name?></option>
+							<?php } } ?>							
+						</select>
+                      </div>
+					  <div class="col-sm-10">
+						<div class="text-center">						
+						<h6 id="s_kill" style="color:red;"></h6>
+						</div>						
+					</div>
+                 </div>
+				 <div class="form-group">
+                      <div class="pos_relative">
+                        <input type="text" class="form-control" value="" name="fb" id="fb" placeholder="Enter your facebook link">
+                      </div>
+					  <div class="col-sm-10">
+						<div class="text-center">						
+						<h6 id="f_b" style="color:red;"></h6>
+						</div>						
+					</div>
+                 </div>
+				 <div class="form-group">
+                       <div class="pos_relative">
+						 <label class="btn btn-primary	 btn-file">
+							Browse <input type="file"  name="images[]" multiple="multiple">
+						</label>
+                      </div>
+                 </div>
+				 <input type="hidden" name="hid_value" id="hid_value" value="0">
+				  <div class="form-group">
+				  <div id="addmore">
+				 <div class="row">
+						<div class="col-xs-10">						
+						<div class="my-form">   
+							<p class="text-box">										
+				<input type="text" class="form-control" value="" name="video[]" placeholder="link" id="video0"/>									
+							<a style=" margin-left: 100%;position:absolute;margin-top:-10%;" href="javascript:void(0);" class="btn btn-primary" onclick="addMore()"> <span class="glyphicon glyphicon-plus"></span> </a>
+							</p>
+						<div class="clearfix"></div>
+						</div>						
+                      </div> 
+                      </div> 
+                      </div> 
+                 </div> 
 				<div style="width:100%">
 					<div class="form-group" style="width:40%">					
 						<div class="pos_relative">	
@@ -77,7 +185,8 @@
 						</div>
 					</div>
 				</div>
-				<? } ?>
+				<? } ?>	
+				
 				<div class="clearfix"></div>
 				<div class="form-group">
 					<div class="pos_relative">
@@ -119,3 +228,35 @@
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
 </div>
+<script>
+	function addMore(){
+	if($("#video"+$('#hid_value').val()).val()==""){
+		alert("Required");
+		$("#video"+$('#hid_value').val()).focus();
+		return false;
+	}else{
+		var html ="";
+		var value = parseInt($('#hid_value').val())+1;
+		html +='<div id="dyDiv'+value+'"><label class="col-sm-3 form-control-label">&nbsp;&nbsp;</label>';
+		html +='<div class="pos_relative"><div class="row">';
+		html +='<div class="col-xs-10"><div class="my-form">';
+		html +='<p class="text-box">';
+		html +='<input type="text" class="form-control" value="" placeholder="link" name="video[]" id="video'+value+'">';
+		html +='<a style=" margin-left: 100%;position:absolute;margin-top:-10%;" href="javascript:void(0);" class="btn btn-primary" onclick="delVideo('+value+')" ><span class="glyphicon glyphicon-minus"></span> </a>';
+		html +='</p><div class="clearfix"></div></div></div></div></div></div>';
+		$('#addmore').append(html);							
+		$('#hid_value').val(value);
+	}
+}
+function delVideo(value){
+	if($("#video"+value).val()==""){
+		$('#dyDiv'+value).remove();
+		$('#hid_value').val(parseInt(value)-1);
+	}else{
+		if (confirm("Are you sure?")){
+			$('#dyDiv'+value).remove();
+			$('#hid_value').val(parseInt(value)-1);
+		}
+	}	
+}
+</script>
