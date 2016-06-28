@@ -440,6 +440,36 @@ function validateReg()
 		   $('#user_captcha').html('');
 		}
 	}
+	if($("#city").val()==""){
+		$("#city_req").html(Required);
+		$('#city').focus();
+		flag=false;
+	}else{
+		$("#city_req").html('');
+	}
+	var state_id= document.getElementById('state_id').value;
+	var lang= document.getElementById('lang').value;
+	if(lang==""){
+		$("#lang_req").html(Required);
+		$('#lang').focus();
+		flag=false;
+	}else{
+		$("#lang_req").html('');
+	}
+	if(state_id==""){
+		$("#state_req").html(Required);
+		$('#state_id').focus();
+		flag=false;
+	}else{
+		$("#state_req").html('');
+	}
+	if($("#fb").val()==""){
+		$("#fb_req").html(Required);
+		$('#fb').focus();
+		flag=false;
+	}else{
+		$("#fb_req").html('');
+	}
 	if(flag==false){		
 		return false;
 	}else{
