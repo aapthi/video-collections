@@ -479,7 +479,18 @@ class UsersController extends AbstractActionController
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
-		$basePath = $baseUrlArr['basePath'];		
+		$basePath = $baseUrlArr['basePath'];	
+		$userTable 	         = $this->getServiceLocator()->get('Users\Model\UserTableFactory');		
+		$testTable 	         = $this->getServiceLocator()->get('Profiles\Model\ProfileFactory');		
+		$userCategoriesTable = $this->getServiceLocator()->get('Profiles\Model\CatFactory');
+		$CityTable 	         = $this->getServiceLocator()->get('Profiles\Model\CityFactory');	
+		$LangTable 	         = $this->getServiceLocator()->get('Profiles\Model\LanguagesFactory');
+		$UserPicsTable       = $this->getServiceLocator()->get('Profiles\Model\UserPicsFactory');
+		$UserSkillsTable 	 = $this->getServiceLocator()->get('Profiles\Model\UserSkillsFactory');	
+		$UserVideoTable 	 = $this->getServiceLocator()->get('Profiles\Model\UserVideoFactory');	
+		$lang 	    = $LangTable->languagesList();					
+		$allSkills 	= $userCategoriesTable->CategoryList();
+		$cities 	= $CityTable->cityList();		
 		if(isset($_POST['hid_user_id']) && $_POST['hid_user_id']!=''){
 			$base_user_id =  base64_encode($_POST['hid_user_id']);
 			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']);
@@ -489,10 +500,31 @@ class UsersController extends AbstractActionController
 				$user_idd=$this->getUserDetailsTable()->addDetails($_POST,$_POST['hid_user_id'],$_POST['hid_ud_id']);
 				return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id.'&suc='.$suc);
 			}
-		}else if(isset($_POST['user_first_name']) && $_POST['user_first_name']!='' && isset($_POST['hid_user_id']) && $_POST['hid_user_id']==''){
+		}else if(isset($_POST['user_first_name']) && $_POST['user_first_name']!='' && isset($_POST['hid_user_id']) && $_POST['hid_user_id']==''){	
+			if(isset($_FILES["fileToUpload"]["name"]) && $_FILES["fileToUpload"]["name"]!=""){
+				$target_dir = "./public/upload/";			
+				$target_file =$target_dir.basename($_FILES["fileToUpload"]["name"]);					
+				if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+					$hid_user_photo = $target_file;
+				}
+			}
 			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']='');
-			if($user_id!=0){
+			if($user_id!=0){				
+				$addSkills       = $UserSkillsTable->addUserSkills($_POST,$user_id);
+				if(isset($_POST["video"]) && !empty($_POST["video"])){
+					$updateVideos 	 = $UserVideoTable->UpdateUserVideo($_POST,$user_id);
+				}
 				$user_idd=$this->getUserDetailsTable()->addDetails($_POST,$user_id,$_POST['hid_ud_id']);
+				$updateUDetails  = $testTable->UpdateUserD($_POST,$user_id,$hid_user_photo);
+				if(isset($_FILES['images']['name']) && $_FILES['images']['name']!=""){
+					$target_path = "./public/useruploads/";
+					for ($i = 0; $i < count($_FILES['images']['name']); $i++) {
+						$target_files =$target_path.basename($_FILES["images"]["name"][$i]);
+						if (move_uploaded_file($_FILES['images']['tmp_name'][$i], $target_files)) {
+							$images 	= $UserPicsTable->insertImages($user_id,$target_files);	
+						}				
+					}
+				}				
 				$usersTable=$this->getUserTable();
 				$userDetails = $usersTable->getUser($user_id);
 				if($userDetails!=''){						
@@ -534,6 +566,9 @@ class UsersController extends AbstractActionController
 			return new ViewModel(array(				
 				'baseUrl' 			=> $baseUrl,
 				'basePath' 			=> $basePath,
+				'cities' 					=> $cities,									
+				'allSkills' 				=> $allSkills,									
+				'lang' 					    => $lang,	
 			));	
 		}
 	}
