@@ -91,21 +91,18 @@
 				}else{?>
 				<div class="form-group">
 					   <div class="pos_relative">
+					   <span class="error_msg_disp" id="city_req"></span>
                        <select name="city" id="city" class="form-control">
 						<option value="">Select city</option>
 					   <?php foreach($this->cities as $city){  ?>
 						 <option value="<?php echo $city->c_id; ?>" ><?php echo ucfirst($city->c_name); ?></option>  
 					  <?php  } ?>
                        </select>
-                      </div>
-					  <div class="col-sm-10">
-						<div class="text-center">						
-						<h6 id="c_ity" style="color:red;"></h6>
-						</div>						
-					</div>
+                      </div>					 
                  </div>	
 				 <div class="form-group">
                        <div class="pos_relative">
+					   <span class="error_msg_disp" id="lang_req"></span>
                        <select name="lang[]" id="lang" multiple="multiple" class="form-control">
 						<option value="">Select languages</option>
 						<?php 
@@ -114,16 +111,11 @@
 						<option value="<?php echo $language->lan_id; ?>"><?php echo ucfirst($language->lang_name); ?></option>
 						<?php }?>
                        </select>
-                      </div>
-					  <div class="col-sm-10">
-						<div class="text-center">						
-						<h6 id="l_ang" style="color:red;"></h6>
-						</div>
-						
-					</div>
+                      </div>					 
                  </div>
 				 <div class="form-group">
                        <div class="pos_relative">
+					   <span class="error_msg_disp" id="state_req"></span>
 						<select class="form-control" id="state_id" name="state_id[]" multiple="multiple" >
 						<option value="" >Select skills</option>							
 							<?php 							
@@ -135,22 +127,13 @@
 								<?php echo $skills->u_category_name?></option>
 							<?php } } ?>							
 						</select>
-                      </div>
-					  <div class="col-sm-10">
-						<div class="text-center">						
-						<h6 id="s_kill" style="color:red;"></h6>
-						</div>						
-					</div>
+                      </div>					  
                  </div>
 				 <div class="form-group">
                       <div class="pos_relative">
+					  <span class="error_msg_disp" id="fb_req"></span>
                         <input type="text" class="form-control" value="" name="fb" id="fb" placeholder="Enter your facebook link">
-                      </div>
-					  <div class="col-sm-10">
-						<div class="text-center">						
-						<h6 id="f_b" style="color:red;"></h6>
-						</div>						
-					</div>
+                      </div>					  
                  </div>
 				 <div class="form-group">
                        <div class="pos_relative">
@@ -209,29 +192,46 @@
 		</form>			
 		</div>
 	</div>
-</div>
-<!--<div class="login_ad_left smhide">
+	<div class="col-md-4 smhide">
+<div class="">
+<div class="" align="center">
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<!-- leftbanner -->
-	<!--<ins class="adsbygoogle"
-		 style="display:inline-block;width:120px;height:600px"
-		 data-ad-client="ca-pub-9408213208791031"
-		 data-ad-slot="7927970234"></ins>
-	<script>
-	(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>
-</div>
-<div class="login_ad_right smhide">
+				<!-- topbanner -->
+			<ins class="adsbygoogle"
+				 style="display:inline-block;width:300px;height:250px"
+				 data-ad-client="ca-pub-9408213208791031"
+				 data-ad-slot="4974503839"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+</div><br/><br/><br/>
+<div class="" align="center">
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<!-- leftbanner -->
-	<!--<ins class="adsbygoogle"
-		 style="display:inline-block;width:120px;height:600px"
-		 data-ad-client="ca-pub-9408213208791031"
-		 data-ad-slot="7927970234"></ins>-->
-	<script>
-	(adsbygoogle = window.adsbygoogle || []).push({});
-	</script>
+				<!-- topbanner -->
+			<ins class="adsbygoogle"
+				 style="display:inline-block;width:300px;height:250px"
+				 data-ad-client="ca-pub-9408213208791031"
+				 data-ad-slot="4974503839"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
+</div><br/><br/><br/>
+<div class="" align="center">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- topbanner -->
+			<ins class="adsbygoogle"
+				 style="display:inline-block;width:300px;height:250px"
+				 data-ad-client="ca-pub-9408213208791031"
+				 data-ad-slot="4974503839"></ins>
+			<script>
+			(adsbygoogle = window.adsbygoogle || []).push({});
+			</script>
 </div>
+</div>
+<?php // include('right-side-bar.phtml');?>				
+</div>
+</div>
+
 <script>
 	function addMore(){
 	if($("#video"+$('#hid_value').val()).val()==""){
