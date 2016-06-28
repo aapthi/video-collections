@@ -4,7 +4,7 @@
 	$basePath = $header->headerarray['basePath'];
 ?>
 <div class="container  min_height ">
-<div class="lrcontainer panel " style="padding:24px 20px 0px 20px;">
+<div class="col-sm-8 panel " style="padding:24px 20px 0px 20px;">
 	<? $details=''; if(count($this->userDetails)){ foreach($this->userDetails as $detailss){ $details=$detailss;}}
 		$dobex=''; if(isset($details->date_of_birth) && $details->date_of_birth!='') {
 			$dob = $details->date_of_birth;
@@ -15,7 +15,7 @@
 	<? if(isset($details->user_id) && $details->user_id!=''){ ?>
 		<h1 class="text-center">Profile</h1>
 	<? } else{?>
-		<h1 class="text-center">Sign Up</h1>
+		<h1 class="text-center well ">Sign Up</h1>
 	<? } ?>
 </div>
 <script>
@@ -29,10 +29,14 @@
 			<div class="form-horizontal">
 				<div class="form-group">
 					<div class="pos_relative">							
-						<img class="img_pic" alt="" src="<? echo $basePath; ?>/images/480px-No_Image_Available.png" />	
-						<label class="btn-file">
+						<span class="glyphicon glyphicon-user btn-primary btn-lg"style="padding:9px 15px;"></span>	
+						 <label class="btn btn-primary	 btn-file" style=" margin-bottom: 9px;">
+							 <input type="file"  name="images[]" multiple="multiple">
+						</label>
+						<!--<label class="btn-file btn btn-primary">
 						<input type="file" name="fileToUpload" id="image_file" class="form-control file_pad" style="height:auto">
-						</label>	
+						</label>	-->
+						
 					</div>
 				</div>
 				<div class="form-group">
@@ -151,7 +155,7 @@
 				 <div class="form-group">
                        <div class="pos_relative">
 						 <label class="btn btn-primary	 btn-file">
-							Browse <input type="file"  name="images[]" multiple="multiple">
+							 <input type="file"  name="images[]" multiple="multiple">
 						</label>
                       </div>
                  </div>
@@ -163,7 +167,7 @@
 						<div class="my-form">   
 							<p class="text-box">										
 				<input type="text" class="form-control" value="" name="video[]" placeholder="link" id="video0"/>									
-							<a style=" margin-left: 100%;position:absolute;margin-top:-10%;" href="javascript:void(0);" class="btn btn-primary" onclick="addMore()"> <span class="glyphicon glyphicon-plus"></span> </a>
+							<a style=" margin-left: 100%;position:absolute;margin-top:-7%;" href="javascript:void(0);" class="btn btn-primary" onclick="addMore()"> <span class="glyphicon glyphicon-plus"></span> </a>
 							</p>
 						<div class="clearfix"></div>
 						</div>						
@@ -206,10 +210,10 @@
 		</div>
 	</div>
 </div>
-<div class="login_ad_left smhide">
+<!--<div class="login_ad_left smhide">
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<!-- leftbanner -->
-	<ins class="adsbygoogle"
+	<!--<ins class="adsbygoogle"
 		 style="display:inline-block;width:120px;height:600px"
 		 data-ad-client="ca-pub-9408213208791031"
 		 data-ad-slot="7927970234"></ins>
@@ -220,10 +224,10 @@
 <div class="login_ad_right smhide">
 	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<!-- leftbanner -->
-	<ins class="adsbygoogle"
+	<!--<ins class="adsbygoogle"
 		 style="display:inline-block;width:120px;height:600px"
 		 data-ad-client="ca-pub-9408213208791031"
-		 data-ad-slot="7927970234"></ins>
+		 data-ad-slot="7927970234"></ins>-->
 	<script>
 	(adsbygoogle = window.adsbygoogle || []).push({});
 	</script>
@@ -242,7 +246,7 @@
 		html +='<div class="col-xs-10"><div class="my-form">';
 		html +='<p class="text-box">';
 		html +='<input type="text" class="form-control" value="" placeholder="link" name="video[]" id="video'+value+'">';
-		html +='<a style=" margin-left: 100%;position:absolute;margin-top:-10%;" href="javascript:void(0);" class="btn btn-primary" onclick="delVideo('+value+')" ><span class="glyphicon glyphicon-minus"></span> </a>';
+		html +='<a style=" margin-left: 100%;position:absolute;margin-top:-7%;" href="javascript:void(0);" class="btn btn-primary" onclick="delVideo('+value+')" ><span class="glyphicon glyphicon-minus"></span> </a>';
 		html +='</p><div class="clearfix"></div></div></div></div></div></div>';
 		$('#addmore').append(html);							
 		$('#hid_value').val(value);
