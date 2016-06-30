@@ -542,7 +542,7 @@ class UsersController extends AbstractActionController
 						$regMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $regMessage);
 					}
 					if(sendMail($to,$regSubject,$regMessage)){
-						if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
+						if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='sfadda.com'){
 							return $this->redirect()->toUrl($baseUrl.'?suc='.$suc);
 						}else{
 							return $this->redirect()->toUrl($baseUrl.'?suc='.$suc);
