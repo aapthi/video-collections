@@ -29,11 +29,8 @@
 		$image_name = $basePath.'/img/logo.png';
 		$_SESSION['tilte_imag'] = $image_name;
 	}else{
-		if(isset($_SESSION['tilte_top']) && $_SESSION['tilte_top']!=""){
-			$_SESSION['tilte_top'] = $_SESSION['tilte_top'];
-		}else if(isset($_SESSION['tilte_imag']) && $_SESSION['tilte_imag']!=""){
-			$_SESSION['tilte_imag'] = $_SESSION['tilte_imag'];
-		}
+		$_SESSION['tilte_top'] = $_SESSION['tilte_top'];
+		$_SESSION['tilte_imag'] = $_SESSION['tilte_imag'];
 	}
 	if($_SERVER['HTTP_HOST']=='sfadda.com'){$appid='685804858155190';}else {$appid='685804858155190';}
 ?>
@@ -68,11 +65,12 @@
 	<!-- End -->
 	<!-- Js Script-->	
 	<script src="<?php echo $basePath; ?>/js/jquery-112min.js"></script>
-	<script src="<?php echo $basePath; ?>/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<?php echo $basePath; ?>/js/jquery.nicescroll.min.js"></script>
+    <script src="<?php echo $basePath; ?>/js/bootstrap.min.js"></script>
 	<script src="<?php echo $basePath; ?>/js/isotope.pkgd.min.js"></script>
 	<script src="<?php echo $basePath; ?>/js/poorapo.isotope.js"></script>
     <script src="<?php echo $basePath; ?>/js/commonfunctions.js"></script>
-    <script src="<?php echo $basePath; ?>/js/jquery.bootstrap.newsbox.min.js"></script>
+    <script src="<?php echo $basePath; ?>/js/jquery.bootstrap.newsbox.min.js"></script>	
 	<!-- Pics -->
 	<link href="<?php echo $basePath; ?>/dist/lsb.css" rel="stylesheet">	
 	<script src="//code.jquery.com/jquery.min.js"></script>
@@ -92,6 +90,9 @@
 			  <div class="col-md-6 smhide">
 			<?php
 			$date_array = getdate();
+
+			foreach ( $date_array as $key => $val )
+			{ }
 			?>
 			Today: <?php echo $date_array['weekday'];?>, <?php echo $date_array['month'];?> <?php echo $date_array['mday'];?>, <?php echo $date_array['year'];?> Last Update: <?php echo $date_array['hours'];?>:<?php echo $date_array['minutes'];?>
 			</div>
@@ -100,7 +101,7 @@
 					$usersid= base64_decode($userid);?>
 					<div class="btn-group " role="group">							
 							<i>Welcome</i> &nbsp;&nbsp;<span class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="cursor: pointer; cursor: hand;" id="top_bar_drop_down">
-							 <? if(strlen($_SESSION['user']['displayName'])>8){echo substr(ucfirst($_SESSION['user']['displayName']),0,8) . '...'; }else{echo ucfirst($_SESSION['user']['displayName']);} ?> 
+							 <? if(strlen($_SESSION['user']['displayName'])>8){echo substr($_SESSION['user']['displayName'],0,8) . '...'; }else{echo $_SESSION['user']['displayName'];} ?> 
 								<span class="caret" style="cursor: pointer; cursor: hand;"></span>
 							</span>
 						<ul class="dropdown-menu">
@@ -139,80 +140,59 @@
 			</div>
 		</div>
     </nav>
+
 <div class="container">
-<div class="row">
-	<div class="col-md-2 filter_cate2 ">
-		<a href="<?php echo $baseUrl;?>/all-profiles?cat=all"><button type="button" class="btn btn-primary btn-xs"><h4>Cast & Crew</h4></button></a>
-	</div>
-<?php if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){ ?>
-	<div class="col-md-10">
-	<div class="latest_news alert mar_bnone">
-		<div class="pos_relative" id="scroll">
-		<div class="close_lnews"><button type="button" class="close" data-dismiss="alert">×</button></div>
-			<span>
-			<marquee behavior="scroll"  direction="left"  scrollamount="4" onmouseover="javascript:this.setAttribute('scrollamount','0');" onmouseout="javascript:this.setAttribute('scrollamount','5');">
-			<ul class="list-inline">
-				<?  foreach($topVideos as $key=>$videolinks){
-						// if($key == 25){ break; }
-					$video_id = base64_encode($videolinks->v_id);
-				?>
-					<li><a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><span class="glyphicon glyphicon-triangle-right 
-					" aria-hidden="true"></span> <? echo $videolinks->v_title;?></a></li>	
-				<? } ?>				
-			</ul>
-			</marquee>
-			</span>
+	<div class="row">
+		<div class="col-md-2 filter_cate2 ">
+			<a href="<?php echo $baseUrl;?>/all-profiles?cat=all"><button type="button" class="btn btn-primary btn-xs"><h4>Cast & Crew</h4></button></a>
 		</div>
+		<?php if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){ ?>
+			<div class="col-md-10">
+			<div class="latest_news alert mar_bnone">
+				<div class="pos_relative" id="scroll">
+				<div class="close_lnews"><button type="button" class="close" data-dismiss="alert">×</button></div>
+					<span>
+					<marquee behavior="scroll"  direction="left"  scrollamount="4" onmouseover="javascript:this.setAttribute('scrollamount','0');" onmouseout="javascript:this.setAttribute('scrollamount','5');">
+					<ul class="list-inline">
+						<?  foreach($topVideos as $key=>$videolinks){
+								// if($key == 25){ break; }
+							$video_id = base64_encode($videolinks->v_id);
+						?>
+							<li><a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><span class="glyphicon glyphicon-triangle-right 
+							" aria-hidden="true"></span> <? echo $videolinks->v_title;?></a></li>	
+						<? } ?>				
+					</ul>
+					</marquee>
+					</span>
+				</div>
+			</div>
+			</div>
+		<?php } else{ ?>
+			<div class="col-md-2 filter_cate2">
+				<a href="<?php echo $baseUrl;?>/users/register"><button type="button" class="btn btn-primary btn-xs"><h4>Add Profile</h4></button></a>
+			</div>
+			<div class="col-md-8">
+			<div class="latest_news alert mar_bnone">
+				<div class="pos_relative" id="scroll">
+				<div class="close_lnews"><button type="button" class="close" data-dismiss="alert">×</button></div>
+					<span>
+					<marquee behavior="scroll"  direction="left"  scrollamount="4" onmouseover="javascript:this.setAttribute('scrollamount','0');" onmouseout="javascript:this.setAttribute('scrollamount','5');">
+					<ul class="list-inline">
+						<?  foreach($topVideos as $key=>$videolinks){
+								// if($key == 25){ break; }
+							$video_id = base64_encode($videolinks->v_id);
+						?>
+							<li><a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><span class="glyphicon glyphicon-triangle-right 
+							" aria-hidden="true"></span> <? echo $videolinks->v_title;?></a></li>	
+						<? } ?>				
+					</ul>
+					</marquee>
+					</span>
+				</div>
+			</div>
+			</div>	
+		<?php } ?>
 	</div>
-	</div>
-<?php } else{ ?>
-	<?php if($parmsName !="profile") { ?>
-	<div class="col-md-10">
-	<div class="latest_news alert mar_bnone">
-		<div class="pos_relative" id="scroll">
-		<div class="close_lnews"><button type="button" class="close" data-dismiss="alert">×</button></div>
-			<span>
-			<marquee behavior="scroll"  direction="left"  scrollamount="4" onmouseover="javascript:this.setAttribute('scrollamount','0');" onmouseout="javascript:this.setAttribute('scrollamount','5');">
-			<ul class="list-inline">
-				<?  foreach($topVideos as $key=>$videolinks){
-						// if($key == 25){ break; }
-					$video_id = base64_encode($videolinks->v_id);
-				?>
-					<li><a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><span class="glyphicon glyphicon-triangle-right 
-					" aria-hidden="true"></span> <? echo $videolinks->v_title;?></a></li>	
-				<? } ?>				
-			</ul>
-			</marquee>
-			</span>
-		</div>
-	</div>
-	</div>
-	<?php } else {?>
-	<div class="col-md-2 filter_cate2">
-		<a href="<?php echo $baseUrl;?>/users/register"><button type="button" class="btn btn-primary btn-xs"><h4>Add Profile</h4></button></a>
-	</div>
-	<div class="col-md-8">
-	<div class="latest_news alert mar_bnone">
-		<div class="pos_relative" id="scroll">
-		<div class="close_lnews"><button type="button" class="close" data-dismiss="alert">×</button></div>
-			<span>
-			<marquee behavior="scroll"  direction="left"  scrollamount="4" onmouseover="javascript:this.setAttribute('scrollamount','0');" onmouseout="javascript:this.setAttribute('scrollamount','5');">
-			<ul class="list-inline">
-				<?  foreach($topVideos as $key=>$videolinks){
-						// if($key == 25){ break; }
-					$video_id = base64_encode($videolinks->v_id);
-				?>
-					<li><a href="<?php echo $baseUrl; ?>/play-video?watch=<? echo $video_id;?>"><span class="glyphicon glyphicon-triangle-right 
-					" aria-hidden="true"></span> <? echo $videolinks->v_title;?></a></li>	
-				<? } ?>				
-			</ul>
-			</marquee>
-			</span>
-		</div>
-	</div>
-	</div>	
-	<?php } ?>
-<?php } ?>
 </div>
 <div class="search_bar">
 	<div class="container">
@@ -317,8 +297,6 @@
 				
 				
 			<?php } ?>	
-			
-		
 	</div>
 	</div>
 </div><br>
@@ -355,13 +333,19 @@ if(strpos($_SERVER['REQUEST_URI'],'register')!==false || strpos($_SERVER['REQUES
 	$(window).scroll(function() {
 		if ($(this).scrollTop() > 150) {
 			$('.search_bar').addClass('search_bar_fix_top');
+			//$('.filter_cate').css('position','relative');
 		} else {
-			$('.search_bar').removeClass('search_bar_fix_top');			
+			$('.search_bar').removeClass('search_bar_fix_top');
+			//$('.filter_cate').css('position','absolute');
+			//$('.filter_cate .btn-default').css('color','#555 !important');
 		}
 	});
 </script>
 <?php } ?>
 <script>
+/*if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
+ alert('I am chrome');
+}*/
 $('#videosSearch').keypress(function(e){
 	serachTitle(e);
 	$(".ui-autocomplete").niceScroll({touchbehavior:false, cursorborder:"",cursorcolor:"#666",cursoropacitymax:0.6,cursorwidth:5,autohidemode: false,horizrailenabled:false});
@@ -369,18 +353,18 @@ $('#videosSearch').keypress(function(e){
 		searchByLocation();
 	}
 });
-
 function outLoggedFine(){	
 	FB.logout(function(response){});
 	  $.ajax({
 		url: BASE_URL+'/users/logout',
 		success: function(data){			
 			if(data.output=='success'){
-				window.location=BASE_URL;
+				window.location='/';
 			}
 		}
 	});
 }
+
 function filterByskill(){
 	var catid= $("#u_c_id").val();
 	var c_id = $("#c_id").val();
