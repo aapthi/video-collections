@@ -188,7 +188,7 @@
 								foreach($this->pics as $userpic)
 								{
 									if($userpic->vp_status==0){
-										if( $userpic->vp_u_id == $v_links->v_user_id )
+										if( $userpic->vp_u_id == $userpic->vp_u_id )
 										{
 							?>
 										<a href="<?php echo $baseUrl;?>/<?php echo $userpic->vp_pics;?>" class="lsb-preview" data-lsb-group="header"><img alt="" src="<?php echo $baseUrl;?>/<?php echo $userpic->vp_pics;?>" style="width:120px;height:90px;"/></a>
