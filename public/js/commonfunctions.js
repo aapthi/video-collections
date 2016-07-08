@@ -391,29 +391,24 @@ function validateReg()
 		flag = false;
 	}else{
 		$("#user_lastname_req").html('');
-	}
-	if($("#hid_user_id").val()==""){
-		if(userEmail==""){
-			$("#user_email_req").html(Required);
-			$('#user_email').focus();
-			flag=false;
-		}else if(checkEmail(userEmail)==false){
-			$("#user_email_req").html(email_wrong_format);
-			$('#user_email').focus();
-			flag=false;
-		}else if($("#hidCheckValue").val()==1){
-			tab1flag = false;
-			$("#user_email_req").html(email_already_exists); 
-			$('#user_email').focus();
-			flag=false;
-			return false;
-		}else{
-			$("#user_email_req").html('');
-		}
+	}	
+	if(userEmail==""){
+		$("#user_email_req").html(Required);
+		$('#user_email').focus();
+		flag=false;
+	}else if(checkEmail(userEmail)==false){
+		$("#user_email_req").html(email_wrong_format);
+		$('#user_email').focus();
+		flag=false;
+	}else if($("#hidCheckValue").val()==1){
+		tab1flag = false;
+		$("#user_email_req").html(email_already_exists); 
+		$('#user_email').focus();
+		flag=false;
+		return false;
 	}else{
-		$("#hidCheckValue").val('0');
 		$("#user_email_req").html('');
-	}
+	}	
 	if($("#user_password").val()==''){
 		$("#user_pwd_req").html(Required);
 		$('#user_password').focus();
