@@ -422,19 +422,7 @@ function validateReg()
 		flag = false;
 	}else{
 		$("#user_mobile_req").html('');	
-	}
-	if($("#hid_ud_id").val()==''){
-		if($('#user_captcha').val()==""){
-			$("#user_captcha_req").html(Required);
-			$('#user_captcha').focus();
-			flag=false;
-		}else if($('#user_captcha').val()!=$("#refreshCode").val()){ 
-			$("#user_captcha_req").html("Please enter the correct code");
-			flag=false;
-		}else{
-		   $('#user_captcha').html('');
-		}
-	}
+	}	
 	if($("#city").val()==""){
 		$("#city_req").html(Required);
 		$('#city').focus();
@@ -464,6 +452,16 @@ function validateReg()
 		flag=false;
 	}else{
 		$("#fb_req").html('');
+	}
+	if($('#user_captcha').val()==""){
+		$("#user_captcha_req").html(Required);
+		$('#user_captcha').focus();
+		flag=false;
+	}else if($('#user_captcha').val()!=$("#refreshCode").val()){ 
+		$("#user_captcha_req").html("Please enter the correct code");
+		flag=false;
+	}else{
+	   $('#user_captcha').html('');
 	}
 	if(flag==false){		
 		return false;

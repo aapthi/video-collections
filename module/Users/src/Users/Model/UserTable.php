@@ -261,6 +261,7 @@ class UserTable
 		$select->where('user.state="1"');
 		$select->where('vc_user_details.user_check_data="1"');
 		$select->where('user.user_type="2"');
+		$select->order('user.user_id DESC');
 		$select->group('user.user_id');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$paginatorAdapter = new DbSelect(
