@@ -16,7 +16,8 @@ ALTER TABLE `video_collections`.`vc_user_details` ADD COLUMN `gender` VARCHAR(50
 ALTER TABLE `video_collections`.`vc_user_details` ADD COLUMN `user_check_data` SMALLINT(5) NULL AFTER `user_photo`; 
 ALTER TABLE `video_collections`.`vc_user_details` CHANGE `user_check_data` `user_check_data` SMALLINT(5) DEFAULT 0 NULL; 
 
-
+ALTER TABLE `sfaddaco_sfadda`.`user` ADD FULLTEXT INDEX `username` (`username`); 
+ALTER TABLE `sfaddaco_sfadda`.`user` ENGINE=MYISAM; 
 
 
 Create Table
